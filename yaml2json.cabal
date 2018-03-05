@@ -1,0 +1,18 @@
+name: yaml2json
+version: 0
+build-type: Simple
+cabal-version: >= 1.2
+
+executable yaml2json
+  main-is: yaml2json.hs
+  ghc-options: -O -Wall
+  build-depends:
+      aeson
+    , base
+    , bytestring
+    , containers
+    , mtl
+    , text
+    , unordered-containers
+    , vector
+    , yaml
