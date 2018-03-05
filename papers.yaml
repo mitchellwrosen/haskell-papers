@@ -27,3 +27,7 @@
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/remote.pdf
   references: []
+- name: Type-and-Scope Safe Programs and Their Proofs
+  links:
+    - https://gallais.github.io/pdf/cpp2017.pdf
+  references: []
