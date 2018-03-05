@@ -3,6 +3,11 @@
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-cuda-damp2011.pdf
   references: []
 
+- name: Call Arity
+  links:
+    - https://www.joachim-breitner.de/publications/CallArity-TFP.pdf
+  references: []
+
 - name: 'Communicating Haskell Processes: Composable Explicit Concurrency Using Monads'
   links:
     - http://twistedsquare.com/CHP.pdf
@@ -17,6 +22,11 @@
   links:
     - https://arxiv.org/pdf/1706.09715.pdf
   references: []
+  
+- name: Control Flow in Functional Languages
+  links:
+    - http://www.joachim-breitner.de/various/SA/ShiversStudienarbeit.pdf
+  references: []
 
 - name: Converting Data-Parallelism to Tast-Parallelism by Rewrites
   links:
@@ -26,6 +36,11 @@
 - name: Data Flow Fusion with Series Expressions in Haskell
   links:
     - http://benl.ouroborus.net/papers/2013-series/flow-Haskell2013-rev1.pdf
+  references: []
+
+- name: dup – Explicit un-sharing in Haskell
+  links:
+    - https://arxiv.org/pdf/1207.2017.pdf
   references: []
 
 - name: Efficient Communication and Collection with Compact Normal Forms
@@ -47,6 +62,11 @@
 - name: Faster Laziness Using Dynamic Pointer Tagging
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2007/10/ptr-tagging.pdf
+  references: []
+  
+- name: Formally Proving a Compiler Transformation Safe
+  links:
+    - http://www.joachim-breitner.de/publications/CallArity-Haskell15.pdf
   references: []
 
 - name: Functional Array Streams
@@ -79,6 +99,16 @@
     - https://www.microsoft.com/en-us/research/wp-content/uploads/1992/04/spineless-tagless-gmachine.pdf
   references: []
   
+- name: 'Lazy Evaluation: From natural semantics to a machine-checked compiler transformation'
+  links:
+    - https://www.ksp.kit.edu/download/1000056002
+  references: []
+
+- name: Lock-Step Simulation Is Child's Play
+  links:
+    - https://www.joachim-breitner.de/publications/CodeWorld-ICFP17.pdf
+  references: []
+  
 - name: 'Let-foating: moving bindings to give faster programs'
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/1996/05/float.pdf
@@ -87,6 +117,11 @@
 - name: Machine Fusion
   links:
     - http://benl.ouroborus.net/papers/2017-merges/merges-PPDP2017-final.pdf
+  references: []
+
+- name: Modular, Higher-Order Cardinality Analysis in Theory and Practice
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf
   references: []
 
 - name: Optimising Purely Functional GPU Programs
@@ -123,6 +158,11 @@
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/inline.pdf
   references: []
+
+- name: Securing Concurrent Lazy Programs Against Information Leakage
+  links:
+    - https://www.joachim-breitner.de/publications/lazydup_CSF2017_extended.pdf
+  references: []
   
 - name: 'Stream Fusion: Practical shortcut fusion for coinductive sequence types'
   links:
@@ -132,6 +172,11 @@
 - name: Streaming Irregular Arrays
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf
+  references: []
+
+- name: Tackling the testing migration problem with SAT-Solvers
+  links:
+    - https://arxiv.org/pdf/1204.2974.pdf
   references: []
 
 - name: The Expression Problem
@@ -157,4 +202,9 @@
 - name: 'Type-safe Runtime Code Generation: Accelerate to LLVM'
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-llvm-haskell2015.pdf
+  references: []
+  
+- name: Visual theorem proving with the Incredible Proof Machine
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf
   references: []
