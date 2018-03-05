@@ -1,3 +1,7 @@
+- name: Constrained Type Families
+  links:
+    - https://arxiv.org/pdf/1706.09715.pdf
+  references: []
 - name: Efficient Communication and Collection with Compact Normal Forms
   links:
     - http://ezyang.com/papers/ezyang15-cnf.pdf
