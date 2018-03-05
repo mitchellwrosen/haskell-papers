@@ -1,33 +1,160 @@
+- name: Accelerating Haskell Array Codes with Multicore GPUs
+  links:
+    - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-cuda-damp2011.pdf
+  references: []
+
+- name: 'Communicating Haskell Processes: Composable Explicit Concurrency Using Monads'
+  links:
+    - http://twistedsquare.com/CHP.pdf
+  references: []
+
+- name: Compiling Tree Transforms to Operate on Packed Representations
+  links:
+    - http://drops.dagstuhl.de/opus/volltexte/2017/7273/pdf/LIPIcs-ECOOP-2017-26.pdf
+  references: []
+  
 - name: Constrained Type Families
   links:
     - https://arxiv.org/pdf/1706.09715.pdf
   references: []
+
+- name: Converting Data-Parallelism to Tast-Parallelism by Rewrites
+  links:
+    - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-multidev-fhpc2015.pdf
+  references: []
+  
+- name: Data Flow Fusion with Series Expressions in Haskell
+  links:
+    - http://benl.ouroborus.net/papers/2013-series/flow-Haskell2013-rev1.pdf
+  references: []
+
 - name: Efficient Communication and Collection with Compact Normal Forms
   links:
     - http://ezyang.com/papers/ezyang15-cnf.pdf
   references:
     - Towards Haskell in the Cloud
+    
+- name: Efficient Parallel Stencil Convolution in Haskell
+  links:
+    - http://benl.ouroborus.net/papers/2011-stencil/stencil-haskell2011.pdf
+  references: []
+
+- name: Embedding Foreign Code
+  links:
+    - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-ffi-padl2014.pdf
+  references: []
+
+- name: Faster Laziness Using Dynamic Pointer Tagging
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/2007/10/ptr-tagging.pdf
+  references: []
+
+- name: Functional Array Streams
+  links:
+    - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq-fhpc2015.pdf
+  references: []
+
 - name: Generalizing Monads to Arrows
   links:
     - http://www.cse.chalmers.se/~rjmh/Papers/arrows.pdf
   references: []
+  
 - name: Generic Programming for Indexed Datatypes
   links:
     - http://dreixel.net/research/pdf/gpid.pdf
   references: []
+  
 - name: 'Ghostbuster: A Tool for Simplifying and Converting GADTs'
   links:
     - http://www.cs.ox.ac.uk/people/timothy.zakian/ghostbuster.pdf
   references: []
+  
+- name: Guiding Parallel Array Fusion with Indexed Types
+  links:
+    - http://benl.ouroborus.net/papers/2012-guiding/guiding-Haskell2012.pdf
+  references: []
+
+- name: 'Implementing lazy functional languages on stock hardware: the Spineless Tagless G-machine'
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/1992/04/spineless-tagless-gmachine.pdf
+  references: []
+  
+- name: 'Let-foating: moving bindings to give faster programs'
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/1996/05/float.pdf
+  references: []
+  
+- name: Machine Fusion
+  links:
+    - http://benl.ouroborus.net/papers/2017-merges/merges-PPDP2017-final.pdf
+  references: []
+
+- name: Optimising Purely Functional GPU Programs
+  links:
+    - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-optim-icfp2013.pdf
+  references: []
+  
+- name: 'Project H: Programming R in Haskell'
+  links:
+    - https://ifl2014.github.io/submissions/ifl2014_submission_16.pdf
+  references: []
+
+- name: Promoting Functions to Type Families in Haskell
+  links:
+    - https://repository.brynmawr.edu/cgi/viewcontent.cgi?article=1000&context=compsci_pubs
+  references: []
+
+- name: Regular, Shape-polymorphic, Parallel Arrays in Haskell
+  links:
+    - http://benl.ouroborus.net/papers/2010-rarrays/repa-icfp2010.pdf
+  references: []
+  
+- name: Retrofitting Linear Types
+  links:
+    - https://github.com/tweag/linear-types/releases/download/v2.0/hlt.pdf
+  references: []
+  
 - name: Safe Zero-cost Coercions for Haskell
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/coercible.pdf
   references: []
+  
+- name: Secrets of the Glasgow Haskell Compiler inliner
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/inline.pdf
+  references: []
+  
+- name: 'Stream Fusion: Practical shortcut fusion for coinductive sequence types'
+  links:
+    - http://community.haskell.org/~duncan/thesis.pdf
+  references: []
+  
+- name: Streaming Irregular Arrays
+  links:
+    - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf
+  references: []
+
+- name: The Expression Problem
+  links:
+    - http://homepages.inf.ed.ac.uk/wadler/papers/expression/expression.txt
+  references: []
+  
 - name: Towards Haskell in the Cloud
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/remote.pdf
   references: []
+  
 - name: Type-and-Scope Safe Programs and Their Proofs
   links:
     - https://gallais.github.io/pdf/cpp2017.pdf
+  references: []
+
+- name: Type-Level Web APIs with Servant
+  links:
+    - https://dl.acm.org/authorize?N08939
+  references: []
+
+- name: 'Type-safe Runtime Code Generation: Accelerate to LLVM'
+  links:
+    - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-llvm-haskell2015.pdf
   references: []
