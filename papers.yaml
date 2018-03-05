@@ -7,6 +7,10 @@
   links:
     - http://dreixel.net/research/pdf/gpid.pdf
   references: []
+- name: Safe Zero-cost Coercions for Haskell
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/coercible.pdf
+  references: []
 - name: Towards Haskell in the Cloud
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/remote.pdf
