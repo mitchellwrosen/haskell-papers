@@ -3,6 +3,10 @@
     - http://ezyang.com/papers/ezyang15-cnf.pdf
   references:
     - Towards Haskell in the Cloud
+- name: Generalizing Monads to Arrows
+  links:
+    - http://www.cse.chalmers.se/~rjmh/Papers/arrows.pdf
+  references: []
 - name: Generic Programming for Indexed Datatypes
   links:
     - http://dreixel.net/research/pdf/gpid.pdf
