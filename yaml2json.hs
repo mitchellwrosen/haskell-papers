@@ -1,13 +1,16 @@
 {-# language LambdaCase #-}
 {-# language NamedFieldPuns #-}
 {-# language OverloadedStrings #-}
+{-# language ScopedTypeVariables #-}
 
 import Control.Monad.State hiding ((>>))
-import Data.Aeson (FromJSON, ToJSON, (.:), (.=), object, toJSON, withObject)
+import Data.Aeson
+  (FromJSON, ToJSON, (.:), (.:?), (.=), object, toJSON, withObject)
 import Data.Function ((&))
 import Data.HashMap.Strict (HashMap)
 import Data.IntSet (IntSet)
 import Data.List (sortOn)
+import Data.Maybe (fromMaybe)
 import Data.Monoid
 import Data.Text (Text, unpack)
 import Data.Vector (Vector)
@@ -26,29 +29,52 @@ import qualified Data.Vector as Vector
 import qualified Data.Yaml as Yaml
 
 data PaperIn = PaperIn
-  { paperInName :: !Text
-  , paperInLinks :: !(Vector Text)
+  { paperInTitle :: !Text
+  , paperInAuthors :: !(Vector Text)
+  , paperInYear :: !(Maybe Int)
   , paperInReferences :: !(Vector Text)
+  , paperInLinks :: !(Vector Text)
   }
 
 instance FromJSON PaperIn where
   parseJSON =
-    withObject "paper" $ \o ->
-      PaperIn
-        <$> o .: "name"
-        <*> o .: "links"
-        <*> o .: "references"
+    withObject "paper" $ \o -> do
+      title <- o .: "title"
+      author <- o .:? "author"
+      authors <- o .:? "authors"
+      year <- o .:? "year"
+      references <- o .:? "references"
+      link <- o .:? "link"
+      links <- o .:? "links"
+      pure PaperIn
+        { paperInTitle = title
+        , paperInAuthors =
+            case (author, authors) of
+              (Nothing, Nothing) -> mempty
+              (Nothing, Just xs) -> xs
+              (Just x, Nothing) -> pure x
+              (Just _, Just _) -> fail "Found both 'author' and 'authors'"
+        , paperInYear = year
+        , paperInReferences = fromMaybe mempty references
+        , paperInLinks =
+            case (link, links) of
+              (Nothing, Nothing) -> mempty
+              (Nothing, Just xs) -> xs
+              (Just x, Nothing) -> pure x
+              (Just _, Just _) -> fail "Found both 'link' and 'links'"
+        }
 
+-- TODO: authors, year
 data PaperOut = PaperOut
-  { paperOutName :: !Text
-  , paperOutLinks :: !(Vector Text)
+  { paperOutTitle :: !Text
   , paperOutReferences :: !(Vector Int)
+  , paperOutLinks :: !(Vector Text)
   }
 
 instance ToJSON PaperOut where
   toJSON paper =
     object
-      [ "name" .= paperOutName paper
+      [ "title" .= paperOutTitle paper
       , "links" .= paperOutLinks paper
       , "references" .= paperOutReferences paper
       ]
@@ -82,7 +108,7 @@ transform =
   mapM transform1
     >> (`runState` S mempty mempty 0)
     >> smash Vector.toList leftovers
-    >> sortOn (snd >> paperOutName >> Text.toLower)
+    >> sortOn (snd >> paperOutTitle >> Text.toLower)
  where
   smash :: Monoid c => (a -> c) -> (b -> c) -> (a, b) -> c
   smash f g (x, y) = f x <> g y
@@ -94,39 +120,43 @@ transform =
       & HashMap.toList
       & filter (snd >> (`IntSet.notMember` sTopLevelIds s))
       & map
-          (\(name, id) ->
+          (\(title, id) ->
             (id, PaperOut
-              { paperOutName = name
+              { paperOutTitle = title
               , paperOutLinks = mempty
               , paperOutReferences = mempty
               }))
 
 transform1 :: PaperIn -> State S (Int, PaperOut)
 transform1 paper = do
-  id <- getPaperId (paperInName paper)
+  id :: Int <-
+    getPaperId (paperInTitle paper)
 
-  ids <- gets sTopLevelIds
+  ids :: IntSet <-
+    gets sTopLevelIds
+
   if IntSet.member id ids
-    then error ("Found " ++ unpack (paperInName paper) ++ " twice")
+    then error ("Found " ++ unpack (paperInTitle paper) ++ " twice")
     else modify' (\s -> s { sTopLevelIds = IntSet.insert id ids })
 
-  references <- mapM getPaperId (paperInReferences paper)
+  references :: Vector Int <-
+    mapM getPaperId (paperInReferences paper)
 
   pure
     (id, PaperOut
-      { paperOutName = paperInName paper
+      { paperOutTitle = paperInTitle paper
       , paperOutLinks = paperInLinks paper
       , paperOutReferences = references
       })
 
 getPaperId :: Text -> State S Int
-getPaperId name = do
+getPaperId title = do
   S {sPaperIds, sTopLevelIds, sNextPaperId} <- get
 
-  case HashMap.lookup name sPaperIds of
+  case HashMap.lookup title sPaperIds of
     Nothing -> do
       put S
-        { sPaperIds = HashMap.insert name sNextPaperId sPaperIds
+        { sPaperIds = HashMap.insert title sNextPaperId sPaperIds
         , sTopLevelIds = sTopLevelIds
         , sNextPaperId = sNextPaperId + 1
         }
