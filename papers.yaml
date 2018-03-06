@@ -2,6 +2,11 @@
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110254
   references: []
+  
+- name: 'A history of Haskell: being lazy with class'
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf
+  references: []
 
 - name: A metaprogramming framework for formal verification
   links:
@@ -185,6 +190,11 @@
     - https://dl.acm.org/citation.cfm?doid=3136534.3110245
   references: []
   
+- name: Higher-order + polymorphic = reusable
+  links:
+    - https://kar.kent.ac.uk/21504/3/Higher-order_+_Polymorphic_=_Reusable.pdf
+  references: []
+
 - name: 'How to prove your calculus is decidable: practical applications of second-order algebraic theories and computation'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110266
@@ -419,4 +429,9 @@
 - name: 'Whip: higher-order contracts for modern services'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110280
+  references: []
+  
+- name: Why functional programming matters
+  links:
+    - https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf
   references: []
