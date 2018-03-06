@@ -8,11 +8,11 @@ import Json.Decode as Decode exposing (Decoder)
 
 
 type Model
-    = Model (Dict Int Paper)
+    = Model (Dict Int Paper) (List Paper)
 
 
 type Message
-    = Blob (Result Http.Error (Dict Int Paper))
+    = Blob (Result Http.Error (List ( Int, Paper )))
 
 
 type alias Paper =
@@ -39,18 +39,13 @@ init =
         also =
             Decode.map2 (|>)
 
-        makePaperMap : List ( Int, Paper ) -> Dict Int Paper
-        makePaperMap =
-            List.foldl (uncurry Dict.insert) Dict.empty
-
-        decodePapers : Decoder (Dict Int Paper)
+        decodePapers : Decoder (List ( Int, Paper ))
         decodePapers =
-            Decode.map makePaperMap <|
-                Decode.list <|
-                    Decode.map2
-                        (\x y -> ( x, y ))
-                        (Decode.index 0 Decode.int)
-                        (Decode.index 1 decodePaper)
+            Decode.list <|
+                Decode.map2
+                    (\x y -> ( x, y ))
+                    (Decode.index 0 Decode.int)
+                    (Decode.index 1 decodePaper)
 
         decodePaper : Decoder Paper
         decodePaper =
@@ -59,7 +54,7 @@ init =
                 |> also (Decode.field "links" (Decode.list Decode.string))
                 |> also (Decode.field "references" (Decode.list Decode.int))
     in
-        ( Model Dict.empty
+        ( Model Dict.empty []
         , Http.send Blob <| Http.get "./papers.json" decodePapers
         )
 
@@ -72,20 +67,25 @@ subscriptions _ =
 update : Message -> Model -> ( Model, Cmd Message )
 update message model =
     case message of
-        Blob result ->
-            case result of
-                Ok papers ->
-                    ( Model papers, Cmd.none )
+        Blob (Ok papers) ->
+            ( Model (listToDict papers) (List.map Tuple.second papers)
+            , Cmd.none
+            )
 
-                Err msg ->
-                    Debug.crash <| toString msg
+        Blob (Err msg) ->
+            Debug.crash <| toString msg
+
+
+listToDict : List ( comparable, a ) -> Dict comparable a
+listToDict =
+    List.foldl (uncurry Dict.insert) Dict.empty
 
 
 view : Model -> Html Message
 view model =
     case model of
-        Model papers ->
-            Html.ul [] <| List.map (viewPaper papers) (Dict.values papers)
+        Model papersMap papers ->
+            Html.ul [] <| List.map (viewPaper papersMap) papers
 
 
 viewPaper : Dict Int Paper -> Paper -> Html a

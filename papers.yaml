@@ -99,7 +99,7 @@
     - http://benl.ouroborus.net/papers/2013-series/flow-Haskell2013-rev1.pdf
   references: []
 
-- name: 'Dependent Types in Haskell: Theory and Practice'
+- name: 'Dependent types in Haskell: theory and practice'
   links:
     - https://arxiv.org/pdf/1610.07978.pdf
   references: []
@@ -118,7 +118,7 @@
   links:
     - http://ezyang.com/papers/ezyang15-cnf.pdf
   references:
-    - Towards Haskell in the Cloud
+    - Towards Haskell in the cloud
 
 - name: Efficient parallel stencil convolution in Haskell
   links:

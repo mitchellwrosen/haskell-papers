@@ -6,8 +6,8 @@ import Control.Monad.State hiding ((>>))
 import Data.Aeson (FromJSON, ToJSON, (.:), (.=), object, toJSON, withObject)
 import Data.Function ((&))
 import Data.HashMap.Strict (HashMap)
-import Data.IntMap (IntMap)
 import Data.IntSet (IntSet)
+import Data.List (sortOn)
 import Data.Monoid
 import Data.Text (Text, unpack)
 import Data.Vector (Vector)
@@ -20,8 +20,9 @@ import qualified Data.Aeson as Json
 import qualified Data.ByteString as ByteString
 import qualified Data.ByteString.Lazy as LByteString
 import qualified Data.HashMap.Strict as HashMap
-import qualified Data.IntMap as IntMap
 import qualified Data.IntSet as IntSet
+import qualified Data.Text as Text
+import qualified Data.Vector as Vector
 import qualified Data.Yaml as Yaml
 
 data PaperIn = PaperIn
@@ -76,28 +77,29 @@ data S = S
   , sNextPaperId :: !Int
   }
 
-transform :: Vector PaperIn -> IntMap PaperOut
+transform :: Vector PaperIn -> [(Int, PaperOut)]
 transform =
   mapM transform1
     >> (`runState` S mempty mempty 0)
-    >> smash (foldMap (uncurry IntMap.singleton)) leftovers
+    >> smash Vector.toList leftovers
+    >> sortOn (snd >> paperOutName >> Text.toLower)
  where
   smash :: Monoid c => (a -> c) -> (b -> c) -> (a, b) -> c
   smash f g (x, y) = f x <> g y
 
   -- All papers that were referenced but don't exist at the top level.
-  leftovers :: S -> IntMap PaperOut
+  leftovers :: S -> [(Int, PaperOut)]
   leftovers s =
     sPaperIds s
       & HashMap.toList
       & filter (snd >> (`IntSet.notMember` sTopLevelIds s))
-      & foldMap
+      & map
           (\(name, id) ->
-            IntMap.singleton id PaperOut
+            (id, PaperOut
               { paperOutName = name
               , paperOutLinks = mempty
               , paperOutReferences = mempty
-              })
+              }))
 
 transform1 :: PaperIn -> State S (Int, PaperOut)
 transform1 paper = do

@@ -8976,54 +8976,57 @@ var _user$project$Main$viewPaper = F2(
 	});
 var _user$project$Main$view = function (model) {
 	var _p3 = model;
-	var _p4 = _p3._0;
 	return A2(
 		_elm_lang$html$Html$ul,
 		{ctor: '[]'},
 		A2(
 			_elm_lang$core$List$map,
-			_user$project$Main$viewPaper(_p4),
-			_elm_lang$core$Dict$values(_p4)));
+			_user$project$Main$viewPaper(_p3._0),
+			_p3._1));
 };
-var _user$project$Main$subscriptions = function (_p5) {
+var _user$project$Main$listToDict = A2(
+	_elm_lang$core$List$foldl,
+	_elm_lang$core$Basics$uncurry(_elm_lang$core$Dict$insert),
+	_elm_lang$core$Dict$empty);
+var _user$project$Main$subscriptions = function (_p4) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _user$project$Main$Paper = F3(
 	function (a, b, c) {
 		return {name: a, links: b, references: c};
 	});
-var _user$project$Main$Model = function (a) {
-	return {ctor: 'Model', _0: a};
-};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {ctor: 'Model', _0: a, _1: b};
+	});
 var _user$project$Main$update = F2(
 	function (message, model) {
-		var _p6 = message;
-		var _p7 = _p6._0;
-		if (_p7.ctor === 'Ok') {
+		var _p5 = message;
+		if (_p5._0.ctor === 'Ok') {
+			var _p6 = _p5._0._0;
 			return {
 				ctor: '_Tuple2',
-				_0: _user$project$Main$Model(_p7._0),
+				_0: A2(
+					_user$project$Main$Model,
+					_user$project$Main$listToDict(_p6),
+					A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$second, _p6)),
 				_1: _elm_lang$core$Platform_Cmd$none
 			};
 		} else {
 			return _elm_lang$core$Native_Utils.crashCase(
 				'Main',
 				{
-					start: {line: 76, column: 13},
-					end: {line: 81, column: 48}
+					start: {line: 69, column: 5},
+					end: {line: 76, column: 40}
 				},
-				_p7)(
-				_elm_lang$core$Basics$toString(_p7._0));
+				_p5)(
+				_elm_lang$core$Basics$toString(_p5._0._0));
 		}
 	});
 var _user$project$Main$Blob = function (a) {
 	return {ctor: 'Blob', _0: a};
 };
 var _user$project$Main$init = function () {
-	var makePaperMap = A2(
-		_elm_lang$core$List$foldl,
-		_elm_lang$core$Basics$uncurry(_elm_lang$core$Dict$insert),
-		_elm_lang$core$Dict$empty);
 	var also = _elm_lang$core$Json_Decode$map2(
 		F2(
 			function (x, y) {
@@ -9045,21 +9048,21 @@ var _user$project$Main$init = function () {
 				also,
 				A2(_elm_lang$core$Json_Decode$field, 'name', _elm_lang$core$Json_Decode$string),
 				_elm_lang$core$Json_Decode$succeed(_user$project$Main$Paper))));
-	var decodePapers = A2(
-		_elm_lang$core$Json_Decode$map,
-		makePaperMap,
-		_elm_lang$core$Json_Decode$list(
-			A3(
-				_elm_lang$core$Json_Decode$map2,
-				F2(
-					function (x, y) {
-						return {ctor: '_Tuple2', _0: x, _1: y};
-					}),
-				A2(_elm_lang$core$Json_Decode$index, 0, _elm_lang$core$Json_Decode$int),
-				A2(_elm_lang$core$Json_Decode$index, 1, decodePaper))));
+	var decodePapers = _elm_lang$core$Json_Decode$list(
+		A3(
+			_elm_lang$core$Json_Decode$map2,
+			F2(
+				function (x, y) {
+					return {ctor: '_Tuple2', _0: x, _1: y};
+				}),
+			A2(_elm_lang$core$Json_Decode$index, 0, _elm_lang$core$Json_Decode$int),
+			A2(_elm_lang$core$Json_Decode$index, 1, decodePaper)));
 	return {
 		ctor: '_Tuple2',
-		_0: _user$project$Main$Model(_elm_lang$core$Dict$empty),
+		_0: A2(
+			_user$project$Main$Model,
+			_elm_lang$core$Dict$empty,
+			{ctor: '[]'}),
 		_1: A2(
 			_elm_lang$http$Http$send,
 			_user$project$Main$Blob,
