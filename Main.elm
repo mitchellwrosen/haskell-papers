@@ -85,12 +85,12 @@ view : Model -> Html Message
 view model =
     case model of
         Model papers ->
-            Html.div [] <| List.map (viewPaper papers) (Dict.values papers)
+            Html.ul [] <| List.map (viewPaper papers) (Dict.values papers)
 
 
 viewPaper : Dict Int Paper -> Paper -> Html a
 viewPaper papers paper =
-    Html.div
+    Html.li
         []
         [ case paper.links of
             [] ->
@@ -98,7 +98,7 @@ viewPaper papers paper =
 
             link :: _ ->
                 Html.a [ href link ] [ Html.text paper.name ]
-        , Html.div
+        , Html.ul
             []
             (List.map
                 (\id ->

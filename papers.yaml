@@ -2,7 +2,7 @@
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110254
   references: []
-  
+
 - name: 'A history of Haskell: being lazy with class'
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf
@@ -12,7 +12,7 @@
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110278
   references: []
-  
+
 - name: A pretty but not greedy printer
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110250
@@ -22,12 +22,12 @@
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110265
   references: []
-  
+
 - name: A specification for dependent types in Haskell
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110275
   references: []
-  
+
 - name: A unified approach to solving seven programming problems
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110252
@@ -42,12 +42,12 @@
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-cuda-damp2011.pdf
   references: []
-  
+
 - name: Automating sized-type inference for complexity analysis
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110287
   references: []
-  
+
 - name: 'Better living through operational semantics: an optimizing compiler for radio protocols'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110263
@@ -57,7 +57,7 @@
   links:
     - https://www.joachim-breitner.de/publications/CallArity-TFP.pdf
   references: []
-  
+
 - name: Chaperone contracts for higher-order sessions
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110279
@@ -67,7 +67,7 @@
   links:
     - http://twistedsquare.com/CHP.pdf
   references: []
-  
+
 - name: Compiling to categories
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110271
@@ -77,13 +77,13 @@
   links:
     - http://drops.dagstuhl.de/opus/volltexte/2017/7273/pdf/LIPIcs-ECOOP-2017-26.pdf
   references: []
-  
+
 - name: Constrained type families
   links:
     - https://arxiv.org/pdf/1706.09715.pdf
     - https://dl.acm.org/citation.cfm?doid=3136534.3110286
   references: []
-  
+
 - name: Control flow in functional languages
   links:
     - http://www.joachim-breitner.de/various/SA/ShiversStudienarbeit.pdf
@@ -93,17 +93,22 @@
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-multidev-fhpc2015.pdf
   references: []
-  
+
 - name: Data flow fusion with series expressions in Haskell
   links:
     - http://benl.ouroborus.net/papers/2013-series/flow-Haskell2013-rev1.pdf
+  references: []
+
+- name: 'Dependent Types in Haskell: Theory and Practice'
+  links:
+    - https://arxiv.org/pdf/1610.07978.pdf
   references: []
 
 - name: dup – explicit un-sharing in Haskell
   links:
     - https://arxiv.org/pdf/1207.2017.pdf
   references: []
-  
+
 - name: Effect-driven QuickChecking of compilers
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110259
@@ -114,7 +119,7 @@
     - http://ezyang.com/papers/ezyang15-cnf.pdf
   references:
     - Towards Haskell in the Cloud
-    
+
 - name: Efficient parallel stencil convolution in Haskell
   links:
     - http://benl.ouroborus.net/papers/2011-stencil/stencil-haskell2011.pdf
@@ -124,7 +129,7 @@
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-ffi-padl2014.pdf
   references: []
-  
+
 - name: Faster coroutine pipelines
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110249
@@ -134,12 +139,12 @@
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2007/10/ptr-tagging.pdf
   references: []
-  
+
 - name: Formally proving a compiler transformation safe
   links:
     - http://www.joachim-breitner.de/publications/CallArity-Haskell15.pdf
   references: []
-  
+
 - name: Foundations of strong call by need
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110264
@@ -154,17 +159,17 @@
   links:
     - http://www.cse.chalmers.se/~rjmh/Papers/arrows.pdf
   references: []
-  
-- name: Generic functional parallel algorithms: scan and FFT
+
+- name: 'Generic functional parallel algorithms: scan and FFT'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110251
   references: []
-  
+
 - name: Generic programming for indexed datatypes
   links:
     - http://dreixel.net/research/pdf/gpid.pdf
   references: []
-  
+
 - name: 'Ghostbuster: a tool for simplifying and converting GADTs'
   links:
     - http://www.cs.ox.ac.uk/people/timothy.zakian/ghostbuster.pdf
@@ -184,12 +189,12 @@
   links:
     - http://benl.ouroborus.net/papers/2012-guiding/guiding-Haskell2012.pdf
   references: []
-  
+
 - name: 'Herbarium Racketensis: a stroll through the woods'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110245
   references: []
-  
+
 - name: Higher-order + polymorphic = reusable
   links:
     - https://kar.kent.ac.uk/21504/3/Higher-order_+_Polymorphic_=_Reusable.pdf
@@ -199,7 +204,7 @@
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110266
   references: []
-  
+
 - name: Imperative functional programs that explain their work
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110258
@@ -209,22 +214,55 @@
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/1992/04/spineless-tagless-gmachine.pdf
   references: []
-  
+
 - name: Inferring scope through syntactic sugar
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110288
   references: []
-  
+
 - name: 'Kami: a platform for high-level parametric hardware specification and its modular verification'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110268
   references: []
-  
+
 - name: 'Lazy evaluation: from natural semantics to a machine-checked compiler transformation'
   links:
     - https://www.ksp.kit.edu/download/1000056002
   references: []
-  
+
+- name: Levity polymorphism
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/levity-pldi17.pdf
+  references:
+    - A reflection on types
+    - A safe dialect of C
+    - A transformation-based optimiser for Haskell
+    - Automating ad hoc representation transformations
+    - Calling Hell from Heaven and Heaven from Hell
+    - 'Dependent types in Haskell: theory and practice'
+    - Design and implementation of generics for the .NET Common Language Runtime
+    - Elaborating evaluation-order polymorphism
+    - Exploiting vector instructions with generalized stream fusion
+    - Flexible type analysis
+    - From System F to typed assembly language
+    - Giving Haskell a promotion
+    - How to make ad-hoc polymorphism less ad-hoc
+    - 'Java generics and collections: speed up the Java development process'
+    - Polymorphic type schemes and recursive definitions
+    - Practical type inference for arbitrary-rank types
+    - Putting type annotations to work
+    - Quantified types in an imperative language
+    - 'Scrap your boilerplate: a practical design pattern for generic programming'
+    - System F with type equality coercions
+    - System FC with explicit kind equality
+    - The essence of compiling with continuations
+    - 'TIL: A type-directed optimizing compiler for ML'
+    - Toward a foundational typed assembly language
+    - Towards a theory of type structure
+    - Type classes in haskell
+    - Unboxed values as first class citizens
+    - Whole-program compilation in MLton
+
 - name: Local refinement typing
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110270
@@ -235,17 +273,17 @@
     - https://www.joachim-breitner.de/publications/CodeWorld-ICFP17.pdf
     - https://dl.acm.org/citation.cfm?doid=3136534.3110247
   references: []
-  
+
 - name: 'Let-foating: moving bindings to give faster programs'
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/1996/05/float.pdf
   references: []
-  
+
 - name: Machine fusion
   links:
     - http://benl.ouroborus.net/papers/2017-merges/merges-PPDP2017-final.pdf
   references: []
-  
+
 - name: Manifest sharing with session types
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110281
@@ -260,17 +298,17 @@
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110267
   references: []
-  
+
 - name: Normalization by evaluation for sized dependent types
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110277
   references: []
-  
+
 - name: On polymorphic gradual typing
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110284
   references: []
-  
+
 - name: 'On the expressive power of user-defined effects: effect handlers, monadic reflection, delimited control'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110257
@@ -280,17 +318,17 @@
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-optim-icfp2013.pdf
   references: []
-  
+
 - name: Parametric quantifiers for dependent type theory
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110276
   references: []
-  
+
 - name: 'Persistence for the masses: RRB-vectors in a systems language'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110260
   references: []
-  
+
 - name: 'Project H: programming R in Haskell'
   links:
     - https://ifl2014.github.io/submissions/ifl2014_submission_16.pdf
@@ -300,7 +338,7 @@
   links:
     - https://repository.brynmawr.edu/cgi/viewcontent.cgi?article=1000&context=compsci_pubs
   references: []
-  
+
 - name: Prototyping a query compiler using Coq
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110253
@@ -310,22 +348,22 @@
   links:
     - http://benl.ouroborus.net/papers/2010-rarrays/repa-icfp2010.pdf
   references: []
-  
+
 - name: Retrofitting linear types
   links:
     - https://github.com/tweag/linear-types/releases/download/v2.0/hlt.pdf
   references: []
-  
+
 - name: Safe zero-cost coercions for Haskell
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/coercible.pdf
   references: []
-  
+
 - name: 'Scaling up functional programming education: under the hood of the OCaml MOOC'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110248
   references: []
-  
+
 - name: Secrets of the Glasgow Haskell Compiler inliner
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/inline.pdf
@@ -335,32 +373,37 @@
   links:
     - https://www.joachim-breitner.de/publications/lazydup_CSF2017_extended.pdf
   references: []
-  
+
+- name: 'SHErrLOC: A Static Holistic Error Locator'
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/2017/08/sherrloc-toplas.pdf
+  references: []
+
 - name: 'SpaceSearch: a library for building and verifying solver-aided tools'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110269
   references: []
-  
+
 - name: Staged generic programming
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110273
   references: []
-  
+
 - name: 'Stream fusion: practical shortcut fusion for coinductive sequence types'
   links:
     - http://community.haskell.org/~duncan/thesis.pdf
   references: []
-  
+
 - name: Streaming irregular arrays
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf
   references: []
-  
+
 - name: Super 8 languages for making movies
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110274
   references: []
-  
+
 - name: Symbolic conditioning of arrays in probabilistic programs
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110255
@@ -370,7 +413,7 @@
   links:
     - https://arxiv.org/pdf/1204.2974.pdf
   references: []
-  
+
 - name: Testing and debugging functional reactive programming
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110246
@@ -380,17 +423,17 @@
   links:
     - http://homepages.inf.ed.ac.uk/wadler/papers/expression/expression.txt
   references: []
-  
+
 - name: 'Theorems for free for free: parametricity, with and without types'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110283
   references: []
-  
+
 - name: Towards Haskell in the cloud
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/remote.pdf
   references: []
-  
+
 - name: Type-and-scope safe programs and their proofs
   links:
     - https://gallais.github.io/pdf/cpp2017.pdf
@@ -405,32 +448,32 @@
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-llvm-haskell2015.pdf
   references: []
-  
+
 - name: Verified low-level programming embedded in F*
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110261
   references: []
-  
+
 - name: Verifying efficient function calls in CakeML
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110262
   references: []
-  
+
 - name: Visitors unchained
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110272
   references: []
-  
+
 - name: Visual theorem proving with the Incredible Proof Machine
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf
   references: []
-  
+
 - name: 'Whip: higher-order contracts for modern services'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110280
   references: []
-  
+
 - name: Why functional programming matters
   links:
     - https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf
