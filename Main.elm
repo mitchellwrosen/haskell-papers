@@ -1,5 +1,6 @@
 module Main exposing (..)
 
+import Array exposing (Array)
 import Dict exposing (Dict)
 import Http
 import Html exposing (Html)
@@ -8,17 +9,43 @@ import Json.Decode as Decode exposing (Decoder)
 
 
 type Model
-    = Model (Dict Int Paper) (List Paper)
+    = Model (Array Paper)
 
 
 type Message
-    = Blob (Result Http.Error (List ( Int, Paper )))
+    = Blob (Result Http.Error (Array Paper))
+
+
+type alias Author =
+    String
+
+
+type alias AuthorId =
+    Int
+
+
+type alias Link =
+    String
+
+
+type alias LinkId =
+    Int
+
+
+type alias Title =
+    String
+
+
+type alias TitleId =
+    Int
 
 
 type alias Paper =
-    { name : String
-    , links : List String
-    , references : List Int
+    { title : Title
+    , authors : Array Author
+    , year : Maybe Int
+    , references : Array TitleId
+    , links : Array Link
     }
 
 
@@ -26,7 +53,7 @@ main : Program Never Model Message
 main =
     Html.program
         { init = init
-        , subscriptions = subscriptions
+        , subscriptions = always Sub.none
         , update = update
         , view = view
         }
@@ -39,36 +66,126 @@ init =
         also =
             Decode.map2 (|>)
 
-        decodePapers : Decoder (List ( Int, Paper ))
-        decodePapers =
-            Decode.list <|
-                Decode.map2
-                    (\x y -> ( x, y ))
-                    (Decode.index 0 Decode.int)
-                    (Decode.index 1 decodePaper)
+        andThen3 :
+            Decoder a
+            -> Decoder b
+            -> Decoder c
+            -> (a -> b -> c -> Decoder d)
+            -> Decoder d
+        andThen3 dx dy dz f =
+            Decode.andThen
+                (\x -> Decode.andThen (\y -> Decode.andThen (f x y) dz) dy)
+                dx
 
-        decodePaper : Decoder Paper
-        decodePaper =
-            Decode.succeed Paper
-                |> also (Decode.field "name" Decode.string)
-                |> also (Decode.field "links" (Decode.list Decode.string))
-                |> also (Decode.field "references" (Decode.list Decode.int))
+        decodePapers : Decoder (Array Paper)
+        decodePapers =
+            andThen3
+                (Decode.field "titles" decodeIds)
+                (Decode.field "authors" decodeIds)
+                (Decode.field "links" decodeIds)
+                (\titles authors links ->
+                    decodePaper titles authors links
+                        |> Decode.array
+                        |> Decode.field "papers"
+                )
+
+        decodeIds : Decoder (Dict Int String)
+        decodeIds =
+            Decode.map arrayToDict <|
+                Decode.array <|
+                    Decode.map2
+                        (\x y -> ( x, y ))
+                        (Decode.index 0 Decode.int)
+                        (Decode.index 1 Decode.string)
+
+        decodePaper : Dict TitleId Title -> Dict AuthorId Author -> Dict LinkId Link -> Decoder Paper
+        decodePaper titles authors links =
+            let
+                decodeTitle : Decoder Title
+                decodeTitle =
+                    let
+                        lookupTitle : TitleId -> Title
+                        lookupTitle id =
+                            case Dict.get id titles of
+                                Nothing ->
+                                    Debug.crash ("No title " ++ toString id)
+
+                                Just title ->
+                                    title
+                    in
+                        Decode.int
+                            |> Decode.field "title"
+                            |> Decode.map lookupTitle
+
+                decodeAuthors : Decoder (Array Author)
+                decodeAuthors =
+                    let
+                        lookupAuthor : AuthorId -> Author
+                        lookupAuthor id =
+                            case Dict.get id authors of
+                                Nothing ->
+                                    Debug.crash ("No author " ++ toString id)
+
+                                Just author ->
+                                    author
+                    in
+                        Decode.int
+                            |> Decode.map lookupAuthor
+                            |> Decode.array
+                            |> Decode.field "authors"
+                            |> Decode.maybe
+                            |> Decode.map (Maybe.withDefault Array.empty)
+
+                decodeYear : Decoder (Maybe Int)
+                decodeYear =
+                    Decode.int
+                        |> Decode.field "year"
+                        |> Decode.maybe
+
+                decodeReferences : Decoder (Array TitleId)
+                decodeReferences =
+                    Decode.int
+                        |> Decode.array
+                        |> Decode.field "references"
+                        |> Decode.maybe
+                        |> Decode.map (Maybe.withDefault Array.empty)
+
+                decodeLinks : Decoder (Array Link)
+                decodeLinks =
+                    let
+                        lookupLink : LinkId -> Link
+                        lookupLink id =
+                            case Dict.get id links of
+                                Nothing ->
+                                    Debug.crash ("No link " ++ toString id)
+
+                                Just link ->
+                                    link
+                    in
+                        Decode.int
+                            |> Decode.map lookupLink
+                            |> Decode.array
+                            |> Decode.field "links"
+                            |> Decode.maybe
+                            |> Decode.map (Maybe.withDefault Array.empty)
+            in
+                Decode.map5 Paper
+                    decodeTitle
+                    decodeAuthors
+                    decodeYear
+                    decodeReferences
+                    decodeLinks
     in
-        ( Model Dict.empty []
+        ( Model Array.empty
         , Http.send Blob <| Http.get "./papers.json" decodePapers
         )
-
-
-subscriptions : Model -> Sub Message
-subscriptions _ =
-    Sub.none
 
 
 update : Message -> Model -> ( Model, Cmd Message )
 update message model =
     case message of
         Blob (Ok papers) ->
-            ( Model (listToDict papers) (List.map Tuple.second papers)
+            ( Model papers
             , Cmd.none
             )
 
@@ -76,39 +193,26 @@ update message model =
             Debug.crash <| toString msg
 
 
-listToDict : List ( comparable, a ) -> Dict comparable a
-listToDict =
-    List.foldl (uncurry Dict.insert) Dict.empty
+arrayToDict : Array ( comparable, a ) -> Dict comparable a
+arrayToDict =
+    Array.foldl (uncurry Dict.insert) Dict.empty
 
 
 view : Model -> Html Message
 view model =
     case model of
-        Model papersMap papers ->
-            Html.ul [] <| List.map (viewPaper papersMap) papers
+        Model papers ->
+            Html.ul [] <| Array.toList <| Array.map viewPaper papers
 
 
-viewPaper : Dict Int Paper -> Paper -> Html a
-viewPaper papers paper =
+viewPaper : Paper -> Html a
+viewPaper paper =
     Html.li
         []
-        [ case paper.links of
-            [] ->
-                Html.text paper.name
+        [ case Array.get 0 paper.links of
+            Nothing ->
+                Html.text paper.title
 
-            link :: _ ->
-                Html.a [ href link ] [ Html.text paper.name ]
-        , Html.ul
-            []
-            (List.map
-                (\id ->
-                    case Dict.get id papers of
-                        Nothing ->
-                            Debug.crash ("No paper id " ++ toString id)
-
-                        Just ref ->
-                            viewPaper papers ref
-                )
-                paper.references
-            )
+            Just link ->
+                Html.a [ href link ] [ Html.text paper.title ]
         ]

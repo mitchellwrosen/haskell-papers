@@ -15,4 +15,5 @@ executable yaml2json
     , text
     , unordered-containers
     , vector
+    , vector-algorithms
     , yaml
