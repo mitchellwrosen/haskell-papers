@@ -66,8 +66,6 @@ https://pixel-druid.com/blog/papers-i-read-and-loved-in-2017/
 
 https://ndmitchell.com/
 
-https://wiki.haskell.org/Research_papers/Top_10
-
 https://github.com/dterei/Research-Papers/tree/master/Haskell
 
 http://www.cse.chalmers.se/~rjmh/citations/my_most_influential_papers.htm

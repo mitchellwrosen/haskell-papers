@@ -131,6 +131,11 @@
     - http://drops.dagstuhl.de/opus/volltexte/2017/7273/pdf/LIPIcs-ECOOP-2017-26.pdf
   references: []
 
+- name: Comprehending monads
+  links:
+    - https://ncatlab.org/nlab/files/WadlerMonads.pdf
+  references: []
+
 - name: Constrained type families
   links:
     - https://arxiv.org/pdf/1706.09715.pdf
@@ -318,9 +323,19 @@
     - https://people.mpi-sws.org/~dreyer/papers/hogs/paper.pdf
   references: []
 
+- name: How to mace ad-hoc polymorphism less ad-hoc
+  links:
+    - https://people.csail.mit.edu/dnj/teaching/6898/papers/wadler88.pdf
+  references: []
+
 - name: 'How to prove your calculus is decidable: practical applications of second-order algebraic theories and computation'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110266
+  references: []
+
+- name: Imperative functional programming
+  links:
+    - https://www.microsoft.com/en-us/research/wp-content/uploads/1993/01/imperative.pdf
   references: []
 
 - name: Imperative functional programs that explain their work
@@ -415,6 +430,16 @@
 - name: Modular, higher-order cardinality analysis in theory and practice
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf
+  references: []
+
+- name: Monad transformers and modular interpreters
+  links:
+    - http://haskell.cs.yale.edu/wp-content/uploads/2011/02/POPL96-Modular-interpreters.pdf
+  references: []
+
+- name: Monads for functional programming
+  links:
+    - http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf
   references: []
 
 - name: No-brainer CPS conversion
@@ -587,9 +612,20 @@
     - https://arxiv.org/pdf/1612.06633.pdf
   references: []
 
+- name: The essence of functional programming
+  links:
+    - https://page.mi.fu-berlin.de/scravy/realworldhaskell/materialien/the-essence-of-functional-programming.pdf
+  references: []
+
 - name: The expression problem
   links:
     - http://homepages.inf.ed.ac.uk/wadler/papers/expression/expression.txt
+  references: []
+
+- name: Theorems for free!
+  links:
+    - https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf
+    - http://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf
   references: []
 
 - name: 'Theorems for free for free: parametricity, with and without types'
