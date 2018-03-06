@@ -10,9 +10,9 @@ A collection of hyperlinks to functional programming papers.
 
 [`papers.yaml`](papers.yaml) is the source of all papers and metadata and edited
 manually by humans. [`yaml2json.hs`](yaml2json.hs) generates
-[`papers.json`](papers.json) from `papers.yaml`, which is served by the static
-site comprised of of [`index.html`](index.html) and [`main.js`](main.js)
-(generated from [`Main.elm`](Main.elm)).
+[`papers.json`](papers.json) from `papers.yaml`, which is served by the
+GitHub-hosted static site comprised of of [`index.html`](index.html) and
+[`main.min.js`](main.min.js) (generated from [`Main.elm`](Main.elm)).
 
 **How can I help?**
 
