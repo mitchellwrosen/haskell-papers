@@ -1,5 +1,3 @@
-https://icfp16.sigplan.org/track/icfp-2016-papers#event-overview
-
 http://icfpconference.org/icfp2015/accepted.html
 
 http://icfpconference.org/icfp2014/accepted.html

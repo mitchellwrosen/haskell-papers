@@ -3,9 +3,24 @@
     - https://dl.acm.org/citation.cfm?doid=3136534.3110254
   references: []
 
+- name: A fully concurrent garbage collector for functional programs on multicore processors
+  links:
+    - http://www.pllab.riec.tohoku.ac.jp/papers/icfp2016UenoOhori-preprint.pdf
+  references: []
+
+- name: A glimpse of Hopjs
+  links:
+    - https://hal.inria.fr/hal-01350936/document
+  references: []
+
 - name: 'A history of Haskell: being lazy with class'
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf
+  references: []
+
+- name: A lambda-calculus foundation for universal probabilistic programming
+  links:
+    - https://pps2016.soic.indiana.edu/files/2016/01/lcfupp.pdf
   references: []
 
 - name: A metaprogramming framework for formal verification
@@ -18,6 +33,11 @@
     - https://dl.acm.org/citation.cfm?doid=3136534.3110250
   references: []
 
+- name: A new verified compiler backend for CakeML
+  links:
+    - https://cakeml.org/icfp16.pdf
+  references: []
+
 - name: A relational logic for higher-order programs
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110265
@@ -26,6 +46,11 @@
 - name: A specification for dependent types in Haskell
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110275
+  references: []
+
+- name: A type theory for incremental computational complexity with control flow changes
+  links:
+    - https://people.mpi-sws.org/~ecicek/DuCostIt.pdf
   references: []
 
 - name: A unified approach to solving seven programming problems
@@ -41,6 +66,25 @@
 - name: Accelerating Haskell array codes with multicore GPUs
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-cuda-damp2011.pdf
+  references: []
+
+- name: All sorts of permutations
+  links:
+    - https://www.informatik.uni-kiel.de//~sad/icfp2016-preprint.pdf
+  references: []
+
+- name: 'Allocation characterizes polyvariance: a unified methodology for polyvariant control-flow analysis'
+  links:
+    - https://thomas.gilray.org/pdf/allocation-polyvariance.pdf
+  references: []
+
+- name: An abstract memory functor for verified C static analyzers
+  links:
+    - https://hal.inria.fr/hal-01339969/document
+  references: []
+
+- name: Automatically disproving fair termination of higher-order functional programs
+  links: []
   references: []
 
 - name: Automating sized-type inference for complexity analysis
@@ -63,9 +107,18 @@
     - https://dl.acm.org/citation.cfm?doid=3136534.3110279
   references: []
 
+- name: Combining effects and coeffects via grading
+  links:
+    - https://www.cs.kent.ac.uk/people/staff/dao7/publ/combining-effects-and-coeffects-icfp16.pdf
+  references: []
+
 - name: 'Communicating Haskell processes: composable explicit concurrency using monads'
   links:
     - http://twistedsquare.com/CHP.pdf
+  references: []
+
+- name: Compact bit encoding schemes for simply-typed lambda-terms
+  links: []
   references: []
 
 - name: Compiling to categories
@@ -84,6 +137,16 @@
     - https://dl.acm.org/citation.cfm?doid=3136534.3110286
   references: []
 
+- name: 'Constructive Galois connections: taming the Galois connection framework for mechanized metatheory'
+  links:
+    - https://arxiv.org/pdf/1511.06965.pdf
+  references: []
+
+- name: Context-free session types
+  links:
+    - https://www.di.fc.ul.pt/~vv/papers/thiemann.vasconcelos_context-free-session-types.pdf
+  references: []
+
 - name: Control flow in functional languages
   links:
     - http://www.joachim-breitner.de/various/SA/ShiversStudienarbeit.pdf
@@ -94,9 +157,19 @@
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-multidev-fhpc2015.pdf
   references: []
 
+- name: 'Dag-calculus: a calculus for parallel computation'
+  links:
+    - https://dl.acm.org/citation.cfm?doid=2951913.2951946
+  references: []
+
 - name: Data flow fusion with series expressions in Haskell
   links:
     - http://benl.ouroborus.net/papers/2013-series/flow-Haskell2013-rev1.pdf
+  references: []
+
+- name: 'Datafun: a functional Datalog'
+  links:
+    - https://www.cl.cam.ac.uk/~nk480/datafun.pdf
   references: []
 
 - name: 'Dependent types in Haskell: theory and practice'
@@ -104,9 +177,24 @@
     - https://arxiv.org/pdf/1610.07978.pdf
   references: []
 
+- name: Deriving a probability density calculator
+  links:
+    - https://dl.acm.org/citation.cfm?doid=2951913.2951922
+  references: []
+
+- name: Disjoint intersection types
+  links:
+    - http://i.cs.hku.hk/~bruno/papers/icfp2016.pdf
+  references: []
+
 - name: dup – explicit un-sharing in Haskell
   links:
     - https://arxiv.org/pdf/1207.2017.pdf
+  references: []
+
+- name: Dynamic witnesses for static type errors (or, ill-typed programs usually go wrong)
+  links:
+    - https://dl.acm.org/citation.cfm?doid=2951913.2951915
   references: []
 
 - name: Effect-driven QuickChecking of compilers
@@ -125,9 +213,24 @@
     - http://benl.ouroborus.net/papers/2011-stencil/stencil-haskell2011.pdf
   references: []
 
+- name: 'Elaborator reflection: extending Idris in Idris'
+  links:
+    - https://dl.acm.org/citation.cfm?doid=2951913.2951932
+  references: []
+
 - name: Embedding foreign code
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-ffi-padl2014.pdf
+  references: []
+
+- name: 'Experience report: growing and shrinking polygons for random testing of computational geometry algorithms'
+  links:
+    - http://ilyasergey.net/papers/polygons-icfp16.pdf
+  references: []
+
+- name: 'Farms, pipes, streams and reforestation: reasoning about structured parallel processes using types and hylomorphisms'
+  links:
+    - https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/9810/Castro_2016_Farms_ICFP2016_AAM.pdf
   references: []
 
 - name: Faster coroutine pipelines
@@ -148,6 +251,11 @@
 - name: Foundations of strong call by need
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110264
+  references: []
+
+- name: Fully abstract compilation via universal embedding
+  links:
+    - https://dl.acm.org/citation.cfm?doid=2951913.2951941
   references: []
 
 - name: Functional array streams
@@ -195,9 +303,19 @@
     - https://dl.acm.org/citation.cfm?doid=3136534.3110245
   references: []
 
+- name: Hierarchical memory management for parallel programs
+  links:
+    - http://www.cs.cmu.edu/~rraghuna/publications/icfp-2016-hierarchical-memory-management-for-parallel-programs/paper.pdf
+  references: []
+
 - name: Higher-order + polymorphic = reusable
   links:
     - https://kar.kent.ac.uk/21504/3/Higher-order_+_Polymorphic_=_Reusable.pdf
+  references: []
+
+- name: Higher-order ghost state
+  links:
+    - https://people.mpi-sws.org/~dreyer/papers/hogs/paper.pdf
   references: []
 
 - name: 'How to prove your calculus is decidable: practical applications of second-order algebraic theories and computation'
@@ -213,6 +331,11 @@
 - name: 'Implementing lazy functional languages on stock hardware: the Spineless Tagless G-machine'
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/1992/04/spineless-tagless-gmachine.pdf
+  references: []
+
+- name: Indexed codata types
+  links:
+    - http://www.cs.mcgill.ca/~bpientka/papers/indexed_codata.pdf
   references: []
 
 - name: Inferring scope through syntactic sugar
@@ -304,6 +427,11 @@
     - https://dl.acm.org/citation.cfm?doid=3136534.3110277
   references: []
 
+- name: Oh Lord, please don't let contracts be misunderstood (functional pearl)
+  links:
+    - https://www2.ccs.neu.edu/racket/pubs/icfp16-dnff.pdf
+  references: []
+
 - name: On polymorphic gradual typing
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110284
@@ -324,6 +452,11 @@
     - https://dl.acm.org/citation.cfm?doid=3136534.3110276
   references: []
 
+- name: Partial type equivalences for verified dependent interoperability
+  links:
+    - https://pleiad.cl/papers/2016/dagandAl-icfp2016.pdf
+  references: []
+
 - name: 'Persistence for the masses: RRB-vectors in a systems language'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110260
@@ -342,6 +475,16 @@
 - name: Prototyping a query compiler using Coq
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110253
+  references: []
+
+- name: Queueing and glueing for optimal partitioning (functional pearl)
+  links:
+    - http://www.iis.sinica.edu.tw/~scm/pub/queueing-glueing.pdf
+  references: []
+
+- name: 'Refinement through restraint: bringing down the cost of verification'
+  links:
+    - https://people.mpi-inf.mpg.de/~crizkall/Publications/cogent.pdf
   references: []
 
 - name: Regular, shape-polymorphic, parallel arrays in Haskell
@@ -374,6 +517,16 @@
     - https://www.joachim-breitner.de/publications/lazydup_CSF2017_extended.pdf
   references: []
 
+- name: Sequent calculus as a compiler intermediate language
+  links:
+    - https://dl.acm.org/citation.cfm?doid=2951913.2951931
+  references: []
+
+- name: Set-theoretic types for polymorphic variants
+  links:
+    - https://www.irif.fr/~gc/papers/icfp16.pdf
+  references: []
+
 - name: 'SHErrLOC: A Static Holistic Error Locator'
   links:
     - https://www.microsoft.com/en-us/research/wp-content/uploads/2017/08/sherrloc-toplas.pdf
@@ -399,6 +552,11 @@
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf
   references: []
 
+- name: String diagrams for free monads (functional pearl)
+  links:
+    - https://lirias.kuleuven.be/bitstream/123456789/547211/1/free-strings.pdf
+  references: []
+
 - name: Super 8 languages for making movies
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110274
@@ -414,9 +572,19 @@
     - https://arxiv.org/pdf/1204.2974.pdf
   references: []
 
+- name: 'Talking bananas: structural recursion for session types'
+  links:
+    - http://homepages.inf.ed.ac.uk/slindley/papers/talking-bananas.pdf
+  references: []
+
 - name: Testing and debugging functional reactive programming
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110246
+  references: []
+
+- name: 'The best of both worlds: linear functional programming without compromise'
+  links:
+    - https://arxiv.org/pdf/1612.06633.pdf
   references: []
 
 - name: The expression problem
@@ -427,6 +595,11 @@
 - name: 'Theorems for free for free: parametricity, with and without types'
   links:
     - https://dl.acm.org/citation.cfm?doid=3136534.3110283
+  references: []
+
+- name: Think like a vertex, behave like a function! a functional DSL for vertex-centric big graph processing
+  links:
+    - http://research.nii.ac.jp/~hu/pub/icfp16.pdf
   references: []
 
 - name: Towards Haskell in the cloud
@@ -447,6 +620,10 @@
 - name: 'Type-safe runtime code generation: Accelerate to LLVM'
   links:
     - https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-llvm-haskell2015.pdf
+  references: []
+
+- name: 'Unifiers as equivalences: proof-relevant unification of dependently typed data'
+  links: []
   references: []
 
 - name: Verified low-level programming embedded in F*
