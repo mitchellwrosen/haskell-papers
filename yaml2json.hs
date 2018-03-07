@@ -217,7 +217,7 @@ transform1 paper = do
     gets sTopLevelTitles
 
   if IntSet.member title_id title_ids
-    then error ("Found " ++ unpack (paperInTitle paper) ++ " twice")
+    then error ("Duplicate entry: " ++ unpack (paperInTitle paper))
     else modify' (\s -> s { sTopLevelTitles = IntSet.insert title_id title_ids })
 
   authors :: Vector AuthorId <-

@@ -73,3 +73,5 @@ http://simonmar.github.io/bib/bib.html
 http://ezyang.com/publications.html
 
 https://uchicago-cs.github.io/plrg/
+
+https://github.com/yallop/haskell2014-papers
