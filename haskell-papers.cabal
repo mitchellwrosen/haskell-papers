@@ -1,4 +1,4 @@
-name: yaml2json
+name: haskell-papers
 version: 0
 build-type: Simple
 cabal-version: >= 1.2
@@ -16,4 +16,16 @@ executable yaml2json
     , unordered-containers
     , vector
     , vector-algorithms
+    , yaml
+
+executable getlinks
+  main-is: getlinks.hs
+  ghc-options: -O -threaded -Wall -rtsopts "-with-rtsopts=-N4"
+  build-depends:
+      aeson
+    , async
+    , base
+    , http-client
+    , http-client-tls
+    , http-types
     , yaml

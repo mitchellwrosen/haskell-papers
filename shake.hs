@@ -21,7 +21,7 @@ rules = do
     cmd_ ("rm .shake/" ++ tarball)
 
   ".shake/yaml2json" %> \_ -> do
-    need ["stack.yaml", "yaml2json.cabal", "yaml2json.hs"]
+    need ["stack.yaml", "haskell-papers.cabal", "yaml2json.hs"]
     cmd_ "stack install --local-bin-path .shake"
 
   "main.min.js" %> \out -> do
