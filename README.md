@@ -14,6 +14,10 @@ manually by humans. [`yaml2json.hs`](yaml2json.hs) generates
 GitHub-hosted static site comprised of of [`index.html`](index.html) and
 [`main.min.js`](main.min.js) (generated from [`Main.elm`](Main.elm)).
 
+**How do I build it?**
+
+    ./build.sh
+
 **How can I help?**
 
 Lots of ways! If you have a paper to add, please modify `papers.yaml` and make a

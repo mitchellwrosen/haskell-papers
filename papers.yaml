@@ -24,6 +24,9 @@
 #   links                                                        :: Maybe [Text]
 #
 
+- title: Orthogonal serialisation for Haskell
+  author: Jost Berthold
+  year: 2010
 - title: 'Supero: making Haskell faster'
   authors: [Neil Mitchell, Colin Runciman]
   year: 2007

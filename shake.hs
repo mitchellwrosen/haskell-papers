@@ -1,6 +1,3 @@
-#!/usr/bin/env stack
--- stack script --resolver lts-10.6
-
 import Development.Shake
 
 main :: IO ()
@@ -20,7 +17,7 @@ rules = do
     cmd_ (Cwd ".shake") ("wget https://github.com/mishoo/UglifyJS2/archive/" ++ tarball)
     cmd_ (Cwd ".shake") ("tar xf " ++ tarball)
     cmd_ (Cwd (".shake/UglifyJS2-" ++ uglifyjsSHA)) "npm install"
-    cmd_ ("ln -s UglifyJS2-" ++ uglifyjsSHA ++ "/bin/uglifyjs .shake/uglifyjs")
+    cmd_ ("ln -f -s UglifyJS2-" ++ uglifyjsSHA ++ "/bin/uglifyjs .shake/uglifyjs")
     cmd_ ("rm .shake/" ++ tarball)
 
   ".shake/yaml2json" %> \_ -> do
