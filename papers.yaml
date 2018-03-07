@@ -24,6 +24,43 @@
 #   links                                                        :: Maybe [Text]
 #
 
+- title: Noninterference for free
+- title: 'Adaptive lock-free data: purely-functional to scalable'
+- title: Partial aborts for transactions via first-class continuations
+- title: Blame assignment for higher-order contracts with intersection and union
+- title: 1ML - core and modules united (F-ing first-class modules)
+- title: 'RRB vector: a practical general purpose immutable sequence'
+- title: 'Pycket: a tracing JIT for a functional language'
+- title: An optimizing compiler for a purely functional web-application language
+- title: Expressing contract monitors as patterns of communication
+- title: 'Functional pearl: a smart view on datatypes'
+- title: Elaborating evaluation-order polymorphism
+- title: Bounded refinement types
+- title: 'XQuery and static typing: tackling the problem of backward axes'
+- title: Certified symbolic management of financial multi-party contracts
+- title: GADTs meet their match
+- title: Denotational cost semantics for functional languages with inductive types
+- title: Bidirectional programming in a more applicative style
+- title: A predictable unification algorithm for Coq featuring universe polymorphism and overloading
+- title: 'Practical principled FRP: forget the past, change the future, FRPNow!'
+- title: 'Analysing the complexity of functional programs: higher-order meets first-order'
+- title: 'Generating performance portable code using rewrite rules: from high-level functional expressions to high-performance OpenCL code'
+- title: Hygienic resugaring of compositional desugaring
+- title: 'Functional pearl: two can keep a secret, if one of them uses Haskell'
+- title: Which simple types have a unique inhabitant?
+- title: 'HLIO: Mixing static and dynamic typing for information-flow control in Haskell'
+- title: Algebras and coalgebras in the light affine lambda calculus
+- title: 'Functional pearl: a SQL to C compiler in 500 lines of code'
+- title: A fast compiler for NetKAT
+- title: Structures for structural recursion
+- title: 'Automatic refunctionalization to a language with copattern matching: with applications to the expression problem'
+- title: 'Pilsner: a compositionally verified compiler for a higher-order imperative language'
+- title: Practical SMT-based type error localization
+- title: Learning refinement types
+- title: 'Foundational extensible corecursion: a proof assistant perspective'
+  authors: [Jasmin Christian Blanchette, Andrei Popescu, Dmitry Traytel]
+  year: 2015
+  link: https://people.mpi-inf.mpg.de/~jblanche/fouco.pdf
 - title: A practical subtyping system for Erlang
   authors: [Simon Marlow, Philip Wadler]
   year: 1997

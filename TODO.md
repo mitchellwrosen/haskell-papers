@@ -1,4 +1,3 @@
-http://icfpconference.org/icfp2015/accepted.html
 http://icfpconference.org/icfp2014/accepted.html
 http://icfpconference.org/icfp2013/accepted.html
 http://icfpconference.org/icfp2012/accepted.html
