@@ -24,634 +24,430 @@
 #   links                                                        :: Maybe [Text]
 #
 
-# BEGIN A
-
-- title: A framework for adaptive differential privacy
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110254'
-
-- title: A fully concurrent garbage collector for functional programs on multicore processors
-  link: 'http://www.pllab.riec.tohoku.ac.jp/papers/icfp2016UenoOhori-preprint.pdf'
-
-- title: A glimpse of Hopjs
-  link: 'https://hal.inria.fr/hal-01350936/document'
-
-- title: 'A history of Haskell: being lazy with class'
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf'
-
-- title: A lambda-calculus foundation for universal probabilistic programming
-  link: 'https://pps2016.soic.indiana.edu/files/2016/01/lcfupp.pdf'
-
-- title: A metaprogramming framework for formal verification
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110278'
-
-- title: 'A natural semantics for tracing in Haskell'
-  author: Yong Luo
-  year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf'
-
-- title: A pretty but not greedy printer
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110250'
-
-- title: A new verified compiler backend for CakeML
-  link: 'https://cakeml.org/icfp16.pdf'
-
-- title: A relational logic for higher-order programs
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110265'
-
-- title: A specification for dependent types in Haskell
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110275'
-
-- title: A static checker for safe pattern matching in Haskell
-  authors:
-    - Neil Mitchell
-    - Colin Runciman
+- title: 'Supero: making Haskell faster'
+  authors: [Neil Mitchell, Colin Runciman]
   year: 2007
-  link: 'https://ndmitchell.com/downloads/paper-a_static_checker_for_safe_pattern_matching_in_haskell-01_feb_2007.pdf'
-
-- title: A supercompiler for Core Haskell
-  authors:
-    - Neil Mitchell
-    - Colin Runciman
-  year: 2008
-  link: 'https://ndmitchell.com/downloads/paper-a_supercompiler_for_core_haskell-01_may_2008.pdf'
-
-- title: A type theory for incremental computational complexity with control flow changes
-  link: 'https://people.mpi-sws.org/~ecicek/DuCostIt.pdf'
-
-- title: A unified approach to solving seven programming problems
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110252'
-
-- title: Abstracting definitional interpreters
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110256'
-
-- title: Accelerating Haskell array codes with multicore GPUs
-  link: 'https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-cuda-damp2011.pdf'
-
-- title: All sorts of permutations
-  link: 'https://www.informatik.uni-kiel.de//~sad/icfp2016-preprint.pdf'
-
-- title: 'Allocation characterizes polyvariance: a unified methodology for polyvariant control-flow analysis'
-  link: 'https://thomas.gilray.org/pdf/allocation-polyvariance.pdf'
-
-- title: An abstract memory functor for verified C static analyzers
-  link: 'https://hal.inria.fr/hal-01339969/document'
-
-- title: Automatically disproving fair termination of higher-order functional programs
-
-- title: Automating sized-type inference for complexity analysis
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110287'
-
-- title: 'Better living through operational semantics: an optimizing compiler for radio protocols'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110263'
-
-# BEGIN B
-
-# BEGIN C
-
-- title: Call arity
-  link: 'https://www.joachim-breitner.de/publications/CallArity-TFP.pdf'
-
-- title: Chaperone contracts for higher-order sessions
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110279'
-
-- title: Combining effects and coeffects via grading
-  link: 'https://www.cs.kent.ac.uk/people/staff/dao7/publ/combining-effects-and-coeffects-icfp16.pdf'
-
-- title: 'Communicating Haskell processes: composable explicit concurrency using monads'
-  link: 'http://twistedsquare.com/CHP.pdf'
-
+  link: https://ndmitchell.com/downloads/paper-supero_making_haskell_faster-27_sep_2007.pdf
+- title: Hierarchical memory management for parallel programs
+  link: http://www.cs.cmu.edu/~rraghuna/publications/icfp-2016-hierarchical-memory-management-for-parallel-programs/paper.pdf
 - title: Compact bit encoding schemes for simply-typed lambda-terms
-
-- title: Compiling to categories
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110271'
-
-- title: Compiling tree transforms to operate on packed representations
-  link: 'http://drops.dagstuhl.de/opus/volltexte/2017/7273/pdf/LIPIcs-ECOOP-2017-26.pdf'
-
-- title: Comprehending monads
-  link: 'https://ncatlab.org/nlab/files/WadlerMonads.pdf'
-
+- title: Fully abstract compilation via universal embedding
+  link: https://dl.acm.org/citation.cfm?doid=2951913.2951941
+- title: 'A history of Haskell: being lazy with class'
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf
+- title: 'SpaceSearch: a library for building and verifying solver-aided tools'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110269
+- title: Non-recursive make considered harmful
+  authors:
+  - Andrey Mokhov
+  - Neil Mitchell
+  - Simon Peyton Jones
+  - Simon Marlow
+  year: 2016
+  link: https://ndmitchell.com/downloads/paper-non_recursive_make_considered_harmful-22_sep_2016.pdf
+- title: Type-level web APIs with servant
+  link: https://dl.acm.org/authorize?N08939
+- title: Tackling the testing migration problem with SAT-solvers
+  link: https://arxiv.org/pdf/1204.2974.pdf
+- title: Inferring scope through syntactic sugar
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110288
+- title: Queueing and glueing for optimal partitioning (functional pearl)
+  link: http://www.iis.sinica.edu.tw/~scm/pub/queueing-glueing.pdf
+- title: 'Lazy evaluation: from natural semantics to a machine-checked compiler transformation'
+  link: https://www.ksp.kit.edu/download/1000056002
+- title: Generalizing monads to arrows
+  link: http://www.cse.chalmers.se/~rjmh/Papers/arrows.pdf
+- title: 'Implementing lazy functional languages on stock hardware: the Spineless Tagless G-machine'
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1992/04/spineless-tagless-gmachine.pdf
+- title: Type-and-scope safe programs and their proofs
+  link: https://gallais.github.io/pdf/cpp2017.pdf
+- title: Visual Hat
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+  year: 2005
+  author: Neil Mitchell
+- title: Dynamic witnesses for static type errors (or, ill-typed programs usually go wrong)
+  link: https://dl.acm.org/citation.cfm?doid=2951913.2951915
+- title: 'Farms, pipes, streams and reforestation: reasoning about structured parallel processes using types and hylomorphisms'
+  link: https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/9810/Castro_2016_Farms_ICFP2016_AAM.pdf
+- title: 'Scaling up functional programming education: under the hood of the OCaml MOOC'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110248
+- title: Data flow fusion with series expressions in Haskell
+  link: http://benl.ouroborus.net/papers/2013-series/flow-Haskell2013-rev1.pdf
+- title: Gradual session types
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110282
+- title: Automating sized-type inference for complexity analysis
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110287
+- title: Deriving program coverage from Hat traces
+  year: 2005
+  author: Colin Runciman
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+- title: Symbolic conditioning of arrays in probabilistic programs
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110255
+- title: 'Communicating Haskell processes: composable explicit concurrency using monads'
+  link: http://twistedsquare.com/CHP.pdf
+- title: Abstracting definitional interpreters
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110256
+- title: Generic programming for indexed datatypes
+  link: http://dreixel.net/research/pdf/gpid.pdf
+- title: Theorems for free!
+  links:
+  - https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf
+  - http://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf
 - title: Constrained type families
   links:
-    - https://arxiv.org/pdf/1706.09715.pdf
-    - https://dl.acm.org/citation.cfm?doid=3136534.3110286
-
-- title: 'Constructive Galois connections: taming the Galois connection framework for mechanized metatheory'
-  link: 'https://arxiv.org/pdf/1511.06965.pdf'
-
-- title: Context-free session types
-  link: 'https://www.di.fc.ul.pt/~vv/papers/thiemann.vasconcelos_context-free-session-types.pdf'
-
-- title: Control flow in functional languages
-  link: 'http://www.joachim-breitner.de/various/SA/ShiversStudienarbeit.pdf'
-
-- title: Converting data-parallelism to tasl-parallelism by rewrites
-  link: 'https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-multidev-fhpc2015.pdf'
-
-# BEGIN D
-
-- title: 'Dag-calculus: a calculus for parallel computation'
-  link: 'https://dl.acm.org/citation.cfm?doid=2951913.2951946'
-
-- title: Data flow fusion with series expressions in Haskell
-  link: 'http://benl.ouroborus.net/papers/2013-series/flow-Haskell2013-rev1.pdf'
-
-- title: 'Datafun: a functional Datalog'
-  link: 'https://www.cl.cam.ac.uk/~nk480/datafun.pdf'
-
-- title: 'Dependent types in Haskell: theory and practice'
-  link: 'https://arxiv.org/pdf/1610.07978.pdf'
-
-- title: Deriving a probability density calculator
-  link: 'https://dl.acm.org/citation.cfm?doid=2951913.2951922'
-
-- title: Deriving a relationship from a single example
+  - https://arxiv.org/pdf/1706.09715.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110286
+- title: Partial type equivalences for verified dependent interoperability
+  link: https://pleiad.cl/papers/2016/dagandAl-icfp2016.pdf
+- title: 'Generic functional parallel algorithms: scan and FFT'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110251
+- title: Rethinking supercompilation
+  year: 2010
   author: Neil Mitchell
-  year: 2009
-  link: 'https://ndmitchell.com/downloads/paper-deriving_a_relationship_from_a_single_example-04_sep_2009.pdf'
-
-- title: Deriving generic functions by example
-  author: Neil Mitchell
-  year: 2007
-  link: 'https://ndmitchell.com/downloads/paper-deriving_generic_functions_by_example-26_oct_2007.pdf'
-
-- title: Deriving program coverage from Hat traces
-  author: Colin Runciman
-  year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf'
-
-- title: Disjoint intersection types
-  link: 'http://i.cs.hku.hk/~bruno/papers/icfp2016.pdf'
-
+  link: https://ndmitchell.com/downloads/paper-rethinking_supercompilation-29_sep_2010.pdf
+- title: On polymorphic gradual typing
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110284
+- title: Why functional programming matters
+  link: https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf
+- title: Super 8 languages for making movies
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110274
+- title: Towards Haskell in the cloud
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/remote.pdf
 - title: 'dup: explicit un-sharing in Haskell'
-  link: 'https://arxiv.org/pdf/1207.2017.pdf'
-
-- title: Dynamic witnesses for static type errors (or, ill-typed programs usually go wrong)
-  link: 'https://dl.acm.org/citation.cfm?doid=2951913.2951915'
-
-# BEGIN E
-
-- title: Effect-driven QuickChecking of compilers
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110259'
-
+  link: https://arxiv.org/pdf/1207.2017.pdf
+- title: Higher-order + polymorphic = reusable
+  link: https://kar.kent.ac.uk/21504/3/Higher-order_+_Polymorphic_=_Reusable.pdf
+- title: Parametric quantifiers for dependent type theory
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110276
+- title: Staged generic programming
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110273
+- title: The essence of functional programming
+  link: https://page.mi.fu-berlin.de/scravy/realworldhaskell/materialien/the-essence-of-functional-programming.pdf
+- title: 'Elaborator reflection: extending Idris in Idris'
+  link: https://dl.acm.org/citation.cfm?doid=2951913.2951932
+- title: Visual theorem proving with the Incredible Proof Machine
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf
+- title: Uniform boilerplate and list processing
+  authors:
+  - Neil Mitchell
+  - Colin Runciman
+  year: 2007
+  link: https://ndmitchell.com/downloads/paper-uniform_boilerplate_and_list_processing-30_sep_2007.pdf
+- title: Deriving a relationship from a single example
+  year: 2009
+  author: Neil Mitchell
+  link: https://ndmitchell.com/downloads/paper-deriving_a_relationship_from_a_single_example-04_sep_2009.pdf
+- title: A framework for adaptive differential privacy
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110254
+- title: 'Persistence for the masses: RRB-vectors in a systems language'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110260
+- title: Disjoint intersection types
+  link: http://i.cs.hku.hk/~bruno/papers/icfp2016.pdf
+- title: Gradual typing with union and intersection types
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110285
+- title: A supercompiler for Core Haskell
+  authors:
+  - Neil Mitchell
+  - Colin Runciman
+  year: 2008
+  link: https://ndmitchell.com/downloads/paper-a_supercompiler_for_core_haskell-01_may_2008.pdf
+- title: A glimpse of Hopjs
+  link: https://hal.inria.fr/hal-01350936/document
+- title: Regular, shape-polymorphic, parallel arrays in Haskell
+  link: http://benl.ouroborus.net/papers/2010-rarrays/repa-icfp2010.pdf
+- title: 'Kami: a platform for high-level parametric hardware specification and its modular verification'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110268
+- title: Unfailing Haskell
+  year: 2005
+  author: Neil Mitchell
+  link: https://ndmitchell.com/downloads/paper-qualifying_dissertation-30_jun_2005.pdf
+- title: A specification for dependent types in Haskell
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110275
+- title: 'Herbarium Racketensis: a stroll through the woods'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110245
+- title: 'Shake before building: replacing Make with Haskell'
+  year: 2012
+  author: Neil Mitchell
+  link: https://ndmitchell.com/downloads/paper-shake_before_building-10_sep_2012.pdf
+- title: Modular, higher-order cardinality analysis in theory and practice
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf
 - title: Efficient communication and collection with compact normal forms
   references:
     - Towards Haskell in the cloud
-  link: 'http://ezyang.com/papers/ezyang15-cnf.pdf'
-
-- title: Efficient parallel stencil convolution in Haskell
-  link: 'http://benl.ouroborus.net/papers/2011-stencil/stencil-haskell2011.pdf'
-
-- title: 'Elaborator reflection: extending Idris in Idris'
-  link: 'https://dl.acm.org/citation.cfm?doid=2951913.2951932'
-
-- title: Embedding foreign code
-  link: 'https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-ffi-padl2014.pdf'
-
-- title: 'Experience report: growing and shrinking polygons for random testing of computational geometry algorithms'
-  link: 'http://ilyasergey.net/papers/polygons-icfp16.pdf'
-
-# BEGIN F
-
-- title: 'Farms, pipes, streams and reforestation: reasoning about structured parallel processes using types and hylomorphisms'
-  link: 'https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/9810/Castro_2016_Farms_ICFP2016_AAM.pdf'
-
-- title: Faster coroutine pipelines
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110249'
-
-- title: Faster laziness using dynamic pointer tagging
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2007/10/ptr-tagging.pdf'
-
-- title: Formally proving a compiler transformation safe
-  link: 'http://www.joachim-breitner.de/publications/CallArity-Haskell15.pdf'
-
-- title: Foundations of strong call by need
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110264'
-
-- title: Fully abstract compilation via universal embedding
-  link: 'https://dl.acm.org/citation.cfm?doid=2951913.2951941'
-
-- title: Functional array streams
-  link: 'https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq-fhpc2015.pdf'
-
-# BEGIN G
-
-- title: Generalizing monads to arrows
-  link: 'http://www.cse.chalmers.se/~rjmh/Papers/arrows.pdf'
-
-- title: 'Generic functional parallel algorithms: scan and FFT'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110251'
-
-- title: Generic programming for indexed datatypes
-  link: 'http://dreixel.net/research/pdf/gpid.pdf'
-
+  link: http://ezyang.com/papers/ezyang15-cnf.pdf
 - title: 'Ghostbuster: a tool for simplifying and converting GADTs'
-  link: 'http://www.cs.ox.ac.uk/people/timothy.zakian/ghostbuster.pdf'
-
-- title: Gradual session types
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110282'
-
-- title: Gradual typing with union and intersection types
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110285'
-
-- title: Guiding parallel array fusion with indexed types
-  link: 'http://benl.ouroborus.net/papers/2012-guiding/guiding-Haskell2012.pdf'
-
-# BEGIN H
-
-- title: 'Hat-Delta: one right does make a wrong'
-  authors:
-    - Thomas Davie
-    - Olaf Chitil
-  year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf'
-
-- title: 'Hat-Explore: source-based trace exploration'
-  author: Olaf Chitil
-  year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf'
-
-- title: 'Herbarium Racketensis: a stroll through the woods'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110245'
-
-- title: Hierarchical memory management for parallel programs
-  link: 'http://www.cs.cmu.edu/~rraghuna/publications/icfp-2016-hierarchical-memory-management-for-parallel-programs/paper.pdf'
-
-- title: Higher-order + polymorphic = reusable
-  link: 'https://kar.kent.ac.uk/21504/3/Higher-order_+_Polymorphic_=_Reusable.pdf'
-
-- title: Higher-order ghost state
-  link: 'https://people.mpi-sws.org/~dreyer/papers/hogs/paper.pdf'
-
-- title: Hoogle overview
-  author: Neil Mitchell
-  year: 2008
-  link: 'https://ndmitchell.com/downloads/paper-hoogle_overview-19_nov_2008.pdf'
-
-- title: How to mace ad-hoc polymorphism less ad-hoc
-  link: 'https://people.csail.mit.edu/dnj/teaching/6898/papers/wadler88.pdf'
-
-- title: 'How to prove your calculus is decidable: practical applications of second-order algebraic theories and computation'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110266'
-
-# BEGIN I
-
-- title: Imperative functional programming
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/1993/01/imperative.pdf'
-
-- title: Imperative functional programs that explain their work
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110258'
-
-- title: 'Implementing lazy functional languages on stock hardware: the Spineless Tagless G-machine'
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/1992/04/spineless-tagless-gmachine.pdf'
-
-- title: Indexed codata types
-  link: 'http://www.cs.mcgill.ca/~bpientka/papers/indexed_codata.pdf'
-
-- title: Inferring scope through syntactic sugar
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110288'
-
-# BEGIN J
-
-# BEGIN K
-
-- title: 'Kami: a platform for high-level parametric hardware specification and its modular verification'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110268'
-
-# BEGIN L
-
-- title: 'Lazy evaluation: from natural semantics to a machine-checked compiler transformation'
-  link: 'https://www.ksp.kit.edu/download/1000056002'
-
-- title: Levity polymorphism
-  references:
-    - A reflection on types
-    - A safe dialect of C
-    - A transformation-based optimiser for Haskell
-    - Automating ad hoc representation transformations
-    - Calling Hell from Heaven and Heaven from Hell
-    - 'Dependent types in Haskell: theory and practice'
-    - Design and implementation of generics for the .NET Common Language Runtime
-    - Elaborating evaluation-order polymorphism
-    - Exploiting vector instructions with generalized stream fusion
-    - Flexible type analysis
-    - From System F to typed assembly language
-    - Giving Haskell a promotion
-    - How to make ad-hoc polymorphism less ad-hoc
-    - 'Java generics and collections: speed up the Java development process'
-    - Polymorphic type schemes and recursive definitions
-    - Practical type inference for arbitrary-rank types
-    - Putting type annotations to work
-    - Quantified types in an imperative language
-    - 'Scrap your boilerplate: a practical design pattern for generic programming'
-    - System F with type equality coercions
-    - System FC with explicit kind equality
-    - The essence of compiling with continuations
-    - 'TIL: A type-directed optimizing compiler for ML'
-    - Toward a foundational typed assembly language
-    - Towards a theory of type structure
-    - Type classes in haskell
-    - Unboxed values as first class citizens
-    - Whole-program compilation in MLton
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/levity-pldi17.pdf'
-
-- title: Local refinement typing
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110270'
-
-- title: Lock-step simulation is child's play
-  links:
-    - https://www.joachim-breitner.de/publications/CodeWorld-ICFP17.pdf
-    - https://dl.acm.org/citation.cfm?doid=3136534.3110247
-
-- title: 'Let-foating: moving bindings to give faster programs'
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/1996/05/float.pdf'
-
-- title: 'Losing functions without gaining data: another look at defunctionalization'
-  authors:
-    - Neil Mitchell
-    - Colin Runciman
-  year: 2009
-  link: 'https://ndmitchell.com/downloads/paper-losing_functions_without_gaining_data-03_sep_2009.pdf'
-
-# BEGIN M
-
-- title: Machine fusion
-  link: 'http://benl.ouroborus.net/papers/2017-merges/merges-PPDP2017-final.pdf'
-
-- title: Manifest sharing with session types
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110281'
-
-- title: Modular, higher-order cardinality analysis in theory and practice
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf'
-
-- title: Monad transformers and modular interpreters
-  link: 'http://haskell.cs.yale.edu/wp-content/uploads/2011/02/POPL96-Modular-interpreters.pdf'
-
-- title: Monads for functional programming
-  link: 'http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf'
-
-# BEGIN N
-
-- title: No-brainer CPS conversion
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110267'
-
-- title: Non-recursive make considered harmful
-  authors:
-    - Andrey Mokhov
-    - Neil Mitchell
-    - Simon Peyton Jones
-    - Simon Marlow
-  year: 2016
-  link: 'https://ndmitchell.com/downloads/paper-non_recursive_make_considered_harmful-22_sep_2016.pdf'
-
-- title: Normalization by evaluation for sized dependent types
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110277'
-
-- title: Not all patterns, but enough
-  authors:
-    - Neil Mitchell
-    - Colin Runciman
-  year: 2008
-  link: 'https://ndmitchell.com/downloads/paper-not_all_patterns_but_enough-25_sep_2008.pdf'
-
-# BEGIN O
-
-- title: Oh Lord, please don't let contracts be misunderstood (functional pearl)
-  link: 'https://www2.ccs.neu.edu/racket/pubs/icfp16-dnff.pdf'
-
-- title: On polymorphic gradual typing
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110284'
-
-- title: 'On the expressive power of user-defined effects: effect handlers, monadic reflection, delimited control'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110257'
-
-- title: Optimising purely functional GPU programs
-  link: 'https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-optim-icfp2013.pdf'
-
-# BEGIN P
-
-- title: Parametric quantifiers for dependent type theory
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110276'
-
-- title: Partial type equivalences for verified dependent interoperability
-  link: 'https://pleiad.cl/papers/2016/dagandAl-icfp2016.pdf'
-
-- title: 'Persistence for the masses: RRB-vectors in a systems language'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110260'
-
-- title: 'Project H: programming R in Haskell'
-  link: 'https://ifl2014.github.io/submissions/ifl2014_submission_16.pdf'
-
-- title: Promoting functions to type families in Haskell
-  link: 'https://repository.brynmawr.edu/cgi/viewcontent.cgi?article=1000&context=compsci_pubs'
-
-- title: Prototyping a query compiler using Coq
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110253'
-
-# BEGIN Q
-
-- title: Queueing and glueing for optimal partitioning (functional pearl)
-  link: 'http://www.iis.sinica.edu.tw/~scm/pub/queueing-glueing.pdf'
-
-# BEGIN R
-
-- title: 'Refinement through restraint: bringing down the cost of verification'
-  link: 'https://people.mpi-inf.mpg.de/~crizkall/Publications/cogent.pdf'
-
-- title: Regular, shape-polymorphic, parallel arrays in Haskell
-  link: 'http://benl.ouroborus.net/papers/2010-rarrays/repa-icfp2010.pdf'
-
-- title: Rethinking supercompilation
-  author: Neil Mitchell
-  year: 2010
-  link: 'https://ndmitchell.com/downloads/paper-rethinking_supercompilation-29_sep_2010.pdf'
-
-- title: Retrofitting linear types
-  link: 'https://github.com/tweag/linear-types/releases/download/v2.0/hlt.pdf'
-
-# BEGIN S
-
+  link: http://www.cs.ox.ac.uk/people/timothy.zakian/ghostbuster.pdf
+- title: 'Allocation characterizes polyvariance: a unified methodology for polyvariant control-flow analysis'
+  link: https://thomas.gilray.org/pdf/allocation-polyvariance.pdf
+- title: A pretty but not greedy printer
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110250
+- title: A type theory for incremental computational complexity with control flow changes
+  link: https://people.mpi-sws.org/~ecicek/DuCostIt.pdf
 - title: Safe zero-cost coercions for Haskell
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/coercible.pdf'
-
-- title: 'Scaling up functional programming education: under the hood of the OCaml MOOC'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110248'
-
-- title: Secrets of the Glasgow Haskell Compiler inliner
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/inline.pdf'
-
-- title: Securing concurrent lazy programs against information leakage
-  link: 'https://www.joachim-breitner.de/publications/lazydup_CSF2017_extended.pdf'
-
-- title: Sequent calculus as a compiler intermediate language
-  link: 'https://dl.acm.org/citation.cfm?doid=2951913.2951931'
-
-- title: Set-theoretic types for polymorphic variants
-  link: 'https://www.irif.fr/~gc/papers/icfp16.pdf'
-
-- title: 'Shake before building: replacing Make with Haskell'
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/coercible.pdf
+- title: Embedding foreign code
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-ffi-padl2014.pdf
+- title: Monads for functional programming
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf
+- title: Transformation and analysis of functional programs
+  year: 2008
   author: Neil Mitchell
-  year: 2012
-  link: 'https://ndmitchell.com/downloads/paper-shake_before_building-10_sep_2012.pdf'
-
-- title: 'SHErrLOC: A Static Holistic Error Locator'
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2017/08/sherrloc-toplas.pdf'
-
-- title: 'SpaceSearch: a library for building and verifying solver-aided tools'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110269'
-
-- title: Staged generic programming
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110273'
-
-- title: 'Story and history: a value-based view of Hat traces'
-  author: Malcom Wallace
+  link: https://ndmitchell.com/downloads/paper-transformation_and_analysis_of_functional_programs-4_jun_2008.pdf
+- title: Accelerating Haskell array codes with multicore GPUs
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-cuda-damp2011.pdf
+- title: A natural semantics for tracing in Haskell
   year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf'
-
-- title: 'Stream fusion: practical shortcut fusion for coinductive sequence types'
-  link: 'http://community.haskell.org/~duncan/thesis.pdf'
-
-- title: Streaming irregular arrays
-  link: 'https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf'
-
+  author: Yong Luo
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+- title: 'Unifiers as equivalences: proof-relevant unification of dependently typed data'
+- title: Automatically disproving fair termination of higher-order functional programs
 - title: String diagrams for free monads (functional pearl)
-  link: 'https://lirias.kuleuven.be/bitstream/123456789/547211/1/free-strings.pdf'
-
-- title: Super 8 languages for making movies
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110274'
-
-- title: 'Supero: making Haskell faster'
+  link: https://lirias.kuleuven.be/bitstream/123456789/547211/1/free-strings.pdf
+- title: Monad transformers and modular interpreters
+  link: http://haskell.cs.yale.edu/wp-content/uploads/2011/02/POPL96-Modular-interpreters.pdf
+- title: 'The two dualities of computation: negative and fractional types'
+  link: https://www.cs.indiana.edu/~sabry/papers/rational.pdf
   authors:
-    - Neil Mitchell
-    - Colin Runciman
-  year: 2007
-  link: 'https://ndmitchell.com/downloads/paper-supero_making_haskell_faster-27_sep_2007.pdf'
-
-- title: Symbolic conditioning of arrays in probabilistic programs
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110255'
-
-# BEGIN T
-
-- title: Tackling the testing migration problem with SAT-solvers
-  link: 'https://arxiv.org/pdf/1204.2974.pdf'
-
-- title: 'Talking bananas: structural recursion for session types'
-  link: 'http://homepages.inf.ed.ac.uk/slindley/papers/talking-bananas.pdf'
-
-- title: Testing and debugging functional reactive programming
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110246'
-
-- title: 'The best of both worlds: linear functional programming without compromise'
-  link: 'https://arxiv.org/pdf/1612.06633.pdf'
-
-- title: The essence of functional programming
-  link: 'https://page.mi.fu-berlin.de/scravy/realworldhaskell/materialien/the-essence-of-functional-programming.pdf'
-
-- title: The expression problem
-  link: 'http://homepages.inf.ed.ac.uk/wadler/papers/expression/expression.txt'
-
+  - Roshan P. James
+  - Amr Sabry
+  year: 2012
+- title: Deriving a probability density calculator
+  link: https://dl.acm.org/citation.cfm?doid=2951913.2951922
+- title: Prototyping a query compiler using Coq
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110253
+- title: Streaming irregular arrays
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf
+- title: Normalization by evaluation for sized dependent types
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110277
 - title: The Hat G-Machine
   authors:
-    - Tom Shackell
-    - Colin Runciman
+  - Tom Shackell
+  - Colin Runciman
   year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf'
-
-- title: Theorems for free!
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+- title: Using trace data to diagnose non-termination errors
+  authors:
+  - Mike Dodds
+  - Colin Runciman
+  year: 2005
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+- title: 'Losing functions without gaining data: another look at defunctionalization'
+  authors:
+  - Neil Mitchell
+  - Colin Runciman
+  year: 2009
+  link: https://ndmitchell.com/downloads/paper-losing_functions_without_gaining_data-03_sep_2009.pdf
+- title: 'Stream fusion: practical shortcut fusion for coinductive sequence types'
+  link: http://community.haskell.org/~duncan/thesis.pdf
+- title: Manifest sharing with session types
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110281
+- title: Lock-step simulation is child's play
   links:
-    - https://people.mpi-sws.org/~dreyer/tor/papers/wadler.pdf
-    - http://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf
-
-- title: 'Theorems for free for free: parametricity, with and without types'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110283'
-
-- title: Think like a vertex, behave like a function! a functional DSL for vertex-centric big graph processing
-  link: 'http://research.nii.ac.jp/~hu/pub/icfp16.pdf'
-
-- title: Towards Haskell in the cloud
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/remote.pdf'
-
-- title: Transformation and analysis of functional programs
-  author: Neil Mitchell
-  year: 2008
-  link: 'https://ndmitchell.com/downloads/paper-transformation_and_analysis_of_functional_programs-4_jun_2008.pdf'
-
-- title: Type-and-scope safe programs and their proofs
-  link: 'https://gallais.github.io/pdf/cpp2017.pdf'
-
-- title: Type-level web APIs with servant
-  link: 'https://dl.acm.org/authorize?N08939'
-
-- title: 'Type-safe runtime code generation: Accelerate to LLVM'
-  link: 'https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-llvm-haskell2015.pdf'
-
-# BEGIN U
-
-- title: Unfailing Haskell
-  author: Neil Mitchell
-  year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-qualifying_dissertation-30_jun_2005.pdf'
-
-- title: 'Unfailing Haskell: a static checker for pattern matching'
+  - https://www.joachim-breitner.de/publications/CodeWorld-ICFP17.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110247
+- title: A metaprogramming framework for formal verification
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110278
+- title: A static checker for safe pattern matching in Haskell
   authors:
-    - Neil Mitchell
-    - Colin Runciman
-  year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-unfailing_haskell_a_static_checker_for_pattern_matching-24_sep_2005.pdf'
-
-- title: 'Unifiers as equivalences: proof-relevant unification of dependently typed data'
-
-- title: Uniform boilerplate and list processing
-  authors:
-    - Neil Mitchell
-    - Colin Runciman
+  - Neil Mitchell
+  - Colin Runciman
   year: 2007
-  link: 'https://ndmitchell.com/downloads/paper-uniform_boilerplate_and_list_processing-30_sep_2007.pdf'
-
-- title: 'Using trace data to diagnose non-termination errors'
-  authors:
-    - Mike Dodds
-    - Colin Runciman
-  year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf'
-
-# BEGIN V
-
-- title: Verified low-level programming embedded in F*
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110261'
-
+  link: https://ndmitchell.com/downloads/paper-a_static_checker_for_safe_pattern_matching_in_haskell-01_feb_2007.pdf
+- title: Efficient parallel stencil convolution in Haskell
+  link: http://benl.ouroborus.net/papers/2011-stencil/stencil-haskell2011.pdf
+- title: Call arity
+  link: https://www.joachim-breitner.de/publications/CallArity-TFP.pdf
+- title: Effect-driven QuickChecking of compilers
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110259
+- title: Formally proving a compiler transformation safe
+  link: http://www.joachim-breitner.de/publications/CallArity-Haskell15.pdf
+- title: Sequent calculus as a compiler intermediate language
+  link: https://dl.acm.org/citation.cfm?doid=2951913.2951931
+- title: Compiling to categories
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110271
+- title: Machine fusion
+  link: http://benl.ouroborus.net/papers/2017-merges/merges-PPDP2017-final.pdf
 - title: Verifying efficient function calls in CakeML
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110262'
-
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110262
 - title: Visitors unchained
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110272'
-
-- title: 'Visual Hat'
-  author: Neil Mitchell
-  year: 2005
-  link: 'https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf'
-
-- title: Visual theorem proving with the Incredible Proof Machine
-  link: 'https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf'
-
-# BEGIN W
-
-- title: 'Whip: higher-order contracts for modern services'
-  link: 'https://dl.acm.org/citation.cfm?doid=3136534.3110280'
-
-- title: Why functional programming matters
-  link: 'https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf'
-
-# BEGIN X
-
-# BEGIN Y
-
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110272
+- title: Imperative functional programming
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1993/01/imperative.pdf
+- title: Foundations of strong call by need
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110264
+- title: Retrofitting linear types
+  link: https://github.com/tweag/linear-types/releases/download/v2.0/hlt.pdf
 - title: 'Yhc.Core: from Haskell to Core'
+  link: https://ndmitchell.com/downloads/paper-yhc_core-30_apr_2007.pdf
   authors:
-    - Dimitry Golubovsky
-    - Neil Mitchell
-    - Matthew Naylor
+  - Dimitry Golubovsky
+  - Neil Mitchell
+  - Matthew Naylor
   year: 2007
-  link: 'https://ndmitchell.com/downloads/paper-yhc_core-30_apr_2007.pdf'
-
-# BEGIN Z
+- title: Promoting functions to type families in Haskell
+  link: https://repository.brynmawr.edu/cgi/viewcontent.cgi?article=1000&context=compsci_pubs
+- title: 'The best of both worlds: linear functional programming without compromise'
+  link: https://arxiv.org/pdf/1612.06633.pdf
+- title: 'Type-safe runtime code generation: Accelerate to LLVM'
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-llvm-haskell2015.pdf
+- title: All sorts of permutations
+  link: https://www.informatik.uni-kiel.de//~sad/icfp2016-preprint.pdf
+- title: Compiling tree transforms to operate on packed representations
+  link: http://drops.dagstuhl.de/opus/volltexte/2017/7273/pdf/LIPIcs-ECOOP-2017-26.pdf
+- title: 'Refinement through restraint: bringing down the cost of verification'
+  link: https://people.mpi-inf.mpg.de/~crizkall/Publications/cogent.pdf
+- title: A lambda-calculus foundation for universal probabilistic programming
+  link: https://pps2016.soic.indiana.edu/files/2016/01/lcfupp.pdf
+- title: Converting data-parallelism to tasl-parallelism by rewrites
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-multidev-fhpc2015.pdf
+- title: 'Theorems for free for free: parametricity, with and without types'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110283
+- title: Testing and debugging functional reactive programming
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110246
+- title: How to mace ad-hoc polymorphism less ad-hoc
+  link: https://people.csail.mit.edu/dnj/teaching/6898/papers/wadler88.pdf
+- title: A unified approach to solving seven programming problems
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110252
+- title: 'Project H: programming R in Haskell'
+  link: https://ifl2014.github.io/submissions/ifl2014_submission_16.pdf
+- title: Optimising purely functional GPU programs
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-optim-icfp2013.pdf
+- title: Comprehending monads
+  link: https://ncatlab.org/nlab/files/WadlerMonads.pdf
+- title: Guiding parallel array fusion with indexed types
+  link: http://benl.ouroborus.net/papers/2012-guiding/guiding-Haskell2012.pdf
+- title: Not all patterns, but enough
+  link: https://ndmitchell.com/downloads/paper-not_all_patterns_but_enough-25_sep_2008.pdf
+  authors:
+  - Neil Mitchell
+  - Colin Runciman
+  year: 2008
+- title: Deriving generic functions by example
+  link: https://ndmitchell.com/downloads/paper-deriving_generic_functions_by_example-26_oct_2007.pdf
+  year: 2007
+  author: Neil Mitchell
+- title: Indexed codata types
+  link: http://www.cs.mcgill.ca/~bpientka/papers/indexed_codata.pdf
+- title: A fully concurrent garbage collector for functional programs on multicore processors
+  link: http://www.pllab.riec.tohoku.ac.jp/papers/icfp2016UenoOhori-preprint.pdf
+- title: Control flow in functional languages
+  link: http://www.joachim-breitner.de/various/SA/ShiversStudienarbeit.pdf
+- title: Hoogle overview
+  year: 2008
+  author: Neil Mitchell
+  link: https://ndmitchell.com/downloads/paper-hoogle_overview-19_nov_2008.pdf
+- title: Levity polymorphism
+  references:
+  - A reflection on types
+  - A safe dialect of C
+  - A transformation-based optimiser for Haskell
+  - Automating ad hoc representation transformations
+  - Calling Hell from Heaven and Heaven from Hell
+  - 'Dependent types in Haskell: theory and practice'
+  - Design and implementation of generics for the .NET Common Language Runtime
+  - Elaborating evaluation-order polymorphism
+  - Exploiting vector instructions with generalized stream fusion
+  - Flexible type analysis
+  - From System F to typed assembly language
+  - Giving Haskell a promotion
+  - How to make ad-hoc polymorphism less ad-hoc
+  - 'Java generics and collections: speed up the Java development process'
+  - Polymorphic type schemes and recursive definitions
+  - Practical type inference for arbitrary-rank types
+  - Putting type annotations to work
+  - Quantified types in an imperative language
+  - 'Scrap your boilerplate: a practical design pattern for generic programming'
+  - System F with type equality coercions
+  - System FC with explicit kind equality
+  - The essence of compiling with continuations
+  - 'TIL: A type-directed optimizing compiler for ML'
+  - Toward a foundational typed assembly language
+  - Towards a theory of type structure
+  - Type classes in haskell
+  - Unboxed values as first class citizens
+  - Whole-program compilation in MLton
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/levity-pldi17.pdf
+- title: Higher-order ghost state
+  link: https://people.mpi-sws.org/~dreyer/papers/hogs/paper.pdf
+- title: Faster coroutine pipelines
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110249
+- title: Oh Lord, please don't let contracts be misunderstood (functional pearl)
+  link: https://www2.ccs.neu.edu/racket/pubs/icfp16-dnff.pdf
+- title: 'SHErrLOC: A Static Holistic Error Locator'
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2017/08/sherrloc-toplas.pdf
+- title: Context-free session types
+  link: https://www.di.fc.ul.pt/~vv/papers/thiemann.vasconcelos_context-free-session-types.pdf
+- title: 'Dag-calculus: a calculus for parallel computation'
+  link: https://dl.acm.org/citation.cfm?doid=2951913.2951946
+- title: An abstract memory functor for verified C static analyzers
+  link: https://hal.inria.fr/hal-01339969/document
+- title: 'How to prove your calculus is decidable: practical applications of second-order algebraic theories and computation'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110266
+- title: Combining effects and coeffects via grading
+  link: https://www.cs.kent.ac.uk/people/staff/dao7/publ/combining-effects-and-coeffects-icfp16.pdf
+- title: 'Hat-Delta: one right does make a wrong'
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+  authors:
+  - Thomas Davie
+  - Olaf Chitil
+  year: 2005
+- title: Set-theoretic types for polymorphic variants
+  link: https://www.irif.fr/~gc/papers/icfp16.pdf
+- title: Imperative functional programs that explain their work
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110258
+- title: A relational logic for higher-order programs
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110265
+- title: Functional array streams
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq-fhpc2015.pdf
+- title: 'Hat-Explore: source-based trace exploration'
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+  year: 2005
+  author: Olaf Chitil
+- title: 'Unfailing Haskell: a static checker for pattern matching'
+  link: https://ndmitchell.com/downloads/paper-unfailing_haskell_a_static_checker_for_pattern_matching-24_sep_2005.pdf
+  authors:
+  - Neil Mitchell
+  - Colin Runciman
+  year: 2005
+- title: 'Better living through operational semantics: an optimizing compiler for radio protocols'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110263
+- title: Chaperone contracts for higher-order sessions
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110279
+- title: 'On the expressive power of user-defined effects: effect handlers, monadic reflection, delimited control'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110257
+- title: Think like a vertex, behave like a function! a functional DSL for vertex-centric big graph processing
+  link: http://research.nii.ac.jp/~hu/pub/icfp16.pdf
+- title: The expression problem
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/expression/expression.txt
+- title: Verified low-level programming embedded in F*
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110261
+- title: Local refinement typing
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110270
+- title: 'Experience report: growing and shrinking polygons for random testing of computational geometry algorithms'
+  link: http://ilyasergey.net/papers/polygons-icfp16.pdf
+- title: Faster laziness using dynamic pointer tagging
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2007/10/ptr-tagging.pdf
+- title: 'Dependent types in Haskell: theory and practice'
+  link: https://arxiv.org/pdf/1610.07978.pdf
+- title: Secrets of the Glasgow Haskell Compiler inliner
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/inline.pdf
+- title: Securing concurrent lazy programs against information leakage
+  link: https://www.joachim-breitner.de/publications/lazydup_CSF2017_extended.pdf
+- title: No-brainer CPS conversion
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110267
+- title: 'Datafun: a functional Datalog'
+  link: https://www.cl.cam.ac.uk/~nk480/datafun.pdf
+- title: A new verified compiler backend for CakeML
+  link: https://cakeml.org/icfp16.pdf
+- title: 'Talking bananas: structural recursion for session types'
+  link: http://homepages.inf.ed.ac.uk/slindley/papers/talking-bananas.pdf
+- title: 'Whip: higher-order contracts for modern services'
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110280
+- title: 'Let-foating: moving bindings to give faster programs'
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1996/05/float.pdf
+- title: 'Story and history: a value-based view of Hat traces'
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+  year: 2005
+  author: Malcom Wallace
+- title: 'Constructive Galois connections: taming the Galois connection framework for mechanized metatheory'
+  link: https://arxiv.org/pdf/1511.06965.pdf
