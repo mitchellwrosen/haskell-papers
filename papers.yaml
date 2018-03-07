@@ -24,6 +24,50 @@
 #   links                                                        :: Maybe [Text]
 #
 
+- title: A practical subtyping system for Erlang
+  authors: [Simon Marlow, Philip Wadler]
+  year: 1997
+  link: https://simonmar.github.io/bib/papers/erltc.pdf
+- title: Developing a high-performance web server in concurrent Haskell
+  author: Simon Marlow
+  year: 2002
+  link: https://simonmar.github.io/bib/papers/web-server-jfp.pdf
+- title: 'Exploring the barrier to entry: incremental generational garbage collection for Haskell'
+  authors: [A. M. Cheadle, A. J. Field, Simon Marlow, Simon Peyton Jones, R. L. White]
+  year: 2004
+  link: https://simonmar.github.io/bib/papers/ExploringBarrierToEntry.pdf
+- title: 'Visual Haskell: a full-featured Haskell development environment'
+  authors: [Krasimir Angelov, Simon Marlow]
+  year: 2005
+  link: https://simonmar.github.io/bib/papers/vshaskell.pdf<Paste>
+- title: Parallel performance tuning for Haskell
+  authors: [Don Jones Jr., Simon Marlow, Satnam Singh]
+  year: 2009
+  link: https://simonmar.github.io/bib/papers/threadscope.pdf
+- title: 'Seq no more: better strategies for parallel Haskell'
+  authors: [Simon Marlow, Patrick Maier, Hans-Wolfgang Loidl, Mustafa K Aswad, Phil Trinder]
+  year: 2010
+  link: https://simonmar.github.io/bib/papers/strategies.pdf
+- title: Intel concurrent collections for Haskell
+  authors: [Ryan Newton, Chih-Ping Chen, Simon Marlow]
+  year: 2010
+  link: https://simonmar.github.io/bib/papers/haskell_cnc_draft_submission.pdf
+- title: The Glasgow Haskell Compiler
+  authors: [Simon Marlow, Simon Peyton Jones]
+  year: 2012
+  link: http://www.aosabook.org/en/ghc.html
+- title: Parallel and concurrent programming in Haskell
+  author: Simon Marlow
+  year: 2012
+  link: https://simonmar.github.io/bib/papers/par-tutorial-cefp-2012.pdf
+- title: Composable scheduler activations for Haskell
+  authors: [K. C. Sivaramakrishnan, Tim Harris, Simon Marlow, Simon Peyton Jones]
+  year: 2016
+  link: https://simonmar.github.io/bib/papers/composable_scheduler_activations.pdf
+- title: Desugaring Haskell's do-notation into applicative operations
+  authors: [Simon Marlow, Simon Peyton Jones, Edward Kmett, Andrey Mokhov]
+  year: 2016
+  link: https://simonmar.github.io/bib/papers/applicativedo.pdf
 - title: Dynamic space limits for Haskell
   authors: [Edward Z. Yang, David Mazières]
   year: 2014
@@ -246,10 +290,12 @@
   link: http://userpages.uni-koblenz.de/~laemmel/TheEagle/dl/ChakravartyKPJ05.pdf
   authors: [Manuel M. T. Chakravarty, Gabriele Keller, Simon Peyton Jones]
   title: Associated type synonyms
-- year: 2004
-  link: http://research.microsoft.com/en-us/um/people/simonpj/papers/assoc-types/assoc.ps
+- title: Associated types with class
   authors: [Manuel M. T. Chakravarty, Gabriele Keller, Simon Peyton Jones, Simon Marlow]
-  title: Associated types with class
+  year: 2004
+  links:
+  - https://simonmar.github.io/bib/papers/assoc.pdf
+  - http://research.microsoft.com/en-us/um/people/simonpj/papers/assoc-types/assoc.ps
 - year: 2008
   link: http://www.cse.unsw.edu.au/~chak/papers/tc-tfs.pdf
   authors: [Tom Schrijvers, Simon Peyton Jones, Manuel Chakravarty, Martin Sulzmann]
@@ -501,10 +547,12 @@
   link: https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf
   author: Chris Okasaki
   title: Purely functional data structures
-- year: 2004
-  link: http://community.haskell.org/~simonmar/papers/evalapplyjfp06.pdf
+- title: 'Making a fast curry: push/enter vs. eval/apply for higher-order languages'
   authors: [Simon Marlow, Simon Peyton Jones]
-  title: 'Making a fast curry: push/enter vs. eval/apply for higher-order languages'
+  year: 2004
+  links:
+  - https://simonmar.github.io/bib/papers/evalapplyjfp06.pdf
+  - http://community.haskell.org/~simonmar/papers/evalapplyjfp06.pdf
 - year: 2014
   link: http://www.personal.leeds.ac.uk/~scpmw/static/thesis.pdf
   author: Peter Moritz Wortmann
@@ -525,62 +573,90 @@
   link: http://pdos.csail.mit.edu/~baford/packrat/popl04/peg-popl04.pdf
   author: Bryan Ford
   title: 'Parsing expression grammars: a recognition-based syntactic foundation'
-- year: 2004
-  link: http://community.haskell.org/~simonmar/papers/conc-ffi.pdf
+- title: Extending the Haskell foreign function interface with concurrency
   authors: [Simon Marlow, Simon Peyton Jones, Wolfgang Thaller]
-  title: Extending the Haskell foreign function interface with concurrency
-- year: 2006
-  link: http://community.haskell.org/~simonmar/papers/async.pdf
+  year: 2004
+  links:
+  - https://simonmar.github.io/bib/papers/conc-ffi.pdf
+  - http://community.haskell.org/~simonmar/papers/conc-ffi.pdf
+- title: Asynchronous exceptions in Haskell
   authors: [Simon Marlow, Simon Peyton Jones, Andrew Moran, John Reppy]
-  title: Asynchronous exceptions in Haskell
-- year: 2007
-  link: http://community.haskell.org/~simonmar/papers/conc-substrate.pdf
+  year: 2006
+  links:
+  - https://simonmar.github.io/bib/papers/async.pdf
+  - http://community.haskell.org/~simonmar/papers/async.pdf
+- title: Lightweight concurrency primitives for GHC
   authors: [Peng Li, Simon Marlow, Simon Peyton Jones, Andrew Tolmach]
-  title: Lightweight concurrency primitives for GHC
-- year: 2009
-  link: http://community.haskell.org/~simonmar/papers/concurrent-data.pdf
+  year: 2007
+  links:
+  - https://simonmar.github.io/bib/papers/conc-substrate.pdf
+  - http://community.haskell.org/~simonmar/papers/conc-substrate.pdf
+- title: Comparing the performance of concurrent linked-list implementations in Haskell
   authors: [Martin Sulzmann, Edmund S. L. Lam, Simon Marlow]
-  title: Comparing the performance of concurrent linked-list implementations in Haskell
-- year: 2006
-  link: http://community.haskell.org/~simonmar/papers/ext-exceptions.pdf
+  year: 2009
+  links:
+  - https://simonmar.github.io/bib/papers/concurrent-data.pdf
+  - http://community.haskell.org/~simonmar/papers/concurrent-data.pdf
+- title: An extensible dynamically-typed hierarchy of exceptions
+  year: 2006
+  links:
+  - https://simonmar.github.io/bib/papers/ext-exceptions.pdf
+  - http://community.haskell.org/~simonmar/papers/ext-exceptions.pdf
   author: Simon Marlow
-  title: An extensible dynamically-typed hierarchy of exceptions
-- year: 2007
-  link: http://community.haskell.org/~simonmar/papers/ghci-debug.pdf
+- title: A lightweight interactive debugger for Haskell
   authors: [Simon Marlow, José Iborra, Bernard Pope, Andy Gill]
-  title: A lightweight interactive debugger for Haskell
-- year: 2002
-  link: http://community.haskell.org/~simonmar/papers/haddock.pdf
+  year: 2007
+  links:
+  - https://simonmar.github.io/bib/papers/ghci-debug.pdf
+  - http://community.haskell.org/~simonmar/papers/ghci-debug.pdf
+- title: Haddock, a Haskell documentation tool
   author: Simon Marlow
-  title: Haddock, a Haskell documentation tool
-- year: 2011
-  link: http://community.haskell.org/~simonmar/papers/local-gc.pdf
+  year: 2002
+  links:
+  - https://simonmar.github.io/bib/papers/haddock.pdf
+  - http://community.haskell.org/~simonmar/papers/haddock.pdf
+- title: Multicore garbage collection with local heaps
   authors: [Simon Marlow, Simon Peyton Jones]
-  title: Multicore garbage collection with local heaps
-- year: 2006
-  link: http://community.haskell.org/~simonmar/papers/lockfreedatastructures.pdf
+  year: 2011
+  links:
+  - http://community.haskell.org/~simonmar/papers/local-gc.pdf
+  - http://simonmar.github.io/bib/papers/local-gc.pdf
+- title: Lock free data structures using STM in Haskell
   authors: [Anthony Discolo, Tim Harris, Simon Marlow, Simon Peyton Jones, Satnam Singh]
-  title: Lock free data structures using STM in Haskell
-- year: 2011
-  link: http://community.haskell.org/~simonmar/papers/monad-par.pdf
+  year: 2006
+  links:
+  - https://simonmar.github.io/bib/papers/lockfreedatastructures.pdf
+  - http://community.haskell.org/~simonmar/papers/lockfreedatastructures.pdf
+- title: A monad for deterministic parallelism
   authors: [Simon Marlow, Ryan Newton, Simon Peyton Jones]
-  title: A monad for deterministic parallelism
-- year: 2009
-  link: http://community.haskell.org/~simonmar/papers/multicore-ghc.pdf
+  year: 2011
+  links:
+  - http://community.haskell.org/~simonmar/papers/monad-par.pdf
+  - http://simonmar.github.io/bib/papers/monad-par.pdf
+- title: Runtime support for multicore Haskell
+  year: 2009
   authors: [Simon Marlow, Simon Peyton Jones, Satnam Singh]
-  title: Runtime support for multicore Haskell
-- year: 2005
-  link: http://community.haskell.org/~simonmar/papers/multiproc.pdf
+  links:
+  - https://simonmar.github.io/bib/papers/multicore-ghc.pdf
+  - http://community.haskell.org/~simonmar/papers/multicore-ghc.pdf
+- title: Haskell on a shared-memory multiprocessor
   authors: [Tim Harris, Simon Marlow, Simon Peyton Jones]
-  title: Haskell on a shared-memory multiprocessor
-- year: 2000
-  link: http://community.haskell.org/~simonmar/papers/nonstop.pdf
+  year: 2005
+  links:
+  - https://simonmar.github.io/bib/papers/multiproc.pdf
+  - http://community.haskell.org/~simonmar/papers/multiproc.pdf
+- title: Non-stop Haskell
   authors: [Andy Cheadle, Tony Field, Simon Marlow, Simon Peyton Jones, Lyndon While]
-  title: Non-stop Haskell
-- year: 2008
-  link: http://community.haskell.org/~simonmar/papers/parallel-gc.pdf
+  year: 2000
+  links:
+  - https://simonmar.github.io/bib/papers/nonstop.pdf
+  - http://community.haskell.org/~simonmar/papers/nonstop.pdf
+- title: Parallel generational-copying garbage collection with a block-structured heap
   authors: [Simon Marlow, Tim Harris, Roshan P. James, Simon Peyton Jones]
-  title: Parallel generational-copying garbage collection with a block-structured heap
+  year: 2008
+  links:
+  - https://simonmar.github.io/bib/papers/parallel-gc.pdf
+  - http://community.haskell.org/~simonmar/papers/parallel-gc.pdf
 - year: 2012
   link: http://community.haskell.org/~simonmar/papers/safe-haskell.pdf
   authors: [David Terei, David Mazières, Simon Marlow, Simon Peyton Jones]
@@ -597,10 +673,12 @@
   link: http://www.cs.rit.edu/~mtf/research/phantom-subtyping/jfp06/jfp06.pdf
   authors: [Matthew Fluet, Riccardo Pucella]
   title: Phantom types and subtyping
-- year: 2006
-  link: http://research.microsoft.com/en-us/um/people/simonpj/papers/stm/stm.pdf
+- title: Composable memory transactions
   authors: [Tim Harris, Simon Marlow, Simon Peyton Jones, Maurice Herlihy]
-  title: Composable memory transactions
+  year: 2006
+  links:
+  - https://simonmar.github.io/bib/papers/stm.pdf
+  - http://research.microsoft.com/en-us/um/people/simonpj/papers/stm/stm.pdf
 - year: 2008
   link: http://www.cs.ru.nl/~W.Swierstra/Publications/DataTypesALaCarte.pdf
   author: Wouter Swierstra
@@ -616,7 +694,9 @@
 - title: 'Stretching the storage manager: weak pointers and stable names in Haskell'
   authors: [Simon Peyton Jones, Simon Marlow, Conal Elliott]
   year: 1999
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1999/09/stretching.pdf
+  links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/1999/09/stretching.pdf
+  - https://simonmar.github.io/bib/papers/weak.pdf
 - title: Orthogonal serialisation for Haskell
   author: Jost Berthold
   year: 2010
@@ -1022,6 +1102,7 @@
   year: 2007
   links:
   - https://www.microsoft.com/en-us/research/wp-content/uploads/2007/10/ptr-tagging.pdf
+  - https://simonmar.github.io/bib/papers/ptr-tagging.pdf
   - http://community.haskell.org/~simonmar/papers/ptr-tagging.pdf
 - title: 'Dependent types in Haskell: theory and practice'
   link: https://arxiv.org/pdf/1610.07978.pdf
@@ -1030,6 +1111,7 @@
   year: 2002
   links:
   - https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/inline.pdf
+  - https://simonmar.github.io/bib/papers/inline.pdf<Paste>
   - http://community.haskell.org/~simonmar/papers/inline.pdf
 - title: Securing concurrent lazy programs against information leakage
   link: https://www.joachim-breitner.de/publications/lazydup_CSF2017_extended.pdf

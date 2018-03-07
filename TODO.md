@@ -68,8 +68,12 @@ https://github.com/dterei/Research-Papers/tree/master/Haskell
 
 http://www.cse.chalmers.se/~rjmh/citations/my_most_influential_papers.htm
 
-http://simonmar.github.io/bib/bib.html
-
 https://uchicago-cs.github.io/plrg/
 
 https://github.com/yallop/haskell2014-papers
+
+Ryan Newton
+Conor McBride
+Ed Kmett
+Philip Wadler
+John Hughes
