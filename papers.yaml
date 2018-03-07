@@ -76,7 +76,7 @@
 - title: 'Visual Haskell: a full-featured Haskell development environment'
   authors: [Krasimir Angelov, Simon Marlow]
   year: 2005
-  link: https://simonmar.github.io/bib/papers/vshaskell.pdf<Paste>
+  link: https://simonmar.github.io/bib/papers/vshaskell.pdf
 - title: Parallel performance tuning for Haskell
   authors: [Don Jones Jr., Simon Marlow, Satnam Singh]
   year: 2009
@@ -1148,7 +1148,7 @@
   year: 2002
   links:
   - https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/inline.pdf
-  - https://simonmar.github.io/bib/papers/inline.pdf<Paste>
+  - https://simonmar.github.io/bib/papers/inline.pdf
   - http://community.haskell.org/~simonmar/papers/inline.pdf
 - title: Securing concurrent lazy programs against information leakage
   link: https://www.joachim-breitner.de/publications/lazydup_CSF2017_extended.pdf

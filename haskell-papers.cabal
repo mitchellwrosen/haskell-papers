@@ -28,4 +28,6 @@ executable getlinks
     , http-client
     , http-client-tls
     , http-types
+    , network-uri
+    , unordered-containers
     , yaml
