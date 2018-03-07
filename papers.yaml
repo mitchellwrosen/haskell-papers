@@ -24,6 +24,16 @@
 #   links                                                        :: Maybe [Text]
 #
 
+- title: Dynamic space limits for Haskell
+  authors: [Edward Z. Yang, David Mazières]
+  year: 2014
+  link: http://ezyang.com/papers/ezyang14-rlimits.pdf
+- title: 'IFC inside: retrofitting languages with dynamic information control flow'
+  authors: [Stefan Heule, Deian Stefan, Edward Z. Yang, John C. Mitchell, Alejandro Russo]
+  year: 2015
+  links:
+  - https://arxiv.org/pdf/1501.04132.pdf
+  - http://ezyang.com/papers/heule15-ifcinside.pdf
 - title: Adventures in three monads
   author: Edward Z. Yang
   link: http://web.mit.edu/~ezyang/Public/threemonads.pdf
@@ -44,10 +54,10 @@
   author: Erik Meijer
   year: 1991
   link: http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf
-- year: 2008
-  link: http://www.soi.city.ac.uk/~ross/papers/Applicative.pdf
+- title: Applicative programming with effects
   author: Conor McBride
-  title: Applicative programming with effects
+  year: 2008
+  link: http://www.soi.city.ac.uk/~ross/papers/Applicative.pdf
 - year: 2008
   link: https://personal.cis.strath.ac.uk/neil.ghani/papers/ghani-popl08.pdf
   authors: [Patricia Johann, Neil Ghani]
@@ -167,7 +177,7 @@
 - year: 2013
   link: https://personal.cis.strath.ac.uk/conor.mcbride/pub/hasochism.pdf
   authors: [Sam Lindley, Conor McBride]
-  title: 'Hasochism: the pleasure and pain of dependently typed haskell programming'
+  title: 'Hasochism: the pleasure and pain of dependently typed Haskell programming'
 - year: 2011
   link: http://www.cs.ox.ac.uk/ralf.hinze/publications/Quote.pdf
   author: Ralf Hinze
@@ -542,7 +552,7 @@
 - year: 2002
   link: http://community.haskell.org/~simonmar/papers/haddock.pdf
   author: Simon Marlow
-  title: Haddock, a haskell documentation tool
+  title: Haddock, a Haskell documentation tool
 - year: 2011
   link: http://community.haskell.org/~simonmar/papers/local-gc.pdf
   authors: [Simon Marlow, Simon Peyton Jones]
