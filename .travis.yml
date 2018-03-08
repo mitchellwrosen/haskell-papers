@@ -1,0 +1,29 @@
+sudo: false
+language: generic
+
+cache:
+  directories:
+  - $HOME/.stack
+  - elm-stuff/build-artifacts
+  - elm-stuff/dependencies
+
+addons:
+  apt:
+    packages:
+      - libgmp-dev
+
+before_install:
+# Get stack
+- mkdir -p ~/.local/bin
+- export PATH=$HOME/.local/bin:$PATH
+- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+
+# Get elm
+- npm install elm@0.18.0
+
+install:
+- stack --no-terminal --install-ghc test --fast --only-dependencies
+- travis_retry elm package install --yes
+
+script:
+- ./build.sh
