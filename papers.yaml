@@ -24,6 +24,10 @@
 #   links                                                        :: Maybe [Text]
 #
 
+- title: Trees that grow
+  authors: [Shayan Najd, Simon Peyton Jones]
+  year: 2016
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/trees-that-grow.pdf
 - title: Noninterference for free
 - title: 'Adaptive lock-free data: purely-functional to scalable'
 - title: Partial aborts for transactions via first-class continuations
