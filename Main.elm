@@ -28,14 +28,6 @@ type alias Author =
     String
 
 
-type alias File =
-    String
-
-
-type alias FileId =
-    Int
-
-
 type alias LinkId =
     Int
 
@@ -58,7 +50,7 @@ type alias Paper =
     , year : Maybe Int
     , references : Array TitleId
     , links : Array Link
-    , file : String
+    , file : Int
     , line : Int
     }
 
@@ -86,35 +78,31 @@ main =
 init : ( Model, Cmd Message )
 init =
     let
-        andThen4 :
+        andThen3 :
             Decoder a
             -> Decoder b
             -> Decoder c
+            -> (a -> b -> c -> Decoder d)
             -> Decoder d
-            -> (a -> b -> c -> d -> Decoder e)
-            -> Decoder e
-        andThen4 dw dx dy dz f =
+        andThen3 dx dy dz f =
             Decode.andThen
-                (\w ->
+                (\x ->
                     Decode.andThen
-                        (\x ->
-                            Decode.andThen
-                                (\y -> Decode.andThen (f w x y) dz)
-                                dy
+                        (\y ->
+                            Decode.andThen (f x y) dz
                         )
-                        dx
+                        dy
                 )
-                dw
+                dx
 
         decodePapers : Decoder (Array Paper)
         decodePapers =
-            andThen4
+            andThen3
                 (Decode.field "titles" decodeIds)
                 (Decode.field "authors" decodeIds)
                 (Decode.field "links" decodeIds)
-                (Decode.field "files" decodeIds)
-                (\titles authors links files ->
-                    decodePaper titles authors links files
+                (\titles authors links ->
+                    decodePaper titles authors links
                         |> Decode.array
                         |> Decode.field "papers"
                 )
@@ -137,16 +125,15 @@ decodePaper :
     Dict TitleId Title
     -> Dict AuthorId Author
     -> Dict LinkId Link
-    -> Dict FileId File
     -> Decoder Paper
-decodePaper titles authors links files =
+decodePaper titles authors links =
     Decode.map7 Paper
         (decodeTitle titles)
         (decodeAuthors authors)
         decodeYear
         decodeReferences
         (decodeLinks links)
-        (decodeFile files)
+        decodeFile
         decodeLine
 
 
@@ -170,21 +157,10 @@ decodeAuthors authors =
             |> Decode.map (Maybe.withDefault Array.empty)
 
 
-decodeFile : Dict FileId File -> Decoder String
-decodeFile files =
-    let
-        lookupFile : FileId -> File
-        lookupFile id =
-            case Dict.get id files of
-                Nothing ->
-                    Debug.crash ("No file " ++ toString id)
-
-                Just file ->
-                    file
-    in
-        Decode.int
-            |> Decode.map lookupFile
-            |> Decode.field "file"
+decodeFile : Decoder Int
+decodeFile =
+    Decode.int
+        |> Decode.field "file"
 
 
 decodeLine : Decoder Int
@@ -308,7 +284,10 @@ viewEditLink paper =
     let
         editLink : String
         editLink =
-            "https://github.com/mitchellwrosen/haskell-papers/edit/master/" ++ paper.file ++ "#L" ++ toString paper.line
+            "https://github.com/mitchellwrosen/haskell-papers/edit/master/papers"
+                ++ String.padLeft 3 '0' (toString paper.file)
+                ++ ".yaml#L"
+                ++ toString paper.line
     in
         Html.a [ class "subtle-link edit", href editLink ] [ Html.text "(edit)" ]
 

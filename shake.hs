@@ -1,3 +1,4 @@
+import Data.List (isPrefixOf)
 import Development.Shake
 
 main :: IO ()
@@ -29,9 +30,8 @@ rules = do
     cmd_ (".shake/uglifyjs .shake/main.js --compress --mangle toplevel=true --output " ++ out)
 
   "papers.json" %> \out -> do
-    -- FIXME: The pattern "papers*.yaml" wouldn't work, would it?
-    let yamls = ["papers.yaml", "papers01.yaml", "papers02.yaml"]
-    need (".shake/yaml2json":yamls)
+    yamls <- filter (isPrefixOf "papers") <$> getDirectoryFiles "" ["*.yaml"]
+    need (".shake/yaml2json" : yamls)
     cmd_ (FileStdout out) (".shake/yaml2json " ++ unwords yamls)
 
 uglifyjsSHA :: [Char]
