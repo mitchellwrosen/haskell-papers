@@ -1,3 +1,7 @@
+https://edwinb.wordpress.com/publications/
+http://conal.net/papers/
+http://ku-fpg.github.io/publications/
+http://www.clash-lang.org/
 http://icfpconference.org/icfp2014/accepted.html
 http://icfpconference.org/icfp2013/accepted.html
 http://icfpconference.org/icfp2012/accepted.html
@@ -71,3 +75,12 @@ http://www.cis.upenn.edu/~bcpierce/courses/670Fall04/GreatWorksInPL.shtml
 http://matt.might.net/articles/books-papers-materials-for-graduate-students/#pl
 http://www.chargueraud.org/softs/cfml/
 http://research.cs.queensu.ca/~joshuad/by-date.html
+https://www.reddit.com/r/haskell/comments/6fj21f/favorite_haskell_papers/
+https://www.reddit.com/r/haskell/comments/6yjtoy/what_are_some_quintessential_early_haskell_papers/
+https://www.reddit.com/r/haskell/comments/6v2fsl/monthly_what_papers_are_you_reading/
+https://www.reddit.com/r/haskell/comments/6me5vo/haskell_symposium_2017_list_of_papers/
+https://www.reddit.com/r/haskell/comments/7j3dyw/distributed_systems_haskell/
+https://www.reddit.com/r/haskell/comments/6948ne/icfp2017papers_crowdsourced_links_to_icfp17/
+https://www.reddit.com/r/haskell/comments/gfz5k/do_you_read_academic_papers_on_a_kindle/
+https://www.reddit.com/r/haskell/comments/64l2fz/what_would_be_a_curriculum_for_taking_an/
+https://www.reddit.com/r/haskell/comments/73lp4m/higherorder_abstract_syntax_for_any/

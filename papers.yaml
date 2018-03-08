@@ -30,6 +30,14 @@
 #   references:
 #   links:
 
+- title: 'Copilot: a hard real-time runtime monitor'
+  authors: [Lee Pike, Alwyn Goodloe, Robin Morisset, Sebastian Niller]
+  year: 2010
+  link: https://www.cs.indiana.edu/~lepike/pubs/pike-rv2010.pdf
+- title: Functional programming and 3D games
+  author: Mun Hon Cheong
+  year: 2005
+  link: http://www.cse.unsw.edu.au/~pls/thesis/munc-thesis.pdf
 - title: Une table d'association d'intervalles fusionnable
   authors: [Richard Bonichon, Pascal Cuoq]
   link: http://jfla.inria.fr/2010/actes/PDF/bonichon_cuoq.pdf
