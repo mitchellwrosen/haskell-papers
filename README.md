@@ -10,8 +10,10 @@ A collection of hyperlinks to functional programming papers.
 
 - [`papers.yaml`](papers.yaml) is the source of all papers and metadata and is
 edited manually by humans.
-- [`yaml2json.hs`](yaml2json.hs) "compiles" `papers.yaml` to
-[`papers.json`](papers.json), which does little more than de-dupe strings and
+- (Because GitHub's file-editing UI becomes slow on large files, `papers.yaml`
+is actually snipped into smaller `papersXX.yaml` files every 500 lines or so.)
+- [`yaml2json.hs`](yaml2json.hs) "compiles" `papers.yaml`, `papers01.yaml`, etc.
+to [`papers.json`](papers.json), which does little more than de-dupe strings and
 create dummy papers out of hanging references.
 - [`Main.elm`](Main.elm) contains the UI code, which is compiled and minified to
 [`main.min.js`](main.min.js).

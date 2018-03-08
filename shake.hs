@@ -29,8 +29,10 @@ rules = do
     cmd_ (".shake/uglifyjs .shake/main.js --compress --mangle toplevel=true --output " ++ out)
 
   "papers.json" %> \out -> do
-    need [".shake/yaml2json", "papers.yaml"]
-    cmd_ (FileStdin "papers.yaml") (FileStdout out) ".shake/yaml2json"
+    -- FIXME: The pattern "papers*.yaml" wouldn't work, would it?
+    let yamls = ["papers.yaml", "papers01.yaml", "papers02.yaml"]
+    need (".shake/yaml2json":yamls)
+    cmd_ (FileStdout out) (".shake/yaml2json " ++ unwords yamls)
 
 uglifyjsSHA :: [Char]
 uglifyjsSHA =

@@ -121,19 +121,16 @@ instance ToJSON PapersOut where
 
 main :: IO ()
 main = do
-  yaml :: ByteString <-
-    getArgs >>= \case
-      [] ->
-        ByteString.getContents
-      file:_ ->
-        ByteString.readFile file
+  files :: [ByteString] <-
+    mapM ByteString.readFile =<< getArgs
 
-  case Yaml.decodeEither yaml of
+  case traverse Yaml.decodeEither files of
     Left err -> do
       hPutStrLn stderr err
       exitFailure
-    Right value ->
-      value
+    Right values ->
+      values
+        & mconcat
         & transform
         & Json.encode
         & LByteString.putStr
