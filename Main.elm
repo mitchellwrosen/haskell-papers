@@ -4,7 +4,7 @@ import Array exposing (Array)
 import Dict exposing (Dict)
 import Http
 import Html exposing (Html)
-import Html.Attributes exposing (href)
+import Html.Attributes exposing (href, class)
 import Json.Decode as Decode exposing (Decoder)
 
 
@@ -200,15 +200,28 @@ arrayToDict =
 
 view : Model -> Html Message
 view model =
-    case model of
-        Model papers ->
-            Html.ul [] <| Array.toList <| Array.map viewPaper papers
+    Html.div [ class "container" ]
+        [ Html.header []
+            [ Html.h1 [] [ Html.text "Haskell Papers" ]
+            , Html.a [ class "contribute", href "https://github.com/mitchellwrosen/haskell-papers" ] [ Html.text "contribute on GitHub" ]
+            ]
+        , case model of
+            Model papers ->
+                Html.ul [ class "paper-list" ] <| Array.toList <| Array.map viewPaper papers
+        ]
 
 
 viewPaper : Paper -> Html a
 viewPaper paper =
     Html.li
-        []
+        [ class "paper" ]
+        [ viewTitle paper
+        ]
+
+
+viewTitle : Paper -> Html a
+viewTitle paper =
+    Html.p [ class "title" ]
         [ case Array.get 0 paper.links of
             Nothing ->
                 Html.text paper.title
