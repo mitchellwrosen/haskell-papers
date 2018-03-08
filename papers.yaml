@@ -24,6 +24,42 @@
 #   links                                                        :: Maybe [Text]
 #
 
+- title: Inverting inductively defined relations in LEGO
+  link: http://strictlypositive.org/aussois.ps.gz
+- title: Dependently typed programs and their proofs
+  link: http://strictlypositive.org/thesis.ps.gz
+- title: Elimination with a motive
+  link: http://strictlypositive.org/elim.ps.gz
+- title: Generic programming within dependently typed programming
+  link: http://strictlypositive.org/generic/genprog.ps
+- title: Constructing polymorphic programs with quotient types
+  link: http://strictlypositive.org/polyquot.ps.gz
+- title: Derivatives of containers
+  link: http://strictlypositive.org/derivcont.ps.gz
+- title: Inductive families need not store their indices
+  link: http://strictlypositive.org/indfam.ps.gz
+- title: 'Faking it: simulating dependent types in Haskell'
+  author: Conor McBride
+  year: 2002
+  link: http://strictlypositive.org/faking.ps.gz
+- title: First-order unification by structural recursion
+  author: Conor McBride
+  year: 2003
+  link: http://strictlypositive.org/unify.ps.gz
+- title: The view from the left
+  authors: [Conor McBride, James McKinna]
+  year: 2004
+  link: http://strictlypositive.org/vfl.pdf
+- title: Why dependent types matter
+  link: http://strictlypositive.org/ydtm.ps.gz
+- title: A few constructions on constructors
+  link: http://strictlypositive.org/concon.ps.gz
+- title: Exploring the regular tree types
+  authors: [Peter Morris, Thorsten Altenkirch, Conor McBride]
+  link: http://strictlypositive.org/regular.pdf
+- title: Eliminating dependent patter matching
+  authors: [Healfdene Goguen, Conor McBride, James McKinna]
+  link: http://strictlypositive.org/goguen.pdf
 - title: Trees that grow
   authors: [Shayan Najd, Simon Peyton Jones]
   year: 2016
@@ -319,10 +355,10 @@
   link: http://www.cis.upenn.edu/~byorgey/papers/species-pearl.pdf
   author: Brent Yorgey
   title: Species and functors and types, oh my!
-- year: 2001
-  link: http://strictlypositive.org/diff.pdf
+- title: The derivative of a regular type is its type of one-hole contexts
   author: Conor McBride
-  title: The derivative of a regular type is its type of one-hole contexts
+  year: 2001
+  link: http://strictlypositive.org/diff.pdf
 - year: 2013
   link: https://personal.cis.strath.ac.uk/adam.gundry/thesis/thesis-2013-12-03.pdf
   author: Adam Gundry
@@ -429,14 +465,16 @@
   link: http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/rationals.pdf
   authors: [Jeremy Gibbons, David Lester, Richard Bird]
   title: Enumerating the rationals
-- year: 2004
-  link: http://www.cs.ru.nl/~james/RESEARCH/haskell2004.pdf
+- title: 'I am not a number: I am a free variable'
   authors: [Conor McBride, James McKinna]
-  title: I am not a Number — I am a Free Variable
-- year: 2002
-  link: http://www.cs.rice.edu/~taha/publications/conference/icfp02.pdf
+  year: 2004
+  links:
+  - http://www.cs.ru.nl/~james/RESEARCH/haskell2004.pdf
+  - http://strictlypositive.org/notanum.ps.gz
+- title: Tagless staged interpreters for typed languages
   authors: [Emir Pašalić, Walid Taha, Tim Sheard]
-  title: Tagless staged interpreters for typed languages
+  year: 2002
+  link: http://www.cs.rice.edu/~taha/publications/conference/icfp02.pdf
 - year: 2009
   link: http://conal.net/papers/type-class-morphisms/type-class-morphisms-long.pdf
   author: Conal Elliott

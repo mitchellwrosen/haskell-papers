@@ -65,4 +65,3 @@ https://sites.google.com/site/radicalconcur/
 http://vjovanov.github.io/dsldi-summer-school/
 https://pldi15.sigplan.org/series/pldi
 https://scholar.google.com/citations?user=Bp6dm-oAAAAJ&hl=en
-http://strictlypositive.org/publications.html
