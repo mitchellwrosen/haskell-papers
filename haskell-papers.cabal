@@ -2,6 +2,8 @@ name: haskell-papers
 version: 0
 build-type: Simple
 cabal-version: >= 1.2
+license: BSD3
+license-file: LICENSE
 
 executable yaml2json
   main-is: yaml2json.hs

@@ -1,11 +1,9 @@
 {
     "version": "1.0.0",
-    "summary": "helpful summary of your project, less than 80 characters",
-    "repository": "https://github.com/user/project.git",
+    "summary": "Haskell papers",
+    "repository": "https://github.com/mitchellwrosen/haskell-papers.git",
     "license": "BSD3",
-    "source-directories": [
-        "."
-    ],
+    "source-directories": ["."],
     "exposed-modules": [],
     "dependencies": {
         "elm-lang/core": "5.1.1 <= v < 6.0.0",
