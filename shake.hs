@@ -7,11 +7,15 @@ main =
 
 rules :: Rules ()
 rules = do
-  want ["main.min.js", "papers.json"]
+  want [".shake/shake", "main.min.js", "papers.json"]
 
   ".shake/main.js" %> \out -> do
     need ["elm-package.json", "Main.elm"]
     cmd_ ("elm make Main.elm --output=" ++ out)
+
+  ".shake/shake" %> \_ -> do
+    need ["build.sh", "shake.hs"]
+    cmd_ "stack --resolver lts-10.7 ghc --package shake shake.hs -- -o .shake/shake -odir .shake -hidir .shake"
 
   ".shake/uglifyjs" %> \_ -> do
     let tarball = uglifyjsSHA ++ ".tar.gz"

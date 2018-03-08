@@ -26,11 +26,12 @@ comprised of [`index.html`](index.html), [`the.css`](the.css), and
 
 Lots of ways!
 
-- Add a new paper to any `papers.yaml` file
-- Edit metadata (e.g. year of publication) of an existing paper
+- Add a new paper to any `papers.yaml` file ([`todo.txt`](todo.txt) contains a
+  bunch of links to scour through)
+- Amend metadata (e.g. year of publication) of an existing paper
 - Improve the UI
 
-**Paper schema**
+**Paper schema reference**
 
     // The paper title
     title : Required String
