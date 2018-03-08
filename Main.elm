@@ -273,7 +273,7 @@ view model =
     Html.div [ class "container" ]
         [ Html.header []
             [ Html.h1 [] [ Html.text "Haskell Papers" ]
-            , Html.a [ class "contribute", href "https://github.com/mitchellwrosen/haskell-papers" ] [ Html.text "contribute on GitHub" ]
+            , Html.a [ class "subtle-link", href "https://github.com/mitchellwrosen/haskell-papers" ] [ Html.text "contribute on GitHub" ]
             ]
         , case model of
             Model papers ->
@@ -286,6 +286,7 @@ viewPaper paper =
     Html.li
         [ class "paper" ]
         [ viewTitle paper
+        , viewDetails paper
         , viewEditLink paper
         ]
 
@@ -298,7 +299,7 @@ viewTitle paper =
                 Html.text paper.title
 
             Just link ->
-                Html.a [ href link ] [ Html.text paper.title ]
+                Html.a [ class "link", href link ] [ Html.text paper.title ]
         ]
 
 
@@ -309,7 +310,20 @@ viewEditLink paper =
         editLink =
             "https://github.com/mitchellwrosen/haskell-papers/edit/master/" ++ paper.file ++ "#L" ++ toString paper.line
     in
-        Html.a [ href editLink ] [ Html.text "(edit)" ]
+        Html.a [ class "subtle-link edit", href editLink ] [ Html.text "(edit)" ]
+
+
+viewDetails : Paper -> Html a
+viewDetails paper =
+    Html.p [ class "details" ]
+        [ paper.authors |> Array.toList |> String.join ", " |> Html.text
+        , case paper.year of
+            Nothing ->
+                Html.text ""
+
+            Just year ->
+                Html.text (" [" ++ toString year ++ "]")
+        ]
 
 
 

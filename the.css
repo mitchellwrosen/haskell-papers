@@ -14,11 +14,11 @@ h1 {
   margin-bottom: 8px;
 }
 
-.contribute {
+.subtle-link {
   text-decoration: none;
   color: #666;
 }
-.contribute:hover {
+.subtle-link:hover {
   text-decoration: underline;
 }
 
@@ -35,16 +35,40 @@ h1 {
 }
 
 .paper {
+  position: relative;
   font-size: 16px;
   line-height: 1.4;
   border-bottom: 1px solid #EEE;
   color: #333;
 }
 
-.paper a {
+.paper .title {
+  margin-right: 36px; /* leaves room for .edit */
+}
+
+.paper .link {
   color: #0366d6;
   text-decoration: none;
 }
-.paper a:hover {
+.paper .link:hover {
   text-decoration: underline;
+}
+
+.paper .edit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+}
+.paper:hover .edit {
+  visibility: visible;
+}
+
+.paper .details {
+  margin-left: 18px;
+  color: #666;
+  transition: color ease-out 120ms;
+}
+.paper:hover .details {
+  color: inherit;
 }
