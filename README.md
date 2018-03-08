@@ -8,11 +8,16 @@ A collection of hyperlinks to functional programming papers.
 
 **How does it work?**
 
-[`papers.yaml`](papers.yaml) is the source of all papers and metadata and edited
-manually by humans. [`yaml2json.hs`](yaml2json.hs) generates
-[`papers.json`](papers.json) from `papers.yaml`, which is served by the
-GitHub-hosted static site comprised of of [`index.html`](index.html) and
-[`main.min.js`](main.min.js) (generated from [`Main.elm`](Main.elm)).
+- [`papers.yaml`](papers.yaml) is the source of all papers and metadata and is
+edited manually by humans.
+- [`yaml2json.hs`](yaml2json.hs) "compiles" `papers.yaml` to
+[`papers.json`](papers.json), which does little more than de-dupe strings and
+create dummy papers out of hanging references.
+- [`Main.elm`](Main.elm) contains the UI code, which is compiled and minified to
+[`main.min.js`](main.min.js).
+- GitHub hosts this `master` branch as a
+[static site](https://mitchellwrosen.github.io/haskell-papers), which is
+comprised of [`index.html`](index.html) and `main.min.js`.
 
 **How can I help?**
 
