@@ -20,7 +20,6 @@ https://wiki.haskell.org/Research_papers/Program_development
 https://wiki.haskell.org/Research_papers/Domain_specific_languages
 https://wiki.haskell.org/Research_papers/Functional_reactive_programming
 https://wiki.haskell.org/Research_papers/Functional_pearls
-https://www.reddit.com/r/haskell/comments/2blsqa/papers_every_haskeller_should_read/
 https://crypto.stanford.edu/~blynn/haskell/papers.html
 http://www.stephendiehl.com/posts/essential_haskell.html
 https://icfp17.sigplan.org/track/haskellsymp-2017-papers#event-overview
@@ -65,3 +64,10 @@ https://sites.google.com/site/radicalconcur/
 http://vjovanov.github.io/dsldi-summer-school/
 https://pldi15.sigplan.org/series/pldi
 https://scholar.google.com/citations?user=Bp6dm-oAAAAJ&hl=en
+http://www.cs.ox.ac.uk/people/publications/date/Jeremy.Gibbons.html
+http://www.staff.city.ac.uk/~ross/
+http://www.cs.ox.ac.uk/ralf.hinze/publications/index.html
+http://www.cis.upenn.edu/~bcpierce/courses/670Fall04/GreatWorksInPL.shtml
+http://matt.might.net/articles/books-papers-materials-for-graduate-students/#pl
+http://www.chargueraud.org/softs/cfml/
+http://research.cs.queensu.ca/~joshuad/by-date.html

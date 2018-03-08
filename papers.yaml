@@ -24,6 +24,181 @@
 #   links                                                        :: Maybe [Text]
 #
 
+# - title:
+#   authors:
+#   year:
+#   references:
+#   links:
+
+- title: Une table d'association d'intervalles fusionnable
+  authors: [Richard Bonichon, Pascal Cuoq]
+  link: http://jfla.inria.fr/2010/actes/PDF/bonichon_cuoq.pdf
+- title: Derivatives of regular expressions
+  author: Janusz A. Brzozowski
+  year: 1964
+  link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.98.4378&rep=rep1&type=pdf
+- title: Lightweight semiformal time complexity analysis for purely functional data structures
+  author: Nils Anders Danielson
+  year: 2008
+  link: http://www.cse.chalmers.se/~nad//publications/danielsson-popl2008.pdf
+- title: Numerical representations as higher-order nested datatypes
+  author: Ralf Hinze
+  year: 1998
+  links:
+  - https://pdfs.semanticscholar.org/db7b/5b64e708037566129f3ff9810d617b6e8bde.pdf
+  - http://web.comlab.ox.ac.uk/oucl/work/ralf.hinze/publications/IAI-TR-98-12.ps.gz
+- title: Red-black trees with types
+  author: Stefan Michael Kahrs
+  year: 2001
+  link: https://www.researchgate.net/publication/259413698_Red-black_trees_with_types
+- title: 'From fast exponentiation to square matrices: an adventure in types'
+  link: http://www.eecs.usma.edu/webs/people/okasaki/icfp99.ps
+- title: A persistent union-find data structure
+  year: 2007
+  links:
+  - https://www.lri.fr/~filliatr/ftp/publis/puf-wml07.pdf
+  - https://www.lri.fr/~filliatr/ftp/publis/puf-wml07.ps
+- title: Semi-persistent data structures
+  authors: [Sylvain Conchon, Jean-Christophe Filliâtre]
+  year: 2007
+  link: https://www.lri.fr/~filliatr/ftp/publis/spds-rr.pdf
+- title: Simple confluently persistent catenable lists
+  authors: [Haim Kaplan, Chris Okasaki, Robert E. Tarjan]
+  year: 1998
+  link: http://www.aladdin.cs.cmu.edu/papers/pdfs/y2000/catenable.pdf
+- title: Exploring the duality between skip lists and binary search trees
+  authors: [Brian C. Dean, Zachary H. Jones]
+  link: https://people.cs.clemson.edu/~bcdean/skip_bst.pdf
+- title: Skip trees, an alternative data structure to skip lists in a concurrent approach
+  author: Xavier Messeguer
+  year: 1997
+  link: http://webdiis.unizar.es/asignaturas/TAP/material/skiptrees.pdf
+- title: Randomized search trees
+  authors: [Raimund Seidel, Cecilia R. Aragon]
+  link: https://faculty.washington.edu/aragon/pubs/rst96.pdf
+- title: Functional set operations with treaps
+  authors: [Dan Blandford, Guy Blelloch]
+  link: http://www.cs.cmu.edu/afs/cs/project/pscico/pscico/papers/fingertrees/main.pdf
+- title: Fast set operations using treaps
+  authors: [Guy E. Blelloch, Margaret Reid-Miller]
+  link: http://www.cs.cmu.edu/afs/cs.cmu.edu/project/scandal/public/papers/treaps-spaa98.pdf
+- title: Persistent data structures
+  author: Haim Kaplan
+  year: 2001
+  link: http://www.math.tau.ac.il/~haimk/papers/persistent-survey.ps
+- title: A logarithmic implementation of flexible arrays
+  author: Rob R. Hoogerwoord
+  link: http://alexandria.tue.nl/repository/notdare/772185.pdf
+- title: Unique binary search tree representations and equality-testing of sets and sequences
+  authors: [Rajamani Sundar, Robert E. Tarjan]
+  year: 1989
+  link: ftp://ftp.cs.princeton.edu/techreports/1990/267.pdf
+- title: A functional representation of data structures with a hole
+  author: Yasuhiko Minamide
+  year: 1998
+  link: http://www.is.titech.ac.jp/~minamide/papers/hole.popl98.pdf
+- title: 'The K-D heap: an efficient multi-dimensional priority queue'
+  authors: [Yuzheng Ding, Mark Allen Weiss]
+  year: 1993
+- title: Three algorithms on Braun trees
+  author: Chris Okasaki
+  year: 1997
+  link: https://www.eecs.northwestern.edu/~robby/courses/395-495-2013-fall/three-algorithms-on-braun-trees.pdf
+- title: Infinite sets that admit fast exhaustive search
+  author: Martín Escardó
+  link: http://www.cs.bham.ac.uk/~mhe/papers/exhaustive.pdf
+- title: Biased search trees
+  authors: [Samuel W. Bent, Daniel D. Sleator, Robert E. Tarjan]
+  year: 1985
+  link: https://pdfs.semanticscholar.org/761c/26cff0a479196283a61389bf58ca4d4f4c8d.pdf
+- title: 'RRB-trees: efficient immutable vectors'
+  authors: [Phil Bagwell, Tiark Rompf]
+  year: 2012
+  link: http://infoscience.epfl.ch/record/169879/files/RMTrees.pdf
+- title: 'Deletion: the curse of the red-black tree'
+  authors: [Kimball Germane, Matthew Might]
+  year: 2014
+  link: http://matt.might.net/papers/germane2014deletion.pdf
+- title: Purely functional worst cast constant time catenable sorted lists
+  authors: [Gerth Stølting Brodal, Christos Makris, Kostas Tsichlas]
+  year: 2006
+  link: http://www.cs.au.dk/~gerth/papers/esa06trees.pdf
+- title: Catenable double-ended queues
+  author: Chris Okasaki
+  year: 1997
+  link: https://www.westpoint.edu/eecs/SiteAssets/SitePages/Faculty%20Publication%20Documents/Okasaki/icfp97cdeq.pdf
+- title: Purely functional, real-time deques with catenation
+  authors: [Haim Kaplan, Robert E. Tarian]
+  year: 1999
+  link: http://www.math.tau.ac.il/~haimk/adv-ds-2000/jacm-final.pdf
+- title: Seven trees in one
+  author: Andreas Blass
+  link: http://www.math.lsa.umich.edu/~ablass/7trees.pdf
+- title: Bootstrapping one-sided flexible arrays
+  author: Ralf Hinze
+  year: 2002
+  link: http://www.cs.ox.ac.uk/people/ralf.hinze/publications/ICFP02.pdf
+- title: A simple implementation technique for priority search queues
+  author: Ralf Hinze
+  year: 2001
+  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.18.1149
+- title: Fast and space efficient trie searches
+  author: Phil Bagwell
+  year: 2000
+  link: https://infoscience.epfl.ch/record/64394/files/triesearches.pdf
+- title: Ideal hash trees
+  author: Phil Bagwell
+  year: 2001
+  link: http://lampwww.epfl.ch/papers/idealhashtrees.pdf
+- title: Confluently persistent tries for efficient version control
+  authors: [Erik D. Demaine, Stefan Langerman, Eric Price]
+  year: 2010
+  link: http://erikdemaine.org/papers/ConfluentTries_Algorithmica/paper.pdf
+- title: 'PATRICIA: practical algorithm to retrieve information coded in alphanumeric'
+  author: Donald R. Morrison
+  year: 1968
+- title: Fast mergeable integer maps
+  authors: [Chris Okasaki, Andrew Gill]
+  year: 1998
+  link: http://ittc.ku.edu/~andygill/papers/IntMap98.pdf
+- title: Principal type-schemes for functional programs
+  authors: [Luis Damas, Robin Milner]
+  link: https://homes.cs.washington.edu/~mernst/teaching/6.883/readings/p207-damas.pdf
+- title: A theory of type polymorphism in programming
+  author: Robin Milner
+  year: 1978
+  link: https://www.sciencedirect.com/science/article/pii/0022000078900144
+- title: "A correspondence between ALGOL 60 and Church's lambda-notation: part I"
+  author: P. J. Landin
+  link: https://fi.ort.edu.uy/innovaportal/file/20124/1/22-landin_correspondence-between-algol-60-and-churchs-lambda-notation.pdf
+- title: The next 700 programming languages
+  author: P. J. Landin
+  link: http://thecorememory.com/Next_700.pdf
+- title: Can programming be liberated from the von Neumann style?
+  author: John Backus
+  year: 1978
+  link: http://wwwusers.di.uniroma1.it/~lpara/LETTURE/backus.pdf
+- title: The third homomorphism theorem
+  author: Jeremy Gibbons
+  year: 1998
+  links:
+  - https://www.researchgate.net/publication/2628619_The_Third_Homomorphism_Theorem
+  - http://www.cs.ox.ac.uk/jeremy.gibbons/publications/thirdht.ps.gz
+- title: Algebraic graphs with class (functional pearl)
+  author: Andrey Mokhov
+  year: 2017
+  link: http://eprint.ncl.ac.uk/file_store/production/239461/EF82F5FE-66E3-4F64-A1AC-A366D1961738.pdf
+- title: 'Fun with semirings: a functional pearl on the abuse of linear algebra'
+  author: Stephen Dolan
+  year: 2013
+- title: Power series, power serious
+  author: M. Douglas McIlroy
+  year: 1999
+  link: http://www.cs.dartmouth.edu/~doug/pearl.ps.gz
+- title: Explaining binomial heaps
+  author: Ralf Hinze
+  year: 1999
+  link: https://www.researchgate.net/publication/220676880_Explaining_Binomial_Heaps
 - title: Inverting inductively defined relations in LEGO
   link: http://strictlypositive.org/aussois.ps.gz
 - title: Dependently typed programs and their proofs
@@ -70,6 +245,9 @@
 - title: Blame assignment for higher-order contracts with intersection and union
 - title: 1ML - core and modules united (F-ing first-class modules)
 - title: 'RRB vector: a practical general purpose immutable sequence'
+  authors: [Nicolas Stucki, Tiark Rompf, Vlad Ureche, Phil Bagwell]
+  year: 2015
+  link: https://infoscience.epfl.ch/record/213452/files/rrbvector.pdf
 - title: 'Pycket: a tracing JIT for a functional language'
 - title: An optimizing compiler for a purely functional web-application language
 - title: Expressing contract monitors as patterns of communication
@@ -166,15 +344,19 @@
   author: Oleg Kiselyov
   link: http://www.cs.rutgers.edu/~ccshan/logicprog/LogicT-icfp2005.pdf
 - title: de Brujin notation as a nested datatype
-  author: Richard S. Bird
-  link: http://www.cs.uwyo.edu/~jlc/courses/5000_fall_08/debruijn_as_nested_datatype.pdf
+  authors: [Richard S. Bird, Ross Paterson]
+  links:
+  - http://www.cs.ox.ac.uk/people/richard.bird/online/BirdPaterson99DeBruijn.pdf
+  - http://www.cs.uwyo.edu/~jlc/courses/5000_fall_08/debruijn_as_nested_datatype.pdf
 - title: Fun with type functions
   author: Simon Peyton Jones
   link: http://research.microsoft.com/en-us/um/people/simonpj/papers/assoc-types/fun-with-type-funs/typefun.pdf
 - title: Functional programming with bananas, lenses, envelopes and barbed wire
-  author: Erik Meijer
+  authors: [Erik Meijer, Maarten Fokkinga, Ross Paterson]
   year: 1991
-  link: http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf
+  links:
+  - http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf
+  - http://maartenfokkinga.github.io/utwente/mmf91m.pdf
 - title: Applicative programming with effects
   author: Conor McBride
   year: 2008
@@ -188,20 +370,20 @@
   title: 'Mio: a high-performance multicore IO manager for GHC'
 - link: http://research.microsoft.com/en-us/um/people/simonpj/papers/list-comp/list-comp.pdf
   title: Comprehensive comprehensions
-- year: 1998
-  link: http://www.cs.uwyo.edu/~jlc/courses/3015/parser_pearl.pdf
+- title: Monadic parsing in Haskell
   authors: [Graham Hutton, Erik Meijer]
-  title: Monadic parsing in Haskell
-- year: 2008
-  link: http://publications.lib.chalmers.se/records/fulltext/local_72549.pdf
+  year: 1998
+  link: http://www.cs.uwyo.edu/~jlc/courses/3015/parser_pearl.pdf
+- title: 'Yi: an editor in Haskell for Haskell'
   author: Jean-Philippe Bernardy
-  title: 'Yi: an editor in Haskell for Haskell'
-- link: http://belle.sourceforge.net/doc/hughes95design.pdf
-  title: The design of a pretty printing library
-- year: 2006
-  link: http://strictlypositive.org/CJ.pdf
+  year: 2008
+  link: http://publications.lib.chalmers.se/records/fulltext/local_72549.pdf
+- title: The design of a pretty printing library
+  link: http://belle.sourceforge.net/doc/hughes95design.pdf
+- title: Clowns to the left of me, jokers to the right
   author: Conor McBride
-  title: Clowns to the left of me, jokers to the right
+  year: 2006
+  link: http://strictlypositive.org/CJ.pdf
 - link: http://research.microsoft.com/en-us/um/people/simonpj/papers/hmap/gmap3.pdf
   author: Simon Peyton Jones
   title: 'Scrap your boilerplate with class: extensible generic functions'
@@ -287,10 +469,10 @@
   link: http://nixos.org/~eelco/pubs/nixos-jfp-final.pdf
   authors: [Eelco Dolstra, Andres Löh, Nicolas Pierron]
   title: 'NixOS: a purely functional linux distribution'
-- year: 1997
-  link: https://www.st.cs.uni-saarland.de/edu/seminare/2005/advanced-fp/docs/huet-zipper.pdf
+- title: The zipper
   author: Gérard Huet
-  title: The zipper
+  year: 1997
+  link: https://www.st.cs.uni-saarland.de/edu/seminare/2005/advanced-fp/docs/huet-zipper.pdf
 - year: 2009
   link: https://www.cs.rutgers.edu/~ccshan/tagless/jfp.pdf
   authors: [Jacques Carette, Oleg Kiselyov, Chung-chieh Shan]
@@ -421,10 +603,12 @@
   link: http://ecommons.luc.edu/cgi/viewcontent.cgi?article=1057&context=cs_facpubs
   authors: [Martin Odersky, Konstantin Laufer]
   title: Putting type annotations to work
-- year: 1994
-  link: http://galois.squarespace.com/storage/files/downloads/publications-jl/lazy-functional-state-threads.pdf
+- title: Lazy functional state threads
   authors: [John Launchbury, Simon Peyton Jones]
-  title: Lazy functional state threads
+  year: 1994
+  links:
+  - http://galois.squarespace.com/storage/files/downloads/publications-jl/lazy-functional-state-threads.pdf
+  - http://homepages.dcc.ufmg.br/~camarao/fp/articles/lazy-state.pdf
 - year: 2003
   link: http://www.seas.upenn.edu/~sweirich/papers/itabox/icfp-published-version.pdf
   authors: [Geoffrey Washburn, Stephanie Weirich]
@@ -433,10 +617,10 @@
   link: http://repository.upenn.edu/cgi/viewcontent.cgi?article=1031&context=cis_reports
   authors: [Geoffrey Washburn, Stephanie Weirich]
   title: 'Boxes go bananas: encoding higher-order abstract syntax with parametric polymorphism (extended version)'
-- year: 2012
-  link: http://www.cis.upenn.edu/~byorgey/pub/monoid-pearl.pdf
+- title: 'Monoids: theme and variations'
   author: Brent Yorgey
-  title: 'Monoids: theme and Variations'
+  year: 2012
+  link: http://www.cis.upenn.edu/~byorgey/pub/monoid-pearl.pdf
 - year: 2011
   link: http://spivey.oriel.ox.ac.uk/wiki/images/0/06/Maybe.pdf
   author: Mike Spivey
@@ -457,10 +641,10 @@
   link: http://sebfisch.github.io/haskell-regexp/regexp-play.pdf
   authors: [Sebastian Fischer, Frank Huch, Thomas Wilke]
   title: A play on regular expressions
-- year: 2009
-  link: http://www.iai.uni-bonn.de/~jv/popl09-2.pdf
+- title: Bidirectionalization for free!
   author: Janis Voigtländer
-  title: Bidirectionalization for free!
+  year: 2009
+  link: http://www.iai.uni-bonn.de/~jv/popl09-2.pdf
 - year: 2006
   link: http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/rationals.pdf
   authors: [Jeremy Gibbons, David Lester, Richard Bird]
@@ -483,18 +667,18 @@
   link: http://conal.net/papers/hoas88.pdf
   authors: [Frank Pfenning, Conal Elliott]
   title: Higher-order abstract syntax
-- year: 1999
-  link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.39.8039&rep=rep1&type=pdf
+- title: A poor man's concurrency monad
   author: Koen Claessen
-  title: A poor man's concurrency monad
-- year: 2004
-  link: http://www.seas.upenn.edu/~sweirich/papers/cast/cast.pdf
+  year: 1999
+  link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.39.8039&rep=rep1&type=pdf
+- title: Type-safe cast
   author: Stephanie Weirich
-  title: Type-safe cast
-- year: 2006
-  link: http://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf
+  year: 2004
+  link: http://www.seas.upenn.edu/~sweirich/papers/cast/cast.pdf
+- title: The essence of the iterator pattern
   authors: [Jeremy Gibbons, Bruno C. d. S. Oliveira]
-  title: The essence of the iterator pattern
+  year: 2006
+  link: http://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf
 - year: 2012
   link: http://www.cs.indiana.edu/~sabry/papers/rational.pdf
   authors: [Roshan P. James, Amr Sabry]
@@ -507,10 +691,12 @@
   link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.15.1543&rep=rep1&type=pdf
   author: Levent Erkök
   title: Value recursion in monadic computations
-- year: 2006
-  link: http://www.soi.city.ac.uk/~ross/papers/FingerTree.pdf
+- title: 'Finger trees: a simple general-purpose data structure'
   authors: [Ralf Hinze, Ross Paterson]
-  title: 'Finger trees: a simple general-purpose data structure'
+  year: 2006
+  links:
+  - http://www.staff.city.ac.uk/~ross/papers/FingerTree.pdf
+  - http://www.soi.city.ac.uk/~ross/papers/FingerTree.pdf
 - year: 2003
   link: https://karczmarczuk.users.greyc.fr/TEACH/Stage/ArrComp.pdf
   author: Ross Paterson
@@ -622,10 +808,10 @@
   link: http://metagraph.org/papers/stream_fusion.pdf
   authors: [Duncan Coutts, Roman Leshchinskiy, Don Stewart]
   title: 'Stream fusion: from lists of streams to nothing at all'
-- year: 1996
-  link: https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf
+- title: Purely functional data structures
   author: Chris Okasaki
-  title: Purely functional data structures
+  year: 1996
+  link: https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf
 - title: 'Making a fast curry: push/enter vs. eval/apply for higher-order languages'
   authors: [Simon Marlow, Simon Peyton Jones]
   year: 2004
@@ -756,8 +942,8 @@
   authors: [Tim Harris, Simon Marlow, Simon Peyton Jones, Maurice Herlihy]
   year: 2006
   links:
+  - https://research.microsoft.com/en-us/um/people/simonpj/papers/stm/stm.pdf
   - https://simonmar.github.io/bib/papers/stm.pdf
-  - http://research.microsoft.com/en-us/um/people/simonpj/papers/stm/stm.pdf
 - year: 2008
   link: http://www.cs.ru.nl/~W.Swierstra/Publications/DataTypesALaCarte.pdf
   author: Wouter Swierstra
@@ -782,7 +968,9 @@
 - title: 'Supero: making Haskell faster'
   authors: [Neil Mitchell, Colin Runciman]
   year: 2007
-  link: https://ndmitchell.com/downloads/paper-supero_making_haskell_faster-27_sep_2007.pdf
+  links:
+  - https://ndmitchell.com/downloads/paper-supero_making_haskell_faster-27_sep_2007.pdf
+  - http://community.haskell.org/~ndm/downloads/paper-supero_making_haskell_faster-27_sep_2007.pdf
 - title: Hierarchical memory management for parallel programs
   link: http://www.cs.cmu.edu/~rraghuna/publications/icfp-2016-hierarchical-memory-management-for-parallel-programs/paper.pdf
 - title: Compact bit encoding schemes for simply-typed lambda-terms
@@ -1212,3 +1400,5 @@
   author: Malcom Wallace
 - title: 'Constructive Galois connections: taming the Galois connection framework for mechanized metatheory'
   link: https://arxiv.org/pdf/1511.06965.pdf
+
+# ÁáâĆćÉéǴǵÍíḰḱĹĺḾḿŃńÓóṔṕŔŕŚśÚúẂẃX́x́ÝýŹź
