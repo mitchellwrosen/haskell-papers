@@ -13,13 +13,14 @@ edited manually by humans.
 - (Because GitHub's file-editing UI becomes slow on large files, `papers.yaml`
 is actually snipped into smaller `papersXX.yaml` files every 500 lines or so.)
 - [`yaml2json.hs`](yaml2json.hs) "compiles" `papers.yaml`, `papers01.yaml`, etc.
-to [`papers.json`](papers.json), which does little more than de-dupe strings and
-create dummy papers out of hanging references.
+to [`papers.json`](papers.json), which de-dupes strings, creates dummy papers
+out of hanging references, and adds file location information to each paper.
 - [`Main.elm`](Main.elm) contains the UI code, which is compiled and minified to
 [`main.min.js`](main.min.js).
 - GitHub hosts this `master` branch as a
 [static site](https://mitchellwrosen.github.io/haskell-papers), which is
-comprised of [`index.html`](index.html) and `main.min.js`.
+comprised of [`index.html`](index.html), [`the.css`](the.css), and
+`main.min.js`.
 
 **How can I help?**
 
@@ -49,3 +50,7 @@ Necessary dummy symlink for local noodling:
 
     mkdir haskell-papers
     ln -s ../main.min.js haskell-papers/main.min.js
+
+Quickly iterate on `yaml2json.hs`:
+
+    ghcid -c 'stack ghci --ghci-options=-fno-code --main-is haskell-papers:exe:yaml2json

@@ -1,21 +1,22 @@
-{-# language LambdaCase #-}
-{-# language NamedFieldPuns #-}
-{-# language OverloadedStrings #-}
+{-# language InstanceSigs        #-}
+{-# language NamedFieldPuns      #-}
+{-# language OverloadedStrings   #-}
 {-# language ScopedTypeVariables #-}
 
 import Control.Monad.State hiding ((>>))
 import Control.Monad.ST (ST, runST)
 import Data.Aeson
-  (FromJSON, ToJSON, (.:), (.:?), (.=), object, toJSON, withObject)
+  (FromJSON, ToJSON, Value, (.:), (.:?), (.=), object, toJSON, withObject)
+import Data.Aeson.Types (Parser)
 import Data.ByteString (ByteString)
 import Data.Function ((&))
 import Data.HashMap.Strict (HashMap)
 import Data.IntMap (IntMap)
 import Data.IntSet (IntSet)
-import Data.Maybe (catMaybes, fromMaybe)
+import Data.Maybe (catMaybes, fromMaybe, mapMaybe)
 import Data.Monoid
 import Data.Ord (comparing)
-import Data.Text (Text, unpack)
+import Data.Text (Text, pack, unpack)
 import Data.Tuple (swap)
 import Data.Vector (Vector)
 import Prelude hiding ((>>), id)
@@ -34,14 +35,24 @@ import qualified Data.Vector as Vector
 import qualified Data.Vector.Algorithms.Merge as Vector
 import qualified Data.Yaml as Yaml
 
-type Title = Text
 type Author = Text
+type File = Text
 type Link = Text
+type Title = Text
 
-type TitleId = Int
 type AuthorId = Int
+type FileId = Int
 type LinkId = Int
+type TitleId = Int
 
+-- | A thing that came from a line in a file.
+data Loc a = Loc
+  { locFile :: !File
+  , locLine :: !Int
+  , locValue :: a
+  }
+
+-- | Paper object read from @papers.yaml@.
 data PaperIn = PaperIn
   { paperInTitle :: !Title
   , paperInAuthors :: !(Vector Author)
@@ -51,6 +62,7 @@ data PaperIn = PaperIn
   }
 
 instance FromJSON PaperIn where
+  parseJSON :: Value -> Parser PaperIn
   parseJSON =
     withObject "paper" $ \o -> do
       title <- o .: "title"
@@ -78,12 +90,22 @@ instance FromJSON PaperIn where
               (Just _, Just _) -> fail "Found both 'link' and 'links'"
         }
 
+-- | Paper object written to @papers.json@.
 data PaperOut = PaperOut
   { paperOutTitle :: !TitleId
+    -- ^ Paper title.
   , paperOutAuthors :: !(Vector AuthorId)
+    -- ^ Paper authors.
   , paperOutYear :: !(Maybe Int)
+    -- ^ Paper year.
   , paperOutReferences :: !(Vector TitleId)
+    -- ^ Paper references.
   , paperOutLinks :: !(Vector LinkId)
+    -- ^ Paper links.
+  , paperOutFile :: !FileId
+    -- ^ Yaml file the paper was parsed from.
+  , paperOutLine :: !Int
+    -- ^ Line number in yaml file.
   }
 
 instance ToJSON PaperOut where
@@ -101,13 +123,24 @@ instance ToJSON PaperOut where
         , do
             guard (not (null (paperOutLinks paper)))
             pure ("links" .= paperOutLinks paper)
+        , pure ("file" .= paperOutFile paper)
+        , pure ("line" .= paperOutLine paper)
         ])
 
+-- | The entire @papers.json@ blob:
+--
+--   - Array of papers
+--   - Lookup tables for strings that we need not include over and over
+--     (authors, titles, etc).
+--
 data PapersOut = PapersOut
   { papersOutTitles :: !(IntMap Title)
   , papersOutAuthors :: !(IntMap Author)
   , papersOutLinks :: !(IntMap Link)
+  , paperOutFiles :: !(IntMap File)
   , papersOutPapers :: !(Vector PaperOut)
+    -- ^ Invariant: a 'PaperOut's title, author, references, etc. will always
+    -- be in 'IntMap's above.
   }
 
 instance ToJSON PapersOut where
@@ -116,41 +149,94 @@ instance ToJSON PapersOut where
       [ "titles" .= papersOutTitles papers
       , "authors" .= papersOutAuthors papers
       , "links" .= papersOutLinks papers
+      , "files" .= paperOutFiles papers
       , "papers" .= papersOutPapers papers
       ]
 
 main :: IO ()
 main = do
-  files :: [ByteString] <-
-    mapM ByteString.readFile =<< getArgs
+  filenames :: [FilePath] <-
+    getArgs
 
-  case traverse Yaml.decodeEither files of
-    Left err -> do
-      hPutStrLn stderr err
-      exitFailure
-    Right values ->
-      values
-        & mconcat
-        & transform
-        & Json.encode
-        & LByteString.putStr
+  papers :: [Vector (Loc PaperIn)] <-
+    traverse decodePapersYaml filenames
+
+  papers
+    & mconcat
+    & transform
+    & Json.encode
+    & LByteString.putStr
+ where
+  decodePapersYaml :: FilePath -> IO (Vector (Loc PaperIn))
+  decodePapersYaml file = do
+    bytes :: ByteString <-
+      ByteString.readFile file
+
+    -- The 'yaml' library makes it hard to get source locations, so we hack it
+    -- together here. We know each yaml file is an array, so just find the
+    -- locations of all of the '-' (45) characters that follow newlines (10).
+    --
+    -- Incidentally, this hacky algorithm is the reason why all papers.yaml
+    -- files must begin with a newline, because otherwise we'd miss the first
+    -- entry.
+    let lineNo :: Int -> Int
+        lineNo =
+          ByteString.elemIndices 10 bytes
+            & zip [2..]
+            & mapMaybe
+                (\(n, c) -> do
+                  guard (c < ByteString.length bytes - 1)
+                  guard (ByteString.index bytes (c+1) == 45)
+                  pure n)
+            & Vector.fromList
+            & (Vector.!)
+
+    case Yaml.decodeEither bytes of
+      Left err -> do
+        hPutStrLn stderr err
+        exitFailure
+      Right values ->
+        pure
+          (Vector.imap
+            (\i x ->
+              Loc
+                { locFile = pack file
+                , locLine = lineNo i
+                , locValue = x
+                })
+            values)
 
 data S = S
   { sTitleIds :: !(HashMap Title TitleId)
   , sAuthorIds :: !(HashMap Author AuthorId)
   , sLinkIds :: !(HashMap Link LinkId)
+  , sFileIds :: !(HashMap File FileId)
   , sTopLevelTitles :: !IntSet -- TitleIdSet
   , sNextTitleId :: !TitleId
   , sNextAuthorId :: !AuthorId
   , sNextLinkId :: !LinkId
+  , sNextFileId :: !FileId
   }
 
-transform :: Vector PaperIn -> PapersOut
+transform :: Vector (Loc PaperIn) -> PapersOut
 transform =
   mapM transform1
-    >> (`runState` S mempty mempty mempty mempty 0 0 0)
+    >> (`runState` s0)
     >> ploop
  where
+  s0 :: S
+  s0 = S
+    { sTitleIds = mempty
+    , sAuthorIds = mempty
+    , sLinkIds = mempty
+    , sFileIds = mempty
+    , sTopLevelTitles = mempty
+    , sNextTitleId = 0
+    , sNextAuthorId = 0
+    , sNextLinkId = 0
+    , sNextFileId = 0
+    }
+
   ploop :: (Vector PaperOut, S) -> PapersOut
   ploop (papers, s) =
     PapersOut
@@ -163,6 +249,10 @@ transform =
           foldMap
             (swap >> uncurry IntMap.singleton)
             (HashMap.toList (sLinkIds s))
+      , paperOutFiles =
+          foldMap
+            (swap >> uncurry IntMap.singleton)
+            (HashMap.toList (sFileIds s))
       , papersOutPapers =
           vectorSortOn
             (paperOutTitle >> flip IntMap.lookup titles >> fmap Text.toLower)
@@ -193,6 +283,11 @@ transform =
           , paperOutYear = Nothing
           , paperOutReferences = mempty
           , paperOutLinks = mempty
+          , paperOutFile =
+              case HashMap.lookup "papers.yaml" (sFileIds s) of
+                Nothing -> error "No 'papers.yaml' file id"
+                Just file -> file
+          , paperOutLine = 0
           }
 
     vectorSortOn :: forall a b. Ord b => (a -> b) -> Vector a -> Vector a
@@ -205,8 +300,8 @@ transform =
         Vector.sortBy (comparing f) ys
         Vector.freeze ys
 
-transform1 :: PaperIn -> State S PaperOut
-transform1 paper = do
+transform1 :: Loc PaperIn -> State S PaperOut
+transform1 Loc{locFile, locLine, locValue = paper} = do
   title_id :: TitleId <-
     getTitleId (paperInTitle paper)
 
@@ -226,12 +321,17 @@ transform1 paper = do
   links :: Vector LinkId <-
     mapM getLinkId (paperInLinks paper)
 
+  file :: FileId <-
+    getFileId locFile
+
   pure PaperOut
     { paperOutTitle = title_id
     , paperOutAuthors = authors
     , paperOutYear = paperInYear paper
     , paperOutReferences = references
     , paperOutLinks = links
+    , paperOutFile = file
+    , paperOutLine = locLine
     }
 
 getTitleId :: Title -> State S TitleId
@@ -273,6 +373,20 @@ getLinkId link = do
         , sNextLinkId = sNextLinkId s + 1
         }
       pure (sNextLinkId s)
+    Just id ->
+      pure id
+
+getFileId :: File -> State S FileId
+getFileId file = do
+  s <- get
+
+  case HashMap.lookup file (sFileIds s) of
+    Nothing -> do
+      put s
+        { sFileIds = HashMap.insert file (sNextFileId s) (sFileIds s)
+        , sNextFileId = sNextFileId s + 1
+        }
+      pure (sNextFileId s)
     Just id ->
       pure id
 

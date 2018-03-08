@@ -22,7 +22,7 @@ rules = do
 
   ".shake/yaml2json" %> \_ -> do
     need ["stack.yaml", "haskell-papers.cabal", "yaml2json.hs"]
-    cmd_ "stack install --local-bin-path .shake"
+    cmd_ "stack install --local-bin-path .shake haskell-papers:exe:yaml2json"
 
   "main.min.js" %> \out -> do
     need [".shake/main.js", ".shake/uglifyjs"]

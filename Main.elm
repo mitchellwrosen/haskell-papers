@@ -8,6 +8,10 @@ import Html.Attributes exposing (href, class)
 import Json.Decode as Decode exposing (Decoder)
 
 
+--------------------------------------------------------------------------------
+-- Types and type aliases
+
+
 type Model
     = Model (Array Paper)
 
@@ -16,11 +20,23 @@ type Message
     = Blob (Result Http.Error (Array Paper))
 
 
+type alias AuthorId =
+    Int
+
+
 type alias Author =
     String
 
 
-type alias AuthorId =
+type alias File =
+    String
+
+
+type alias FileId =
+    Int
+
+
+type alias LinkId =
     Int
 
 
@@ -28,16 +44,12 @@ type alias Link =
     String
 
 
-type alias LinkId =
+type alias TitleId =
     Int
 
 
 type alias Title =
     String
-
-
-type alias TitleId =
-    Int
 
 
 type alias Paper =
@@ -46,7 +58,14 @@ type alias Paper =
     , year : Maybe Int
     , references : Array TitleId
     , links : Array Link
+    , file : String
+    , line : Int
     }
+
+
+
+--------------------------------------------------------------------------------
+-- Boilerplate main function
 
 
 main : Program Never Model Message
@@ -59,32 +78,43 @@ main =
         }
 
 
+
+--------------------------------------------------------------------------------
+-- Initialize the model and sennd the first message
+
+
 init : ( Model, Cmd Message )
 init =
     let
-        also : Decoder a -> Decoder (a -> b) -> Decoder b
-        also =
-            Decode.map2 (|>)
-
-        andThen3 :
+        andThen4 :
             Decoder a
             -> Decoder b
             -> Decoder c
-            -> (a -> b -> c -> Decoder d)
             -> Decoder d
-        andThen3 dx dy dz f =
+            -> (a -> b -> c -> d -> Decoder e)
+            -> Decoder e
+        andThen4 dw dx dy dz f =
             Decode.andThen
-                (\x -> Decode.andThen (\y -> Decode.andThen (f x y) dz) dy)
-                dx
+                (\w ->
+                    Decode.andThen
+                        (\x ->
+                            Decode.andThen
+                                (\y -> Decode.andThen (f w x y) dz)
+                                dy
+                        )
+                        dx
+                )
+                dw
 
         decodePapers : Decoder (Array Paper)
         decodePapers =
-            andThen3
+            andThen4
                 (Decode.field "titles" decodeIds)
                 (Decode.field "authors" decodeIds)
                 (Decode.field "links" decodeIds)
-                (\titles authors links ->
-                    decodePaper titles authors links
+                (Decode.field "files" decodeIds)
+                (\titles authors links files ->
+                    decodePaper titles authors links files
                         |> Decode.array
                         |> Decode.field "papers"
                 )
@@ -97,88 +127,128 @@ init =
                         (\x y -> ( x, y ))
                         (Decode.index 0 Decode.int)
                         (Decode.index 1 Decode.string)
-
-        decodePaper : Dict TitleId Title -> Dict AuthorId Author -> Dict LinkId Link -> Decoder Paper
-        decodePaper titles authors links =
-            let
-                decodeTitle : Decoder Title
-                decodeTitle =
-                    let
-                        lookupTitle : TitleId -> Title
-                        lookupTitle id =
-                            case Dict.get id titles of
-                                Nothing ->
-                                    Debug.crash ("No title " ++ toString id)
-
-                                Just title ->
-                                    title
-                    in
-                        Decode.int
-                            |> Decode.field "title"
-                            |> Decode.map lookupTitle
-
-                decodeAuthors : Decoder (Array Author)
-                decodeAuthors =
-                    let
-                        lookupAuthor : AuthorId -> Author
-                        lookupAuthor id =
-                            case Dict.get id authors of
-                                Nothing ->
-                                    Debug.crash ("No author " ++ toString id)
-
-                                Just author ->
-                                    author
-                    in
-                        Decode.int
-                            |> Decode.map lookupAuthor
-                            |> Decode.array
-                            |> Decode.field "authors"
-                            |> Decode.maybe
-                            |> Decode.map (Maybe.withDefault Array.empty)
-
-                decodeYear : Decoder (Maybe Int)
-                decodeYear =
-                    Decode.int
-                        |> Decode.field "year"
-                        |> Decode.maybe
-
-                decodeReferences : Decoder (Array TitleId)
-                decodeReferences =
-                    Decode.int
-                        |> Decode.array
-                        |> Decode.field "references"
-                        |> Decode.maybe
-                        |> Decode.map (Maybe.withDefault Array.empty)
-
-                decodeLinks : Decoder (Array Link)
-                decodeLinks =
-                    let
-                        lookupLink : LinkId -> Link
-                        lookupLink id =
-                            case Dict.get id links of
-                                Nothing ->
-                                    Debug.crash ("No link " ++ toString id)
-
-                                Just link ->
-                                    link
-                    in
-                        Decode.int
-                            |> Decode.map lookupLink
-                            |> Decode.array
-                            |> Decode.field "links"
-                            |> Decode.maybe
-                            |> Decode.map (Maybe.withDefault Array.empty)
-            in
-                Decode.map5 Paper
-                    decodeTitle
-                    decodeAuthors
-                    decodeYear
-                    decodeReferences
-                    decodeLinks
     in
         ( Model Array.empty
         , Http.send Blob <| Http.get "./papers.json" decodePapers
         )
+
+
+decodePaper :
+    Dict TitleId Title
+    -> Dict AuthorId Author
+    -> Dict LinkId Link
+    -> Dict FileId File
+    -> Decoder Paper
+decodePaper titles authors links files =
+    Decode.map7 Paper
+        (decodeTitle titles)
+        (decodeAuthors authors)
+        decodeYear
+        decodeReferences
+        (decodeLinks links)
+        (decodeFile files)
+        decodeLine
+
+
+decodeAuthors : Dict AuthorId Author -> Decoder (Array Author)
+decodeAuthors authors =
+    let
+        lookupAuthor : AuthorId -> Author
+        lookupAuthor id =
+            case Dict.get id authors of
+                Nothing ->
+                    Debug.crash ("No author " ++ toString id)
+
+                Just author ->
+                    author
+    in
+        Decode.int
+            |> Decode.map lookupAuthor
+            |> Decode.array
+            |> Decode.field "authors"
+            |> Decode.maybe
+            |> Decode.map (Maybe.withDefault Array.empty)
+
+
+decodeFile : Dict FileId File -> Decoder String
+decodeFile files =
+    let
+        lookupFile : FileId -> File
+        lookupFile id =
+            case Dict.get id files of
+                Nothing ->
+                    Debug.crash ("No file " ++ toString id)
+
+                Just file ->
+                    file
+    in
+        Decode.int
+            |> Decode.map lookupFile
+            |> Decode.field "file"
+
+
+decodeLine : Decoder Int
+decodeLine =
+    Decode.int
+        |> Decode.field "line"
+
+
+decodeLinks : Dict LinkId Link -> Decoder (Array Link)
+decodeLinks links =
+    let
+        lookupLink : LinkId -> Link
+        lookupLink id =
+            case Dict.get id links of
+                Nothing ->
+                    Debug.crash ("No link " ++ toString id)
+
+                Just link ->
+                    link
+    in
+        Decode.int
+            |> Decode.map lookupLink
+            |> Decode.array
+            |> Decode.field "links"
+            |> Decode.maybe
+            |> Decode.map (Maybe.withDefault Array.empty)
+
+
+decodeReferences : Decoder (Array TitleId)
+decodeReferences =
+    Decode.int
+        |> Decode.array
+        |> Decode.field "references"
+        |> Decode.maybe
+        |> Decode.map (Maybe.withDefault Array.empty)
+
+
+decodeTitle : Dict TitleId Title -> Decoder Title
+decodeTitle titles =
+    let
+        lookupTitle : TitleId -> Title
+        lookupTitle id =
+            case Dict.get id titles of
+                Nothing ->
+                    Debug.crash ("No title " ++ toString id)
+
+                Just title ->
+                    title
+    in
+        Decode.int
+            |> Decode.field "title"
+            |> Decode.map lookupTitle
+
+
+decodeYear : Decoder (Maybe Int)
+decodeYear =
+    Decode.int
+        |> Decode.field "year"
+        |> Decode.maybe
+
+
+
+--------------------------------------------------------------------------------
+-- The main update loop
 
 
 update : Message -> Model -> ( Model, Cmd Message )
@@ -193,9 +263,9 @@ update message model =
             Debug.crash <| toString msg
 
 
-arrayToDict : Array ( comparable, a ) -> Dict comparable a
-arrayToDict =
-    Array.foldl (uncurry Dict.insert) Dict.empty
+
+--------------------------------------------------------------------------------
+-- Render HTML
 
 
 view : Model -> Html Message
@@ -216,6 +286,7 @@ viewPaper paper =
     Html.li
         [ class "paper" ]
         [ viewTitle paper
+        , viewEditLink paper
         ]
 
 
@@ -229,3 +300,23 @@ viewTitle paper =
             Just link ->
                 Html.a [ href link ] [ Html.text paper.title ]
         ]
+
+
+viewEditLink : Paper -> Html a
+viewEditLink paper =
+    let
+        editLink : String
+        editLink =
+            "https://github.com/mitchellwrosen/haskell-papers/edit/master/" ++ paper.file ++ "#L" ++ toString paper.line
+    in
+        Html.a [ href editLink ] [ Html.text "(edit)" ]
+
+
+
+--------------------------------------------------------------------------------
+-- Misc. utility functions
+
+
+arrayToDict : Array ( comparable, a ) -> Dict comparable a
+arrayToDict =
+    Array.foldl (uncurry Dict.insert) Dict.empty
