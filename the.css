@@ -38,4 +38,13 @@ h1 {
   font-size: 16px;
   line-height: 1.4;
   border-bottom: 1px solid #EEE;
+  color: #333;
+}
+
+.paper a {
+  color: #0366d6;
+  text-decoration: none;
+}
+.paper a:hover {
+  text-decoration: underline;
 }
