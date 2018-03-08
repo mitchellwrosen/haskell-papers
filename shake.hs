@@ -14,11 +14,11 @@ rules = do
 
   ".shake/uglifyjs" %> \_ -> do
     let tarball = uglifyjsSHA ++ ".tar.gz"
-    cmd_ (Cwd ".shake") ("wget https://github.com/mishoo/UglifyJS2/archive/" ++ tarball)
-    cmd_ (Cwd ".shake") ("tar xf " ++ tarball)
+    cmd_ (Cwd ".shake") ("curl -sL https://github.com/mishoo/UglifyJS2/archive/" ++ tarball ++ " -o uglifyjs.tar.gz")
+    cmd_ (Cwd ".shake") "tar xf uglifyjs.tar.gz"
     cmd_ (Cwd (".shake/UglifyJS2-" ++ uglifyjsSHA)) "npm install"
     cmd_ ("ln -f -s UglifyJS2-" ++ uglifyjsSHA ++ "/bin/uglifyjs .shake/uglifyjs")
-    cmd_ ("rm .shake/" ++ tarball)
+    cmd_ "rm .shake/uglifyjs.tar.gz"
 
   ".shake/yaml2json" %> \_ -> do
     need ["stack.yaml", "haskell-papers.cabal", "yaml2json.hs"]
