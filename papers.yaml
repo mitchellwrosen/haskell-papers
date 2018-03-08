@@ -464,7 +464,7 @@
 - year: 2011
   link: http://www.seas.upenn.edu/~sweirich/papers/tldi12.pdf
   authors: [Brent Yorgey, Stephanie Weirich, Julien Cretin, Simon Peyton Jones, Dimitrios Vytiniotis, José Pedro Magalhães]
-  title: Giving Haskell as promotion
+  title: Giving Haskell a promotion
 - year: 2010
   link: http://nixos.org/~eelco/pubs/nixos-jfp-final.pdf
   authors: [Eelco Dolstra, Andres Löh, Nicolas Pierron]
