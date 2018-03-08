@@ -33,7 +33,7 @@ import qualified Data.IntSet as IntSet
 import qualified Data.Text as Text
 import qualified Data.Vector as Vector
 import qualified Data.Vector.Algorithms.Merge as Vector
-import qualified Data.Yaml as Yaml
+import qualified Data.Yaml.Combinators as Yaml
 
 type Author = Text
 type File = Text
@@ -60,6 +60,53 @@ data PaperIn = PaperIn
   , paperInReferences :: !(Vector Title)
   , paperInLinks :: !(Vector Link)
   }
+
+paperInParser :: Yaml.Parser PaperIn
+paperInParser =
+  Yaml.validate
+    (Yaml.object
+      ((,,,,,,)
+        <$> Yaml.field "title" Yaml.string
+        <*> Yaml.optField "author" Yaml.string
+        <*> Yaml.optField "authors" (uniqArray Yaml.string)
+        <*> Yaml.optField "year" Yaml.integer
+        <*> Yaml.optField "references" (uniqArray Yaml.string)
+        <*> Yaml.optField "link" Yaml.string
+        <*> Yaml.optField "links" (uniqArray Yaml.string)))
+    validate
+ where
+  validate
+    :: ( Title, Maybe Author, Maybe (Vector Author), Maybe Int
+       , Maybe (Vector Title), Maybe Link, Maybe (Vector Link)
+       )
+    -> Either [Char] PaperIn
+  validate (title, mauthor, mauthors, year, references, mlink, mlinks) = do
+    authors :: Vector Author <-
+      case (mauthor, mauthors) of
+        (Nothing, Nothing) -> pure mempty
+        (Nothing, Just xs) -> pure xs
+        (Just x, Nothing) -> pure (pure x)
+        (Just _, Just _) -> Left "a paper without both 'author' and 'authors'"
+
+    links :: Vector Link <-
+      case (mlink, mlinks) of
+        (Nothing, Nothing) -> pure mempty
+        (Nothing, Just xs) -> pure xs
+        (Just x, Nothing) -> pure (pure x)
+        (Just _, Just _) -> Left "a paper without both 'link' and 'links'"
+
+    pure PaperIn
+      { paperInTitle = title
+      , paperInAuthors = authors
+      , paperInYear = year
+      , paperInReferences = fromMaybe mempty references
+      , paperInLinks = links
+      }
+
+  -- TODO: Reject arrays with duplicate elements
+  uniqArray :: Yaml.Parser a -> Yaml.Parser (Vector a)
+  uniqArray =
+    Yaml.array
 
 instance FromJSON PaperIn where
   parseJSON :: Value -> Parser PaperIn
@@ -191,7 +238,7 @@ main = do
             & Vector.fromList
             & (Vector.!)
 
-    case Yaml.decodeEither bytes of
+    case Yaml.parse (Yaml.array paperInParser) bytes of
       Left err -> do
         hPutStrLn stderr err
         exitFailure

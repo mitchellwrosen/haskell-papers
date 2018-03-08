@@ -24,7 +24,7 @@
 #   links                                                        :: Maybe [Text]
 #
 
-# ÁáâĆćÉéǴǵÍíḰḱĹĺḾḿŃńÓóṔṕŔŕŚśÚúẂẃX́x́ÝýŹź
+# ÁáâĆćÉéǴǵÍíḰḱĹĺḾḿŃńÓóÖöṔṕŔŕŚśÚúẂẃX́x́ÝýŹź
 
 # - title:
 #   authors:
@@ -378,3 +378,7 @@
 - link: http://haskell.cs.yale.edu/wp-content/uploads/2013/08/hask035-voellmy.pdf
   authors: [Andreas Voellmy, Junchang Wang, Paul Hudak, Kazuhiko Yamamoto]
   title: 'Mio: a high-performance multicore IO manager for GHC'
+- title: Parsing permutation phrases
+  authors: [Arthur I. Baars, Andres Löh, Doaitse Swierstra]
+  year: 2004
+  link: http://foswiki.cs.uu.nl/foswiki/pub/USCS/InterestingPapers/PermutationsJFP.pdf

@@ -10,7 +10,7 @@ flag build-getlinks
 
 executable yaml2json
   main-is: yaml2json.hs
-  ghc-options: -O -Wall
+  ghc-options: -Wall
   build-depends:
       aeson
     , base
@@ -21,13 +21,13 @@ executable yaml2json
     , unordered-containers
     , vector
     , vector-algorithms
-    , yaml
+    , yaml-combinators
 
 executable getlinks
   if !flag(build-getlinks)
     buildable: False
   main-is: getlinks.hs
-  ghc-options: -O -threaded -Wall -rtsopts "-with-rtsopts=-N4"
+  ghc-options: -threaded -Wall -rtsopts "-with-rtsopts=-N4"
   build-depends:
       aeson
     , async
