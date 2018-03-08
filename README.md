@@ -32,6 +32,20 @@ documentation, more streamlined path to contribution, anything!
 
 **Misc. notes**
 
-Build the site: `./build.sh`
+Build everything:
 
-Find dead links: `stack exec getlinks`
+    ./build.sh
+
+Clean up everything:
+
+    rm papers.json
+    rm -rf .shake
+
+Find dead links (takes a while to avoid IP bans):
+
+    stack exec getlinks
+
+Necessary dummy symlink for local noodling:
+
+    mkdir haskell-papers
+    ln -s ../main.min.js haskell-papers/main.min.js
