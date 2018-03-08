@@ -513,9 +513,10 @@
   link: http://www.cse.chalmers.se/~emax/documents/axelsson2014efficient.pdf
   author: Emil Axelsson
   title: Efficient and compositional evaluation of untyped expressions
-- title: How to make ad-hoc polymorphism less ad hoc
+- title: How to make ad-hoc polymorphism less ad-hoc
   authors: [Philip Wadler, Stephen Blott]
   year: 1988
+  link: https://people.csail.mit.edu/dnj/teaching/6898/papers/wadler88.pdf
 - year: 2006
   link: http://research.microsoft.com/en-us/um/people/simonpj/papers/gadt/gadt-icfp.pdf
   authors: [Simon Peyton Jones, Dimitrios Vytiniotis, Stephanie Weirich, Geoffrey Washburn]
@@ -1224,8 +1225,6 @@
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110283
 - title: Testing and debugging functional reactive programming
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110246
-- title: How to mace ad-hoc polymorphism less ad-hoc
-  link: https://people.csail.mit.edu/dnj/teaching/6898/papers/wadler88.pdf
 - title: A unified approach to solving seven programming problems
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110252
 - title: 'Project H: programming R in Haskell'
