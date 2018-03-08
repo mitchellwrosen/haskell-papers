@@ -60,7 +60,9 @@
   year: 2001
   link: https://www.researchgate.net/publication/259413698_Red-black_trees_with_types
 - title: 'From fast exponentiation to square matrices: an adventure in types'
-  link: http://www.eecs.usma.edu/webs/people/okasaki/icfp99.ps
+  author: Chris Okasaki
+  year: 1999
+  link: https://www.usma.edu/eecs/SiteAssets/SitePages/Faculty%20Publication%20Documents/Okasaki/icfp99square.pdf
 - title: A persistent union-find data structure
   year: 2007
   links:
@@ -350,12 +352,10 @@
   link: http://homepages.inf.ed.ac.uk/wadler/papers/arrows-and-idioms/arrows-and-idioms.pdf
 - title: Backtracking, interleaving, and terminating monad transformers
   author: Oleg Kiselyov
-  link: http://www.cs.rutgers.edu/~ccshan/logicprog/LogicT-icfp2005.pdf
 - title: de Brujin notation as a nested datatype
   authors: [Richard S. Bird, Ross Paterson]
   links:
   - http://www.cs.ox.ac.uk/people/richard.bird/online/BirdPaterson99DeBruijn.pdf
-  - http://www.cs.uwyo.edu/~jlc/courses/5000_fall_08/debruijn_as_nested_datatype.pdf
 - title: Fun with type functions
   author: Simon Peyton Jones
   link: http://research.microsoft.com/en-us/um/people/simonpj/papers/assoc-types/fun-with-type-funs/typefun.pdf
@@ -381,7 +381,6 @@
 - title: Monadic parsing in Haskell
   authors: [Graham Hutton, Erik Meijer]
   year: 1998
-  link: http://www.cs.uwyo.edu/~jlc/courses/3015/parser_pearl.pdf
 - title: 'Yi: an editor in Haskell for Haskell'
   author: Jean-Philippe Bernardy
   year: 2008
@@ -405,21 +404,18 @@
   link: http://www.cs.ox.ac.uk/jeremy.gibbons/publications/embedding.pdf
   author: Jeremy Gibbons
   title: 'Folding domain-speciﬁc languages: deep and shallow embeddings'
-- link: http://people.cs.kuleuven.be/~jesper.cockx/Without-K/Pattern-matching-without-K.pdf
+- title: Pattern matching without K
   author: Jesper Cockx
-  title: Pattern matching without K
-- link: http://www.cis.upenn.edu/~eir/papers/2014/coercible/coercible.pdf
+- title: Safe coercions
   author: Joachim Breitner
-  title: Safe coercions
 - link: http://www.cs.nott.ac.uk/~gmh/faster.pdf
   author: Jennifer Hackett
   title: Worker/wrapper/makes it/faster
 - link: http://gallium.inria.fr/~fpottier/publis/fpottier-elaboration.pdf
   author: François Pottier
   title: Hindley-Milner elaboration in applicative style
-- link: https://dl.dropboxusercontent.com/u/1620890/website/writings/ho-optimization.pdf
+- title: Practical and effective higher-order optimizations
   author: Lars Bergstrom
-  title: Practical and effective higher-order optimizations
 - link: http://community.haskell.org/~simonmar/papers/haxl-icfp14.pdf
   author: Simon Marlow
   title: 'There is no fork: an abstraction for efﬁcient, concurrent, and concise data access'
@@ -429,9 +425,8 @@
 - link: http://ezyang.com/jfp-ghc-rts-draft.pdf
   author: Edward Z. Yang
   title: The GHC runtime system
-- link: http://spivey.oriel.ox.ac.uk/mike/firstpearl.pdf
+- title: Strachey's functional pearl, forty years on
   author: Mike Spivey
-  title: Strachey's functional pearl, forty years on
 - link: http://homepages.inf.ed.ac.uk/wadler/papers/arrows-jfp/arrows-jfp.pdf
   authors: [Sam Lindley, Philip Wadler, Jeremy Yallop]
   title: The arrow calculus
@@ -481,10 +476,9 @@
   author: Gérard Huet
   year: 1997
   link: https://www.st.cs.uni-saarland.de/edu/seminare/2005/advanced-fp/docs/huet-zipper.pdf
-- year: 2009
-  link: https://www.cs.rutgers.edu/~ccshan/tagless/jfp.pdf
+- title: Finally tagless, partially evaluated
   authors: [Jacques Carette, Oleg Kiselyov, Chung-chieh Shan]
-  title: Finally tagless, partially evaluated
+  year: 2009
 - year: 2013
   link: https://personal.cis.strath.ac.uk/conor.mcbride/pub/hasochism.pdf
   authors: [Sam Lindley, Conor McBride]
@@ -501,18 +495,16 @@
   link: http://research.microsoft.com/en-us/um/people/simonpj/papers/meta-haskell/meta-haskell.pdf
   authors: [Tim Sheard, Simon Peyton Jones]
   title: Template meta-programming for Haskell
-- year: 1997
-  link: http://ipaper.googlecode.com/git-history/243b02cb56424d9e3931361122c5aa1c4bdcbbbd/Typeclasses/type-class-explorationi.pdf
+- title: 'Type classes: an exploration of the design space'
   authors: [Simon Peyton Jones, Mark Jones, Erik Meijer]
-  title: 'Type classes: an exploration of the design space'
-- year: 2004
-  link: http://www.cs.rutgers.edu/~ccshan/prepose/prepose.pdf
+  year: 1997
+- title: 'Implicit conﬁgurations: or, type classes reflect the values of types'
   authors: [Oleg Kiselyov, Chung-chieh Shan]
-  title: 'Implicit conﬁgurations: or, type classes reflect the values of types'
-- year: 2003
-  link: http://www.haskell.org/wikiupload/6/69/AutoSkelPPL03.pdf
+  year: 2004
+- title: Automatic skeletons in Template Haskell
   authors: [Kevin Hammond, Jost Berthold, Rita Loogen]
-  title: Automatic skeletons in Template Haskell
+  year: 2003
+  link: http://www.haskell.org/wikiupload/6/69/AutoSkelPPL03.pdf
 - year: 2004
   link: http://www.haskell.org/wikiupload/b/b5/Seefried04th-pan.pdf
   authors: [Sean Seefried, Manuel Chakravarty, Gabriele Keller]
@@ -521,10 +513,9 @@
   link: http://www.cse.chalmers.se/~emax/documents/axelsson2014efficient.pdf
   author: Emil Axelsson
   title: Efficient and compositional evaluation of untyped expressions
-- year: 1988
-  link: http://202.3.77.10/users/karkare/courses/2010/cs653/Papers/ad-hoc-polymorphism.pdf
+- title: How to make ad-hoc polymorphism less ad hoc
   authors: [Philip Wadler, Stephen Blott]
-  title: How to make ad-hoc polymorphism less ad hoc
+  year: 1988
 - year: 2006
   link: http://research.microsoft.com/en-us/um/people/simonpj/papers/gadt/gadt-icfp.pdf
   authors: [Simon Peyton Jones, Dimitrios Vytiniotis, Stephanie Weirich, Geoffrey Washburn]
@@ -541,18 +532,16 @@
   link: https://karczmarczuk.users.greyc.fr/arpap/diffalg.pdf
   author: Jerzy Karczmarczuk
   title: Functional differentiation of computer programs
-- year: 2010
-  link: http://www.cis.upenn.edu/~byorgey/papers/species-pearl.pdf
+- title: Species and functors and types, oh my!
   author: Brent Yorgey
-  title: Species and functors and types, oh my!
+  year: 2010
 - title: The derivative of a regular type is its type of one-hole contexts
   author: Conor McBride
   year: 2001
   link: http://strictlypositive.org/diff.pdf
-- year: 2013
-  link: https://personal.cis.strath.ac.uk/adam.gundry/thesis/thesis-2013-12-03.pdf
+- title: Type inference, Haskell and dependent types
   author: Adam Gundry
-  title: Type inference, Haskell and dependent types
+  year: 2013
 - year: 2005
   link: http://userpages.uni-koblenz.de/~laemmel/TheEagle/dl/ChakravartyKPJ05.pdf
   authors: [Manuel M. T. Chakravarty, Gabriele Keller, Simon Peyton Jones]
@@ -575,14 +564,12 @@
   link: http://www.cs.nott.ac.uk/~gmh/wgp01/jeuring-paper.pdf
   authors: [Ralf Hinze, Johan Jeuring, Andres Löh]
   title: Type-indexed data types
-- year: 2008
-  link: http://www.eecs.harvard.edu/~tov/pubs/haskell-session-types/session08.pdf
+- title: Haskell session types with (almost) no class
   authors: [Riccardo Pucella, Jesse A. Tov]
-  title: Haskell session types with (almost) no class
-- year: 2008
-  link: http://pubs.doc.ic.ac.uk/session-types-in-haskell/session-types-in-haskell.pdf
+  year: 2008
+- title: 'Session types in Haskell: updating message passing for the 21st century'
   authors: [Matthew Sackman, Susan Eisenbach]
-  title: 'Session types in Haskell: updating message passing for the 21st century'
+  year: 2008
 - year: 2004
   link: http://www2.informatik.uni-freiburg.de/~thiemann/papers/padl04.ps.gz
   authors: [Matthias Neubauer, Peter Thiemann]
@@ -614,9 +601,7 @@
 - title: Lazy functional state threads
   authors: [John Launchbury, Simon Peyton Jones]
   year: 1994
-  links:
-  - http://galois.squarespace.com/storage/files/downloads/publications-jl/lazy-functional-state-threads.pdf
-  - http://homepages.dcc.ufmg.br/~camarao/fp/articles/lazy-state.pdf
+  link: http://homepages.dcc.ufmg.br/~camarao/fp/articles/lazy-state.pdf
 - year: 2003
   link: http://www.seas.upenn.edu/~sweirich/papers/itabox/icfp-published-version.pdf
   authors: [Geoffrey Washburn, Stephanie Weirich]
@@ -628,19 +613,15 @@
 - title: 'Monoids: theme and variations'
   author: Brent Yorgey
   year: 2012
-  link: http://www.cis.upenn.edu/~byorgey/pub/monoid-pearl.pdf
-- year: 2011
-  link: http://spivey.oriel.ox.ac.uk/wiki/images/0/06/Maybe.pdf
+- title: When maybe is not good enough
   author: Mike Spivey
-  title: When maybe is not good enough
-- year: 2011
-  link: http://wwwhome.ewi.utwente.nl/~fokkinga/mmf2005d-houghtrf-JFPpre.pdf
+  year: 2011
+- title: The Hough transform
   author: Maarten Fokkinga
-  title: The Hough transform
-- year: 2011
-  link: http://www.staff.science.uu.nl/~swier004/Publications/DutchNationalFlag.pdf
+  year: 2011
+- title: 'Sorted: verifying the problem of the Dutch national flag in Agda'
   author: Wouter Swierstra
-  title: 'Sorted: verifying the problem of the Dutch national flag in Agda'
+  year: 2011
 - year: 2010
   link: http://research.microsoft.com/en-us/people/dimitris/every-bit-counts.pdf
   authors: [Dimitrios Vytiniotis, Andrew Kennedy]
@@ -652,7 +633,6 @@
 - title: Bidirectionalization for free!
   author: Janis Voigtländer
   year: 2009
-  link: http://www.iai.uni-bonn.de/~jv/popl09-2.pdf
 - year: 2006
   link: http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/rationals.pdf
   authors: [Jeremy Gibbons, David Lester, Richard Bird]
@@ -666,7 +646,6 @@
 - title: Tagless staged interpreters for typed languages
   authors: [Emir Pašalić, Walid Taha, Tim Sheard]
   year: 2002
-  link: http://www.cs.rice.edu/~taha/publications/conference/icfp02.pdf
 - year: 2009
   link: http://conal.net/papers/type-class-morphisms/type-class-morphisms-long.pdf
   author: Conal Elliott
@@ -691,10 +670,9 @@
   link: http://www.cs.indiana.edu/~sabry/papers/rational.pdf
   authors: [Roshan P. James, Amr Sabry]
   title: 'The two dualities of computation: negative and fractional Types'
-- year: 2012
-  link: http://www.cis.upenn.edu/~eir/papers/2012/singletons/paper.pdf
+- title: Dependently typed programming with singletons
   authors: [Richard A. Eisenberg, Stephanie Weirich]
-  title: Dependently typed programming with singletons
+  year: 2012
 - year: 2002
   link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.15.1543&rep=rep1&type=pdf
   author: Levent Erkök
@@ -709,10 +687,9 @@
   link: https://karczmarczuk.users.greyc.fr/TEACH/Stage/ArrComp.pdf
   author: Ross Paterson
   title: Arrows and computation
-- year: 2001
-  link: http://ipaper.googlecode.com/git-history/04245c26d47749179d6b8446e130f7e51bf79db9/Ross-Paterson/arrows-notation.pdf
+- title: A new notation for arrows
   author: Ross Paterson
-  title: A new notation for arrows
+  year: 2001
 - link: http://www.cse.chalmers.se/~rjmh/afp-arrows.pdf
   author: John Hughes
   title: Programming with arrows
@@ -720,10 +697,9 @@
   link: http://homepages.inf.ed.ac.uk/wadler/papers/arrows/arrows.pdf
   authors: [Sam Lindley, Philip Wadler, Jeremy Yallop]
   title: The arrow calculus (functional pearl)
-- year: 2008
-  link: http://www.ioc.ee/~tarmo/papers/cmcs08.pdf
+- title: Comonadic notions of computation
   authors: [Tarmo Uustalu, Varmo Vene]
-  title: Comonadic notions of computation
+  year: 2008
 - year: 2002
   link: http://www.ioc.ee/~tarmo/papers/sfp01-book.pdf
   authors: [Tarmo Uustalu, Varmo Vene]
@@ -736,10 +712,9 @@
   link: http://cs.ioc.ee/~tarmo/papers/essence.pdf
   authors: [Tarmo Uustalu, Varmo Vene]
   title: The essence of dataflow programming
-- year: 2009
-  link: http://www.iai.uni-bonn.de/~jv/papers/FreeTheoremsInvolvingTypeConstructorClasses.pdf
+- title: Free theorems involving type constructor classes
   author: Janis Voigtländer
-  title: Free theorems involving type constructor classes
+  year: 2009
 - year: 2004
   link: http://www.jucs.org/jucs_10_7/total_functional_programming/jucs_10_07_0751_0768_turner.pdf
   author: David Turner
@@ -748,18 +723,16 @@
   link: http://bentnib.org/paramnotions-jfp.pdf
   author: Robert Atkey
   title: Parameterized notions of computation
-- year: 1993
-  link: http://cs.au.dk/~hosc/local/LaSC-7-1-pp39-56.pdf
+- title: Monads and composable continuations
   author: Philip Wadler
-  title: Monads and composable continuations
+  year: 1993
 - year: 2001
   link: http://research.microsoft.com/en-us/um/people/simonpj/papers/oo-haskell/overloading.pdf
   authors: [Mark Shields, Simon Peyton Jones]
   title: Object-oriented style overloading for Haskell
-- year: 2014
-  link: http://homepages.cwi.nl/~ploeg/papers/zseq.pdf
+- title: 'Reflection without remorse: revealing a hidden sequence to speed up monadic reflection'
   authors: [Atze van der Ploeg, Oleg Kiselyov]
-  title: 'Reflection without remorse: revealing a hidden sequence to speed up monadic reflection'
+  year: 2014
 - year: 2004
   link: http://homepages.inf.ed.ac.uk/wadler/papers/dual-revolutions/dual-revolutions.pdf
   author: Philip Wadler
@@ -808,14 +781,12 @@
   link: http://conal.net/papers/push-pull-frp/push-pull-frp.pdf
   author: Conal Elliott
   title: Push-pull functional reactive programming
-- year: 2008
-  link: http://www.iai.uni-bonn.de/~jv/mpc08.pdf
+- title: Asymptotic improvement of computations over free monads
   author: Janis Voigtländer
-  title: Asymptotic improvement of computations over free monads
-- year: 2007
-  link: http://metagraph.org/papers/stream_fusion.pdf
+  year: 2008
+- title: 'Stream fusion: from lists of streams to nothing at all'
   authors: [Duncan Coutts, Roman Leshchinskiy, Don Stewart]
-  title: 'Stream fusion: from lists of streams to nothing at all'
+  year: 2007
 - title: Purely functional data structures
   author: Chris Okasaki
   year: 1996
@@ -826,14 +797,12 @@
   links:
   - https://simonmar.github.io/bib/papers/evalapplyjfp06.pdf
   - http://community.haskell.org/~simonmar/papers/evalapplyjfp06.pdf
-- year: 2014
-  link: http://www.personal.leeds.ac.uk/~scpmw/static/thesis.pdf
+- title: Visualization of Haskell performance
   author: Peter Moritz Wortmann
-  title: Visualization of Haskell performance
-- year: 2014
-  link: http://www1.eafit.edu.co/asicard/pubs/cain-screen.pdf
+  year: 2014
+- title: Category theory applied to functional programming
   author: Juan Pedro Villa Isaza
-  title: Category theory applied to functional programming
+  year: 2014
 - year: 2000
   link: https://gist.github.com/chrisdone/0075a16b32bfd4f62b7b
   author: Mark P. Jones
@@ -938,10 +907,9 @@
   link: http://strictlypositive.org/Easy.pdf
   authors: [Andres Löh, Conor McBride, Wouter Swierstra]
   title: 'Simply easy!: an implementation of a dependently typed lambda calculus'
-- year: 1997
-  link: https://synrc.com/publications/cat/Lambda%20Calculus/Henk.pdf
+- title: 'Henk: a typed intermediate language'
   authors: [Simon Peyton Jones, Erik Meijer]
-  title: 'Henk: a typed intermediate language'
+  year: 1997
 - year: 2002
   link: http://www.cs.rit.edu/~mtf/research/phantom-subtyping/jfp06/jfp06.pdf
   authors: [Matthew Fluet, Riccardo Pucella]
@@ -950,7 +918,7 @@
   authors: [Tim Harris, Simon Marlow, Simon Peyton Jones, Maurice Herlihy]
   year: 2006
   links:
-  - https://research.microsoft.com/en-us/um/people/simonpj/papers/stm/stm.pdf
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2005/01/2005-ppopp-composable.pdf
   - https://simonmar.github.io/bib/papers/stm.pdf
 - year: 2008
   link: http://www.cs.ru.nl/~W.Swierstra/Publications/DataTypesALaCarte.pdf
@@ -960,10 +928,9 @@
   link: http://arxiv.org/pdf/1403.0749v3.pdf
   authors: [Paolo Capriotti, Ambrus Kaposi]
   title: Free applicative functors
-- year: 2014
-  link: https://dl.dropboxusercontent.com/u/3265448/schilling.thesis.final.2014-01-20.pdf
+- title: Trace-based just-in-time compilation for lazy functional programming languages
   author: Thomas Schilling
-  title: Trace-based just-in-time compilation for lazy functional programming languages
+  year: 2014
 - title: 'Stretching the storage manager: weak pointers and stable names in Haskell'
   authors: [Simon Peyton Jones, Simon Marlow, Conal Elliott]
   year: 1999
@@ -1327,6 +1294,7 @@
 - title: 'SHErrLOC: A Static Holistic Error Locator'
   link: https://www.microsoft.com/en-us/research/wp-content/uploads/2017/08/sherrloc-toplas.pdf
 - title: Context-free session types
+  authors: [Peter Thiemann, Vasco T. Vasconcelos]
   link: https://www.di.fc.ul.pt/~vv/papers/thiemann.vasconcelos_context-free-session-types.pdf
 - title: 'Dag-calculus: a calculus for parallel computation'
   link: https://dl.acm.org/citation.cfm?doid=2951913.2951946
