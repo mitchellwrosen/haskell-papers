@@ -31,7 +31,7 @@ out lazily as I (or anyone) notices it's missing. The UI can always be improved
 upon. New metadata fields, more automation, better architecture, better
 documentation, more streamlined path to contribution, anything!
 
-**Misc. notes**
+**Misc. dev notes**
 
 Build everything:
 
@@ -44,9 +44,11 @@ Clean up everything:
 
 Find dead links (takes a while to avoid IP bans):
 
+    stack build haskell-papers:exe:getlinks --flag haskell-papers:build-getlinks
     stack exec getlinks
 
-Necessary dummy symlink for local noodling:
+Necessary dummy symlink for local noodling, because GitHub's static site is
+served underneath `haskell-papers/`:
 
     mkdir haskell-papers
     ln -s ../main.min.js haskell-papers/main.min.js

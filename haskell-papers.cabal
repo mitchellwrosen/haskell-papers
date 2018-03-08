@@ -5,6 +5,9 @@ cabal-version: >= 1.2
 license: BSD3
 license-file: LICENSE
 
+flag build-getlinks
+  default: False
+
 executable yaml2json
   main-is: yaml2json.hs
   ghc-options: -O -Wall
@@ -21,6 +24,8 @@ executable yaml2json
     , yaml
 
 executable getlinks
+  if !flag(build-getlinks)
+    buildable: False
   main-is: getlinks.hs
   ghc-options: -O -threaded -Wall -rtsopts "-with-rtsopts=-N4"
   build-depends:
