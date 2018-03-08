@@ -21,7 +21,7 @@ GitHub-hosted static site comprised of of [`index.html`](index.html) and
 **How can I help?**
 
 Lots of ways! If you have a paper to add, please modify `papers.yaml` and make a
-pull request. A bunch of paper collections are listed in [`TODO.md`](TODO.md).
+pull request. A bunch of paper collections are listed in [`todo.txt`](todo.txt).
 Each paper in `papers.yaml` has metadata (like `references`), which is filled
 out lazily as I (or anyone) notices it's missing. The UI can always be improved
 upon. New metadata fields, more automation, dead link detection, better
