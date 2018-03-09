@@ -173,7 +173,11 @@
 - title: The essence of functional programming
   link: https://page.mi.fu-berlin.de/scravy/realworldhaskell/materialien/the-essence-of-functional-programming.pdf
 - title: 'Elaborator reflection: extending Idris in Idris'
-  link: https://dl.acm.org/citation.cfm?doid=2951913.2951932
+  authors: [David Christiansen, Edwin Brady]
+  year: 2016
+  links:
+  - https://eb.host.cs.st-andrews.ac.uk/drafts/elab-reflection.pdf
+  - https://dl.acm.org/citation.cfm?doid=2951913.2951932
 - title: Visual theorem proving with the Incredible Proof Machine
   link: https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf
 - title: Uniform boilerplate and list processing

@@ -191,7 +191,11 @@
 - title: Derivatives of containers
   link: http://strictlypositive.org/derivcont.ps.gz
 - title: Inductive families need not store their indices
-  link: http://strictlypositive.org/indfam.ps.gz
+  authors: [Edwin Brady, Conor McBride, James McKinna]
+  year: 2003
+  links:
+  - https://eb.host.cs.st-andrews.ac.uk/writings/types2003.pdf
+  - http://strictlypositive.org/indfam.ps.gz
 - title: 'Faking it: simulating dependent types in Haskell'
   author: Conor McBride
   year: 2002
@@ -298,3 +302,87 @@
   authors: [K. C. Sivaramakrishnan, Tim Harris, Simon Marlow, Simon Peyton Jones]
   year: 2016
   link: https://simonmar.github.io/bib/papers/composable_scheduler_activations.pdf
+- title: Automatically proving equivalence by type-safe reflection
+  authors: [Franck Slama, Edwin Brady]
+  year: 2017
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/cicm17.pdf
+- title: Type-driven development of concurrent communicating systems
+  author: Edwin Brady
+  year: 2017
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/tdd-conc.pdf
+- title: Sequential decision problems, dependent types and generic solutions
+  authors: [Nicola Botta, Patrik Jansson, Cezar Ionescu, David R. Christiansen, Edwin Brady]
+  year: 2017
+  link: https://arxiv.org/pdf/1610.07145.pdf
+- title: Resource-dependent algebraic effects
+  author: Edwin Brady
+  year: 2014
+  link: https://eb.host.cs.st-andrews.ac.uk/drafts/dep-eff.pdf
+- title: Dependent types for safe and secure web programming
+  authors: [Simon Fowler, Edwin Brady]
+  year: 2013
+  link: https://eb.host.cs.st-andrews.ac.uk/drafts/ifl2013.pdf
+- title: 'Idris, a general purpose dependently typed programming language: design and implementation'
+  author: Edwin Brady
+  year: 2013
+  link: https://eb.host.cs.st-andrews.ac.uk/drafts/impldtp.pdf
+- title: Programming and reasoning with algebraic effects and dependent types
+  author: Edwin C. Brady
+  year: 2013
+  link: https://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf
+- title: Sequential decision problems, dependently typed solution
+  authors: [Nicola Botta, Cezar Ionescu, and Edwin Brady]
+  year: 2013
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/plmms13.pdf
+- title: 'Programming in Idris: a tutorial'
+  author: The Idris Community
+  year: 2012
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/idris-tutorial.pdf
+- title: Resource-safe systems programming with embedded domain specific language
+  authors: [Edwin Brady, Kevin Hammond]
+  year: 2012
+  link: https://eb.host.cs.st-andrews.ac.uk/drafts/dsl-idris.pdf
+- title: 'Epic: a library for generating compilers'
+  author: Edwin Brady
+  year: 2011
+  link: https://eb.host.cs.st-andrews.ac.uk/drafts/epic.pdf
+- title: 'Idris: systems programming meets full dependent types'
+  author: Edwin C. Brady
+  year: 2011
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/plpv11.pdf
+- title: 'Scrapping your inefficient engine: using partial evaluation to improve domain-specific language implementation'
+  authors: [Edwin C. Brady, Kevin Hammond]
+  year: 2010
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/icfp10.pdf
+- title: 'Correct-by-construction concurrency: using dependent types to verify implementations of effectful resource usage protocols'
+  authors: [Edwin C. Brady, Kevin Hammond]
+  year: 2010
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/fi-cbc.pdf
+- title: Domain specific languages (DSLs) for network protocols
+  authors: [Saleem Bhatti, Edwin Brady, Kevin Hammond, James McKinna]
+  year: 2009
+  link: https://eb.host.cs.st-andrews.ac.uk/drafts/ngna2009-dsl.pdf
+- title: Lightweight invariants with full dependent types
+  authors: [Edwin Brady, Christoph Herrmann, Kevin Hammond]
+  year: 2008
+  link: https://eb.host.cs.st-andrews.ac.uk/drafts/tfp08.pdf
+- title: 'Constructing correct circuits: verification of functional aspects of hardware specifications with dependent types'
+  authors: [Edwin Brady, James McKinna, Kevin Hammond]
+  year: 2007
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/tfp07.pdf
+- title: Ivor, a proof engine
+  author: Edwin Brady
+  year: 2006
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/ivor.pdf
+- title: 'A verified staged interpreter is a verified compiler: multi-stage programming with dependent types'
+  authors: [Edwin Brady, Kevin Hammond]
+  year: 2006
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/verified_staged.pdf
+- title: A dependently typed framework for static analysis of program execution costs
+  authors: [Edwin Brady, Kevin Hammond]
+  year: 2005
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/dtsize.pdf
+- title: Practical implementation of a dependently typed functional programming language
+  author: Edwin C. Brady
+  year: 2005
+  link: https://eb.host.cs.st-andrews.ac.uk/writings/thesis.pdf

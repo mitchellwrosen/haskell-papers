@@ -1,4 +1,3 @@
-https://edwinb.wordpress.com/publications/
 http://conal.net/papers/
 http://ku-fpg.github.io/publications/
 http://www.clash-lang.org/
