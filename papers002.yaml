@@ -140,10 +140,12 @@
   authors: [Philip Wadler, Stephen Blott]
   year: 1988
   link: https://people.csail.mit.edu/dnj/teaching/6898/papers/wadler88.pdf
-- year: 2006
-  link: http://research.microsoft.com/en-us/um/people/simonpj/papers/gadt/gadt-icfp.pdf
+- title: Simple unification-based type inference for GADTs
   authors: [Simon Peyton Jones, Dimitrios Vytiniotis, Stephanie Weirich, Geoffrey Washburn]
-  title: Simple unification-based type inference for GADTs
+  year: 2006
+  links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/gadt-pldi.pdf
+  - http://research.microsoft.com/en-us/um/people/simonpj/papers/gadt/gadt-icfp.pdf
 - year: 2011
   link: https://personal.cis.strath.ac.uk/conor.mcbride/Kleisli.pdf
   author: Conor McBride
@@ -331,4 +333,15 @@
 - title: Dependent pattern matching and proof-relevant unification
   author: Jesper Cockx
   year: 2017
-  title: https://lirias.kuleuven.be/bitstream/123456789/583556/1/thesis-final-digital.pdf
+  link: https://lirias.kuleuven.be/bitstream/123456789/583556/1/thesis-final-digital.pdf
+- title: A foundation for embedded languages
+  author: Morten Rhiger
+  year: 2002
+  link: http://www.brics.dk/RS/02/34/BRICS-RS-02-34.pdf
+- title: Essential Haskell
+  author: Atze Dijkstra
+  link: http://www.cs.uu.nl/groups/ST/Projects/ehc/ehc-book.pdf
+- title: Probabilistic functional programming in Haskell
+  authors: [Martin Erwig, Steve Kollamansberger]
+  year: 2006
+  link: http://web.engr.oregonstate.edu/~erwig/papers/PFP_JFP06.pdf

@@ -459,3 +459,29 @@
   authors: [Georgios Karachalias, Tom Schrijvers]
   year: 2017
   link: https://people.cs.kuleuven.be/~george.karachalias/papers/fundeps.pdf
+- title: Parallel parsing processes
+  author: Koen Claessen
+  link: http://www.cse.chalmers.se/edu/year/2015/course/afp/Papers/parser-claessen.pdf
+- title: Programming monads operationally with Unimo
+  author: Chuan-kai Lin
+  year: 2006
+  link: https://sites.google.com/site/chklin/research/unimo-icfp06.pdf
+- title: Translating generalized algebraic data types to System F
+  authors: [Martin Sulzmann, Meng Wang]
+  link: http://www.cs.mu.oz.au/~sulzmann/manuscript/simple-translate-gadts.ps
+- title: First-class phantom types
+  authors: [James Cheney, Ralf Hinze]
+  year: 2003
+  link: https://ecommons.cornell.edu/bitstream/handle/1813/5614/TR2003-1901.pdf?sequence=1&isAllowed=y
+- title: Stratified type inference for generalized algebraic data types
+  authors: [François Pottier, Yann Régis-Gianas]
+  year: 2005
+  link: http://cristal.inria.fr/~fpottier/publis/pottier-regis-gianas-05.pdf
+- title: Monadic parser combinators
+  authors: [Graham Hutton, Erik Meijer]
+  year: 1996
+  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.2.4159
+- title: Refunctionalization at work
+  authors: [Olivier Danvy, Kevin Millikin]
+  year: 2007
+  link: http://www.brics.dk/RS/07/7/BRICS-RS-07-7.pdf

@@ -433,13 +433,18 @@
   - http://ezyang.com/papers/heule15-ifcinside.pdf
 - title: Adventures in three monads
   author: Edward Z. Yang
-  link: http://web.mit.edu/~ezyang/Public/threemonads.pdf
+  year: 2010
+  links:
+  - http://web.mit.edu/~ezyang/Public/threemonads.pdf
+  - https://themonadreader.files.wordpress.com/2010/01/issue15.pdf
 - title: Idioms are oblivious, arrows are meticulous, monads are promiscuous
   author: Sam Lindley
   year: 2008
   link: http://homepages.inf.ed.ac.uk/wadler/papers/arrows-and-idioms/arrows-and-idioms.pdf
 - title: Backtracking, interleaving, and terminating monad transformers
-  author: Oleg Kiselyov
+  authors: [Oleg Kiselyov, Chung-chieh Shan, Daniel P. Friedman, Amr Sabry]
+  year: 2005
+  link: http://okmij.org/ftp/papers/LogicT.pdf
 - title: de Brujin notation as a nested datatype
   authors: [Richard S. Bird, Ross Paterson]
   links:
@@ -482,3 +487,11 @@
 - title: Sequent calculi and abstract machines
   authors: [Zena M. Ariola, Aaron Bohannon, Amr Sabry]
   link: https://www.cs.indiana.edu/~sabry/papers/sequent.pdf
+- title: The hp2any project
+  author: Gergely Patai
+  year: 2010
+  link: https://themonadreader.files.wordpress.com/2010/01/issue15.pdf
+- title: The operational monad tutorial
+  author: Heinrich Apfelmus
+  year: 2010
+  link: https://themonadreader.files.wordpress.com/2010/01/issue15.pdf
