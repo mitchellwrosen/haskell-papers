@@ -98,13 +98,13 @@ init =
         decodePapers : Decoder (Array Paper)
         decodePapers =
             andThen3
-                (Decode.field "titles" decodeIds)
-                (Decode.field "authors" decodeIds)
-                (Decode.field "links" decodeIds)
+                (Decode.field "a" decodeIds)
+                (Decode.field "b" decodeIds)
+                (Decode.field "c" decodeIds)
                 (\titles authors links ->
                     decodePaper titles authors links
                         |> Decode.array
-                        |> Decode.field "papers"
+                        |> Decode.field "d"
                 )
 
         decodeIds : Decoder (Dict Int String)
@@ -160,13 +160,13 @@ decodeAuthors authors =
 decodeFile : Decoder Int
 decodeFile =
     Decode.int
-        |> Decode.field "file"
+        |> Decode.field "f"
 
 
 decodeLine : Decoder Int
 decodeLine =
     Decode.int
-        |> Decode.field "line"
+        |> Decode.field "g"
 
 
 decodeLinks : Dict LinkId Link -> Decoder (Array Link)
@@ -184,7 +184,7 @@ decodeLinks links =
         Decode.int
             |> Decode.map lookupLink
             |> Decode.array
-            |> Decode.field "links"
+            |> Decode.field "e"
             |> Decode.maybe
             |> Decode.map (Maybe.withDefault Array.empty)
 
@@ -193,7 +193,7 @@ decodeReferences : Decoder (Array TitleId)
 decodeReferences =
     Decode.int
         |> Decode.array
-        |> Decode.field "references"
+        |> Decode.field "d"
         |> Decode.maybe
         |> Decode.map (Maybe.withDefault Array.empty)
 
@@ -211,14 +211,14 @@ decodeTitle titles =
                     title
     in
         Decode.int
-            |> Decode.field "title"
+            |> Decode.field "a"
             |> Decode.map lookupTitle
 
 
 decodeYear : Decoder (Maybe Int)
 decodeYear =
     Decode.int
-        |> Decode.field "year"
+        |> Decode.field "c"
         |> Decode.maybe
 
 

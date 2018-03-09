@@ -160,19 +160,19 @@ instance ToJSON PaperOut where
   toJSON paper =
     object
       (catMaybes
-        [ pure ("title" .= paperOutTitle paper)
+        [ pure ("a" .= paperOutTitle paper)
         , do
             guard (not (null (paperOutAuthors paper)))
-            pure ("authors" .= paperOutAuthors paper)
-        , ("year" .=) <$> paperOutYear paper
+            pure ("b" .= paperOutAuthors paper)
+        , ("c" .=) <$> paperOutYear paper
         , do
             guard (not (null (paperOutReferences paper)))
-            pure ("references" .= paperOutReferences paper)
+            pure ("d" .= paperOutReferences paper)
         , do
             guard (not (null (paperOutLinks paper)))
-            pure ("links" .= paperOutLinks paper)
-        , pure ("file" .= paperOutFile paper)
-        , pure ("line" .= paperOutLine paper)
+            pure ("e" .= paperOutLinks paper)
+        , pure ("f" .= paperOutFile paper)
+        , pure ("g" .= paperOutLine paper)
         ])
 
 -- | The entire @papers.json@ blob:
@@ -193,10 +193,10 @@ data PapersOut = PapersOut
 instance ToJSON PapersOut where
   toJSON papers =
     object
-      [ "titles" .= papersOutTitles papers
-      , "authors" .= papersOutAuthors papers
-      , "links" .= papersOutLinks papers
-      , "papers" .= papersOutPapers papers
+      [ "a" .= papersOutTitles papers
+      , "b" .= papersOutAuthors papers
+      , "c" .= papersOutLinks papers
+      , "d" .= papersOutPapers papers
       ]
 
 main :: IO ()
