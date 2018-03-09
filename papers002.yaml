@@ -72,10 +72,10 @@
   link: http://research.microsoft.com/en-us/um/people/simonpj/Papers/c--/hoopl-haskell10.pdf
   authors: [Norman Ramsey, João Dias, Simon Peyton Jones]
   title: 'Hoopl: a modular, reusable library for dataflow analysis and transformation'
-- year: 2014
+- title: Notions of computation as monoids
+  authors: [Exequiel Rivas, Mauro Jaskelioff]
+  year: 2014
   link: http://arxiv.org/pdf/1406.4823v1.pdf
-  author: Exequiel Rivas
-  title: Notions of computation as monoids
 - year: 2014
   link: http://plv.mpi-sws.org/backpack/backpack-paper.pdf
   authors: [Scott Kilpatrick, Derek Dreyer, Simon Peyton Jones, Simon Marlow]
@@ -297,3 +297,38 @@
 - title: Dependently typed programming with singletons
   authors: [Richard A. Eisenberg, Stephanie Weirich]
   year: 2012
+- title: Deriving law-abiding instances
+  authors: [Ryan Scott, Niki Vazou, Ranjit Jhala]
+  year: 2017
+  link: https://arxiv.org/pdf/1708.02328.pdf
+- title: Guarded impredicative polymorphism
+  author: Anonymous
+  year: 2017
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2017/07/impredicative-Jul17.pdf
+- title: APLicative programming with Naperian functors
+  author: Jeremy Gibbons
+  link: https://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/aplicative.pdf
+- title: Compiling a 50-year journey
+  authors: [Graham Hutton, Patrick Bahr]
+  year: 2017
+  link: http://www.cs.nott.ac.uk/~pszgmh/fifty.pdf
+- title: String diagrams for double categories and equipments
+  author: David Jaz Myers
+  year: 2016
+  link: https://arxiv.org/pdf/1612.02762.pdf
+- title: Origami programming
+  author: Jeremy Gibbons
+  year: 2003
+  link: https://www.cs.ox.ac.uk/jeremy.gibbons/publications/origami.pdf
+- title: On the resolution semiring
+  author: Marc Bagnol
+  year: 2014
+  link: https://www.normalesup.org/~bagnol/phd/these_book.pdf
+- title: Cyclic multicategories, multivariable adjunctions and mates
+  authors: [Eugenia Cheng, Nick Gurski, Emily Riehl]
+  year: 2013
+  link: http://www.math.jhu.edu/~eriehl/mates.pdf
+- title: Dependent pattern matching and proof-relevant unification
+  author: Jesper Cockx
+  year: 2017
+  title: https://lirias.kuleuven.be/bitstream/123456789/583556/1/thesis-final-digital.pdf

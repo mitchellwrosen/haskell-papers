@@ -166,7 +166,9 @@
 - title: Algebraic graphs with class (functional pearl)
   author: Andrey Mokhov
   year: 2017
-  link: http://eprint.ncl.ac.uk/file_store/production/239461/EF82F5FE-66E3-4F64-A1AC-A366D1961738.pdf
+  links:
+  - http://eprint.ncl.ac.uk/file_store/production/239461/EF82F5FE-66E3-4F64-A1AC-A366D1961738.pdf
+  - https://dl.acm.org/authorize?N46678
 - title: 'Fun with semirings: a functional pearl on the abuse of linear algebra'
   author: Stephen Dolan
   year: 2013
@@ -406,3 +408,54 @@
   authors: [Conal Elliott, Sigbjørn Finne, Oege de Moor]
   year: 2003
   link: http://conal.net/papers/jfp-saig/compile-dsel.pdf
+- title: 'Ologs: a categorical framework for knowledge representation'
+  authors: [David I. Spivak, Robert E. Kent]
+  year: 2012
+  link: http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0024274&type=printable
+- title: Local states in string diagrams
+  author: Paul-André Melliès
+  link: https://www.irif.fr/~mellies//papers/local-states-in-string-diagrams.pdf
+- title: Category theory for programmers
+  author: Bartosz Milewski
+  year: 2017
+  link: https://github.com/hmemcpy/milewski-ctfp-pdf/releases/download/v0.6.1/category-theory-for-programmers.pdf
+- title: Symmetric lenses
+  authors: [Martin Hofmann, Benjamin Pierce, Daniel Wagner]
+  link: http://dmwit.com/papers/201009SL.pdf
+- title: 'Symmetric edit lenses: a new foundation for bidirectional languages'
+  author: Daniel Wagner
+  year: 2014
+  link: http://dmwit.com/papers/201407SEL_ANFfBL.pdf
+- title: Edit languages for information trees
+  authors: [Martin Hofmann, Benjamin C. Pierce, Daniel Wagner]
+  year: 2013
+  link: http://dmwit.com/papers/201302ELfIT.pdf
+- title: Edit lenses
+  authors: [Martin Hofmann, Benjamin Pierce, Daniel Wagner]
+  year: 2011
+  link: http://dmwit.com/papers/201107EL.pdf
+- title: Three perspectives on change
+  author: Daniel Wagner
+  year: 2011
+  link: http://dmwit.com/papers/201101TPoC.pdf
+- title: Differential privacy for collaborative security
+  authors: [Jason Reed, Adam J. Aviv, Daniel Wagner, Andreas Haeberlen, Benjamin C. Pierce, Jonathan M. Smith]
+  year: 2010
+  link: http://dmwit.com/papers/201004DPfCS.pdf
+- title: The spider calculus
+  authors: [Benjamin C. Pierce, Alessandro Romanel, Daniel Wagner]
+  year: 2010
+  link: http://dmwit.com/papers/201003TSC_CiAG.pdf
+- title: Generalizing lenses
+  author: Daniel Wagner
+  year: 2013
+  link: http://dmwit.com/papers/201308GL.pdf
+- title: A specification for dependently-typed Haskell (extended version)
+  authors: [Stephanie Weirich, Antoine Voizard, Pedro Henrique Azevedo de Amorim, Richard Eisenberg]
+  year: 2017
+  link: https://www.seas.upenn.edu/~sweirich/papers/systemd-submission.pdf
+- title: The HdpH DSLs for scalable reliable computation
+- title: 'Elaboration on functional dependencies: functional dependencies are dead, long live functional dependencies!'
+  authors: [Georgios Karachalias, Tom Schrijvers]
+  year: 2017
+  link: https://people.cs.kuleuven.be/~george.karachalias/papers/fundeps.pdf

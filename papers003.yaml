@@ -121,6 +121,7 @@
   authors: [Simon Marlow, Simon Peyton Jones]
   year: 2004
   links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/eval-apply.pdf
   - https://simonmar.github.io/bib/papers/evalapplyjfp06.pdf
   - http://community.haskell.org/~simonmar/papers/evalapplyjfp06.pdf
 - title: Visualization of Haskell performance
@@ -317,7 +318,11 @@
 - title: Higher-order ghost state
   link: https://people.mpi-sws.org/~dreyer/papers/hogs/paper.pdf
 - title: Faster coroutine pipelines
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110249
+  author: Michael Spivey
+  year: 2017
+  links:
+  - http://spivey.oriel.ox.ac.uk/wiki2/images/a/a1/Copipes.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110249
 - title: Oh Lord, please don't let contracts be misunderstood (functional pearl)
   link: https://www2.ccs.neu.edu/racket/pubs/icfp16-dnff.pdf
 - title: 'SHErrLOC: A Static Holistic Error Locator'
@@ -377,7 +382,13 @@
   - https://simonmar.github.io/bib/papers/ptr-tagging.pdf
   - http://community.haskell.org/~simonmar/papers/ptr-tagging.pdf
 - title: 'Dependent types in Haskell: theory and practice'
+  author: Richard A. Eisenberg
+  year: 2016
   link: https://arxiv.org/pdf/1610.07978.pdf
+- title: 'Dependent types in Haskell: theory and practice (dissertation)'
+  author: Richard A. Eisenberg
+  year: 2016
+  link: https://cs.brynmawr.edu/~rae/papers/2016/thesis/eisenberg-thesis.pdf
 - title: Secrets of the Glasgow Haskell Compiler inliner
   authors: [Simon Peyton Jones, Simon Marlow]
   year: 2002
@@ -394,6 +405,7 @@
 - title: A new verified compiler backend for CakeML
   link: https://cakeml.org/icfp16.pdf
 - title: 'Talking bananas: structural recursion for session types'
+  authors: [Sam Lindley J., Garrett Morris]
   link: http://homepages.inf.ed.ac.uk/slindley/papers/talking-bananas.pdf
 - title: 'Whip: higher-order contracts for modern services'
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110280
@@ -460,3 +472,13 @@
   authors: [Sanjiva Prasad, S. Arun-Kumar]
   year: 2003
   link: http://www.cse.iitd.ernet.in/~sanjiva/opsem.ps
+- title: Sorting and selection in posets
+  authors: [Constantinos Daskalakis, Richard M. Karp, Elchanan Mossel]
+  year: 2007
+  link: https://arxiv.org/pdf/0707.1532.pdf
+- title: Embedding F
+  author: Sam Lindley
+  link: http://homepages.inf.ed.ac.uk/slindley/papers/embedding-f.pdf
+- title: Sequent calculi and abstract machines
+  authors: [Zena M. Ariola, Aaron Bohannon, Amr Sabry]
+  link: https://www.cs.indiana.edu/~sabry/papers/sequent.pdf
