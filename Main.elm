@@ -152,7 +152,7 @@ decodeAuthors authors =
         Decode.int
             |> Decode.map lookupAuthor
             |> Decode.array
-            |> Decode.field "authors"
+            |> Decode.field "b"
             |> Decode.maybe
             |> Decode.map (Maybe.withDefault Array.empty)
 
