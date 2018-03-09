@@ -386,3 +386,23 @@
   author: Edwin C. Brady
   year: 2005
   link: https://eb.host.cs.st-andrews.ac.uk/writings/thesis.pdf
+- title: Beautiful differentiation (extended version)
+  author: Conal M. Elliott
+  year: 2009
+  link: http://conal.net/papers/beautiful-differentiation/beautiful-differentiation-long.pdf
+- title: Tangible functional programming
+  author: Conal M. Elliott
+  year: 2007
+  link: http://conal.net/papers/Eros/eros.pdf
+- title: Programming graphics processors functionally
+  author: Conal Elliott
+  year: 2004
+  link: http://conal.net/papers/Vertigo/1206-elliott.pdf
+- title: Functional images
+  author: Conal Elliott
+  year: 2003
+  link: http://conal.net/papers/functional-images/fop-conal.pdf
+- title: Compiling embedded languages
+  authors: [Conal Elliott, Sigbjørn Finne, Oege de Moor]
+  year: 2003
+  link: http://conal.net/papers/jfp-saig/compile-dsel.pdf

@@ -145,7 +145,11 @@
 - title: Partial type equivalences for verified dependent interoperability
   link: https://pleiad.cl/papers/2016/dagandAl-icfp2016.pdf
 - title: 'Generic functional parallel algorithms: scan and FFT'
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110251
+  author: Conal Elliott
+  year: 2017
+  links:
+  - http://conal.net/papers/generic-parallel-functional/generic-parallel-functional.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110251
 - title: Rethinking supercompilation
   year: 2010
   author: Neil Mitchell

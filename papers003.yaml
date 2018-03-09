@@ -9,10 +9,10 @@
   links:
   - http://www.staff.city.ac.uk/~ross/papers/FingerTree.pdf
   - http://www.soi.city.ac.uk/~ross/papers/FingerTree.pdf
-- year: 2003
-  link: https://karczmarczuk.users.greyc.fr/TEACH/Stage/ArrComp.pdf
+- title: Arrows and computation
   author: Ross Paterson
-  title: Arrows and computation
+  year: 2003
+  link: https://karczmarczuk.users.greyc.fr/TEACH/Stage/ArrComp.pdf
 - title: A new notation for arrows
   author: Ross Paterson
   year: 2001
@@ -91,22 +91,22 @@
   link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.42.2605
   authors: [Mark P. Jones, Luc Duponcheel]
   title: Composing monads
-- year: 2009
-  link: http://conal.net/papers/beautiful-differentiation/beautiful-differentiation.pdf
+- title: Beautiful differentiation
   author: Conal Elliott
-  title: Beautiful differentiation
+  year: 2009
+  link: http://conal.net/papers/beautiful-differentiation/beautiful-differentiation.pdf
 - year: 2009
   link: http://conal.net/papers/type-class-morphisms/type-class-morphisms.pdf
   author: Conal Elliott
   title: Denotational design with type class morphisms
-- year: 2008
+- title: Simply efficient functional reactivity
+  author: Conal Elliott
+  year: 2008
   link: http://conal.net/papers/simply-reactive/old-tech-report-superceded.pdf
+- title: Push-pull functional reactive programming
   author: Conal Elliott
-  title: Simply efficient functional reactivity
-- year: 2009
+  year: 2009
   link: http://conal.net/papers/push-pull-frp/push-pull-frp.pdf
-  author: Conal Elliott
-  title: Push-pull functional reactive programming
 - title: Asymptotic improvement of computations over free monads
   author: Janis Voigtländer
   year: 2008
@@ -206,7 +206,11 @@
 - title: Sequent calculus as a compiler intermediate language
   link: https://dl.acm.org/citation.cfm?doid=2951913.2951931
 - title: Compiling to categories
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110271
+  author: Conal Elliott
+  year: 2017
+  links:
+  - http://conal.net/papers/compiling-to-categories/compiling-to-categories.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110271
 - title: Machine fusion
   link: http://benl.ouroborus.net/papers/2017-merges/merges-PPDP2017-final.pdf
 - title: Verifying efficient function calls in CakeML

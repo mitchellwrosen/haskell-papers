@@ -270,10 +270,10 @@
 - title: Tagless staged interpreters for typed languages
   authors: [Emir Pašalić, Walid Taha, Tim Sheard]
   year: 2002
-- year: 2009
-  link: http://conal.net/papers/type-class-morphisms/type-class-morphisms-long.pdf
+- title: Denotational design with type class morphisms (extended version)
   author: Conal Elliott
-  title: Denotational design with type class morphisms (extended version)
+  year: 2009
+  link: http://conal.net/papers/type-class-morphisms/type-class-morphisms-long.pdf
 - year: 1988
   link: http://conal.net/papers/hoas88.pdf
   authors: [Frank Pfenning, Conal Elliott]
