@@ -12,15 +12,14 @@ A collection of hyperlinks to functional programming papers.
 metadata and are edited manually by humans. These files are snipped to 300-500
 lines to keep GitHub's file-editing UI responsive.
 - [`yaml2json.hs`](yaml2json.hs) "compiles" all of the `papers.yaml` files to
-[`papers.json`](papers.json), which de-dupes strings, creates dummy papers
+[`papers.json`](static/papers.json), which de-dupes strings, creates dummy papers
 out of hanging references, and adds file location information to each paper.
 - [`Main.elm`](Main.elm) contains the UI code, which is compiled and minified
 with [`UglifyJS`](https://github.com/mishoo/UglifyJS2) to
-[`main.min.js`](main.min.js).
+[`main.min.js`](static/main.min.js).
 - GitHub hosts this `master` branch as a
 [static site](https://mitchellwrosen.github.io/haskell-papers), which is
-comprised of [`index.html`](index.html), [`the.css`](the.css), and
-`main.min.js`.
+comprised of everything in [`static`](static).
 
 **How can I help?**
 
@@ -58,7 +57,8 @@ Build everything:
 
 Clean up everything:
 
-    rm papers.json
+    rm static/main.min.js
+    rm static/papers.json
     rm -rf .shake
 
 Find dead links (takes a while to avoid IP bans):

@@ -7,7 +7,7 @@ main =
 
 rules :: Rules ()
 rules = do
-  want [".shake/shake", "main.min.js", "papers.json"]
+  want [".shake/shake", "static/main.min.js", "static/papers.json"]
 
   ".shake/main.js" %> \out -> do
     need ["elm-package.json", "Main.elm"]
@@ -29,11 +29,11 @@ rules = do
     need ["stack.yaml", "haskell-papers.cabal", "yaml2json.hs"]
     cmd_ "stack install --local-bin-path .shake haskell-papers:exe:yaml2json"
 
-  "main.min.js" %> \out -> do
+  "static/main.min.js" %> \out -> do
     need [".shake/main.js", ".shake/uglifyjs"]
     cmd_ (".shake/uglifyjs .shake/main.js --compress --mangle toplevel=true --output " ++ out)
 
-  "papers.json" %> \out -> do
+  "static/papers.json" %> \out -> do
     yamls <- filter (isPrefixOf "papers") <$> getDirectoryFiles "" ["*.yaml"]
     need (".shake/yaml2json" : yamls)
     cmd_ (FileStdout out) (".shake/yaml2json " ++ unwords yamls)
