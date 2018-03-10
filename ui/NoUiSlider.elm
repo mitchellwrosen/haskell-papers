@@ -24,9 +24,7 @@ type alias NoUiSliderCreate =
     , orientation : Maybe String
     , behavior : Maybe String
     , step : Maybe Int
-    , tooltips : Maybe Bool
     , range : Maybe { min : Int, max : Int }
-    , pipes : Maybe { mode : String, stepped : Bool, density : Int }
     }
 
 

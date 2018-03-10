@@ -288,7 +288,7 @@ update message model =
                   }
                 , noUiSliderCreate
                     { id = "year-slider"
-                    , start = [ yearMin, yearMax ]
+                    , start = [ yearMin, yearMax + 1 ]
                     , margin = Just 1
                     , limit = Nothing
                     , connect = Just True
@@ -296,9 +296,7 @@ update message model =
                     , orientation = Nothing
                     , behavior = Nothing
                     , step = Just 1
-                    , tooltips = Nothing
                     , range = Just { min = yearMin, max = yearMax + 1 }
-                    , pipes = Nothing
                     }
                 )
 
