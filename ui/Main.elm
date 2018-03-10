@@ -20,9 +20,18 @@ type alias Model =
     , titles : Dict TitleId Title
     , authors : Dict AuthorId Author
     , links : Dict LinkId Link
+
+    -- An inverted index mapping author ids to the set of papers by that
+    -- author.
     , authorsIndex : Dict AuthorId (Set TitleId)
+
+    -- The author filter and a cached set of title ids that match the filter.
     , authorFilter : String
+    , authorFilterIds : Set TitleId
+
+    -- The year filter and a cached set of title ids that match the filter.
     , yearFilter : { min : Int, max : Int } -- (inclusive, exclusive)
+    , yearFilterIds : Set TitleId
     }
 
 
@@ -73,12 +82,6 @@ type alias Paper =
     , file : Int
     , line : Int
     }
-
-
-{-| Inverted index.
--}
-type alias II a b =
-    Dict a (Set b)
 
 
 
@@ -156,7 +159,9 @@ init =
           , links = Dict.empty
           , authorsIndex = Dict.empty
           , authorFilter = ""
+          , authorFilterIds = Set.empty
           , yearFilter = { min = 0, max = 0 }
+          , yearFilterIds = Set.empty
           }
         , Http.send Blob <| Http.get "./static/papers.json" decodePapers
         )
@@ -266,6 +271,10 @@ update message model =
                         )
                         ( 3000, 0 )
                         blob.papers
+
+                titleIds : Set TitleId
+                titleIds =
+                    dictKeysToSet blob.titles
             in
                 ( { papers = blob.papers
                   , titles = blob.titles
@@ -273,7 +282,9 @@ update message model =
                   , links = blob.links
                   , authorsIndex = buildAuthorsIndex blob.papers blob.authors
                   , authorFilter = ""
+                  , authorFilterIds = titleIds
                   , yearFilter = { min = yearMin, max = yearMax + 1 }
+                  , yearFilterIds = titleIds
                   }
                 , noUiSliderCreate
                     { id = "year-slider"
@@ -295,10 +306,53 @@ update message model =
             Debug.crash <| toString msg
 
         AuthorFilter s ->
-            ( { model | authorFilter = s }, Cmd.none )
+            ( { model
+                | authorFilter = s
+                , authorFilterIds =
+                    model.authors
+                        |> Dict.foldl
+                            (\id author ->
+                                if fuzzyMatch (String.toLower s) (String.toLower author) then
+                                    Set.insert id
+                                else
+                                    identity
+                            )
+                            Set.empty
+                        |> Set.foldl
+                            (\id ->
+                                case Dict.get id model.authorsIndex of
+                                    Nothing ->
+                                        identity
+
+                                    Just ids ->
+                                        Set.union ids
+                            )
+                            Set.empty
+              }
+            , Cmd.none
+            )
 
         YearFilter n m ->
-            ( { model | yearFilter = { min = n, max = m } }, Cmd.none )
+            ( { model
+                | yearFilter = { min = n, max = m }
+                , yearFilterIds =
+                    model.papers
+                        |> Array.foldl
+                            (\paper ->
+                                case paper.year of
+                                    Nothing ->
+                                        Set.insert paper.title
+
+                                    Just year ->
+                                        if year >= n && year < m then
+                                            Set.insert paper.title
+                                        else
+                                            identity
+                            )
+                            Set.empty
+              }
+            , Cmd.none
+            )
 
 
 {-| Build an inverted index mapping author ids to the set of paper title ids by
@@ -352,40 +406,39 @@ view model =
                 []
             ]
         , case model of
-            { papers, titles, authorFilter, yearFilter } ->
-                let
-                    visible : Paper -> Bool
-                    visible paper =
-                        -- For now, always show papers with no year.
-                        -- FIXME(mitchell): What should we actually do?
-                        case paper.year of
-                            Nothing ->
-                                fuzzyMatch authorFilter (lookupTitle titles paper.title)
-
-                            Just year ->
-                                (year >= yearFilter.min)
-                                    && (year < yearFilter.max)
-                                    && fuzzyMatch authorFilter (lookupTitle titles paper.title)
-                in
-                    Html.ul
-                        [ class "paper-list" ]
-                        (papers
-                            |> Array.toList
-                            |> List.filter visible
-                            |> List.map (viewPaper model.titles model.authors model.links)
-                        )
+            { papers, titles, authorFilterIds, yearFilterIds } ->
+                Html.ul
+                    [ class "paper-list" ]
+                    (papers
+                        |> Array.toList
+                        |> List.map
+                            (viewPaper
+                                (Set.intersect authorFilterIds yearFilterIds)
+                                model.titles
+                                model.authors
+                                model.links
+                            )
+                    )
         ]
 
 
 viewPaper :
-    Dict TitleId Title
+    Set TitleId
+    -> Dict TitleId Title
     -> Dict AuthorId Author
     -> Dict LinkId Link
     -> Paper
     -> Html a
-viewPaper titles authors links paper =
+viewPaper visible titles authors links paper =
     Html.li
-        [ class "paper" ]
+        (List.filterMap identity
+            [ Just (class "paper")
+            , if Set.member paper.title visible then
+                Nothing
+              else
+                Just (Html.Attributes.style [ ( "display", "none" ) ])
+            ]
+        )
         [ viewTitle titles links paper
         , viewDetails authors paper
         , viewEditLink paper
