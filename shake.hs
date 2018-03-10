@@ -1,3 +1,5 @@
+{-# language LambdaCase #-}
+
 import Data.List (isPrefixOf)
 import Development.Shake
 
@@ -7,11 +9,15 @@ main =
 
 rules :: Rules ()
 rules = do
-  want [".shake/shake", "static/main.min.js", "static/papers.json"]
+  want
+    [ ".shake/shake"
+    , "static/main.min.js"
+    , "static/papers.json"
+    ]
 
   ".shake/main.js" %> \out -> do
-    need ["elm-package.json", "Main.elm"]
-    cmd_ ("elm make Main.elm --output=" ++ out)
+    need ["elm-package.json", "ui/Main.elm"]
+    cmd_ ("elm make ui/Main.elm --output=" ++ out)
 
   ".shake/shake" %> \_ -> do
     need ["build.sh", "shake.hs"]
@@ -29,15 +35,25 @@ rules = do
     need ["stack.yaml", "haskell-papers.cabal", "yaml2json.hs"]
     cmd_ "stack install --local-bin-path .shake haskell-papers:exe:yaml2json"
 
-  "static/main.min.js" %> \out -> do
-    need [".shake/main.js", ".shake/uglifyjs"]
-    cmd_ (".shake/uglifyjs .shake/main.js --compress --mangle toplevel=true --output " ++ out)
+  "static/main.min.js" %> \out ->
+    getEnv "DEV" >>= \case
+      Nothing -> do
+        need [".shake/main.js", ".shake/uglifyjs"]
+        cmd_ (uglify ".shake/main.js" out)
+      Just _ ->
+        copyFile' ".shake/main.js" out
 
   "static/papers.json" %> \out -> do
     yamls <- filter (isPrefixOf "papers") <$> getDirectoryFiles "" ["*.yaml"]
     need (".shake/yaml2json" : yamls)
     cmd_ (FileStdout out) (".shake/yaml2json " ++ unwords yamls)
 
+-- 'uglify src dst' renders a shell command that uglifies 'src' to 'dst'.
+uglify :: FilePath -> FilePath -> [Char]
+uglify src dst =
+  ".shake/uglifyjs " ++ src ++ " --compress --mangle toplevel=true --output " ++ dst
+
 uglifyjsSHA :: [Char]
 uglifyjsSHA =
   "fe51a91395f3b0a6ab812f3f42746d39efd9e80c"
+

@@ -3,7 +3,7 @@
     "summary": "Haskell papers",
     "repository": "https://github.com/mitchellwrosen/haskell-papers.git",
     "license": "BSD3",
-    "source-directories": ["."],
+    "source-directories": ["ui"],
     "exposed-modules": [],
     "dependencies": {
         "elm-lang/core": "5.1.1 <= v < 6.0.0",

@@ -53,6 +53,10 @@ Lots of ways!
 
 Build everything:
 
+    # Fast, for local development
+    DEV=1 ./build.sh
+
+    # Slow, for deployment (minifies javascript)
     ./build.sh
 
 Clean up everything:
