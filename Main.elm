@@ -5,19 +5,28 @@ import Dict exposing (Dict)
 import Http
 import Html exposing (Html)
 import Html.Attributes exposing (href, class)
+import Html.Events
 import Json.Decode as Decode exposing (Decoder)
+import Set exposing (Set)
 
 
 --------------------------------------------------------------------------------
 -- Types and type aliases
 
 
-type Model
-    = Model (Array Paper)
+type alias Model =
+    { papers : Array Paper
+    , titles : Dict TitleId Title
+    , authors : Dict AuthorId Author
+    , links : Dict LinkId Link
+    , authorsIndex : Dict AuthorId (Set TitleId)
+    , visible : Set TitleId
+    }
 
 
 type Message
-    = Blob (Result Http.Error (Array Paper))
+    = Blob (Result Http.Error Papers)
+    | AuthorsFilter String
 
 
 type alias AuthorId =
@@ -44,15 +53,29 @@ type alias Title =
     String
 
 
+type alias Papers =
+    { titles : Dict TitleId Title
+    , authors : Dict AuthorId Author
+    , links : Dict LinkId Link
+    , papers : Array Paper
+    }
+
+
 type alias Paper =
-    { title : Title
-    , authors : Array Author
+    { title : TitleId
+    , authors : Array AuthorId
     , year : Maybe Int
     , references : Array TitleId
-    , links : Array Link
+    , links : Array LinkId
     , file : Int
     , line : Int
     }
+
+
+{-| Inverted index.
+-}
+type alias II a b =
+    Dict a (Set b)
 
 
 
@@ -95,7 +118,7 @@ init =
                 )
                 dx
 
-        decodePapers : Decoder (Array Paper)
+        decodePapers : Decoder Papers
         decodePapers =
             andThen3
                 (Decode.field "a" decodeIds)
@@ -105,6 +128,14 @@ init =
                     decodePaper titles authors links
                         |> Decode.array
                         |> Decode.field "d"
+                        |> Decode.map
+                            (\papers ->
+                                { authors = authors
+                                , links = links
+                                , papers = papers
+                                , titles = titles
+                                }
+                            )
                 )
 
         decodeIds : Decoder (Dict Int String)
@@ -116,7 +147,13 @@ init =
                         (Decode.index 0 Decode.int)
                         (Decode.index 1 Decode.string)
     in
-        ( Model Array.empty
+        ( { papers = Array.empty
+          , titles = Dict.empty
+          , authors = Dict.empty
+          , links = Dict.empty
+          , authorsIndex = Dict.empty
+          , visible = Set.empty
+          }
         , Http.send Blob <| Http.get "./papers.json" decodePapers
         )
 
@@ -128,33 +165,22 @@ decodePaper :
     -> Decoder Paper
 decodePaper titles authors links =
     Decode.map7 Paper
-        (decodeTitle titles)
-        (decodeAuthors authors)
+        (Decode.field "a" Decode.int)
+        decodeAuthors
         decodeYear
         decodeReferences
-        (decodeLinks links)
+        decodeLinks
         decodeFile
         decodeLine
 
 
-decodeAuthors : Dict AuthorId Author -> Decoder (Array Author)
-decodeAuthors authors =
-    let
-        lookupAuthor : AuthorId -> Author
-        lookupAuthor id =
-            case Dict.get id authors of
-                Nothing ->
-                    Debug.crash ("No author " ++ toString id)
-
-                Just author ->
-                    author
-    in
-        Decode.int
-            |> Decode.map lookupAuthor
-            |> Decode.array
-            |> Decode.field "b"
-            |> Decode.maybe
-            |> Decode.map (Maybe.withDefault Array.empty)
+decodeAuthors : Decoder (Array AuthorId)
+decodeAuthors =
+    Decode.int
+        |> Decode.array
+        |> Decode.field "b"
+        |> Decode.maybe
+        |> Decode.map (Maybe.withDefault Array.empty)
 
 
 decodeFile : Decoder Int
@@ -169,24 +195,13 @@ decodeLine =
         |> Decode.field "g"
 
 
-decodeLinks : Dict LinkId Link -> Decoder (Array Link)
-decodeLinks links =
-    let
-        lookupLink : LinkId -> Link
-        lookupLink id =
-            case Dict.get id links of
-                Nothing ->
-                    Debug.crash ("No link " ++ toString id)
-
-                Just link ->
-                    link
-    in
-        Decode.int
-            |> Decode.map lookupLink
-            |> Decode.array
-            |> Decode.field "e"
-            |> Decode.maybe
-            |> Decode.map (Maybe.withDefault Array.empty)
+decodeLinks : Decoder (Array LinkId)
+decodeLinks =
+    Decode.int
+        |> Decode.array
+        |> Decode.field "e"
+        |> Decode.maybe
+        |> Decode.map (Maybe.withDefault Array.empty)
 
 
 decodeReferences : Decoder (Array TitleId)
@@ -196,23 +211,6 @@ decodeReferences =
         |> Decode.field "d"
         |> Decode.maybe
         |> Decode.map (Maybe.withDefault Array.empty)
-
-
-decodeTitle : Dict TitleId Title -> Decoder Title
-decodeTitle titles =
-    let
-        lookupTitle : TitleId -> Title
-        lookupTitle id =
-            case Dict.get id titles of
-                Nothing ->
-                    Debug.crash ("No title " ++ toString id)
-
-                Just title ->
-                    title
-    in
-        Decode.int
-            |> Decode.field "a"
-            |> Decode.map lookupTitle
 
 
 decodeYear : Decoder (Maybe Int)
@@ -230,13 +228,72 @@ decodeYear =
 update : Message -> Model -> ( Model, Cmd Message )
 update message model =
     case message of
-        Blob (Ok papers) ->
-            ( Model papers
+        Blob (Ok blob) ->
+            ( { papers = blob.papers
+              , titles = blob.titles
+              , authors = blob.authors
+              , links = blob.links
+              , authorsIndex = buildAuthorsIndex blob.papers blob.authors
+              , visible = dictKeysToSet blob.titles
+              }
             , Cmd.none
             )
 
         Blob (Err msg) ->
             Debug.crash <| toString msg
+
+        AuthorsFilter s ->
+            ( applyAuthorsFilter s model, Cmd.none )
+
+
+{-| Build an inverted index mapping author ids to the set of paper title ids by
+that author.
+-}
+buildAuthorsIndex :
+    Array Paper
+    -> Dict AuthorId Author
+    -> Dict AuthorId (Set TitleId)
+buildAuthorsIndex papers authors =
+    let
+        step :
+            Paper
+            -> Dict AuthorId (Set TitleId)
+            -> Dict AuthorId (Set TitleId)
+        step paper dict =
+            Dict.merge
+                Dict.insert
+                (\k v1 v2 -> Dict.insert k (Set.union v1 v2))
+                Dict.insert
+                (Array.foldl
+                    (\id -> Dict.insert id (Set.singleton paper.title))
+                    Dict.empty
+                    paper.authors
+                )
+                dict
+                Dict.empty
+    in
+        Array.foldl step Dict.empty papers
+
+
+applyAuthorsFilter : String -> Model -> Model
+applyAuthorsFilter s model =
+    { model
+        | visible =
+            Dict.foldl
+                (\id name ->
+                    if fuzzyMatch (String.toLower s) (String.toLower name) then
+                        case Dict.get id model.authorsIndex of
+                            Nothing ->
+                                identity
+
+                            Just titles ->
+                                Set.union titles
+                    else
+                        identity
+                )
+                Set.empty
+                model.authors
+    }
 
 
 
@@ -249,34 +306,60 @@ view model =
     Html.div [ class "container" ]
         [ Html.header []
             [ Html.h1 [] [ Html.text "Haskell Papers" ]
-            , Html.a [ class "subtle-link", href "https://github.com/mitchellwrosen/haskell-papers" ] [ Html.text "contribute on GitHub" ]
+            , Html.a
+                [ class "subtle-link"
+                , href "https://github.com/mitchellwrosen/haskell-papers"
+                ]
+                [ Html.text "contribute on GitHub" ]
+            , Html.div []
+                [ Html.input [ Html.Events.onInput AuthorsFilter ] [] ]
             ]
         , case model of
-            Model papers ->
-                Html.ul [ class "paper-list" ] <| Array.toList <| Array.map viewPaper papers
+            { papers, visible } ->
+                Html.ul
+                    [ class "paper-list" ]
+                    (papers
+                        |> Array.toList
+                        |> List.filter (.title >> flip Set.member visible)
+                        |> List.map (viewPaper model.titles model.authors model.links)
+                    )
         ]
 
 
-viewPaper : Paper -> Html a
-viewPaper paper =
+viewPaper :
+    Dict TitleId Title
+    -> Dict AuthorId Author
+    -> Dict LinkId Link
+    -> Paper
+    -> Html a
+viewPaper titles authors links paper =
     Html.li
         [ class "paper" ]
-        [ viewTitle paper
-        , viewDetails paper
+        [ viewTitle titles links paper
+        , viewDetails authors paper
         , viewEditLink paper
         ]
 
 
-viewTitle : Paper -> Html a
-viewTitle paper =
-    Html.p [ class "title" ]
-        [ case Array.get 0 paper.links of
-            Nothing ->
-                Html.text paper.title
+viewTitle : Dict TitleId Title -> Dict LinkId Link -> Paper -> Html a
+viewTitle titles links paper =
+    let
+        title : String
+        title =
+            lookupTitle titles paper.title
+    in
+        Html.p [ class "title" ]
+            [ case Array.get 0 paper.links of
+                Nothing ->
+                    Html.text title
 
-            Just link ->
-                Html.a [ class "link", href link ] [ Html.text paper.title ]
-        ]
+                Just link ->
+                    Html.a
+                        [ class "link"
+                        , href (lookupLink links link)
+                        ]
+                        [ Html.text title ]
+            ]
 
 
 viewEditLink : Paper -> Html a
@@ -292,10 +375,15 @@ viewEditLink paper =
         Html.a [ class "subtle-link edit", href editLink ] [ Html.text "(edit)" ]
 
 
-viewDetails : Paper -> Html a
-viewDetails paper =
-    Html.p [ class "details" ]
-        [ paper.authors |> Array.toList |> String.join ", " |> Html.text
+viewDetails : Dict AuthorId Author -> Paper -> Html a
+viewDetails authors paper =
+    Html.p
+        [ class "details" ]
+        [ paper.authors
+            |> Array.map (lookupAuthor authors)
+            |> Array.toList
+            |> String.join ", "
+            |> Html.text
         , case paper.year of
             Nothing ->
                 Html.text ""
@@ -310,6 +398,70 @@ viewDetails paper =
 -- Misc. utility functions
 
 
+{-| Look up an author by id.
+-}
+lookupAuthor : Dict AuthorId Author -> AuthorId -> Author
+lookupAuthor authors id =
+    case Dict.get id authors of
+        Nothing ->
+            Debug.crash ("No author " ++ toString id)
+
+        Just author ->
+            author
+
+
+{-| Look up a link by id.
+-}
+lookupLink : Dict LinkId Link -> LinkId -> Link
+lookupLink links id =
+    case Dict.get id links of
+        Nothing ->
+            Debug.crash ("No link " ++ toString id)
+
+        Just link ->
+            link
+
+
+{-| Look up a title by id.
+-}
+lookupTitle : Dict TitleId Title -> TitleId -> Title
+lookupTitle titles id =
+    case Dict.get id titles of
+        Nothing ->
+            Debug.crash ("No title " ++ toString id)
+
+        Just title ->
+            title
+
+
 arrayToDict : Array ( comparable, a ) -> Dict comparable a
 arrayToDict =
     Array.foldl (uncurry Dict.insert) Dict.empty
+
+
+{-| Collect the keys of a 'Dict' into a 'Set'
+-}
+dictKeysToSet : Dict comparable a -> Set comparable
+dictKeysToSet =
+    Dict.foldl (\k _ -> Set.insert k) Set.empty
+
+
+{-| Dead-simple greedy fuzzy match algorithm. Search through the haystack for
+the needle, in order, without backtracking.
+
+      fuzzyMatch "XYZ" "..X..Y..Z.." = True
+
+-}
+fuzzyMatch : String -> String -> Bool
+fuzzyMatch needle haystack =
+    case String.uncons needle of
+        Nothing ->
+            True
+
+        Just ( x, xs ) ->
+            case String.indices (String.fromChar x) haystack of
+                [] ->
+                    False
+
+                n :: _ ->
+                    fuzzyMatch xs (String.dropLeft (n + 1) haystack)
