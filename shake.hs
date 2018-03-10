@@ -33,7 +33,7 @@ rules = do
     cmd_ "rm .shake/uglifyjs.tar.gz"
 
   ".shake/yaml2json" %> \_ -> do
-    need ["stack.yaml", "haskell-papers.cabal", "yaml2json.hs"]
+    need ["stack.yaml", "scripts/haskell-papers.cabal", "scripts/yaml2json.hs"]
     cmd_ "stack install --local-bin-path .shake haskell-papers:exe:yaml2json"
 
   "static/main.min.js" %> \out -> do
@@ -67,4 +67,3 @@ uglify src dst =
 uglifyjsSHA :: [Char]
 uglifyjsSHA =
   "fe51a91395f3b0a6ab812f3f42746d39efd9e80c"
-

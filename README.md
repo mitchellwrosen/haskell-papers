@@ -11,10 +11,10 @@ A collection of hyperlinks to functional programming papers.
 - [`papers.yaml`](papers000.yaml) files are the source of all papers and
 metadata and are edited manually by humans. These files are snipped to 300-500
 lines to keep GitHub's file-editing UI responsive.
-- [`yaml2json.hs`](yaml2json.hs) "compiles" all of the `papers.yaml` files to
+- [`yaml2json.hs`](scripts/yaml2json.hs) "compiles" all of the `papers.yaml` files to
 [`papers.json`](static/papers.json), which de-dupes strings, creates dummy papers
 out of hanging references, and adds file location information to each paper.
-- [`Main.elm`](Main.elm) contains the UI code, which is compiled and minified
+- [`Main.elm`](ui/Main.elm) contains the UI code, which is compiled and minified
 with [`UglifyJS`](https://github.com/mishoo/UglifyJS2) to
 [`main.min.js`](static/main.min.js).
 - GitHub hosts this `master` branch as a
@@ -62,6 +62,7 @@ Build everything:
 Clean up everything:
 
     rm static/main.min.js
+    rm static/nouislider-shim.min.js
     rm static/papers.json
     rm -rf .shake
 

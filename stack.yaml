@@ -1,3 +1,5 @@
 resolver: lts-10.6
+packages:
+  - scripts
 extra-deps:
   - yaml-combinators-1.1.1
