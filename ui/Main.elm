@@ -289,13 +289,13 @@ update message model =
                 , noUiSliderCreate
                     { id = "year-slider"
                     , start = [ yearMin, yearMax ]
-                    , margin = Nothing
+                    , margin = Just 1
                     , limit = Nothing
                     , connect = Just True
                     , direction = Nothing
                     , orientation = Nothing
                     , behavior = Nothing
-                    , step = Nothing
+                    , step = Just 1
                     , tooltips = Nothing
                     , range = Just { min = yearMin, max = yearMax + 1 }
                     , pipes = Nothing
