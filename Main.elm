@@ -155,7 +155,7 @@ init =
           , authorsIndex = Dict.empty
           , visible = Set.empty
           }
-        , Http.send Blob <| Http.get "./papers.json" decodePapers
+        , Http.send Blob <| Http.get "./static/papers.json" decodePapers
         )
 
 
