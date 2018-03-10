@@ -21,13 +21,15 @@ type alias Model =
     , authors : Dict AuthorId Author
     , links : Dict LinkId Link
     , authorsIndex : Dict AuthorId (Set TitleId)
-    , visible : Set TitleId
+    , authorFilter : String
+    , yearFilter : { min : Int, max : Int } -- (inclusive, exclusive)
     }
 
 
 type Message
     = Blob (Result Http.Error Papers)
-    | AuthorsFilter String
+    | AuthorFilter String
+    | YearFilter Int Int
 
 
 type alias AuthorId =
@@ -88,7 +90,7 @@ main : Program Never Model Message
 main =
     Html.program
         { init = init
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         , update = update
         , view = view
         }
@@ -153,7 +155,8 @@ init =
           , authors = Dict.empty
           , links = Dict.empty
           , authorsIndex = Dict.empty
-          , visible = Set.empty
+          , authorFilter = ""
+          , yearFilter = { min = 0, max = 0 }
           }
         , Http.send Blob <| Http.get "./static/papers.json" decodePapers
         )
@@ -223,6 +226,26 @@ decodeYear =
 
 
 --------------------------------------------------------------------------------
+-- Subscriptions
+
+
+subscriptions : Model -> Sub Message
+subscriptions _ =
+    let
+        unpack : NoUiSliderOnUpdate -> Message
+        unpack values =
+            case values of
+                [ n, m ] ->
+                    YearFilter n m
+
+                _ ->
+                    Debug.crash ("Expected 2 ints; noUiSlider.js sent: " ++ toString values)
+    in
+        noUiSliderOnUpdate unpack
+
+
+
+--------------------------------------------------------------------------------
 -- The main update loop
 
 
@@ -230,34 +253,52 @@ update : Message -> Model -> ( Model, Cmd Message )
 update message model =
     case message of
         Blob (Ok blob) ->
-            ( { papers = blob.papers
-              , titles = blob.titles
-              , authors = blob.authors
-              , links = blob.links
-              , authorsIndex = buildAuthorsIndex blob.papers blob.authors
-              , visible = dictKeysToSet blob.titles
-              }
-            , noUiSliderCreate
-                { id = "year-slider"
-                , start = [ 20, 80 ]
-                , margin = Nothing
-                , limit = Nothing
-                , connect = Just True
-                , direction = Nothing
-                , orientation = Nothing
-                , behavior = Nothing
-                , step = Nothing
-                , tooltips = Nothing
-                , range = Just { min = 0, max = 100 }
-                , pipes = Nothing
-                }
-            )
+            let
+                ( yearMin, yearMax ) =
+                    Array.foldl
+                        (\paper ( n, m ) ->
+                            case paper.year of
+                                Nothing ->
+                                    ( n, m )
+
+                                Just y ->
+                                    ( min n y, max m y )
+                        )
+                        ( 3000, 0 )
+                        blob.papers
+            in
+                ( { papers = blob.papers
+                  , titles = blob.titles
+                  , authors = blob.authors
+                  , links = blob.links
+                  , authorsIndex = buildAuthorsIndex blob.papers blob.authors
+                  , authorFilter = ""
+                  , yearFilter = { min = yearMin, max = yearMax + 1 }
+                  }
+                , noUiSliderCreate
+                    { id = "year-slider"
+                    , start = [ yearMin, yearMax ]
+                    , margin = Nothing
+                    , limit = Nothing
+                    , connect = Just True
+                    , direction = Nothing
+                    , orientation = Nothing
+                    , behavior = Nothing
+                    , step = Nothing
+                    , tooltips = Nothing
+                    , range = Just { min = yearMin, max = yearMax + 1 }
+                    , pipes = Nothing
+                    }
+                )
 
         Blob (Err msg) ->
             Debug.crash <| toString msg
 
-        AuthorsFilter s ->
-            ( applyAuthorsFilter s model, Cmd.none )
+        AuthorFilter s ->
+            ( { model | authorFilter = s }, Cmd.none )
+
+        YearFilter n m ->
+            ( { model | yearFilter = { min = n, max = m } }, Cmd.none )
 
 
 {-| Build an inverted index mapping author ids to the set of paper title ids by
@@ -289,27 +330,6 @@ buildAuthorsIndex papers authors =
         Array.foldl step Dict.empty papers
 
 
-applyAuthorsFilter : String -> Model -> Model
-applyAuthorsFilter s model =
-    { model
-        | visible =
-            Dict.foldl
-                (\id name ->
-                    if fuzzyMatch (String.toLower s) (String.toLower name) then
-                        case Dict.get id model.authorsIndex of
-                            Nothing ->
-                                identity
-
-                            Just titles ->
-                                Set.union titles
-                    else
-                        identity
-                )
-                Set.empty
-                model.authors
-    }
-
-
 
 --------------------------------------------------------------------------------
 -- Render HTML
@@ -326,25 +346,34 @@ view model =
                 ]
                 [ Html.text "contribute on GitHub" ]
             , Html.div []
-                [ Html.input [ Html.Events.onInput AuthorsFilter ] [] ]
+                [ Html.input [ Html.Events.onInput AuthorFilter ] [] ]
             , Html.div
-                [ Html.Attributes.id "year-slider"
-
-                -- Uncomment me to show; hidden by default because this feature
-                -- isn't finished yet.
-                , Html.Attributes.style [ ( "display", "none" ) ]
-                ]
+                [ Html.Attributes.id "year-slider" ]
                 []
             ]
         , case model of
-            { papers, visible } ->
-                Html.ul
-                    [ class "paper-list" ]
-                    (papers
-                        |> Array.toList
-                        |> List.filter (.title >> flip Set.member visible)
-                        |> List.map (viewPaper model.titles model.authors model.links)
-                    )
+            { papers, titles, authorFilter, yearFilter } ->
+                let
+                    visible : Paper -> Bool
+                    visible paper =
+                        -- For now, always show papers with no year.
+                        -- FIXME(mitchell): What should we actually do?
+                        case paper.year of
+                            Nothing ->
+                                fuzzyMatch authorFilter (lookupTitle titles paper.title)
+
+                            Just year ->
+                                (year >= yearFilter.min)
+                                    && (year < yearFilter.max)
+                                    && fuzzyMatch authorFilter (lookupTitle titles paper.title)
+                in
+                    Html.ul
+                        [ class "paper-list" ]
+                        (papers
+                            |> Array.toList
+                            |> List.filter visible
+                            |> List.map (viewPaper model.titles model.authors model.links)
+                        )
         ]
 
 

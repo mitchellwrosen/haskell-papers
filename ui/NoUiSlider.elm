@@ -2,6 +2,8 @@ port module NoUiSlider
     exposing
         ( NoUiSliderCreate
         , noUiSliderCreate
+        , NoUiSliderOnUpdate
+        , noUiSliderOnUpdate
         )
 
 {-| Elm interface to <https://refreshless.com/nouislider/>
@@ -31,3 +33,12 @@ type alias NoUiSliderCreate =
 {-| Create a slider.
 -}
 port noUiSliderCreate : NoUiSliderCreate -> Cmd a
+
+
+type alias NoUiSliderOnUpdate =
+    List Int
+
+
+{-| Subscribe to slider update changes.
+-}
+port noUiSliderOnUpdate : (NoUiSliderOnUpdate -> a) -> Sub a

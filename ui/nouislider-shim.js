@@ -25,5 +25,13 @@ function noUiSliderCreate(app) {
       range: (blob.range ? blob.range : undefined),
       pipes: (blob.pipes ? blob.pipe : undefined)
     });
+
+    // When the slider values change, notify Elm via a port subscription called
+    // 'noUiSliderOnUpdate'.
+    slider.noUiSlider.on('update', function(values, handle, unencoded, tap, positions) {
+      app.ports.noUiSliderOnUpdate.send(values.map(function(x) {
+        return parseInt(x, 10)
+      }));
+    });
   });
 }

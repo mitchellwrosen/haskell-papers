@@ -17,7 +17,8 @@ rules = do
     ]
 
   ".shake/main.js" %> \out -> do
-    need ["elm-package.json", "ui/Main.elm"]
+    src <- getDirectoryFiles "" ["ui/*.elm"]
+    need ("elm-package.json" : src)
     cmd_ ("elm make ui/Main.elm --output=" ++ out)
 
   ".shake/shake" %> \_ -> do
