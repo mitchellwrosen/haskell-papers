@@ -12,6 +12,7 @@ rules = do
   want
     [ ".shake/shake"
     , "static/main.min.js"
+    , "static/nouislider-shim.min.js"
     , "static/papers.json"
     ]
 
@@ -35,13 +36,23 @@ rules = do
     need ["stack.yaml", "haskell-papers.cabal", "yaml2json.hs"]
     cmd_ "stack install --local-bin-path .shake haskell-papers:exe:yaml2json"
 
-  "static/main.min.js" %> \out ->
+  "static/main.min.js" %> \out -> do
+    let src = ".shake/main.js"
     getEnv "DEV" >>= \case
       Nothing -> do
-        need [".shake/main.js", ".shake/uglifyjs"]
-        cmd_ (uglify ".shake/main.js" out)
+        need [".shake/uglifyjs", src]
+        cmd_ (uglify src out)
       Just _ ->
-        copyFile' ".shake/main.js" out
+        copyFile' src out
+
+  "static/nouislider-shim.min.js" %> \out -> do
+    let src = "ui/nouislider-shim.js"
+    getEnv "DEV" >>= \case
+      Nothing -> do
+        need [".shake/uglifyjs", src]
+        cmd_ (uglify src out)
+      Just _ ->
+        copyFile' src out
 
   "static/papers.json" %> \out -> do
     yamls <- filter (isPrefixOf "papers") <$> getDirectoryFiles "" ["*.yaml"]
