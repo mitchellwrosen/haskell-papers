@@ -62,7 +62,7 @@ rules = do
 -- 'uglify src dst' renders a shell command that uglifies 'src' to 'dst'.
 uglify :: FilePath -> FilePath -> [Char]
 uglify src dst =
-  ".shake/uglifyjs " ++ src ++ " --compress --mangle toplevel=true --output " ++ dst
+  ".shake/uglifyjs " ++ src ++ " --compress --mangle --output " ++ dst
 
 uglifyjsSHA :: [Char]
 uglifyjsSHA =
