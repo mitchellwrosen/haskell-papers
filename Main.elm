@@ -7,6 +7,7 @@ import Html exposing (Html)
 import Html.Attributes exposing (href, class)
 import Html.Events
 import Json.Decode as Decode exposing (Decoder)
+import NoUiSlider exposing (..)
 import Set exposing (Set)
 
 
@@ -236,7 +237,20 @@ update message model =
               , authorsIndex = buildAuthorsIndex blob.papers blob.authors
               , visible = dictKeysToSet blob.titles
               }
-            , Cmd.none
+            , noUiSliderCreate
+                { id = "year-slider"
+                , start = [ 20, 80 ]
+                , margin = Nothing
+                , limit = Nothing
+                , connect = Just True
+                , direction = Nothing
+                , orientation = Nothing
+                , behavior = Nothing
+                , step = Nothing
+                , tooltips = Nothing
+                , range = Just { min = 0, max = 100 }
+                , pipes = Nothing
+                }
             )
 
         Blob (Err msg) ->
@@ -313,6 +327,14 @@ view model =
                 [ Html.text "contribute on GitHub" ]
             , Html.div []
                 [ Html.input [ Html.Events.onInput AuthorsFilter ] [] ]
+            , Html.div
+                [ Html.Attributes.id "year-slider"
+
+                -- Uncomment me to show; hidden by default because this feature
+                -- isn't finished yet.
+                , Html.Attributes.style [ ( "display", "none" ) ]
+                ]
+                []
             ]
         , case model of
             { papers, visible } ->

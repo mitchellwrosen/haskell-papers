@@ -4,11 +4,22 @@
     <meta charset="utf-8">
     <title>Haskell Papers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="static/the.css">
+    <link rel="stylesheet" href="static/nouislider.min.css">
+
     <script type="text/javascript" src="static/main.min.js"></script>
+    <script type="text/javascript" src="static/nouislider.min.js"></script>
+    <script type="text/javascript" src="static/nouislider-shim.js"></script>
+
     <script type="text/javascript">
       window.addEventListener('load', function() {
-        Elm.Main.fullscreen();
+        // Create the elm app.
+        var app = Elm.Main.fullscreen();
+
+        // Pass the app to the noUiSlider shim, which initializes the interop
+        // between the Elm code and 'nouislider.js'.
+        noUiSliderCreate(app);
       });
     </script>
   </head>
