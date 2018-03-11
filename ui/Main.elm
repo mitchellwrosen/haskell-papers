@@ -42,6 +42,7 @@ type Message
     = Blob (Result Http.Error Papers)
     | AuthorFilter String
     | AuthorFacetAdd -- 'Enter' pressed in author filter input box
+    | AuthorFacetRemove String
     | YearFilter Int Int
 
 
@@ -361,6 +362,9 @@ update message model =
             in
                 ( model_, Cmd.none )
 
+        AuthorFacetRemove facet ->
+          Debug.crash ""
+
         YearFilter n m ->
             ( { model
                 | yearFilter = { min = n, max = m }
@@ -456,10 +460,14 @@ view model =
                 facets ->
                     facets
                         |> List.map
-                            (Tuple.first
-                                >> Html.text
-                                >> List.singleton
-                                >> Html.div [ class "facet" ]
+                            (\(facet, _) ->
+                                facet
+                                  |> Html.text
+                                  |> List.singleton
+                                  |> Html.div
+                                        [ class "facet"
+                                        , Html.Events.onClick (AuthorFacetRemove facet)
+                                        ]
                             )
                         |> List.reverse
                         |> Html.div [ class "facets" ]
