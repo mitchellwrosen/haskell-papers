@@ -38,9 +38,22 @@ h1 {
   cursor: pointer;
 }
 
-#year-slider {
+/* Large pips */
+.noUi-marker-horizontal.noUi-marker-large {
+  height: 8px;
+}
+
+.noUi-target {
   margin-top: 54px;
   margin-bottom: 60px;
+}
+
+.noUi-tooltip {
+  font-size: 12px;
+}
+
+.noUi-value {
+  font-size: 12px;
 }
 
 .highlight {
