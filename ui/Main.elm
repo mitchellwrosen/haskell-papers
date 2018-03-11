@@ -533,7 +533,7 @@ viewHeader model =
             [ class "subtle-link"
             , href "https://github.com/mitchellwrosen/haskell-papers"
             ]
-            [ Html.text "contribute on GitHub" ]
+            [ Html.div [] [ Html.text "contribute on GitHub" ] ]
         , viewAuthorSearchBox model.authorFilter
         , viewAuthorFacets <| List.map Tuple.first model.authorFacets
         , Html.div
@@ -544,9 +544,10 @@ viewHeader model =
 
 viewAuthorSearchBox : String -> Html Message
 viewAuthorSearchBox authorFilter =
-    Html.div []
+    Html.div
+        [ class "author-search" ]
         [ Html.input
-            [ class "search"
+            [ class "author-search-box"
             , Html.Attributes.value authorFilter
             , Html.Attributes.placeholder "Search authors"
             , Html.Events.onInput AuthorFilter
