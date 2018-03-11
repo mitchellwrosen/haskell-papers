@@ -483,6 +483,7 @@ view model =
                                 model.titles
                                 model.authors
                                 model.links
+                                model.authorFilter
                             )
                     )
         ]
@@ -493,9 +494,10 @@ viewPaper :
     -> Dict TitleId Title
     -> Dict AuthorId Author
     -> Dict LinkId Link
+    -> String
     -> Paper
     -> Html a
-viewPaper visible titles authors links paper =
+viewPaper visible titles authors links authorFilter paper =
     Html.li
         (List.filterMap identity
             [ Just (class "paper")
@@ -506,7 +508,7 @@ viewPaper visible titles authors links paper =
             ]
         )
         [ viewTitle titles links paper
-        , viewDetails authors paper
+        , viewDetails authors authorFilter paper
         , viewEditLink paper
         ]
 
@@ -518,7 +520,8 @@ viewTitle titles links paper =
         title =
             lookupTitle titles paper.title
     in
-        Html.p [ class "title" ]
+        Html.p
+            [ class "title" ]
             [ case Array.get 0 paper.links of
                 Nothing ->
                     Html.text title
@@ -545,15 +548,15 @@ viewEditLink paper =
         Html.a [ class "subtle-link edit", href editLink ] [ Html.text "(edit)" ]
 
 
-viewDetails : Dict AuthorId Author -> Paper -> Html a
-viewDetails authors paper =
+viewDetails : Dict AuthorId Author -> String -> Paper -> Html a
+viewDetails authors filter paper =
     Html.p
         [ class "details" ]
         [ paper.authors
-            |> Array.map (lookupAuthor authors)
+            |> Array.map (lookupAuthor authors >> applyAuthorFilterStyle filter >> Html.span [])
             |> Array.toList
-            |> String.join ", "
-            |> Html.text
+            |> List.intersperse (Html.text ", ")
+            |> Html.span []
         , case paper.year of
             Nothing ->
                 Html.text ""
@@ -561,6 +564,28 @@ viewDetails authors paper =
             Just year ->
                 Html.text (" [" ++ toString year ++ "]")
         ]
+
+
+applyAuthorFilterStyle : String -> Author -> List (Html a)
+applyAuthorFilterStyle filter author =
+    case String.uncons filter of
+        Nothing ->
+            [ Html.text author ]
+
+        Just ( x, xs ) ->
+            case String.indices (String.toLower <| String.fromChar x) (String.toLower author) of
+                [] ->
+                    [ Html.text author ]
+
+                n :: _ ->
+                    -- Text up to index n
+                    -- Bold char @ index n
+                    -- Recursively render the rest
+                    Html.text (String.left n author)
+                        :: Html.span
+                            [ class "highlight" ]
+                            [ Html.text (String.slice n (n + 1) author) ]
+                        :: applyAuthorFilterStyle xs (String.dropLeft (n + 1) author)
 
 
 

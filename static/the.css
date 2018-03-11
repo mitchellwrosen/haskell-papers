@@ -19,6 +19,10 @@ h1 {
   margin-bottom: 60px;
 }
 
+.highlight {
+  font-weight: 700;
+}
+
 .subtle-link {
   text-decoration: none;
   color: #666;
