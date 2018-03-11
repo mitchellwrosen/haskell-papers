@@ -11,4 +11,4 @@ deleteBy p xs =
             if p y then
                 ys
             else
-                y :: deleteBy p xs
+                y :: deleteBy p ys
