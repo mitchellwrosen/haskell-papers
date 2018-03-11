@@ -495,6 +495,7 @@ view model =
             , Html.div []
                 [ Html.input
                     [ Html.Attributes.value model.authorFilter
+                    , Html.Attributes.placeholder "Search authors"
                     , Html.Events.onInput AuthorFilter
                     , Html.Events.on "keyup"
                         (Html.Events.keyCode
