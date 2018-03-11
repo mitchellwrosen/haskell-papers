@@ -1,7 +1,9 @@
 module Main exposing (..)
 
 import Array exposing (Array)
+import ArrayExtra as Array
 import Dict exposing (Dict)
+import DictExtra as Dict
 import Http
 import Html exposing (Html)
 import Html.Attributes exposing (href, class)
@@ -151,7 +153,7 @@ init =
 
         decodeIds : Decoder (Dict Int String)
         decodeIds =
-            Decode.map arrayToDict <|
+            Decode.map Array.dict <|
                 Decode.array <|
                     Decode.map2
                         (\x y -> ( x, y ))
@@ -287,7 +289,7 @@ update message model =
                   , authorFacets = []
                   , authorFilterIds = Nothing
                   , yearFilter = { min = yearMin, max = yearMax + 1 }
-                  , yearFilterIds = dictKeysToSet blob.titles
+                  , yearFilterIds = Dict.keysSet blob.titles
                   }
                 , noUiSliderCreate
                     { id = "year-slider"
@@ -363,7 +365,7 @@ update message model =
                 ( model_, Cmd.none )
 
         AuthorFacetRemove facet ->
-          Debug.crash ""
+            Debug.crash ""
 
         YearFilter n m ->
             ( { model
@@ -460,11 +462,11 @@ view model =
                 facets ->
                     facets
                         |> List.map
-                            (\(facet, _) ->
+                            (\( facet, _ ) ->
                                 facet
-                                  |> Html.text
-                                  |> List.singleton
-                                  |> Html.div
+                                    |> Html.text
+                                    |> List.singleton
+                                    |> Html.div
                                         [ class "facet"
                                         , Html.Events.onClick (AuthorFacetRemove facet)
                                         ]
@@ -532,7 +534,7 @@ viewTitle titles links paper =
     let
         title : String
         title =
-            lookupTitle titles paper.title
+            Dict.unsafeGet titles paper.title
     in
         Html.p
             [ class "title" ]
@@ -543,7 +545,7 @@ viewTitle titles links paper =
                 Just link ->
                     Html.a
                         [ class "link"
-                        , href (lookupLink links link)
+                        , href (Dict.unsafeGet links link)
                         ]
                         [ Html.text title ]
             ]
@@ -568,7 +570,7 @@ viewDetails authors filter paper =
         [ class "details" ]
         [ paper.authors
             |> Array.map
-                (lookupAuthor authors
+                (Dict.unsafeGet authors
                     >> applyAuthorFilterStyle filter
                     >> Html.span []
                 )
@@ -606,54 +608,6 @@ applyAuthorFilterStyle filter author =
 
 --------------------------------------------------------------------------------
 -- Misc. utility functions
-
-
-{-| Look up an author by id.
--}
-lookupAuthor : Dict AuthorId Author -> AuthorId -> Author
-lookupAuthor authors id =
-    case Dict.get id authors of
-        Nothing ->
-            Debug.crash ("No author " ++ toString id)
-
-        Just author ->
-            author
-
-
-{-| Look up a link by id.
--}
-lookupLink : Dict LinkId Link -> LinkId -> Link
-lookupLink links id =
-    case Dict.get id links of
-        Nothing ->
-            Debug.crash ("No link " ++ toString id)
-
-        Just link ->
-            link
-
-
-{-| Look up a title by id.
--}
-lookupTitle : Dict TitleId Title -> TitleId -> Title
-lookupTitle titles id =
-    case Dict.get id titles of
-        Nothing ->
-            Debug.crash ("No title " ++ toString id)
-
-        Just title ->
-            title
-
-
-arrayToDict : Array ( comparable, a ) -> Dict comparable a
-arrayToDict =
-    Array.foldl (uncurry Dict.insert) Dict.empty
-
-
-{-| Collect the keys of a 'Dict' into a 'Set'
--}
-dictKeysToSet : Dict comparable a -> Set comparable
-dictKeysToSet =
-    Dict.foldl (\k _ -> Set.insert k) Set.empty
 
 
 {-| Dead-simple greedy fuzzy match algorithm. Search through the haystack for
