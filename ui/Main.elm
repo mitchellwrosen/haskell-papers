@@ -352,8 +352,11 @@ update message model =
                             | authorFilter = ""
                             , authorFilterIds = Nothing
                             , authorFacets =
-                                ( model.authorFilter, Maybe.withDefault Set.empty model.authorFilterIds )
-                                    :: model.authorFacets
+                                if List.member model.authorFilter (List.map Tuple.first model.authorFacets) then
+                                    model.authorFacets
+                                else
+                                    ( model.authorFilter, Maybe.withDefault Set.empty model.authorFilterIds )
+                                        :: model.authorFacets
                         }
             in
                 ( model_, Cmd.none )
@@ -556,7 +559,11 @@ viewDetails authors filter paper =
     Html.p
         [ class "details" ]
         [ paper.authors
-            |> Array.map (lookupAuthor authors >> applyAuthorFilterStyle filter >> Html.span [])
+            |> Array.map
+                (lookupAuthor authors
+                    >> applyAuthorFilterStyle filter
+                    >> Html.span []
+                )
             |> Array.toList
             |> List.intersperse (Html.text ", ")
             |> Html.span []
@@ -581,9 +588,6 @@ applyAuthorFilterStyle filter author =
                     [ Html.text author ]
 
                 n :: _ ->
-                    -- Text up to index n
-                    -- Bold char @ index n
-                    -- Recursively render the rest
                     Html.text (String.left n author)
                         :: Html.span
                             [ class "highlight" ]
