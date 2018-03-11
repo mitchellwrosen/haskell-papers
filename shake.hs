@@ -19,7 +19,12 @@ rules = do
   ".shake/main.js" %> \out -> do
     src <- getDirectoryFiles "" ["ui/*.elm"]
     need ("elm-package.json" : src)
-    cmd_ ("elm make ui/Main.elm --output=" ++ out)
+    -- In dev mode, pass --debug
+    getEnv "DEV" >>= \case
+      Nothing ->
+        cmd_ ("elm make ui/Main.elm --output=" ++ out)
+      Just _ ->
+        cmd_ ("elm make --debug ui/Main.elm --output=" ++ out)
 
   ".shake/shake" %> \_ -> do
     need ["build.sh", "shake.hs"]

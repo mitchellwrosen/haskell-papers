@@ -25,9 +25,12 @@ type alias Model =
     -- author.
     , authorsIndex : Dict AuthorId (Set TitleId)
 
-    -- The author filter and a cached set of title ids that match the filter.
+    -- The author filter and a cached set of title ids that match the filter. We
+    -- keep both the "live" filter (input text box) and every "facet" that has
+    -- been snipped off by pressing 'enter'.
     , authorFilter : String
-    , authorFilterIds : Set TitleId
+    , authorFilterIds : Maybe (Set TitleId) -- Nothing if 'authorFilter' is ""
+    , authorFacets : List ( String, Set TitleId ) -- Invariant: non-empty strings
 
     -- The year filter and a cached set of title ids that match the filter.
     , yearFilter : { min : Int, max : Int } -- (inclusive, exclusive)
@@ -38,6 +41,7 @@ type alias Model =
 type Message
     = Blob (Result Http.Error Papers)
     | AuthorFilter String
+    | AuthorFacetAdd -- 'Enter' pressed in author filter input box
     | YearFilter Int Int
 
 
@@ -159,7 +163,8 @@ init =
           , links = Dict.empty
           , authorsIndex = Dict.empty
           , authorFilter = ""
-          , authorFilterIds = Set.empty
+          , authorFacets = []
+          , authorFilterIds = Nothing
           , yearFilter = { min = 0, max = 0 }
           , yearFilterIds = Set.empty
           }
@@ -271,10 +276,6 @@ update message model =
                         )
                         ( 3000, 0 )
                         blob.papers
-
-                titleIds : Set TitleId
-                titleIds =
-                    dictKeysToSet blob.titles
             in
                 ( { papers = blob.papers
                   , titles = blob.titles
@@ -282,9 +283,10 @@ update message model =
                   , links = blob.links
                   , authorsIndex = buildAuthorsIndex blob.papers blob.authors
                   , authorFilter = ""
-                  , authorFilterIds = titleIds
+                  , authorFacets = []
+                  , authorFilterIds = Nothing
                   , yearFilter = { min = yearMin, max = yearMax + 1 }
-                  , yearFilterIds = titleIds
+                  , yearFilterIds = dictKeysToSet blob.titles
                   }
                 , noUiSliderCreate
                     { id = "year-slider"
@@ -302,6 +304,14 @@ update message model =
 
         Blob (Err msg) ->
             Debug.crash <| toString msg
+
+        AuthorFilter "" ->
+            ( { model
+                | authorFilter = ""
+                , authorFilterIds = Nothing
+              }
+            , Cmd.none
+            )
 
         AuthorFilter s ->
             ( { model
@@ -326,9 +336,27 @@ update message model =
                                         Set.union ids
                             )
                             Set.empty
+                        |> Just
               }
             , Cmd.none
             )
+
+        AuthorFacetAdd ->
+            let
+                model_ : Model
+                model_ =
+                    if String.isEmpty model.authorFilter then
+                        model
+                    else
+                        { model
+                            | authorFilter = ""
+                            , authorFilterIds = Nothing
+                            , authorFacets =
+                                ( model.authorFilter, Maybe.withDefault Set.empty model.authorFilterIds )
+                                    :: model.authorFacets
+                        }
+            in
+                ( model_, Cmd.none )
 
         YearFilter n m ->
             ( { model
@@ -389,7 +417,8 @@ buildAuthorsIndex papers authors =
 
 view : Model -> Html Message
 view model =
-    Html.div [ class "container" ]
+    Html.div
+        [ class "container" ]
         [ Html.header []
             [ Html.h1 [] [ Html.text "Haskell Papers" ]
             , Html.a
@@ -398,20 +427,59 @@ view model =
                 ]
                 [ Html.text "contribute on GitHub" ]
             , Html.div []
-                [ Html.input [ Html.Events.onInput AuthorFilter ] [] ]
+                [ Html.input
+                    [ Html.Attributes.value model.authorFilter
+                    , Html.Events.onInput AuthorFilter
+                    , Html.Events.on "keyup"
+                        (Html.Events.keyCode
+                            |> Decode.andThen
+                                (\code ->
+                                    if
+                                        -- enter
+                                        code == 13
+                                    then
+                                        Decode.succeed AuthorFacetAdd
+                                    else
+                                        Decode.fail ""
+                                )
+                        )
+                    ]
+                    []
+                ]
+            , case model.authorFacets of
+                [] ->
+                    Html.text ""
+
+                facets ->
+                    Html.div
+                        []
+                        [ Html.text <|
+                            String.join ", " <|
+                                List.map Tuple.first facets
+                        ]
             , Html.div
                 [ Html.Attributes.id "year-slider" ]
                 []
             ]
         , case model of
-            { papers, titles, authorFilterIds, yearFilterIds } ->
+            { papers, titles, authorFacets, authorFilterIds, yearFilterIds } ->
                 Html.ul
                     [ class "paper-list" ]
                     (papers
                         |> Array.toList
                         |> List.map
                             (viewPaper
-                                (Set.intersect authorFilterIds yearFilterIds)
+                                (List.foldl
+                                    (Tuple.second >> Set.intersect)
+                                    (case authorFilterIds of
+                                        Nothing ->
+                                            yearFilterIds
+
+                                        Just ids ->
+                                            Set.intersect ids yearFilterIds
+                                    )
+                                    authorFacets
+                                )
                                 model.titles
                                 model.authors
                                 model.links
