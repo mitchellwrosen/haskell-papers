@@ -7,10 +7,13 @@ import Dict exposing (Dict)
 import DictExtra as Dict
 import Http
 import Html exposing (Html)
+import HtmlExtra as Html
 import Html.Attributes exposing (href, class)
 import Html.Events
+import HtmlEventsExtra as HtmlEvents
 import Intersection exposing (Intersection)
 import Json.Decode as Decode exposing (Decoder)
+import JsonDecodeExtra as Decode
 import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
@@ -125,26 +128,9 @@ main =
 init : ( Model, Cmd Message )
 init =
     let
-        andThen3 :
-            Decoder a
-            -> Decoder b
-            -> Decoder c
-            -> (a -> b -> c -> Decoder d)
-            -> Decoder d
-        andThen3 dx dy dz f =
-            Decode.andThen
-                (\x ->
-                    Decode.andThen
-                        (\y ->
-                            Decode.andThen (f x y) dz
-                        )
-                        dy
-                )
-                dx
-
         decodePapers : Decoder Papers
         decodePapers =
-            andThen3
+            Decode.andThen3
                 (Decode.field "a" decodeIds)
                 (Decode.field "b" decodeIds)
                 (Decode.field "c" decodeIds)
@@ -164,12 +150,9 @@ init =
 
         decodeIds : Decoder (Dict Int String)
         decodeIds =
-            Decode.map Array.dict <|
-                Decode.array <|
-                    Decode.map2
-                        (\x y -> ( x, y ))
-                        (Decode.index 0 Decode.int)
-                        (Decode.index 1 Decode.string)
+            Decode.tuple2 Decode.int Decode.string
+                |> Decode.array
+                |> Decode.map Array.dict
     in
         ( { papers = Array.empty
           , titles = Dict.empty
@@ -195,59 +178,34 @@ decodePaper :
     -> Decoder Paper
 decodePaper titles authors links =
     Decode.map7 Paper
-        (Decode.field "a" Decode.int)
+        (Decode.intField "a")
         decodeAuthors
-        decodeYear
+        (Decode.optIntField "c")
         decodeReferences
         decodeLinks
-        decodeFile
-        decodeLine
+        (Decode.intField "f")
+        (Decode.intField "g")
 
 
 decodeAuthors : Decoder (Array AuthorId)
 decodeAuthors =
-    Decode.int
-        |> Decode.array
+    Decode.intArray
         |> Decode.field "b"
-        |> Decode.maybe
-        |> Decode.map (Maybe.withDefault Array.empty)
-
-
-decodeFile : Decoder Int
-decodeFile =
-    Decode.int
-        |> Decode.field "f"
-
-
-decodeLine : Decoder Int
-decodeLine =
-    Decode.int
-        |> Decode.field "g"
+        |> Decode.withDefault Array.empty
 
 
 decodeLinks : Decoder (Array LinkId)
 decodeLinks =
-    Decode.int
-        |> Decode.array
+    Decode.intArray
         |> Decode.field "e"
-        |> Decode.maybe
-        |> Decode.map (Maybe.withDefault Array.empty)
+        |> Decode.withDefault Array.empty
 
 
 decodeReferences : Decoder (Array TitleId)
 decodeReferences =
-    Decode.int
-        |> Decode.array
+    Decode.intArray
         |> Decode.field "d"
-        |> Decode.maybe
-        |> Decode.map (Maybe.withDefault Array.empty)
-
-
-decodeYear : Decoder (Maybe Int)
-decodeYear =
-    Decode.int
-        |> Decode.field "c"
-        |> Decode.maybe
+        |> Decode.withDefault Array.empty
 
 
 
@@ -485,77 +443,83 @@ view : Model -> Html Message
 view model =
     Html.div
         [ class "container" ]
-        [ Html.header []
-            [ Html.h1 [] [ Html.text "Haskell Papers" ]
-            , Html.a
-                [ class "subtle-link"
-                , href "https://github.com/mitchellwrosen/haskell-papers"
-                ]
-                [ Html.text "contribute on GitHub" ]
-            , Html.div []
-                [ Html.input
-                    [ Html.Attributes.value model.authorFilter
-                    , Html.Attributes.placeholder "Search authors"
-                    , Html.Events.onInput AuthorFilter
-                    , Html.Events.on "keyup"
-                        (Html.Events.keyCode
-                            |> Decode.andThen
-                                (\code ->
-                                    if
-                                        -- enter
-                                        code == 13
-                                    then
-                                        Decode.succeed AuthorFacetAdd
-                                    else
-                                        Decode.fail ""
-                                )
-                        )
-                    ]
-                    []
-                ]
-            , case model.authorFacets of
-                [] ->
-                    Html.text ""
-
-                facets ->
-                    facets
-                        |> List.map
-                            (\( facet, _ ) ->
-                                facet
-                                    |> Html.text
-                                    |> List.singleton
-                                    |> Html.div
-                                        [ class "facet"
-                                        , Html.Events.onClick (AuthorFacetRemove facet)
-                                        ]
-                            )
-                        |> List.reverse
-                        |> Html.div [ class "facets" ]
-            , Html.div
-                [ Html.Attributes.id "year-slider" ]
-                []
-            ]
-        , case model of
-            { papers, titles, authorFacets, authorFilterIds, yearFilterIds } ->
-                Html.ul
-                    [ class "paper-list" ]
-                    (papers
-                        |> Array.toList
-                        |> List.map
-                            (viewPaper
-                                (Intersection.toSet <|
-                                    List.foldl
-                                        (Tuple.second >> Intersection.fromSet >> Intersection.append)
-                                        (Intersection.append authorFilterIds yearFilterIds)
-                                        authorFacets
-                                )
-                                model.titles
-                                model.authors
-                                model.links
-                                model.authorFilter
-                            )
-                    )
+        [ viewHeader model
+        , viewPapers model
         ]
+
+
+viewHeader : Model -> Html Message
+viewHeader model =
+    Html.header []
+        [ Html.h1 [] [ Html.text "Haskell Papers" ]
+        , Html.a
+            [ class "subtle-link"
+            , href "https://github.com/mitchellwrosen/haskell-papers"
+            ]
+            [ Html.text "contribute on GitHub" ]
+        , viewAuthorSearchBox model.authorFilter
+        , viewAuthorFacets <| List.map Tuple.first model.authorFacets
+        , Html.div
+            [ Html.Attributes.id "year-slider" ]
+            []
+        ]
+
+
+viewAuthorSearchBox : String -> Html Message
+viewAuthorSearchBox authorFilter =
+    Html.div []
+        [ Html.input
+            [ Html.Attributes.value authorFilter
+            , Html.Attributes.placeholder "Search authors"
+            , Html.Events.onInput AuthorFilter
+            , HtmlEvents.onEnter AuthorFacetAdd
+            ]
+            []
+        ]
+
+
+viewAuthorFacets : List String -> Html Message
+viewAuthorFacets authorFacets =
+    case authorFacets of
+        [] ->
+            Html.empty
+
+        facets ->
+            facets
+                |> List.map
+                    (\facet ->
+                        facet
+                            |> Html.text
+                            |> List.singleton
+                            |> Html.div
+                                [ class "facet"
+                                , Html.Events.onClick (AuthorFacetRemove facet)
+                                ]
+                    )
+                |> List.reverse
+                |> Html.div [ class "facets" ]
+
+
+viewPapers : Model -> Html a
+viewPapers model =
+    Html.ul
+        [ class "paper-list" ]
+        (model.papers
+            |> Array.toList
+            |> List.map
+                (viewPaper
+                    (Intersection.toSet <|
+                        List.foldl
+                            (Tuple.second >> Intersection.fromSet >> Intersection.append)
+                            (Intersection.append model.authorFilterIds model.yearFilterIds)
+                            model.authorFacets
+                    )
+                    model.titles
+                    model.authors
+                    model.links
+                    model.authorFilter
+                )
+        )
 
 
 viewPaper :
@@ -637,7 +601,7 @@ viewDetails authors filter paper =
             |> Html.span []
         , case paper.year of
             Nothing ->
-                Html.text ""
+                Html.empty
 
             Just year ->
                 Html.text (" [" ++ toString year ++ "]")
