@@ -451,12 +451,15 @@ view model =
                     Html.text ""
 
                 facets ->
-                    Html.div
-                        []
-                        [ Html.text <|
-                            String.join ", " <|
-                                List.map Tuple.first facets
-                        ]
+                    facets
+                        |> List.map
+                            (Tuple.first
+                                >> Html.text
+                                >> List.singleton
+                                >> Html.div [ class "facet" ]
+                            )
+                        |> List.reverse
+                        |> Html.div [ class "facets" ]
             , Html.div
                 [ Html.Attributes.id "year-slider" ]
                 []

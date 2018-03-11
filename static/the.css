@@ -19,6 +19,28 @@ h1 {
   margin-bottom: 60px;
 }
 
+.facets {
+  margin-top: 5px;
+}
+
+.facet {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 5px;
+  margin-right: 4px;
+  border-radius: 5px;
+}
+
+.facet:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.facet:hover::before {
+  content: "×";
+  margin-right: 4px;
+}
+
 .highlight {
   font-weight: 700;
 }
