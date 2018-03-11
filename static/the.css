@@ -14,10 +14,14 @@ h1 {
   margin-bottom: 8px;
 }
 
+.title-search {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 .author-search {
   display: inline-block;
   margin-bottom: 10px;
-  margin-top: 10px;
 }
 
 .author-search-box {

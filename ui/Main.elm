@@ -35,6 +35,10 @@ type alias Model =
     , yearMin : Int
     , yearMax : Int
 
+    -- The title filter and a cached set of title ids that match the filter.
+    , titleFilter : String
+    , titleFilterIds : Intersection TitleId
+
     -- An inverted index mapping author ids to the set of papers by that
     -- author.
     , authorsIndex : Dict AuthorId (Set TitleId)
@@ -53,6 +57,10 @@ type alias Model =
     -- mode wherein we show papers without any year.
     , yearFilter : { min : Int, max : Int } -- (inclusive, exclusive)
     , yearFilterIds : Intersection TitleId
+
+    -- The intersection of 'titleFilterIds', 'authorFilterIds', 'authorFacets',
+    -- and 'yearFilterIds'.
+    , visibleIds : Intersection TitleId
     }
 
 
@@ -60,6 +68,8 @@ type
     Message
     -- The initial download of ./static/papers.json
     = Blob (Result Http.Error Papers)
+      -- The title filter input box contents were modified
+    | TitleFilter String
       -- The author filter input box contents were modified
     | AuthorFilter String
       -- 'Enter' was pressed in the author filter input box
@@ -172,12 +182,15 @@ init =
           , links = Dict.empty
           , yearMin = 0
           , yearMax = 0
+          , titleFilter = ""
+          , titleFilterIds = Intersection.empty
           , authorsIndex = Dict.empty
           , authorFilter = ""
           , authorFilterIds = Intersection.empty
           , authorFacets = []
           , yearFilter = { min = 0, max = 0 }
           , yearFilterIds = Intersection.empty
+          , visibleIds = Intersection.empty
           }
         , Http.send Blob <| Http.get "./static/papers.json" decodePapers
         )
@@ -253,6 +266,9 @@ update message model =
         Blob blob ->
             handleBlob blob model
 
+        TitleFilter filter ->
+            handleTitleFilter filter model
+
         AuthorFilter filter ->
             handleAuthorFilter filter model
 
@@ -295,12 +311,15 @@ handleBlob result model =
                     , links = blob.links
                     , yearMin = yearMin
                     , yearMax = yearMax
+                    , titleFilter = ""
+                    , titleFilterIds = Intersection.empty
                     , authorsIndex = buildAuthorsIndex blob.papers blob.authors
                     , authorFilter = ""
                     , authorFilterIds = Intersection.empty
                     , authorFacets = []
                     , yearFilter = { min = yearMin, max = yearMax + 1 }
                     , yearFilterIds = Intersection.empty
+                    , visibleIds = Intersection.empty
                     }
 
                 command : Cmd Message
@@ -324,23 +343,47 @@ handleBlob result model =
             Debug.crash <| toString msg
 
 
-handleAuthorFilter : String -> Model -> ( Model, Cmd a )
-handleAuthorFilter s model =
+handleTitleFilter : String -> Model -> ( Model, Cmd a )
+handleTitleFilter filter model =
     let
-        authorFilter : String
-        authorFilter =
-            s
-
-        authorFilterIds : Intersection TitleId
-        authorFilterIds =
-            buildAuthorFilterIds s model.authors model.authorsIndex
+        titleFilterIds : Intersection TitleId
+        titleFilterIds =
+            model.papers
+                |> Array.foldl
+                    (\paper ->
+                        if fuzzyMatch (String.toLower filter) (String.toLower <| Dict.unsafeGet model.titles paper.title) then
+                            Set.insert paper.title
+                        else
+                            identity
+                    )
+                    Set.empty
+                |> Intersection.fromSet
 
         model_ : Model
         model_ =
             { model
-                | authorFilter = authorFilter
+                | titleFilter = filter
+                , titleFilterIds = titleFilterIds
+            }
+                |> rebuildVisibleIds
+    in
+        ( model_, Cmd.none )
+
+
+handleAuthorFilter : String -> Model -> ( Model, Cmd a )
+handleAuthorFilter filter model =
+    let
+        authorFilterIds : Intersection TitleId
+        authorFilterIds =
+            buildAuthorFilterIds filter model.authors model.authorsIndex
+
+        model_ : Model
+        model_ =
+            { model
+                | authorFilter = filter
                 , authorFilterIds = authorFilterIds
             }
+                |> rebuildVisibleIds
     in
         ( model_, Cmd.none )
 
@@ -375,6 +418,7 @@ handleAuthorFacetAdd model =
                         , authorFilterIds = authorFacetIds
                         , authorFacets = authorFacets
                     }
+                        |> rebuildVisibleIds
     in
         ( model_, Cmd.none )
 
@@ -397,6 +441,7 @@ handleAuthorFacetAdd_ author model =
         model_ : Model
         model_ =
             { model | authorFacets = authorFacets }
+                |> rebuildVisibleIds
     in
         ( model_, Cmd.none )
 
@@ -414,6 +459,7 @@ handleAuthorFacetRemove facet model =
             { model
                 | authorFacets = authorFacets
             }
+                |> rebuildVisibleIds
     in
         ( model_, Cmd.none )
 
@@ -452,6 +498,7 @@ handleYearFilter n m model =
                 | yearFilter = yearFilter
                 , yearFilterIds = yearFilterIds
             }
+                |> rebuildVisibleIds
     in
         ( model_, Cmd.none )
 
@@ -511,6 +558,22 @@ buildAuthorFilterIds s authors authorsIndex =
             |> Intersection.fromSet
 
 
+rebuildVisibleIds : Model -> Model
+rebuildVisibleIds model =
+    let
+        visibleIds : Intersection TitleId
+        visibleIds =
+            List.foldl
+                (Tuple.second >> Intersection.append)
+                Intersection.empty
+                model.authorFacets
+                |> Intersection.append model.titleFilterIds
+                |> Intersection.append model.authorFilterIds
+                |> Intersection.append model.yearFilterIds
+    in
+        { model | visibleIds = visibleIds }
+
+
 
 --------------------------------------------------------------------------------
 -- Render HTML
@@ -534,6 +597,7 @@ viewHeader model =
             , href "https://github.com/mitchellwrosen/haskell-papers"
             ]
             [ Html.div [] [ Html.text "contribute on GitHub" ] ]
+        , viewTitleSearchBox model.titleFilter
         , viewAuthorSearchBox model.authorFilter
         , viewAuthorFacets <| List.map Tuple.first model.authorFacets
         , Html.div
@@ -542,13 +606,27 @@ viewHeader model =
         ]
 
 
+viewTitleSearchBox : String -> Html Message
+viewTitleSearchBox filter =
+    Html.div
+        [ class "title-search" ]
+        [ Html.input
+            [ class "title-search-box"
+            , Html.Attributes.value filter
+            , Html.Attributes.placeholder "Search titles"
+            , Html.Events.onInput TitleFilter
+            ]
+            []
+        ]
+
+
 viewAuthorSearchBox : String -> Html Message
-viewAuthorSearchBox authorFilter =
+viewAuthorSearchBox filter =
     Html.div
         [ class "author-search" ]
         [ Html.input
             [ class "author-search-box"
-            , Html.Attributes.value authorFilter
+            , Html.Attributes.value filter
             , Html.Attributes.placeholder "Search authors"
             , Html.Events.onInput AuthorFilter
             , HtmlEvents.onEnter AuthorFacetAdd
@@ -587,15 +665,11 @@ viewPapers model =
             |> Array.toList
             |> List.map
                 (viewPaper
-                    (Intersection.toSet <|
-                        List.foldl
-                            (Tuple.second >> Intersection.append)
-                            (Intersection.append model.authorFilterIds model.yearFilterIds)
-                            model.authorFacets
-                    )
+                    (Intersection.toSet model.visibleIds)
                     model.titles
                     model.authors
                     model.links
+                    model.titleFilter
                     model.authorFilter
                 )
         )
@@ -607,9 +681,10 @@ viewPaper :
     -> Dict AuthorId Author
     -> Dict LinkId Link
     -> String
+    -> String
     -> Paper
     -> Html Message
-viewPaper visible titles authors links authorFilter paper =
+viewPaper visible titles authors links titleFilter authorFilter paper =
     Html.li
         (List.filterMap identity
             [ Just (class "paper")
@@ -624,32 +699,34 @@ viewPaper visible titles authors links authorFilter paper =
                         Just (Html.Attributes.style [ ( "display", "none" ) ])
             ]
         )
-        [ viewTitle titles links paper
+        [ viewTitle titles links titleFilter paper
         , viewDetails authors authorFilter paper
         , viewEditLink paper
         ]
 
 
-viewTitle : Dict TitleId Title -> Dict LinkId Link -> Paper -> Html a
-viewTitle titles links paper =
+viewTitle : Dict TitleId Title -> Dict LinkId Link -> String -> Paper -> Html a
+viewTitle titles links filter paper =
     let
-        title : String
+        title : List (Html a)
         title =
             Dict.unsafeGet titles paper.title
+                |> applyLiveFilterStyle filter
     in
         Html.p
             [ class "title" ]
-            [ case Array.get 0 paper.links of
+            (case Array.get 0 paper.links of
                 Nothing ->
-                    Html.text title
+                    title
 
                 Just link ->
-                    Html.a
+                    [ Html.a
                         [ class "link"
                         , href (Dict.unsafeGet links link)
                         ]
-                        [ Html.text title ]
-            ]
+                        title
+                    ]
+            )
 
 
 viewEditLink : Paper -> Html a
@@ -678,7 +755,7 @@ viewDetails authors filter paper =
                             Dict.unsafeGet authors id
                     in
                         author
-                            |> applyAuthorFilterStyle filter
+                            |> applyLiveFilterStyle filter
                             |> Html.span
                                 [ class "author"
                                 , Html.Events.onClick <| AuthorFacetAdd_ author
@@ -695,23 +772,23 @@ viewDetails authors filter paper =
         ]
 
 
-applyAuthorFilterStyle : String -> Author -> List (Html a)
-applyAuthorFilterStyle filter author =
-    case String.uncons filter of
+applyLiveFilterStyle : String -> String -> List (Html a)
+applyLiveFilterStyle needle haystack =
+    case String.uncons needle of
         Nothing ->
-            [ Html.text author ]
+            [ Html.text haystack ]
 
         Just ( x, xs ) ->
-            case String.indices (String.toLower <| String.fromChar x) (String.toLower author) of
+            case String.indices (String.toLower <| String.fromChar x) (String.toLower haystack) of
                 [] ->
-                    [ Html.text author ]
+                    [ Html.text haystack ]
 
                 n :: _ ->
-                    Html.text (String.left n author)
+                    Html.text (String.left n haystack)
                         :: Html.span
                             [ class "highlight" ]
-                            [ Html.text (String.slice n (n + 1) author) ]
-                        :: applyAuthorFilterStyle xs (String.dropLeft (n + 1) author)
+                            [ Html.text (String.slice n (n + 1) haystack) ]
+                        :: applyLiveFilterStyle xs (String.dropLeft (n + 1) haystack)
 
 
 
