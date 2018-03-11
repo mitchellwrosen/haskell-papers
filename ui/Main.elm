@@ -9,6 +9,7 @@ import Http
 import Html exposing (Html)
 import Html.Attributes exposing (href, class)
 import Html.Events
+import Intersection exposing (Intersection)
 import Json.Decode as Decode exposing (Decoder)
 import ListExtra as List
 import MaybeExtra as Maybe
@@ -26,6 +27,11 @@ type alias Model =
     , authors : Dict AuthorId Author
     , links : Dict LinkId Link
 
+    -- Cache the minimum and maximum years of all papers, with some weird
+    -- unimportant default values since we assume that *some* paper has a year.
+    , yearMin : Int
+    , yearMax : Int
+
     -- An inverted index mapping author ids to the set of papers by that
     -- author.
     , authorsIndex : Dict AuthorId (Set TitleId)
@@ -34,12 +40,14 @@ type alias Model =
     -- keep both the "live" filter (input text box) and every "facet" that has
     -- been snipped off by pressing 'enter'.
     , authorFilter : String
-    , authorFilterIds : Maybe (Set TitleId) -- Nothing if 'authorFilter' is ""
+    , authorFilterIds : Intersection TitleId
     , authorFacets : List ( String, Set TitleId ) -- Invariant: non-empty strings
 
     -- The year filter and a cached set of title ids that match the filter.
+    -- When min == yearMin and max == yearMax + 1, we tread this as a "special"
+    -- mode wherein we show papers without any year.
     , yearFilter : { min : Int, max : Int } -- (inclusive, exclusive)
-    , yearFilterIds : Set TitleId
+    , yearFilterIds : Intersection TitleId
     }
 
 
@@ -167,12 +175,14 @@ init =
           , titles = Dict.empty
           , authors = Dict.empty
           , links = Dict.empty
+          , yearMin = 0
+          , yearMax = 0
           , authorsIndex = Dict.empty
           , authorFilter = ""
+          , authorFilterIds = Intersection.empty
           , authorFacets = []
-          , authorFilterIds = Nothing
           , yearFilter = { min = 0, max = 0 }
-          , yearFilterIds = Set.empty
+          , yearFilterIds = Intersection.empty
           }
         , Http.send Blob <| Http.get "./static/papers.json" decodePapers
         )
@@ -308,12 +318,14 @@ handleBlob result model =
                   , titles = blob.titles
                   , authors = blob.authors
                   , links = blob.links
+                  , yearMin = yearMin
+                  , yearMax = yearMax
                   , authorsIndex = buildAuthorsIndex blob.papers blob.authors
                   , authorFilter = ""
+                  , authorFilterIds = Intersection.empty
                   , authorFacets = []
-                  , authorFilterIds = Nothing
                   , yearFilter = { min = yearMin, max = yearMax + 1 }
-                  , yearFilterIds = Dict.keysSet blob.titles
+                  , yearFilterIds = Intersection.empty
                   }
                 , noUiSliderCreate
                     { id = "year-slider"
@@ -336,12 +348,13 @@ handleBlob result model =
 handleAuthorFilter : String -> Model -> ( Model, Cmd a )
 handleAuthorFilter s model =
     let
-        authorFilterIds : Maybe (Set TitleId)
+        authorFilterIds : Intersection TitleId
         authorFilterIds =
-            model.authors
-                |> Maybe.guard (not (String.isEmpty s))
-                |> Maybe.map
-                    (Dict.foldl
+            if String.isEmpty s then
+                Intersection.empty
+            else
+                model.authors
+                    |> Dict.foldl
                         (\id author ->
                             if fuzzyMatch (String.toLower s) (String.toLower author) then
                                 Set.insert id
@@ -349,17 +362,17 @@ handleAuthorFilter s model =
                                 identity
                         )
                         Set.empty
-                        >> Set.foldl
-                            (\id ->
-                                case Dict.get id model.authorsIndex of
-                                    Nothing ->
-                                        identity
+                    |> Set.foldl
+                        (\id ->
+                            case Dict.get id model.authorsIndex of
+                                Nothing ->
+                                    identity
 
-                                    Just ids ->
-                                        Set.union ids
-                            )
-                            Set.empty
-                    )
+                                Just ids ->
+                                    Set.union ids
+                        )
+                        Set.empty
+                    |> Intersection.fromSet
     in
         ( { model
             | authorFilter = s
@@ -379,12 +392,12 @@ handleAuthorFacetAdd model =
             else
                 { model
                     | authorFilter = ""
-                    , authorFilterIds = Nothing
+                    , authorFilterIds = Intersection.empty
                     , authorFacets =
                         if List.member model.authorFilter (List.map Tuple.first model.authorFacets) then
                             model.authorFacets
                         else
-                            ( model.authorFilter, Maybe.withDefault Set.empty model.authorFilterIds )
+                            ( model.authorFilter, Intersection.unsafeToSet model.authorFilterIds )
                                 :: model.authorFacets
                 }
     in
@@ -411,20 +424,24 @@ handleYearFilter n m model =
     ( { model
         | yearFilter = { min = n, max = m }
         , yearFilterIds =
-            model.papers
-                |> Array.foldl
-                    (\paper ->
-                        case paper.year of
-                            Nothing ->
-                                Set.insert paper.title
-
-                            Just year ->
-                                if year >= n && year < m then
-                                    Set.insert paper.title
-                                else
+            if n == model.yearMin && m == model.yearMax + 1 then
+                Intersection.empty
+            else
+                model.papers
+                    |> Array.foldl
+                        (\paper ->
+                            case paper.year of
+                                Nothing ->
                                     identity
-                    )
-                    Set.empty
+
+                                Just year ->
+                                    if year >= n && year < m then
+                                        Set.insert paper.title
+                                    else
+                                        identity
+                        )
+                        Set.empty
+                    |> Intersection.fromSet
       }
     , Cmd.none
     )
@@ -525,16 +542,11 @@ view model =
                         |> Array.toList
                         |> List.map
                             (viewPaper
-                                (List.foldl
-                                    (Tuple.second >> Set.intersect)
-                                    (case authorFilterIds of
-                                        Nothing ->
-                                            yearFilterIds
-
-                                        Just ids ->
-                                            Set.intersect ids yearFilterIds
-                                    )
-                                    authorFacets
+                                (Intersection.toSet <|
+                                    List.foldl
+                                        (Tuple.second >> Intersection.fromSet >> Intersection.append)
+                                        (Intersection.append authorFilterIds yearFilterIds)
+                                        authorFacets
                                 )
                                 model.titles
                                 model.authors
@@ -546,7 +558,7 @@ view model =
 
 
 viewPaper :
-    Set TitleId
+    Maybe (Set TitleId)
     -> Dict TitleId Title
     -> Dict AuthorId Author
     -> Dict LinkId Link
@@ -557,10 +569,15 @@ viewPaper visible titles authors links authorFilter paper =
     Html.li
         (List.filterMap identity
             [ Just (class "paper")
-            , if Set.member paper.title visible then
-                Nothing
-              else
-                Just (Html.Attributes.style [ ( "display", "none" ) ])
+            , case visible of
+                Nothing ->
+                    Nothing
+
+                Just visible_ ->
+                    if Set.member paper.title visible_ then
+                        Nothing
+                    else
+                        Just (Html.Attributes.style [ ( "display", "none" ) ])
             ]
         )
         [ viewTitle titles links paper
