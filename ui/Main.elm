@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Array exposing (Array)
 import ArrayExtra as Array
+import BasicsExtra exposing (..)
 import Dict exposing (Dict)
 import DictExtra as Dict
 import Http
@@ -9,6 +10,7 @@ import Html exposing (Html)
 import Html.Attributes exposing (href, class)
 import Html.Events
 import Json.Decode as Decode exposing (Decoder)
+import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
 import Set exposing (Set)
@@ -109,7 +111,7 @@ main =
 
 
 --------------------------------------------------------------------------------
--- Initialize the model and sennd the first message
+-- Initialize the model and GET ./static/papers.json
 
 
 init : ( Model, Cmd Message )
@@ -278,7 +280,7 @@ update message model =
             handleAuthorFacetAdd model
 
         AuthorFacetRemove facet ->
-            Debug.crash ""
+            handleAuthorFacetRemove facet model
 
         YearFilter n m ->
             handleYearFilter n m model
@@ -387,6 +389,21 @@ handleAuthorFacetAdd model =
                 }
     in
         ( model_, Cmd.none )
+
+
+handleAuthorFacetRemove : String -> Model -> ( Model, Cmd a )
+handleAuthorFacetRemove facet model =
+    let
+        authorFacets : List ( String, Set TitleId )
+        authorFacets =
+            model.authorFacets
+                |> List.deleteBy (Tuple.first >> equals facet)
+    in
+        ( { model
+            | authorFacets = authorFacets
+          }
+        , Cmd.none
+        )
 
 
 handleYearFilter : Int -> Int -> Model -> ( Model, Cmd a )
