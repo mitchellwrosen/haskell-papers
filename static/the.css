@@ -34,18 +34,11 @@ h1 {
 .facet::before {
   content: "×";
   margin-right: 4px;
-  visibility: hidden;
 }
 
 .facet:hover {
   background-color: #eee;
   cursor: pointer;
-}
-
-.facet:hover::before {
-  content: "×";
-  margin-right: 4px;
-  visibility: visible;
 }
 
 .highlight {
