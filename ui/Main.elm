@@ -9,6 +9,7 @@ import Html exposing (Html)
 import Html.Attributes exposing (href, class)
 import Html.Events
 import Json.Decode as Decode exposing (Decoder)
+import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
 import Set exposing (Set)
 
@@ -252,7 +253,9 @@ subscriptions _ =
                     YearFilter n m
 
                 _ ->
-                    Debug.crash ("Expected 2 ints; noUiSlider.js sent: " ++ toString values)
+                    Debug.crash <|
+                        "Expected 2 ints; noUiSlider.js sent: "
+                            ++ toString values
     in
         noUiSliderOnUpdate unpack
 
@@ -265,7 +268,26 @@ subscriptions _ =
 update : Message -> Model -> ( Model, Cmd Message )
 update message model =
     case message of
-        Blob (Ok blob) ->
+        Blob blob ->
+            handleBlob blob model
+
+        AuthorFilter filter ->
+            handleAuthorFilter filter model
+
+        AuthorFacetAdd ->
+            handleAuthorFacetAdd model
+
+        AuthorFacetRemove facet ->
+            Debug.crash ""
+
+        YearFilter n m ->
+            handleYearFilter n m model
+
+
+handleBlob : Result Http.Error Papers -> Model -> ( Model, Cmd Message )
+handleBlob result model =
+    case result of
+        Ok blob ->
             let
                 ( yearMin, yearMax ) =
                     Array.foldl
@@ -305,31 +327,27 @@ update message model =
                     }
                 )
 
-        Blob (Err msg) ->
+        Err msg ->
             Debug.crash <| toString msg
 
-        AuthorFilter "" ->
-            ( { model
-                | authorFilter = ""
-                , authorFilterIds = Nothing
-              }
-            , Cmd.none
-            )
 
-        AuthorFilter s ->
-            ( { model
-                | authorFilter = s
-                , authorFilterIds =
-                    model.authors
-                        |> Dict.foldl
-                            (\id author ->
-                                if fuzzyMatch (String.toLower s) (String.toLower author) then
-                                    Set.insert id
-                                else
-                                    identity
-                            )
-                            Set.empty
-                        |> Set.foldl
+handleAuthorFilter : String -> Model -> ( Model, Cmd a )
+handleAuthorFilter s model =
+    let
+        authorFilterIds : Maybe (Set TitleId)
+        authorFilterIds =
+            model.authors
+                |> Maybe.guard (not (String.isEmpty s))
+                |> Maybe.map
+                    (Dict.foldl
+                        (\id author ->
+                            if fuzzyMatch (String.toLower s) (String.toLower author) then
+                                Set.insert id
+                            else
+                                identity
+                        )
+                        Set.empty
+                        >> Set.foldl
                             (\id ->
                                 case Dict.get id model.authorsIndex of
                                     Nothing ->
@@ -339,55 +357,60 @@ update message model =
                                         Set.union ids
                             )
                             Set.empty
-                        |> Just
-              }
-            , Cmd.none
-            )
+                    )
+    in
+        ( { model
+            | authorFilter = s
+            , authorFilterIds = authorFilterIds
+          }
+        , Cmd.none
+        )
 
-        AuthorFacetAdd ->
-            let
-                model_ : Model
-                model_ =
-                    if String.isEmpty model.authorFilter then
-                        model
-                    else
-                        { model
-                            | authorFilter = ""
-                            , authorFilterIds = Nothing
-                            , authorFacets =
-                                if List.member model.authorFilter (List.map Tuple.first model.authorFacets) then
-                                    model.authorFacets
+
+handleAuthorFacetAdd : Model -> ( Model, Cmd a )
+handleAuthorFacetAdd model =
+    let
+        model_ : Model
+        model_ =
+            if String.isEmpty model.authorFilter then
+                model
+            else
+                { model
+                    | authorFilter = ""
+                    , authorFilterIds = Nothing
+                    , authorFacets =
+                        if List.member model.authorFilter (List.map Tuple.first model.authorFacets) then
+                            model.authorFacets
+                        else
+                            ( model.authorFilter, Maybe.withDefault Set.empty model.authorFilterIds )
+                                :: model.authorFacets
+                }
+    in
+        ( model_, Cmd.none )
+
+
+handleYearFilter : Int -> Int -> Model -> ( Model, Cmd a )
+handleYearFilter n m model =
+    ( { model
+        | yearFilter = { min = n, max = m }
+        , yearFilterIds =
+            model.papers
+                |> Array.foldl
+                    (\paper ->
+                        case paper.year of
+                            Nothing ->
+                                Set.insert paper.title
+
+                            Just year ->
+                                if year >= n && year < m then
+                                    Set.insert paper.title
                                 else
-                                    ( model.authorFilter, Maybe.withDefault Set.empty model.authorFilterIds )
-                                        :: model.authorFacets
-                        }
-            in
-                ( model_, Cmd.none )
-
-        AuthorFacetRemove facet ->
-            Debug.crash ""
-
-        YearFilter n m ->
-            ( { model
-                | yearFilter = { min = n, max = m }
-                , yearFilterIds =
-                    model.papers
-                        |> Array.foldl
-                            (\paper ->
-                                case paper.year of
-                                    Nothing ->
-                                        Set.insert paper.title
-
-                                    Just year ->
-                                        if year >= n && year < m then
-                                            Set.insert paper.title
-                                        else
-                                            identity
-                            )
-                            Set.empty
-              }
-            , Cmd.none
-            )
+                                    identity
+                    )
+                    Set.empty
+      }
+    , Cmd.none
+    )
 
 
 {-| Build an inverted index mapping author ids to the set of paper title ids by
