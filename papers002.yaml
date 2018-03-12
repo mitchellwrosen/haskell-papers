@@ -90,10 +90,12 @@
 - title: A fast, minimal memory, consistent hash algorithm
   author: John Lamping
   link: http://arxiv.org/pdf/1406.2294v1.pdf
-- year: 2011
-  link: http://www.seas.upenn.edu/~sweirich/papers/tldi12.pdf
+- title: Giving Haskell a promotion
   authors: [Brent Yorgey, Stephanie Weirich, Julien Cretin, Simon Peyton Jones, Dimitrios Vytiniotis, José Pedro Magalhães]
-  title: Giving Haskell a promotion
+  year: 2011
+  links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/p53-yorgey.pdf
+  - http://www.seas.upenn.edu/~sweirich/papers/tldi12.pdf
 - year: 2010
   link: http://nixos.org/~eelco/pubs/nixos-jfp-final.pdf
   authors: [Eelco Dolstra, Andres Löh, Nicolas Pierron]
@@ -173,10 +175,12 @@
 - title: Type inference, Haskell and dependent types
   author: Adam Gundry
   year: 2013
-- year: 2005
-  link: http://userpages.uni-koblenz.de/~laemmel/TheEagle/dl/ChakravartyKPJ05.pdf
+- title: Associated type synonyms
   authors: [Manuel M. T. Chakravarty, Gabriele Keller, Simon Peyton Jones]
-  title: Associated type synonyms
+  year: 2005
+  links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2005/01/at-syns.pdf
+  - http://userpages.uni-koblenz.de/~laemmel/TheEagle/dl/ChakravartyKPJ05.pdf
 - title: Associated types with class
   authors: [Manuel M. T. Chakravarty, Gabriele Keller, Simon Peyton Jones, Simon Marlow]
   year: 2004
@@ -221,10 +225,12 @@
   link: http://research.microsoft.com/en-us/um/people/simonpj/papers/boxy/boxy-icfp.pdf
   authors: [Dimitrios Vytiniotis, Stephanie Weirich, Simon Peyton Jones]
   title: 'Boxy types: inference for higher-rank types and impredicativity'
-- year: 2007
-  link: http://research.microsoft.com/en-us/um/people/simonpj/papers/higher-rank/putting.pdf
+- title: Practical type inference for arbitrary-rank types
   authors: [Simon Peyton Jones, Dimitrios Vytiniotis, Stephanie Weirich, Mark Shields]
-  title: Practical type inference for arbitrary-rank types
+  year: 2007
+  links:
+  - http://research.microsoft.com/en-us/um/people/simonpj/papers/higher-rank/putting.pdf
+  - https://repository.upenn.edu/cgi/viewcontent.cgi?article=1336&context=cis_papers
 - year: 1996
   link: http://ecommons.luc.edu/cgi/viewcontent.cgi?article=1057&context=cs_facpubs
   authors: [Martin Odersky, Konstantin Laufer]
@@ -409,7 +415,9 @@
 - title: Type classes in Haskell
   authors: [Cordelia V. Hall, Kevin Hammond, Simon L. Peyton Jones, and Philip L. Wadler]
   year: 1996
-  link: http://ropas.snu.ac.kr/lib/dock/HaHaJoWa1996.pdf
+  links:
+  - http://ropas.snu.ac.kr/lib/dock/HaHaJoWa1996.pdf
+  - http://research.microsoft.com/~simonpj/Papers/classhask.ps.gz
 - title: 'Idioms: applicative programming with effects'
   authors: [Conor McBride, Ross Paterson]
   link: http://strictlypositive.org/Idiom.pdf
@@ -446,3 +454,35 @@
   author: Ed Morehouse
   year: 2015
   link: http://emorehouse.web.wesleyan.edu/silliness/burrito_monads.pdf
+- title: Evidence normalization in System FC
+  authors: [Dimitrios Vytiniotis, Simon Peyton Jones]
+  year: 2013
+  link: http://drops.dagstuhl.de/opus/volltexte/2013/4050/pdf/3.pdf
+- title: System F with type equality coercions
+  authors: [Martin Sulzmann, Manuel M. T. Chakravarty, Simon Peyton Jones, Kevin Donnelly]
+  year: 2011
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2007/01/tldi22-sulzmann-with-appendix.pdf
+- title: Closed type families with overlapping equations
+  authors: [Richard A. Eisenberg, Dimitrios Vytiniotis, Simon Peyton Jones, Stephanie Weirich]
+  year: 2014
+  link: http://www.seas.upenn.edu/~sweirich/papers/popl14-axioms.pdf
+- title: Injective type families for Haskell
+  authors: [Jan Stolarek, Simon Peyton Jones, Richard A. Eisenberg]
+  year: 2015
+  link: http://ics.p.lodz.pl/~stolarek/_media/pl:research:stolarek_peyton-jones_eisenberg_injectivity.pdf
+- title: Once upon a polymorphic type
+  authors: [Keith Wansbroughy, Simon Peyton Jones]
+  year: 1998
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1999/01/Technical-Report-Version.pdf
+- title: Derivable type classes
+  authors: [Ralf Hinze, Simon Peyton Jones]
+  year: 2000
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2000/09/derive.pdf
+- title: A transformation-based optimiser for Haskell
+  authors: [Simon L. Peyton Jones, André L. M. Santos]
+  year: 1998
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1998/09/comp-by-trans-scp.pdf
+- title: Arity analysis
+  authors: [Dana N. Xu, Simon Peyton Jones]
+  year: 2006
+  link: http://gallium.inria.fr/~naxu/research/arity.pdf

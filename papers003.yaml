@@ -204,6 +204,8 @@
   - http://community.haskell.org/~simonmar/papers/monad-par.pdf
   - http://simonmar.github.io/bib/papers/monad-par.pdf
 - title: Formally proving a compiler transformation safe
+  author: Joachim Breitner
+  year: 2015
   link: http://www.joachim-breitner.de/publications/CallArity-Haskell15.pdf
 - title: Sequent calculus as a compiler intermediate language
   link: https://dl.acm.org/citation.cfm?doid=2951913.2951931
@@ -465,9 +467,6 @@
   link: https://personal.cis.strath.ac.uk/neil.ghani/papers/ghani-popl08.pdf
   authors: [Patricia Johann, Neil Ghani]
   title: Foundations for structured programming with GADTs
-- link: http://haskell.cs.yale.edu/wp-content/uploads/2013/08/hask035-voellmy.pdf
-  authors: [Andreas Voellmy, Junchang Wang, Paul Hudak, Kazuhiko Yamamoto]
-  title: 'Mio: a high-performance multicore IO manager for GHC'
 - title: Parsing permutation phrases
   authors: [Arthur I. Baars, Andres Löh, Doaitse Swierstra]
   year: 2004
@@ -494,3 +493,7 @@
   author: Heinrich Apfelmus
   year: 2010
   link: https://themonadreader.files.wordpress.com/2010/01/issue15.pdf
+- title: A short cut to deforestation
+  authors: [Andrew Gill, John Launchbury, Simon L. Peyton Jones]
+  year: 2016
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/deforestation-short-cut.pdf

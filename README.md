@@ -77,4 +77,4 @@ Quickly iterate on `yaml2json.hs`:
 
 Here are some characters that are difficult for me to type:
 
-    ÁáâĆćçÉéèëêễǴǵÍíḰḱĹĺḾḿŃńÓóÖöøṔṕŔŕŚśÚúẂẃX́x́ÝýŹź
+    ÁÃáâãäĆćçÉéèëêễǴǵğÍíḰḱĹĺḾḿŃńÓóÖöøṔṕŔŕŚśÚúẂẃX́x́ÝýŹź

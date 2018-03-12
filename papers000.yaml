@@ -488,3 +488,11 @@
   authors: [Olivier Danvy, Kevin Millikin]
   year: 2007
   link: http://www.brics.dk/RS/07/7/BRICS-RS-07-7.pdf
+- title: The implementation of functional programming languages
+  author: Simon L. Peyton Jones
+  year: 1987
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1987/01/slpj-book-1987-small.pdf
+- title: 'Implementing functional languages: a tutorial'
+  authors: [Simon L. Peyton Jones, David R. Lester]
+  year: 1991
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1992/01/student.pdf

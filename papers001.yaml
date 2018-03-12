@@ -40,7 +40,7 @@
   title: Phantom types and subtyping
 - title: Composable memory transactions
   authors: [Tim Harris, Simon Marlow, Simon Peyton Jones, Maurice Herlihy]
-  year: 2006
+  year: 2005
   links:
   - https://www.microsoft.com/en-us/research/wp-content/uploads/2005/01/2005-ppopp-composable.pdf
   - https://simonmar.github.io/bib/papers/stm.pdf
@@ -230,8 +230,12 @@
   - https://ndmitchell.com/downloads/paper-shake_before_building-10_sep_2012.pdf
   - http://community.haskell.org/~ndm/downloads/paper-shake_before_building-10_sep_2012.pdf
 - title: Modular, higher-order cardinality analysis in theory and practice
+  authors: [Ilya Sergey, Dimitrios Vytiniotis, Simon Peyton Jones]
+  year: 2014
   link: https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/cardinality-popl14.pdf
 - title: Efficient communication and collection with compact normal forms
+  authors: [Edward Z. Yang, Giovanni Campagna, Omer S. Ağacan, Ahmed El-Hassany, Abhishek Kulkarni, Ryan R. Newton]
+  year: 2015
   references:
     - Towards Haskell in the cloud
   link: http://ezyang.com/papers/ezyang15-cnf.pdf
@@ -244,6 +248,8 @@
 - title: A type theory for incremental computational complexity with control flow changes
   link: https://people.mpi-sws.org/~ecicek/DuCostIt.pdf
 - title: Safe zero-cost coercions for Haskell
+  authors: [Joachim Breitner, Richard A. Eisenberg, Simon Peyton Jones, Stephanie Weirich]
+  year: 2014
   link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/coercible.pdf
 - title: Embedding foreign code
   link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-ffi-padl2014.pdf
@@ -308,6 +314,7 @@
   link: http://benl.ouroborus.net/papers/2011-stencil/stencil-haskell2011.pdf
 - title: Call arity
   author: Joachim Breitner
+  year: 2014
   link: https://www.joachim-breitner.de/publications/CallArity-TFP.pdf
 - title: Effect-driven QuickChecking of compilers
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110259
@@ -327,3 +334,117 @@
   authors: [Sam Lindley, Conor McBride, Craig McLaughlin]
   year: 2017
   link: https://arxiv.org/pdf/1611.09259.pdf
+- title: System FC, as implemented in GHC
+  author: Richard Eisenberg
+  year: 2015
+  link: http://git.haskell.org/ghc.git/blob/refs/heads/master:/docs/core-spec/core-spec.pdf
+- title: System FC with explicit kind equality
+  authors: [Stephanie Weirich, Justin Hsu, Richard A. Eisenberg]
+  year: 2013
+  link: http://www.seas.upenn.edu/~sweirich/papers/fckinds.pdf
+- title: 'Equality proofs and deferred type errors: a compiler pearl'
+  authors: [Dimitrios Vytiniotis, Simon Peyton Jones, José Pedro Magalhães]
+  year: 2012
+  link: http://dreixel.net/research/pdf/epdtecp.pdf
+- title: Partial type signatures for Haskell
+  authors: [Thomas Winant, Dominique Devriese, Frank Piessens, and Tom Schrijvers]
+  link: https://lirias.kuleuven.be/bitstream/123456789/423475/3/paper.pdf
+- title: Understanding functional dependencies via constraint handling rules
+  authors: [Martin Sulzmann, Gregory J. Duck, Simon Peyton Jones, Peter J. Stuckey]
+  year: 2016
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/jfp06.pdf
+- title: Concurrent Haskell
+  authors: [Simon Peyton Jones, Andrew Gordon, Sigbjorn Finne]
+  year: 1996
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1996/01/concurrent-haskell.pdf
+- title: 'Data parallel Haskell: a status report'
+  authors: [Manuel M. T. Chakravarty, Roman Leshchinskiy, Simon Peyton Jones]
+  year: 2007
+  link: http://www.cse.unsw.edu.au/~chak/papers/data-parallel-haskell.pdf
+- title: 'Harnessing the multicores: nested data parallelism in Haskell'
+  authors: [Simon Peyton Jones, Roman Leshchinskiy, Gabriele Keller, Manuel M. T. Chakravarty]
+  year: 2008
+  link: http://www.cse.unsw.edu.au/~chak/papers/fsttcs2008.pdf
+- title: Vectorisation avoidance
+  authors: [Gabriele Keller, Manuel M. T. Chakravarty, Roman Leshchinskiy]
+  year: 2012
+  link: http://www.cse.unsw.edu.au/~chak/papers/vect-avoid.pdf
+- title: Work efficient higher-order vectorisation
+  authors: [Ben Lippmeier, Manuel M. T. Chakravarty, Gabriele Keller, Roman Leshchinskiy]
+  year: 2012
+  link: http://www.cse.unsw.edu.au/~chak/papers/replicate.pdf
+- title: 'Playing by the rules: rewriting as a practical optimisation technique in GHC'
+  authors: [Simon Peyton Jones, Andrew Tolmah, Tony Hoare]
+  year: 2001
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2001/09/rules.pdf
+- title: Call-pattern specialisation for Haskell programs
+  author: Simon Peyton Jones
+  year: 2007
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/spec-constr.pdf
+- title: 'Let-floating: moving bindings to give faster programs'
+  authors: [Simon Peyton Jones, Will Partain, André Santos]
+  year: 1996
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1996/05/float.pdf
+- title: Constructed product result analysis for Haskell
+  authors: [Clem Baker-Finch, Kevin Glynn, Simon Peyton Jones]
+  year: 2004
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/cpr.pdf
+- title: Demand analysis
+  authors: [Simon Peyton Jones, Peter Sestoft, John Hughes]
+  year: 2006
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2006/07/demand-1.pdf
+- title: Transactional memory with data invariants
+  authors: [Tim Harris, Simon Peyton Jones]
+  year: 2006
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/stm-invariants.pdf
+- title: An external representation for the GHC Core language
+  authors: [Andrew Tolmach, Tim Chevalier]
+  year: 2009
+  link: https://downloads.haskell.org/~ghc/6.10.4/docs/html/ext-core/core.pdf
+- title: Unboxes values as first class citizens in a non-strict functional language
+  authors: [Simon L. Peyton Jones, John Launchbury]
+  year: 1991
+  link: https://galois.com/wp-content/uploads/2014/08/pub_JL_UnboxedValuesAsFirstClassCitizens.pdf
+- title: The STG runtime system (revised)
+  authors: [Simon Peyton Jones, Simon Marlow]
+  year: 1999
+  link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.79.641&rep=rep1&type=pdf
+- title: 'C--: a portable assembly language that supports garbage collection'
+  authors: [Simon Peyton Jones, Norman Ramsey, Fermin Reig]
+  year: 1999
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/ppdp.pdf
+- title: A single intermediate language that supports multiple implementations of exceptions
+  authors: [Norman Ramsey, Simon Peyton Jones]
+  year: 2000
+  link: ftp://ftp.cis.upenn.edu/pub/cis700/public_html/papers/Ramsey00.pdf
+- title: An LLVM backend for GHC
+  authors: [David A. Terei, Manuel M. T. Chakravarty]
+  year: 2010
+  link: http://gernot.web.cse.unsw.edu.au/~chak/papers/ghc-llvm.pdf
+- title: A semantics for imprecise exceptions
+  authors: [Simon Peyton Jones, Alastair Reid, Tony Hoare, Simon Marlow, Fergus Henderson]
+  year: 1999
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1999/05/except.pdf
+- title: Imprecise exceptions, co-inductively
+  authors: [Andrew Moran, Søren B. Lassen, Simon Peyton Jones]
+  year: 1999
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1999/01/imprecise-exceptions.pdf
+- title: 'Mio: a high-performance multicore IO manager for GHC'
+  authors: [Andreas Voellmy, Junchang Wang, Paul Hudak, Kazuhiko Yamamoto]
+  year: 2013
+  link: http://haskell.cs.yale.edu/wp-content/uploads/2013/08/hask035-voellmy.pdf
+- title: Time and space profiling for non-strict, higher-order functional languages
+  authors: [Patrick M. Sansom, Simon L. Peyton Jones]
+  year: 1995
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1995/01/profiling-popl95.pdf
+- title: The concurrent Haskell foreign function interface
+  author: Wolfgang Thaller
+  link: http://www.haskell.org/ghc/docs/papers/threads.ps.gz
+- title: A formal specification of the Haskell 98 module system
+  authors: [Iavor S. Diatchki, Mark P. Jones, Thomas Hallgren]
+  year: 2002
+  link: http://programatica.cs.pdx.edu/P/diatchi.pdf
+- title: 'Scrap your boilerplate: a practical design pattern for generic programming'
+  authors: [Ralf Lämmel, Simon Peyton Jones]
+  year: 2003
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2003/01/hmap.pdf
