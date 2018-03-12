@@ -113,6 +113,7 @@
 - title: 'Stream fusion: from lists of streams to nothing at all'
   authors: [Duncan Coutts, Roman Leshchinskiy, Don Stewart]
   year: 2007
+  link: http://code.haskell.org/~dons/papers/icfp088-coutts.pdf
 - title: Purely functional data structures
   author: Chris Okasaki
   year: 1996
@@ -311,7 +312,7 @@
   - 'TIL: A type-directed optimizing compiler for ML'
   - Toward a foundational typed assembly language
   - Towards a theory of type structure
-  - Type classes in haskell
+  - Type classes in Haskell
   - Unboxed values as first class citizens
   - Whole-program compilation in MLton
   link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/levity-pldi17.pdf
@@ -384,11 +385,9 @@
 - title: 'Dependent types in Haskell: theory and practice'
   author: Richard A. Eisenberg
   year: 2016
-  link: https://arxiv.org/pdf/1610.07978.pdf
-- title: 'Dependent types in Haskell: theory and practice (dissertation)'
-  author: Richard A. Eisenberg
-  year: 2016
-  link: https://cs.brynmawr.edu/~rae/papers/2016/thesis/eisenberg-thesis.pdf
+  links:
+  - https://cs.brynmawr.edu/~rae/papers/2016/thesis/eisenberg-thesis.pdf
+  - https://arxiv.org/pdf/1610.07978.pdf
 - title: Secrets of the Glasgow Haskell Compiler inliner
   authors: [Simon Peyton Jones, Simon Marlow]
   year: 2002

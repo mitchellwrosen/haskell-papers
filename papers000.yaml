@@ -85,6 +85,7 @@
   link: https://www.eecs.northwestern.edu/~robby/courses/395-495-2013-fall/three-algorithms-on-braun-trees.pdf
 - title: Infinite sets that admit fast exhaustive search
   author: Martín Escardó
+  year: 2007
   link: http://www.cs.bham.ac.uk/~mhe/papers/exhaustive.pdf
 - title: Biased search trees
   authors: [Samuel W. Bent, Daniel D. Sleator, Robert E. Tarjan]
@@ -480,7 +481,9 @@
 - title: Monadic parser combinators
   authors: [Graham Hutton, Erik Meijer]
   year: 1996
-  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.2.4159
+  links:
+  - http://www.cs.nott.ac.uk/~pszgmh/monparsing.pdf
+  - http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.2.4159
 - title: Refunctionalization at work
   authors: [Olivier Danvy, Kevin Millikin]
   year: 2007

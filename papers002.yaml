@@ -39,9 +39,12 @@
   title: Hindley-Milner elaboration in applicative style
 - title: Practical and effective higher-order optimizations
   author: Lars Bergstrom
-- link: http://community.haskell.org/~simonmar/papers/haxl-icfp14.pdf
-  author: Simon Marlow
-  title: 'There is no fork: an abstraction for efﬁcient, concurrent, and concise data access'
+- title: 'There is no fork: an abstraction for efﬁcient, concurrent, and concise data access'
+  authors: [Simon Marlow, Louis Brandy, Jonathan Coens, Jon Purdy]
+  year: 2014
+  links:
+  - http://community.haskell.org/~simonmar/papers/haxl-icfp14.pdf
+  - https://simonmar.github.io/bib/papers/haxl-icfp14.pdf
 - link: http://www.cs.indiana.edu/~sabry/papers/exteff.pdf
   author: Oleg Kiselyov
   title: 'Extensible effects: an alternative to monad transformers'
@@ -139,7 +142,9 @@
 - title: How to make ad-hoc polymorphism less ad-hoc
   authors: [Philip Wadler, Stephen Blott]
   year: 1988
-  link: https://people.csail.mit.edu/dnj/teaching/6898/papers/wadler88.pdf
+  links:
+  - https://people.csail.mit.edu/dnj/teaching/6898/papers/wadler88.pdf
+  - https://www.cse.iitk.ac.in/users/karkare/courses/2010/cs653/Papers/ad-hoc-polymorphism.pdf
 - title: Simple unification-based type inference for GADTs
   authors: [Simon Peyton Jones, Dimitrios Vytiniotis, Stephanie Weirich, Geoffrey Washburn]
   year: 2006
@@ -227,7 +232,9 @@
 - title: Lazy functional state threads
   authors: [John Launchbury, Simon Peyton Jones]
   year: 1994
-  link: http://homepages.dcc.ufmg.br/~camarao/fp/articles/lazy-state.pdf
+  links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/1994/06/lazy-functional-state-threads.pdf
+  - http://homepages.dcc.ufmg.br/~camarao/fp/articles/lazy-state.pdf
 - year: 2003
   link: http://www.seas.upenn.edu/~sweirich/papers/itabox/icfp-published-version.pdf
   authors: [Geoffrey Washburn, Stephanie Weirich]
@@ -345,3 +352,97 @@
   authors: [Martin Erwig, Steve Kollamansberger]
   year: 2006
   link: http://web.engr.oregonstate.edu/~erwig/papers/PFP_JFP06.pdf
+- title: An approach to fast arrays in Haskell
+  authors: [Manuel M. T. Chakravarty, Gabriele Keller]
+  year: 2003
+  link: https://www.cse.unsw.edu.au/~chak/papers/afp-arrays.ps.gz
+- title: Bringing back monad comprehensions
+  authors: [George Giorgidze, Torsten Grust, Nils Schweinsberg, Jeroen Weijers]
+  year: 2011
+  link: http://db.inf.uni-tuebingen.de/staticfiles/publications/haskell2011.pdf
+- title: Comprehending ringads
+  author: Jeremy Gibbons
+  link: http://www.cs.ox.ac.uk/jeremy.gibbons/publications/ringads.pdf
+- title: 'Functional pearl: maximally dense segments'
+  authors: [Sharon Curtis, Shin-Cheng Mu]
+  year: 2010
+  link: http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf
+- title: Beautiful concurrency
+  author: Simon Peyton Jones
+  year: 2007
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/beautiful.pdf
+- title: 'Breaking through the normalization barrier: a self-interpreter for F-omega'
+  authors: [Matt Brown, Jens Palsberg]
+  year: 2016
+  link: http://compilers.cs.ucla.edu/popl16/popl16-full.pdf
+- title: A very general method of computing shortest paths
+  author: Russell O'Connor
+  year: 2011
+  link: http://r6.ca/blog/20110808T035622Z.html
+- title: 'OutsideIn(X): modular type inference with local assumptions'
+  authors: [Dimitrios Vytiniotis, Simon Peyton Jones, Tom Schrijvers, Martin Sulzmann]
+  year: 2011
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/jfp-outsidein.pdf
+- title: Typed tagless final interpreters
+  author: Oleg Kiselyov
+  year: 2012
+  link: http://okmij.org/ftp/tagless-final/course/lecture.pdf
+- title: Supercompilation by evaluation
+  authors: [Max Bolingbroke, Simon Peyton Jones]
+  year: 2016
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/supercomp-by-eval.pdf
+- title: Freer monads, more extensible effects
+  authors: [Oleg Kiselyov, Hiromi Ishii]
+  link: http://okmij.org/ftp/Haskell/extensible/more.pdf
+- title: A program to solve sudoku
+  author: Richard Bird
+  year: 2006
+  link: https://www.cs.tufts.edu/~nr/cs257/archive/richard-bird/sudoku.pdf
+- title: The countdown problem
+  author: Graham Hutton
+  year: 2002
+  link: http://www.cs.nott.ac.uk/~pszgmh/countdown.pdf
+- title: Calculating correct compilers
+  authors: [Patrick Bahr, Graham Hutton]
+  year: 2015
+  link: http://www.cs.nott.ac.uk/~pszgmh/ccc.pdf
+- title: Type classes in Haskell
+  authors: [Cordelia V. Hall, Kevin Hammond, Simon L. Peyton Jones, and Philip L. Wadler]
+  year: 1996
+  link: http://ropas.snu.ac.kr/lib/dock/HaHaJoWa1996.pdf
+- title: 'Idioms: applicative programming with effects'
+  authors: [Conor McBride, Ross Paterson]
+  link: http://strictlypositive.org/Idiom.pdf
+- title: An investigation of the laws of traversals
+  authors: [Mauro Jaskelioff, Ondrej Rypacek]
+  year: 2012
+  link: https://arxiv.org/pdf/1202.2919.pdf
+- title: 'Functional pearl: getting a quick fix on comonads'
+  author: Kenneth Foner
+  link: https://github.com/kwf/GQFC/raw/master/GQFC.pdf
+- title: Propositions as types
+  author: Philip Wadler
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf
+- title: A unified theory of garbage collection
+  authors: [David F. Bacon, Perry Cheng, V. T. Rajan]
+  link: https://www.cs.virginia.edu/~cs415/reading/bacon-garbage.pdf
+- title: 'Physics, topology, logic and computation: a Rosetta Stone'
+  authors: [John C. Baez, Mike Stay]
+  year: 2009
+  link: http://math.ucr.edu/home/baez/rosetta.pdf
+- title: Interpreting types as abstract values
+  author: Oleg Kiselyov
+  year: 2008
+  link: http://okmij.org/ftp/Computation/FLOLAC/lecture.pdf
+- title: Generating multiset partitions
+  author: Brent Yorgey
+  year: 2007
+  link: https://wiki.haskell.org/wikiupload/d/dd/TMR-Issue8.pdf
+- title: Type-level instant insanity
+  author: Conrad Parker
+  year: 2007
+  link: https://wiki.haskell.org/wikiupload/d/dd/TMR-Issue8.pdf
+- title: Burritos for the hungry mathematician
+  author: Ed Morehouse
+  year: 2015
+  link: http://emorehouse.web.wesleyan.edu/silliness/burrito_monads.pdf
