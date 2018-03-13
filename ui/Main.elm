@@ -10,6 +10,7 @@ import Html exposing (Html)
 import HtmlExtra as Html
 import Html.Attributes exposing (href, class)
 import Html.Events
+import Html.Lazy as Html
 import HtmlEventsExtra as HtmlEvents
 import Intersection exposing (Intersection)
 import Json.Decode as Decode exposing (Decoder)
@@ -122,8 +123,7 @@ type alias Paper =
     , year : Maybe Int
     , references : Array TitleId
     , links : Array LinkId
-    , file : Int
-    , line : Int
+    , loc : { file : Int, line : Int }
     }
 
 
@@ -202,14 +202,17 @@ decodePaper :
     -> Dict LinkId Link
     -> Decoder Paper
 decodePaper titles authors links =
-    Decode.map7 Paper
+    Decode.map6 Paper
         (Decode.intField "a")
         decodeAuthors
         (Decode.optIntField "c")
         decodeReferences
         decodeLinks
-        (Decode.intField "f")
-        (Decode.intField "g")
+        (Decode.map2
+            (\file line -> { file = file, line = line })
+            (Decode.intField "f")
+            (Decode.intField "g")
+        )
 
 
 decodeAuthors : Decoder (Array AuthorId)
@@ -592,17 +595,21 @@ viewHeader : Model -> Html Message
 viewHeader model =
     Html.header []
         [ Html.h1 [] [ Html.text "Haskell Papers" ]
-        , Html.a
-            [ class "subtle-link"
-            , href "https://github.com/mitchellwrosen/haskell-papers"
-            ]
-            [ Html.div [] [ Html.text "contribute on GitHub" ] ]
-        , viewTitleSearchBox model.titleFilter
-        , viewAuthorSearchBox model.authorFilter
-        , viewAuthorFacets <| List.map Tuple.first model.authorFacets
-        , Html.div
-            [ Html.Attributes.id "year-slider" ]
-            []
+        , Html.thunk
+            (Html.a
+                [ class "subtle-link"
+                , href "https://github.com/mitchellwrosen/haskell-papers"
+                ]
+                [ Html.div [] [ Html.text "contribute on GitHub" ] ]
+            )
+        , Html.lazy viewTitleSearchBox model.titleFilter
+        , Html.lazy viewAuthorSearchBox model.authorFilter
+        , Html.lazy viewAuthorFacets <| List.map Tuple.first model.authorFacets
+        , Html.thunk
+            (Html.div
+                [ Html.Attributes.id "year-slider" ]
+                []
+            )
         ]
 
 
@@ -699,77 +706,85 @@ viewPaper visible titles authors links titleFilter authorFilter paper =
                         Just (Html.Attributes.style [ ( "display", "none" ) ])
             ]
         )
-        [ viewTitle titles links titleFilter paper
-        , viewDetails authors authorFilter paper
-        , viewEditLink paper
+        [ Html.lazy
+            (viewTitle
+                (Dict.unsafeGet titles paper.title)
+                (Array.get 0 paper.links
+                    |> Maybe.map (Dict.unsafeGet links)
+                )
+            )
+            titleFilter
+        , Html.p
+            [ class "details" ]
+            [ Html.lazy (viewAuthors authors paper.authors) authorFilter
+            , Html.lazy viewYear paper.year
+            ]
+        , Html.lazy viewEditLink paper.loc
         ]
 
 
-viewTitle : Dict TitleId Title -> Dict LinkId Link -> String -> Paper -> Html a
-viewTitle titles links filter paper =
-    let
-        title : List (Html a)
-        title =
-            Dict.unsafeGet titles paper.title
-                |> applyLiveFilterStyle filter
-    in
-        Html.p
-            [ class "title" ]
-            (case Array.get 0 paper.links of
-                Nothing ->
-                    title
+viewTitle : Title -> Maybe Link -> String -> Html a
+viewTitle title link filter =
+    Html.p
+        [ class "title" ]
+        (case link of
+            Nothing ->
+                applyLiveFilterStyle filter title
 
-                Just link ->
-                    [ Html.a
-                        [ class "link"
-                        , href (Dict.unsafeGet links link)
-                        ]
-                        title
+            Just link ->
+                [ Html.a
+                    [ class "link"
+                    , href link
                     ]
-            )
+                    (applyLiveFilterStyle filter title)
+                ]
+        )
 
 
-viewEditLink : Paper -> Html a
-viewEditLink paper =
+viewEditLink : { file : Int, line : Int } -> Html a
+viewEditLink { file, line } =
     let
         editLink : String
         editLink =
             "https://github.com/mitchellwrosen/haskell-papers/edit/master/papers"
-                ++ String.padLeft 3 '0' (toString paper.file)
+                ++ String.padLeft 3 '0' (toString file)
                 ++ ".yaml#L"
-                ++ toString paper.line
+                ++ toString line
     in
-        Html.a [ class "subtle-link edit", href editLink ] [ Html.text "(edit)" ]
+        Html.a
+            [ class "subtle-link edit", href editLink ]
+            [ Html.text "(edit)" ]
 
 
-viewDetails : Dict AuthorId Author -> String -> Paper -> Html Message
-viewDetails authors filter paper =
-    Html.p
-        [ class "details" ]
-        [ paper.authors
-            |> Array.map
-                (\id ->
-                    let
-                        author : Author
-                        author =
-                            Dict.unsafeGet authors id
-                    in
-                        author
-                            |> applyLiveFilterStyle filter
-                            |> Html.span
-                                [ class "author"
-                                , Html.Events.onClick <| AuthorFacetAdd_ author
-                                ]
-                )
-            |> Array.toList
-            |> Html.span []
-        , case paper.year of
-            Nothing ->
-                Html.empty
+viewAuthors : Dict AuthorId Author -> Array AuthorId -> String -> Html Message
+viewAuthors authors ids filter =
+    ids
+        |> Array.map
+            (\id ->
+                let
+                    author : Author
+                    author =
+                        Dict.unsafeGet authors id
+                in
+                    author
+                        |> applyLiveFilterStyle filter
+                        |> Html.span
+                            [ class "author"
+                            , Html.Events.onClick <| AuthorFacetAdd_ author
+                            ]
+            )
+        |> Array.toList
+        |> Html.span []
 
-            Just year ->
-                Html.text (" [" ++ toString year ++ "]")
-        ]
+
+viewYear : Maybe Int -> Html a
+viewYear year =
+    case year of
+        Nothing ->
+            Html.empty
+
+        Just year ->
+            Html.text (" [" ++ toString year ++ "]")
 
 
 applyLiveFilterStyle : String -> String -> List (Html a)
