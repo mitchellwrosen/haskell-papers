@@ -7,3 +7,18 @@
   author: Scott N. Walck
   year: 2014
   link: https://arxiv.org/pdf/1412.4880.pdf
+- title: Consistent subtyping for all
+  authors: [Ningning Xie, Xuan Bi, Bruno C. d. S. Oliveira]
+  link: http://i.cs.hku.hk/~bruno/papers/gradual-esop18.pdf
+- title: Category theory for computing science
+  authors: [Michael Barr, Charles Wells]
+  year: 2012
+  link: http://emis.ams.org/journals/TAC/reprints/articles/22/tr22.pdf
+- title: 'Slicing it: indexex containers in Haskell'
+  author: Conor McBride
+  year: 2009
+  link: https://personal.cis.strath.ac.uk/conor.mcbride/pub/SlicingIt/SlicingIt.pdf
+- title: This is the (co)end, my only (co)friend
+  author: Fosco Loregian
+  year: 2017
+  link: https://arxiv.org/pdf/1501.02503.pdf

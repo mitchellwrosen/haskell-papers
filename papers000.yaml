@@ -217,9 +217,11 @@
   link: http://strictlypositive.org/concon.ps.gz
 - title: Exploring the regular tree types
   authors: [Peter Morris, Thorsten Altenkirch, Conor McBride]
+  year: 2004
   link: http://strictlypositive.org/regular.pdf
-- title: Eliminating dependent patter matching
+- title: Eliminating dependent pattern matching
   authors: [Healfdene Goguen, Conor McBride, James McKinna]
+  year: 2006
   link: http://strictlypositive.org/goguen.pdf
 - title: Trees that grow
   authors: [Shayan Najd, Simon Peyton Jones]

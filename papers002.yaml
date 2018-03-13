@@ -420,6 +420,7 @@
   - http://research.microsoft.com/~simonpj/Papers/classhask.ps.gz
 - title: 'Idioms: applicative programming with effects'
   authors: [Conor McBride, Ross Paterson]
+  year: 2008
   link: http://strictlypositive.org/Idiom.pdf
 - title: An investigation of the laws of traversals
   authors: [Mauro Jaskelioff, Ondrej Rypacek]
