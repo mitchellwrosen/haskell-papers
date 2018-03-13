@@ -5,7 +5,12 @@ import Development.Shake
 
 main :: IO ()
 main =
-  shakeArgs shakeOptions rules
+  shakeArgs
+    shakeOptions
+      { shakeChange = ChangeModtimeAndDigestInput
+      , shakeThreads = 2
+      }
+    rules
 
 rules :: Rules ()
 rules = do
