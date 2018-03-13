@@ -19,6 +19,7 @@ import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
 import Set exposing (Set)
+import String exposing (toLower)
 
 
 --------------------------------------------------------------------------------
@@ -354,7 +355,7 @@ handleTitleFilter filter model =
             model.papers
                 |> Array.foldl
                     (\paper ->
-                        if fuzzyMatch (String.toLower filter) (String.toLower <| Dict.unsafeGet model.titles paper.title) then
+                        if fuzzyMatch (toLower filter) (toLower <| Dict.unsafeGet model.titles paper.title) then
                             Set.insert paper.title
                         else
                             identity
@@ -547,7 +548,7 @@ buildAuthorFilterIds s authors authorsIndex =
         authors
             |> Dict.foldl
                 (\id author ->
-                    if fuzzyMatch (String.toLower s) (String.toLower author) then
+                    if fuzzyMatch (toLower s) (toLower author) then
                         case Dict.get id authorsIndex of
                             Nothing ->
                                 identity
@@ -794,7 +795,7 @@ applyLiveFilterStyle needle haystack =
             [ Html.text haystack ]
 
         Just ( x, xs ) ->
-            case String.indices (String.toLower <| String.fromChar x) (String.toLower haystack) of
+            case String.indices (toLower <| String.fromChar x) (toLower haystack) of
                 [] ->
                     [ Html.text haystack ]
 
