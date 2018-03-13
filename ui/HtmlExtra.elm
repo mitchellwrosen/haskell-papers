@@ -11,4 +11,11 @@ empty =
 
 thunk : Html a -> Html a
 thunk html =
-    Html.lazy (always html) ()
+    Html.lazy (always html) unit
+
+
+{-| For reference-equality of 'thunk'
+-}
+unit : ()
+unit =
+    ()
