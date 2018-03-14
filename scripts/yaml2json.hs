@@ -17,6 +17,7 @@ import Data.List (stripPrefix)
 import Data.Maybe (catMaybes, fromMaybe, mapMaybe)
 import Data.Ord (comparing)
 import Data.Semigroup ((<>))
+import Data.Set (Set)
 import Data.Text (Text, unpack)
 import Data.Tuple (swap)
 import Data.Vector (Vector)
@@ -32,6 +33,7 @@ import qualified Data.ByteString.Lazy as LByteString
 import qualified Data.HashMap.Strict as HashMap
 import qualified Data.IntMap as IntMap
 import qualified Data.IntSet as IntSet
+import qualified Data.Set as Set
 import qualified Data.Text as Text
 import qualified Data.Vector as Vector
 import qualified Data.Vector.Algorithms.Merge as Vector
@@ -201,11 +203,44 @@ instance ToJSON PapersOut where
 
 main :: IO ()
 main = do
-  papers :: [Vector (Loc PaperIn)] <-
-    traverse decodePapersYaml =<< getArgs
+  papers :: Vector (Loc PaperIn) <-
+    fmap mconcat . traverse decodePapersYaml =<< getArgs
+
+  -- Make a top-level paper for each hanging reference that consists only of
+  -- a title.
+  let newPapers :: Vector (Loc PaperIn)
+      newPapers =
+        Vector.fromList (foldMap step papers)
+       where
+        step :: Loc PaperIn -> [Loc PaperIn]
+        step =
+          locValue
+            >> paperInReferences
+            >> Vector.toList
+            >> filter (flip Set.notMember titles)
+            >> map
+                 (\title ->
+                   Loc
+                    { locFile = 0
+                    , locLine = 0
+                    , locValue =
+                        PaperIn
+                          { paperInTitle = title
+                          , paperInAuthors = mempty
+                          , paperInYear = Nothing
+                          , paperInReferences = mempty
+                          , paperInLinks = mempty
+                          }
+                    })
+
+        titles :: Set Title
+        titles =
+          foldMap (locValue >> paperInTitle >> Set.singleton) papers
+
 
   papers
-    & mconcat
+    & (<> newPapers)
+    & vectorSortOn (locValue >> paperInTitle >> Text.toLower)
     & transform
     & Json.encode
     & LByteString.putStr
@@ -257,6 +292,16 @@ main = do
                 })
             values)
 
+vectorSortOn :: forall a b. Ord b => (a -> b) -> Vector a -> Vector a
+vectorSortOn f xs =
+  runST go
+ where
+  go :: forall s. ST s (Vector a)
+  go = do
+    ys <- Vector.thaw xs
+    Vector.sortBy (comparing f) ys
+    Vector.freeze ys
+
 data S = S
   { sTitleIds :: !(HashMap Title TitleId)
   , sAuthorIds :: !(HashMap Author AuthorId)
@@ -287,7 +332,10 @@ transform =
   ploop :: (Vector PaperOut, S) -> PapersOut
   ploop (papers, s) =
     PapersOut
-      { papersOutTitles = titles
+      { papersOutTitles =
+          foldMap
+            (swap >> uncurry IntMap.singleton)
+            (HashMap.toList (sTitleIds s))
       , papersOutAuthors =
           foldMap
             (swap >> uncurry IntMap.singleton)
@@ -296,49 +344,8 @@ transform =
           foldMap
             (swap >> uncurry IntMap.singleton)
             (HashMap.toList (sLinkIds s))
-      , papersOutPapers =
-          vectorSortOn
-            (paperOutTitle >> flip IntMap.lookup titles >> fmap Text.toLower)
-            (papers <> hanging)
+      , papersOutPapers = papers
       }
-   where
-    titles :: IntMap Title
-    titles =
-      foldMap
-        (swap >> uncurry IntMap.singleton)
-        (HashMap.toList (sTitleIds s))
-
-    -- Papers that were referenced but not defined at the top-level are made
-    -- into a 'PaperOut' consisting of only a title.
-    hanging :: Vector PaperOut
-    hanging =
-      sTitleIds s
-        & HashMap.elems
-        & filter ((`IntSet.member` sTopLevelTitles s) >> not)
-        & map fromTitle
-        & Vector.fromList
-     where
-      fromTitle :: TitleId -> PaperOut
-      fromTitle id =
-        PaperOut
-          { paperOutTitle = id
-          , paperOutAuthors = mempty
-          , paperOutYear = Nothing
-          , paperOutReferences = mempty
-          , paperOutLinks = mempty
-          , paperOutFile = 0
-          , paperOutLine = 0
-          }
-
-    vectorSortOn :: forall a b. Ord b => (a -> b) -> Vector a -> Vector a
-    vectorSortOn f xs =
-      runST go
-     where
-      go :: forall s. ST s (Vector a)
-      go = do
-        ys <- Vector.thaw xs
-        Vector.sortBy (comparing f) ys
-        Vector.freeze ys
 
 transform1 :: Loc PaperIn -> State S PaperOut
 transform1 Loc{locFile, locLine, locValue = paper} = do
