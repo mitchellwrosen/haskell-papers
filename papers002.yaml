@@ -13,6 +13,19 @@
 - title: Clowns to the left of me, jokers to the right
   author: Conor McBride
   year: 2006
+  references:
+  - 'Containers: constructing strictly positive types'
+  - '∂ for data: derivatives of data structures'
+  - Toposes, triples, and theories
+  - Derivatives of regular expressions
+  - Datatype-generic programming
+  - Fun with functional dependencies
+  - Type-indexed data types
+  - The zipper
+  - 'PolyP: a polytypic programming language extension'
+  - The derivative of a regular type is its type of one-hole contexts
+  - 'Faking it: simulating dependent types in Haskell'
+  - A functional notation for functional dependencies
   link: http://strictlypositive.org/CJ.pdf
 - link: http://research.microsoft.com/en-us/um/people/simonpj/papers/hmap/gmap3.pdf
   author: Simon Peyton Jones
