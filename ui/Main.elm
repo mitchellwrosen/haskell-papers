@@ -123,6 +123,7 @@ type alias Paper =
     , authors : Array AuthorId
     , year : Maybe Int
     , references : Array TitleId
+    , citations : Array TitleId
     , links : Array LinkId
     , loc : { file : Int, line : Int }
     }
@@ -203,11 +204,12 @@ decodePaper :
     -> Dict LinkId Link
     -> Decoder Paper
 decodePaper titles authors links =
-    Decode.map6 Paper
+    Decode.map7 Paper
         (Decode.intField "a")
         decodeAuthors
         (Decode.optIntField "c")
         decodeReferences
+        decodeCitations
         decodeLinks
         (Decode.map2
             (\file line -> { file = file, line = line })
@@ -220,6 +222,13 @@ decodeAuthors : Decoder (Array AuthorId)
 decodeAuthors =
     Decode.intArray
         |> Decode.field "b"
+        |> Decode.withDefault Array.empty
+
+
+decodeCitations : Decoder (Array TitleId)
+decodeCitations =
+    Decode.intArray
+        |> Decode.field "h"
         |> Decode.withDefault Array.empty
 
 
@@ -719,6 +728,7 @@ viewPaper visible titles authors links titleFilter authorFilter paper =
             [ class "details" ]
             [ Html.lazy (viewAuthors authors paper.authors) authorFilter
             , Html.lazy viewYear paper.year
+            , Html.lazy viewCitations paper.citations
             ]
         , Html.lazy viewEditLink paper.loc
         ]
@@ -786,6 +796,16 @@ viewYear year =
 
         Just year ->
             Html.text (" [" ++ toString year ++ "]")
+
+
+viewCitations : Array TitleId -> Html a
+viewCitations citations =
+    case Array.length citations of
+        0 ->
+            Html.empty
+
+        n ->
+            Html.text (" (cited by " ++ toString n ++ ")")
 
 
 applyLiveFilterStyle : String -> String -> List (Html a)

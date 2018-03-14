@@ -15,7 +15,7 @@ executable yaml2json
       aeson
     , base
     , bytestring
-    , containers
+    , containers >= 0.5.11
     , mtl
     , text
     , unordered-containers

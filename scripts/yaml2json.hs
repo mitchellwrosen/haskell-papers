@@ -1,4 +1,5 @@
 {-# language InstanceSigs        #-}
+{-# language LambdaCase          #-}
 {-# language NamedFieldPuns      #-}
 {-# language OverloadedStrings   #-}
 {-# language ScopedTypeVariables #-}
@@ -15,6 +16,7 @@ import Data.IntMap (IntMap)
 import Data.IntSet (IntSet)
 import Data.List (stripPrefix)
 import Data.Maybe (catMaybes, fromMaybe, mapMaybe)
+import Data.Monoid (Endo(..))
 import Data.Ord (comparing)
 import Data.Semigroup ((<>))
 import Data.Set (Set)
@@ -149,6 +151,8 @@ data PaperOut = PaperOut
     -- ^ Paper year.
   , paperOutReferences :: !(Vector TitleId)
     -- ^ Paper references.
+  , paperOutCitations :: IntSet -- TitleIdSet
+    -- ^ Papers that reference this paper. Note: lazy on purpose!
   , paperOutLinks :: !(Vector LinkId)
     -- ^ Paper links.
   , paperOutFile :: !Int
@@ -175,6 +179,9 @@ instance ToJSON PaperOut where
             pure ("e" .= paperOutLinks paper)
         , pure ("f" .= paperOutFile paper)
         , pure ("g" .= paperOutLine paper)
+        , do
+            guard (not (IntSet.null (paperOutCitations paper)))
+            pure ("h" .= paperOutCitations paper)
         ])
 
 -- | The entire @papers.json@ blob:
@@ -307,16 +314,19 @@ data S = S
   , sAuthorIds :: !(HashMap Author AuthorId)
   , sLinkIds :: !(HashMap Link LinkId)
   , sTopLevelTitles :: !IntSet -- TitleIdSet
+  , sCitations :: !(IntMap IntSet)
   , sNextTitleId :: !TitleId
   , sNextAuthorId :: !AuthorId
   , sNextLinkId :: !LinkId
   }
 
 transform :: Vector (Loc PaperIn) -> PapersOut
-transform =
-  mapM transform1
-    >> (`runState` s0)
-    >> ploop
+transform papersIn =
+  let
+    (papersOut, s) =
+      runState (mapM (transform1 (sCitations s)) papersIn) s0
+  in
+    ploop (papersOut, s)
  where
   s0 :: S
   s0 = S
@@ -324,6 +334,7 @@ transform =
     , sAuthorIds = mempty
     , sLinkIds = mempty
     , sTopLevelTitles = mempty
+    , sCitations = mempty
     , sNextTitleId = 0
     , sNextAuthorId = 0
     , sNextLinkId = 0
@@ -347,8 +358,8 @@ transform =
       , papersOutPapers = papers
       }
 
-transform1 :: Loc PaperIn -> State S PaperOut
-transform1 Loc{locFile, locLine, locValue = paper} = do
+transform1 :: IntMap IntSet -> Loc PaperIn -> State S PaperOut
+transform1 citations Loc{locFile, locLine, locValue = paper} = do
   title_id :: TitleId <-
     getTitleId (paperInTitle paper)
 
@@ -365,6 +376,22 @@ transform1 Loc{locFile, locLine, locValue = paper} = do
   references :: Vector TitleId <-
     mapM getTitleId (paperInReferences paper)
 
+  modify'
+    (\s ->
+      let
+        f :: Int -> IntMap IntSet -> IntMap IntSet
+        f =
+          IntMap.alter
+            (\case
+              Nothing ->
+                Just (IntSet.singleton title_id)
+              Just ids ->
+                Just (IntSet.insert title_id ids))
+      in
+        s { sCitations =
+              appEndo (foldMap (Endo . f) references) (sCitations s)
+          })
+
   links :: Vector LinkId <-
     mapM getLinkId (paperInLinks paper)
 
@@ -373,6 +400,8 @@ transform1 Loc{locFile, locLine, locValue = paper} = do
     , paperOutAuthors = authors
     , paperOutYear = paperInYear paper
     , paperOutReferences = references
+    , paperOutCitations =
+        fromMaybe mempty (citations IntMap.!? title_id)
     , paperOutLinks = links
     , paperOutFile = locFile
     , paperOutLine = locLine
