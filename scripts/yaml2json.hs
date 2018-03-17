@@ -49,6 +49,10 @@ type AuthorId = Int
 type LinkId = Int
 type TitleId = Int
 
+type AuthorIdMap a = IntMap a
+
+type TitleIdSet = IntSet
+
 -- | A thing that came from a line in a file.
 data Loc a = Loc
   { locFile :: !Int
@@ -151,7 +155,7 @@ data PaperOut = PaperOut
     -- ^ Paper year.
   , paperOutReferences :: !(Vector TitleId)
     -- ^ Paper references.
-  , paperOutCitations :: IntSet -- TitleIdSet
+  , paperOutCitations :: TitleIdSet
     -- ^ Papers that reference this paper. Note: lazy on purpose!
   , paperOutLinks :: !(Vector LinkId)
     -- ^ Paper links.
@@ -186,14 +190,16 @@ instance ToJSON PaperOut where
 
 -- | The entire @papers.json@ blob:
 --
---   - Array of papers
 --   - Lookup tables for strings that we need not include over and over
 --     (authors, titles, etc).
+--   - Inverted index of authors
+--   - Array of papers
 --
 data PapersOut = PapersOut
   { papersOutTitles :: !(IntMap Title)
   , papersOutAuthors :: !(IntMap Author)
   , papersOutLinks :: !(IntMap Link)
+  , papersOutAuthorsIndex :: !(AuthorIdMap TitleIdSet)
   , papersOutPapers :: !(Vector PaperOut)
     -- ^ Invariant: a 'PaperOut's title, author, references, etc. will always
     -- be in 'IntMap's above.
@@ -205,6 +211,7 @@ instance ToJSON PapersOut where
       [ "a" .= papersOutTitles papers
       , "b" .= papersOutAuthors papers
       , "c" .= papersOutLinks papers
+      , "e" .= papersOutAuthorsIndex papers
       , "d" .= papersOutPapers papers
       ]
 
@@ -313,7 +320,8 @@ data S = S
   { sTitleIds :: !(HashMap Title TitleId)
   , sAuthorIds :: !(HashMap Author AuthorId)
   , sLinkIds :: !(HashMap Link LinkId)
-  , sTopLevelTitles :: !IntSet -- TitleIdSet
+  , sAuthorsIndex :: !(AuthorIdMap TitleIdSet)
+  , sTopLevelTitles :: !TitleIdSet
   , sCitations :: !(IntMap IntSet)
   , sNextTitleId :: !TitleId
   , sNextAuthorId :: !AuthorId
@@ -333,6 +341,7 @@ transform papersIn =
     { sTitleIds = mempty
     , sAuthorIds = mempty
     , sLinkIds = mempty
+    , sAuthorsIndex = mempty
     , sTopLevelTitles = mempty
     , sCitations = mempty
     , sNextTitleId = 0
@@ -355,7 +364,10 @@ transform papersIn =
           foldMap
             (swap >> uncurry IntMap.singleton)
             (HashMap.toList (sLinkIds s))
-      , papersOutPapers = papers
+      , papersOutAuthorsIndex =
+          sAuthorsIndex s
+      , papersOutPapers =
+          papers
       }
 
 transform1 :: IntMap IntSet -> Loc PaperIn -> State S PaperOut
@@ -373,24 +385,20 @@ transform1 citations Loc{locFile, locLine, locValue = paper} = do
   authors :: Vector AuthorId <-
     mapM getAuthorId (paperInAuthors paper)
 
+  modify'
+    (\s ->
+      s { sAuthorsIndex =
+            appEndo (foldMap (Endo . flip insertIndex title_id) authors) (sAuthorsIndex s)
+        })
+
   references :: Vector TitleId <-
     mapM getTitleId (paperInReferences paper)
 
   modify'
     (\s ->
-      let
-        f :: Int -> IntMap IntSet -> IntMap IntSet
-        f =
-          IntMap.alter
-            (\case
-              Nothing ->
-                Just (IntSet.singleton title_id)
-              Just ids ->
-                Just (IntSet.insert title_id ids))
-      in
-        s { sCitations =
-              appEndo (foldMap (Endo . f) references) (sCitations s)
-          })
+      s { sCitations =
+            appEndo (foldMap (Endo . flip insertIndex title_id) references) (sCitations s)
+        })
 
   links :: Vector LinkId <-
     mapM getLinkId (paperInLinks paper)
@@ -448,6 +456,17 @@ getLinkId link = do
       pure (sNextLinkId s)
     Just id ->
       pure id
+
+-- | Insert into an inverted index.
+insertIndex :: Int -> Int -> IntMap IntSet -> IntMap IntSet
+insertIndex k v =
+  IntMap.alter
+    (\case
+      Nothing ->
+        Just (IntSet.singleton v)
+      Just vs ->
+        Just (IntSet.insert v vs))
+    k
 
 (>>) :: (a -> b) -> (b -> c) -> (a -> c)
 (>>) = flip (.)

@@ -1,7 +1,7 @@
 module JsonDecodeExtra
     exposing
-        ( andThen3
-        , intArray
+        ( intArray
+        , intSet
         , intField
         , optField
         , optIntField
@@ -10,30 +10,20 @@ module JsonDecodeExtra
         )
 
 import Array exposing (Array)
+import ArrayExtra as Array
 import Json.Decode as Decode exposing (Decoder)
-
-
-andThen3 :
-    Decoder a
-    -> Decoder b
-    -> Decoder c
-    -> (a -> b -> c -> Decoder d)
-    -> Decoder d
-andThen3 dx dy dz f =
-    Decode.andThen
-        (\x ->
-            Decode.andThen
-                (\y ->
-                    Decode.andThen (f x y) dz
-                )
-                dy
-        )
-        dx
+import Set exposing (Set)
 
 
 intArray : Decoder (Array Int)
 intArray =
     Decode.array Decode.int
+
+
+intSet : Decoder (Set Int)
+intSet =
+    intArray
+        |> Decode.map Array.toSet
 
 
 intField : String -> Decoder Int

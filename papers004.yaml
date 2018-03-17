@@ -34,3 +34,6 @@
   authors: [Exequiel Rivas, Mauro Jaskelioff, Tom Schrijvers]
   year: 2015
   link: https://lirias.kuleuven.be/bitstream/123456789/499951/1/main.pdf
+- title: Calculating functional programs
+  author: Jeremy Gibbons
+  link: http://www.cs.ox.ac.uk/jeremy.gibbons/publications/acmmpc-calcfp.pdf

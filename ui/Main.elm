@@ -19,11 +19,18 @@ import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
 import Set exposing (Set)
+import Setter exposing (..)
 import String exposing (toLower)
+import Time exposing (Time)
 
 
 --------------------------------------------------------------------------------
 -- Types and type aliases
+
+
+type TheModel
+    = Loading
+    | Loaded Model
 
 
 type alias Model =
@@ -66,9 +73,8 @@ type alias Model =
     }
 
 
-type
-    Message
-    -- The initial download of ./static/papers.json
+type Message
+      -- The initial download of ./static/papers.json
     = Blob (Result Http.Error Papers)
       -- The title filter input box contents were modified
     | TitleFilter String
@@ -114,6 +120,7 @@ type alias Papers =
     { titles : Dict TitleId Title
     , authors : Dict AuthorId Author
     , links : Dict LinkId Link
+    , authorsIndex : Dict AuthorId (Set TitleId)
     , papers : Array Paper
     }
 
@@ -134,7 +141,7 @@ type alias Paper =
 -- Boilerplate main function
 
 
-main : Program Never Model Message
+main : Program Never TheModel Message
 main =
     Html.program
         { init = init
@@ -149,61 +156,48 @@ main =
 -- Initialize the model and GET ./static/papers.json
 
 
-init : ( Model, Cmd Message )
+init : ( TheModel, Cmd Message )
 init =
     let
         decodePapers : Decoder Papers
         decodePapers =
-            Decode.andThen3
+            Decode.map5
+                (\titles authors links authorsIndex papers ->
+                    { titles = titles
+                    , authors = authors
+                    , links = links
+                    , authorsIndex = authorsIndex
+                    , papers = papers
+                    }
+                )
                 (Decode.field "a" decodeIds)
                 (Decode.field "b" decodeIds)
                 (Decode.field "c" decodeIds)
-                (\titles authors links ->
-                    decodePaper titles authors links
-                        |> Decode.array
-                        |> Decode.field "d"
-                        |> Decode.map
-                            (\papers ->
-                                { authors = authors
-                                , links = links
-                                , papers = papers
-                                , titles = titles
-                                }
-                            )
+                (Decode.field "e" decodeIndex)
+                (decodePaper
+                    |> Decode.array
+                    |> Decode.field "d"
                 )
+
+        decodeIndex : Decoder (Dict Int (Set Int))
+        decodeIndex =
+            Decode.tuple2 Decode.int Decode.intSet
+                |> Decode.array
+                |> Decode.map Array.toDict
 
         decodeIds : Decoder (Dict Int String)
         decodeIds =
             Decode.tuple2 Decode.int Decode.string
                 |> Decode.array
-                |> Decode.map Array.dict
+                |> Decode.map Array.toDict
     in
-        ( { papers = Array.empty
-          , titles = Dict.empty
-          , authors = Dict.empty
-          , links = Dict.empty
-          , yearMin = 0
-          , yearMax = 0
-          , titleFilter = ""
-          , titleFilterIds = Intersection.empty
-          , authorsIndex = Dict.empty
-          , authorFilter = ""
-          , authorFilterIds = Intersection.empty
-          , authorFacets = []
-          , yearFilter = { min = 0, max = 0 }
-          , yearFilterIds = Intersection.empty
-          , visibleIds = Intersection.empty
-          }
+        ( Loading
         , Http.send Blob <| Http.get "./static/papers.json" decodePapers
         )
 
 
-decodePaper :
-    Dict TitleId Title
-    -> Dict AuthorId Author
-    -> Dict LinkId Link
-    -> Decoder Paper
-decodePaper titles authors links =
+decodePaper : Decoder Paper
+decodePaper =
     Decode.map7 Paper
         (Decode.intField "a")
         decodeAuthors
@@ -251,21 +245,26 @@ decodeReferences =
 -- Subscriptions
 
 
-subscriptions : Model -> Sub Message
-subscriptions _ =
-    let
-        unpack : NoUiSliderOnUpdate -> Message
-        unpack values =
-            case values of
-                [ n, m ] ->
-                    YearFilter n m
+subscriptions : TheModel -> Sub Message
+subscriptions model =
+    case model of
+        Loading ->
+            Sub.none
 
-                _ ->
-                    Debug.crash <|
-                        "Expected 2 ints; noUiSlider.js sent: "
-                            ++ toString values
-    in
-        noUiSliderOnUpdate unpack
+        Loaded _ ->
+            let
+                unpack : NoUiSliderOnUpdate -> Message
+                unpack values =
+                    case values of
+                        [ n, m ] ->
+                            YearFilter n m
+
+                        _ ->
+                            Debug.crash <|
+                                "Expected 2 ints; noUiSlider.js sent: "
+                                    ++ toString values
+            in
+                noUiSliderOnUpdate unpack
 
 
 
@@ -273,33 +272,39 @@ subscriptions _ =
 -- The main update loop
 
 
-update : Message -> Model -> ( Model, Cmd Message )
+update : Message -> TheModel -> ( TheModel, Cmd Message )
 update message model =
-    case message of
-        Blob blob ->
-            handleBlob blob model
+    case ( message, model ) of
+        ( Blob blob, Loading ) ->
+            handleBlob blob
 
-        TitleFilter filter ->
+        ( TitleFilter filter, Loaded model ) ->
             handleTitleFilter filter model
 
-        AuthorFilter filter ->
+        ( AuthorFilter filter, Loaded model ) ->
             handleAuthorFilter filter model
 
-        AuthorFacetAdd ->
+        ( AuthorFacetAdd, Loaded model ) ->
             handleAuthorFacetAdd model
 
-        AuthorFacetAdd_ author ->
+        ( AuthorFacetAdd_ author, Loaded model ) ->
             handleAuthorFacetAdd_ author model
 
-        AuthorFacetRemove facet ->
+        ( AuthorFacetRemove facet, Loaded model ) ->
             handleAuthorFacetRemove facet model
 
-        YearFilter n m ->
+        ( YearFilter n m, Loaded model ) ->
             handleYearFilter n m model
 
+        _ ->
+            ( model, Cmd.none )
+                |> Debug.log ("Ignoring message: " ++ toString message)
 
-handleBlob : Result Http.Error Papers -> Model -> ( Model, Cmd Message )
-handleBlob result model =
+
+
+
+handleBlob : Result Http.Error Papers -> ( TheModel, Cmd Message )
+handleBlob result =
     case result of
         Ok blob ->
             let
@@ -326,7 +331,7 @@ handleBlob result model =
                     , yearMax = yearMax
                     , titleFilter = ""
                     , titleFilterIds = Intersection.empty
-                    , authorsIndex = buildAuthorsIndex blob.papers blob.authors
+                    , authorsIndex = blob.authorsIndex
                     , authorFilter = ""
                     , authorFilterIds = Intersection.empty
                     , authorFacets = []
@@ -350,13 +355,13 @@ handleBlob result model =
                         , range = Just { min = yearMin, max = yearMax + 1 }
                         }
             in
-                ( model, command )
+                ( Loaded model, command )
 
         Err msg ->
             Debug.crash <| toString msg
 
 
-handleTitleFilter : String -> Model -> ( Model, Cmd a )
+handleTitleFilter : String -> Model -> ( TheModel, Cmd a )
 handleTitleFilter filter model =
     let
         titleFilterIds : Intersection TitleId
@@ -380,10 +385,10 @@ handleTitleFilter filter model =
             }
                 |> rebuildVisibleIds
     in
-        ( model_, Cmd.none )
+        ( Loaded model_, Cmd.none )
 
 
-handleAuthorFilter : String -> Model -> ( Model, Cmd a )
+handleAuthorFilter : String -> Model -> ( TheModel, Cmd a )
 handleAuthorFilter filter model =
     let
         authorFilterIds : Intersection TitleId
@@ -398,10 +403,10 @@ handleAuthorFilter filter model =
             }
                 |> rebuildVisibleIds
     in
-        ( model_, Cmd.none )
+        ( Loaded model_, Cmd.none )
 
 
-handleAuthorFacetAdd : Model -> ( Model, Cmd a )
+handleAuthorFacetAdd : Model -> ( TheModel, Cmd a )
 handleAuthorFacetAdd model =
     let
         model_ : Model
@@ -433,10 +438,10 @@ handleAuthorFacetAdd model =
                     }
                         |> rebuildVisibleIds
     in
-        ( model_, Cmd.none )
+        ( Loaded model_, Cmd.none )
 
 
-handleAuthorFacetAdd_ : Author -> Model -> ( Model, Cmd a )
+handleAuthorFacetAdd_ : Author -> Model -> ( TheModel, Cmd a )
 handleAuthorFacetAdd_ author model =
     let
         authorFacets : List ( String, Intersection TitleId )
@@ -456,10 +461,10 @@ handleAuthorFacetAdd_ author model =
             { model | authorFacets = authorFacets }
                 |> rebuildVisibleIds
     in
-        ( model_, Cmd.none )
+        ( Loaded model_, Cmd.none )
 
 
-handleAuthorFacetRemove : String -> Model -> ( Model, Cmd a )
+handleAuthorFacetRemove : String -> Model -> ( TheModel, Cmd a )
 handleAuthorFacetRemove facet model =
     let
         authorFacets : List ( String, Intersection TitleId )
@@ -474,10 +479,10 @@ handleAuthorFacetRemove facet model =
             }
                 |> rebuildVisibleIds
     in
-        ( model_, Cmd.none )
+        ( Loaded model_, Cmd.none )
 
 
-handleYearFilter : Int -> Int -> Model -> ( Model, Cmd a )
+handleYearFilter : Int -> Int -> Model -> ( TheModel, Cmd a )
 handleYearFilter n m model =
     let
         yearFilter : { min : Int, max : Int }
@@ -513,36 +518,7 @@ handleYearFilter n m model =
             }
                 |> rebuildVisibleIds
     in
-        ( model_, Cmd.none )
-
-
-{-| Build an inverted index mapping author ids to the set of paper title ids by
-that author.
--}
-buildAuthorsIndex :
-    Array Paper
-    -> Dict AuthorId Author
-    -> Dict AuthorId (Set TitleId)
-buildAuthorsIndex papers authors =
-    let
-        step :
-            Paper
-            -> Dict AuthorId (Set TitleId)
-            -> Dict AuthorId (Set TitleId)
-        step paper dict =
-            Dict.merge
-                Dict.insert
-                (\k v1 v2 -> Dict.insert k (Set.union v1 v2))
-                Dict.insert
-                (Array.foldl
-                    (\id -> Dict.insert id (Set.singleton paper.title))
-                    Dict.empty
-                    paper.authors
-                )
-                dict
-                Dict.empty
-    in
-        Array.foldl step Dict.empty papers
+        ( Loaded model_, Cmd.none )
 
 
 buildAuthorFilterIds :
@@ -592,17 +568,27 @@ rebuildVisibleIds model =
 -- Render HTML
 
 
-view : Model -> Html Message
+view : TheModel -> Html Message
 view model =
-    Html.div
-        [ class "container" ]
-        [ viewHeader model
-        , viewPapers model
-        ]
+    case model of
+        Loading ->
+            Html.div
+                [ class "container" ]
+                [ viewHeader
+                , Html.text "Rendering... "
+                ]
+
+        Loaded model ->
+            Html.div
+                [ class "container" ]
+                [ viewHeader
+                , viewFilters model
+                , viewPapers model
+                ]
 
 
-viewHeader : Model -> Html Message
-viewHeader model =
+viewHeader : Html a
+viewHeader =
     Html.header []
         [ Html.h1 [] [ Html.text "Haskell Papers" ]
         , Html.thunk
@@ -612,7 +598,13 @@ viewHeader model =
                 ]
                 [ Html.div [] [ Html.text "contribute on GitHub" ] ]
             )
-        , Html.lazy viewTitleSearchBox model.titleFilter
+        ]
+
+
+viewFilters : Model -> Html Message
+viewFilters model =
+    Html.p []
+        [ Html.lazy viewTitleSearchBox model.titleFilter
         , Html.lazy viewAuthorSearchBox model.authorFilter
         , Html.lazy viewAuthorFacets <| List.map Tuple.first model.authorFacets
         , Html.thunk
