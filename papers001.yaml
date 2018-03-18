@@ -305,6 +305,8 @@
   - https://www.joachim-breitner.de/publications/CodeWorld-ICFP17.pdf
   - https://dl.acm.org/citation.cfm?doid=3136534.3110247
 - title: A metaprogramming framework for formal verification
+  authors: [Gabriel Ebner, Sebastian Ullrich, Jared Roesch, Jeremy Avigad, Leonardo de Moura]
+  year: 2017
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110278
 - title: A static checker for safe pattern matching in Haskell
   authors: [Neil Mitchell, Colin Runciman]
