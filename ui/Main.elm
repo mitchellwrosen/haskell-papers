@@ -6,6 +6,7 @@ import BasicsExtra exposing (..)
 import Date exposing (Date)
 import Dict exposing (Dict)
 import DictExtra as Dict
+import Either exposing (Either(..), either)
 import Http
 import Html exposing (Html)
 import HtmlExtra as Html
@@ -14,14 +15,18 @@ import Html.Events
 import Html.Lazy as Html
 import HtmlEventsExtra as HtmlEvents
 import Intersection exposing (Intersection)
+import Intervals exposing (Intervals)
 import Json.Decode as Decode exposing (Decoder)
 import JsonDecodeExtra as Decode
 import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
+import Regex exposing (regex)
+import RegexExtra as Regex
 import Set exposing (Set)
 import Setter exposing (..)
 import String exposing (toLower)
+import StringExtra as String exposing (words_)
 import Task
 import TaskExtra as Task
 
@@ -373,12 +378,21 @@ handleBlob result =
 handleTitleFilter : String -> Model -> ( TheModel, Cmd a )
 handleTitleFilter filter model =
     let
+        matches : Title -> Bool
+        matches =
+            toLower
+                >> (filter
+                        |> words_
+                        |> List.map toLower
+                        |> String.containsAll
+                   )
+
         titleFilterIds : Intersection TitleId
         titleFilterIds =
             model.papers
                 |> Array.foldl
                     (\paper ->
-                        if fuzzyMatch (toLower filter) (toLower <| Dict.unsafeGet model.titles paper.title) then
+                        if matches (Dict.unsafeGet model.titles paper.title) then
                             Set.insert paper.title
                         else
                             identity
@@ -535,25 +549,35 @@ buildAuthorFilterIds :
     -> Dict AuthorId Author
     -> Dict AuthorId (Set TitleId)
     -> Intersection TitleId
-buildAuthorFilterIds s authors authorsIndex =
-    if String.isEmpty s then
+buildAuthorFilterIds filter authors authorsIndex =
+    if String.isEmpty filter then
         Intersection.empty
     else
-        authors
-            |> Dict.foldl
-                (\id author ->
-                    if fuzzyMatch (toLower s) (toLower author) then
-                        case Dict.get id authorsIndex of
-                            Nothing ->
-                                identity
+        let
+            matches : Author -> Bool
+            matches =
+                toLower
+                    >> (filter
+                            |> words_
+                            |> List.map toLower
+                            |> String.containsAll
+                       )
+        in
+            authors
+                |> Dict.foldl
+                    (\id author ->
+                        if matches author then
+                            case Dict.get id authorsIndex of
+                                Nothing ->
+                                    identity
 
-                            Just ids ->
-                                Set.union ids
-                    else
-                        identity
-                )
-                Set.empty
-            |> Intersection.fromSet
+                                Just ids ->
+                                    Set.union ids
+                        else
+                            identity
+                    )
+                    Set.empty
+                |> Intersection.fromSet
 
 
 rebuildVisibleIds : Model -> Model
@@ -754,14 +778,14 @@ viewTitle title link filter =
         [ class "title" ]
         (case link of
             Nothing ->
-                applyLiveFilterStyle filter title
+                applyLiveFilterStyle (words_ filter) title
 
             Just link ->
                 [ Html.a
                     [ class "link"
                     , href link
                     ]
-                    (applyLiveFilterStyle filter title)
+                    (applyLiveFilterStyle (words_ filter) title)
                 ]
         )
 
@@ -792,7 +816,7 @@ viewAuthors authors ids filter =
                         Dict.unsafeGet authors id
                 in
                     author
-                        |> applyLiveFilterStyle filter
+                        |> applyLiveFilterStyle (words_ filter)
                         |> Html.span
                             [ class "author"
                             , Html.Events.onClick <| AuthorFacetAdd_ author
@@ -822,46 +846,21 @@ viewCitations citations =
             Html.text (" (cited by " ++ toString n ++ ")")
 
 
-applyLiveFilterStyle : String -> String -> List (Html a)
-applyLiveFilterStyle needle haystack =
-    case String.uncons needle of
-        Nothing ->
-            [ Html.text haystack ]
+applyLiveFilterStyle : List String -> String -> List (Html a)
+applyLiveFilterStyle needles haystack =
+    let
+        segments : List (Either String String)
+        segments =
+            needles
+                |> List.filterMap (String.interval >> apply haystack)
+                |> List.foldl Intervals.insert Intervals.empty
+                |> String.explode
+                |> apply haystack
 
-        Just ( x, xs ) ->
-            case String.indices (toLower <| String.fromChar x) (toLower haystack) of
-                [] ->
-                    [ Html.text haystack ]
-
-                n :: _ ->
-                    Html.text (String.left n haystack)
-                        :: Html.span
-                            [ class "highlight" ]
-                            [ Html.text (String.slice n (n + 1) haystack) ]
-                        :: applyLiveFilterStyle xs (String.dropLeft (n + 1) haystack)
-
-
-
---------------------------------------------------------------------------------
--- Misc. utility functions
-
-
-{-| Dead-simple greedy fuzzy match algorithm. Search through the haystack for
-the needle, in order, without backtracking.
-
-      fuzzyMatch "XYZ" "..X..Y..Z.." = True
-
--}
-fuzzyMatch : String -> String -> Bool
-fuzzyMatch needle haystack =
-    case String.uncons needle of
-        Nothing ->
-            True
-
-        Just ( x, xs ) ->
-            case String.indices (String.fromChar x) haystack of
-                [] ->
-                    False
-
-                n :: _ ->
-                    fuzzyMatch xs (String.dropLeft (n + 1) haystack)
+        renderSegment : Either String String -> Html a
+        renderSegment =
+            either
+                Html.text
+                (Html.text >> List.singleton >> Html.span [ class "highlight" ])
+    in
+        List.map renderSegment segments
