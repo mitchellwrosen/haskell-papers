@@ -708,8 +708,7 @@ viewPaperOfTheDay model =
             Html.div []
                 [ Html.h3 [] [ Html.text "Paper of the Day" ]
                 , Html.div [ class "paper" ]
-                    -- FIXME(mitchell): Figure out how to share code with
-                    -- 'viewPaper' below
+                    -- FIXME(mitchell): Share code with 'viewPaper' below
                     [ Html.lazy
                         (viewTitle
                             (Dict.unsafeGet model.titles paper.title)
@@ -717,12 +716,12 @@ viewPaperOfTheDay model =
                                 |> Maybe.map (Dict.unsafeGet model.links)
                             )
                         )
-                        model.titleFilter
+                        Nothing
                     , Html.p
                         [ class "details" ]
                         [ Html.lazy
                             (viewAuthors model.authors paper.authors)
-                            model.authorFilter
+                            Nothing
                         , Html.lazy viewYear paper.year
                         , Html.lazy viewCitations paper.citations
                         ]
@@ -759,12 +758,12 @@ viewPaper model paper =
                     |> Maybe.map (Dict.unsafeGet model.links)
                 )
             )
-            model.titleFilter
+            (Just model.titleFilter)
         , Html.p
             [ class "details" ]
             [ Html.lazy
                 (viewAuthors model.authors paper.authors)
-                model.authorFilter
+                (Just model.authorFilter)
             , Html.lazy viewYear paper.year
             , Html.lazy viewCitations paper.citations
             ]
@@ -772,22 +771,36 @@ viewPaper model paper =
         ]
 
 
-viewTitle : Title -> Maybe Link -> String -> Html a
+viewTitle :
+    Title -- Paper title
+    -> Maybe Link -- Paper link
+    -> Maybe String -- Title filter, or Nothing to ignore filter
+    -> Html a
 viewTitle title link filter =
-    Html.p
-        [ class "title" ]
-        (case link of
-            Nothing ->
-                applyLiveFilterStyle (words_ filter) title
+    let
+        title_ : List (Html a)
+        title_ =
+            case filter of
+                Nothing ->
+                    [ Html.text title ]
 
-            Just link ->
-                [ Html.a
-                    [ class "link"
-                    , href link
+                Just filter ->
+                    applyLiveFilterStyle (words_ filter) title
+    in
+        Html.p
+            [ class "title" ]
+            (case link of
+                Nothing ->
+                    title_
+
+                Just link ->
+                    [ Html.a
+                        [ class "link"
+                        , href link
+                        ]
+                        title_
                     ]
-                    (applyLiveFilterStyle (words_ filter) title)
-                ]
-        )
+            )
 
 
 viewEditLink : { file : Int, line : Int } -> Html a
@@ -805,7 +818,7 @@ viewEditLink { file, line } =
             [ Html.text "(edit)" ]
 
 
-viewAuthors : Dict AuthorId Author -> Array AuthorId -> String -> Html Message
+viewAuthors : Dict AuthorId Author -> Array AuthorId -> Maybe String -> Html Message
 viewAuthors authors ids filter =
     ids
         |> Array.map
@@ -816,7 +829,10 @@ viewAuthors authors ids filter =
                         Dict.unsafeGet authors id
                 in
                     author
-                        |> applyLiveFilterStyle (words_ filter)
+                        |> maybe
+                            (Html.text >> List.singleton)
+                            (words_ >> applyLiveFilterStyle)
+                            filter
                         |> Html.span
                             [ class "author"
                             , Html.Events.onClick <| AuthorFacetAdd_ author
