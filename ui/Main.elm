@@ -3,6 +3,7 @@ module Main exposing (..)
 import Array exposing (Array)
 import ArrayExtra as Array
 import BasicsExtra exposing (..)
+import Date exposing (Date)
 import Dict exposing (Dict)
 import DictExtra as Dict
 import Http
@@ -21,7 +22,8 @@ import NoUiSlider exposing (..)
 import Set exposing (Set)
 import Setter exposing (..)
 import String exposing (toLower)
-import Time exposing (Time)
+import Task
+import TaskExtra as Task
 
 
 --------------------------------------------------------------------------------
@@ -34,7 +36,11 @@ type TheModel
 
 
 type alias Model =
-    { papers : Array Paper
+    { -- The current date
+      now : Date
+
+    -- Basic paper structures
+    , papers : Array Paper
     , titles : Dict TitleId Title
     , authors : Dict AuthorId Author
     , links : Dict LinkId Link
@@ -73,9 +79,10 @@ type alias Model =
     }
 
 
-type Message
-      -- The initial download of ./static/papers.json
-    = Blob (Result Http.Error Papers)
+type
+    Message
+    -- The initial download of ./static/papers.json and the current date.
+    = Blob (Result Http.Error ( Papers, Date ))
       -- The title filter input box contents were modified
     | TitleFilter String
       -- The author filter input box contents were modified
@@ -192,7 +199,10 @@ init =
                 |> Decode.map Array.toDict
     in
         ( Loading
-        , Http.send Blob <| Http.get "./static/papers.json" decodePapers
+        , Http.get "./static/papers.json" decodePapers
+            |> Http.toTask
+            |> Task.and Date.now
+            |> Task.attempt Blob
         )
 
 
@@ -301,12 +311,10 @@ update message model =
                 |> Debug.log ("Ignoring message: " ++ toString message)
 
 
-
-
-handleBlob : Result Http.Error Papers -> ( TheModel, Cmd Message )
+handleBlob : Result Http.Error ( Papers, Date ) -> ( TheModel, Cmd Message )
 handleBlob result =
     case result of
-        Ok blob ->
+        Ok ( blob, now ) ->
             let
                 ( yearMin, yearMax ) =
                     Array.foldl
@@ -323,7 +331,8 @@ handleBlob result =
 
                 model : Model
                 model =
-                    { papers = blob.papers
+                    { now = now
+                    , papers = blob.papers
                     , titles = blob.titles
                     , authors = blob.authors
                     , links = blob.links
@@ -582,6 +591,7 @@ view model =
             Html.div
                 [ class "container" ]
                 [ viewHeader
+                , viewPaperOfTheDay model
                 , viewFilters model
                 , viewPapers model
                 ]
@@ -666,59 +676,73 @@ viewAuthorFacets authorFacets =
                 |> Html.div [ class "facets" ]
 
 
+viewPaperOfTheDay : Model -> Html Message
+viewPaperOfTheDay model =
+    case Array.getCycle (Date.day model.now) model.papers of
+        Nothing ->
+            Html.empty
+
+        Just paper ->
+            Html.div []
+                [ Html.h3 [] [ Html.text "Paper of the Day" ]
+                , Html.div [ class "paper" ]
+                    -- FIXME(mitchell): Figure out how to share code with
+                    -- 'viewPaper' below
+                    [ Html.lazy
+                        (viewTitle
+                            (Dict.unsafeGet model.titles paper.title)
+                            (Array.get 0 paper.links
+                                |> Maybe.map (Dict.unsafeGet model.links)
+                            )
+                        )
+                        model.titleFilter
+                    , Html.p
+                        [ class "details" ]
+                        [ Html.lazy
+                            (viewAuthors model.authors paper.authors)
+                            model.authorFilter
+                        , Html.lazy viewYear paper.year
+                        , Html.lazy viewCitations paper.citations
+                        ]
+                    , Html.lazy viewEditLink paper.loc
+                    ]
+                ]
+
+
 viewPapers : Model -> Html Message
 viewPapers model =
     Html.ul
         [ class "paper-list" ]
         (model.papers
             |> Array.toList
-            |> List.map
-                (viewPaper
-                    (Intersection.toSet model.visibleIds)
-                    model.titles
-                    model.authors
-                    model.links
-                    model.titleFilter
-                    model.authorFilter
-                )
+            |> List.map (viewPaper model)
         )
 
 
-viewPaper :
-    Maybe (Set TitleId)
-    -> Dict TitleId Title
-    -> Dict AuthorId Author
-    -> Dict LinkId Link
-    -> String
-    -> String
-    -> Paper
-    -> Html Message
-viewPaper visible titles authors links titleFilter authorFilter paper =
+viewPaper : Model -> Paper -> Html Message
+viewPaper model paper =
     Html.li
         (List.filterMap identity
             [ Just (class "paper")
-            , case visible of
-                Nothing ->
-                    Nothing
-
-                Just visible_ ->
-                    if Set.member paper.title visible_ then
-                        Nothing
-                    else
-                        Just (Html.Attributes.style [ ( "display", "none" ) ])
+            , if Intersection.member paper.title model.visibleIds then
+                Nothing
+              else
+                Just (Html.Attributes.style [ ( "display", "none" ) ])
             ]
         )
         [ Html.lazy
             (viewTitle
-                (Dict.unsafeGet titles paper.title)
+                (Dict.unsafeGet model.titles paper.title)
                 (Array.get 0 paper.links
-                    |> Maybe.map (Dict.unsafeGet links)
+                    |> Maybe.map (Dict.unsafeGet model.links)
                 )
             )
-            titleFilter
+            model.titleFilter
         , Html.p
             [ class "details" ]
-            [ Html.lazy (viewAuthors authors paper.authors) authorFilter
+            [ Html.lazy
+                (viewAuthors model.authors paper.authors)
+                model.authorFilter
             , Html.lazy viewYear paper.year
             , Html.lazy viewCitations paper.citations
             ]

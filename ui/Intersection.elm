@@ -3,6 +3,7 @@ module Intersection
         ( Intersection
         , empty
         , fromSet
+        , member
         , append
         , toSet
         , unsafeToSet
@@ -24,6 +25,16 @@ empty =
 fromSet : Set comparable -> Intersection comparable
 fromSet =
     Full
+
+
+member : comparable -> Intersection comparable -> Bool
+member x xs =
+    case xs of
+        Empty ->
+            True
+
+        Full ys ->
+            Set.member x ys
 
 
 append :
@@ -52,6 +63,7 @@ toSet xs =
 
         Full ys ->
             Just ys
+
 
 unsafeToSet : Intersection comparable -> Set comparable
 unsafeToSet xs =
