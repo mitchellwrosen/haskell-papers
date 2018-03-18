@@ -583,24 +583,22 @@ view model =
         Loading ->
             Html.div
                 [ class "container" ]
-                [ viewHeader
-                , Html.text "Rendering... "
-                ]
+                [ Html.header [] [ Html.h2 [] [ Html.text "Rendering..." ] ] ]
 
         Loaded model ->
             Html.div
                 [ class "container" ]
-                [ viewHeader
+                [ viewHeader (Array.length model.papers)
                 , viewPaperOfTheDay model
                 , viewFilters model
                 , viewPapers model
                 ]
 
 
-viewHeader : Html a
-viewHeader =
+viewHeader : Int -> Html a
+viewHeader n =
     Html.header []
-        [ Html.h1 [] [ Html.text "Haskell Papers" ]
+        [ Html.h1 [] [ Html.text <| toString n ++ " Haskell Papers" ]
         , Html.thunk
             (Html.a
                 [ class "subtle-link"
