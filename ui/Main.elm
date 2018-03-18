@@ -50,8 +50,7 @@ type alias Model =
     , authors : Dict AuthorId Author
     , links : Dict LinkId Link
 
-    -- Cache the minimum and maximum years of all papers, with some weird
-    -- unimportant default values since we assume that *some* paper has a year.
+    -- Cached min/max years
     , yearMin : Int
     , yearMax : Int
 
@@ -133,6 +132,8 @@ type alias Papers =
     , authors : Dict AuthorId Author
     , links : Dict LinkId Link
     , authorsIndex : Dict AuthorId (Set TitleId)
+    , yearMin : Int
+    , yearMax : Int
     , papers : Array Paper
     }
 
@@ -173,12 +174,14 @@ init =
     let
         decodePapers : Decoder Papers
         decodePapers =
-            Decode.map5
-                (\titles authors links authorsIndex papers ->
+            Decode.map7
+                (\titles authors links authorsIndex yearMin yearMax papers ->
                     { titles = titles
                     , authors = authors
                     , links = links
                     , authorsIndex = authorsIndex
+                    , yearMin = yearMin
+                    , yearMax = yearMax
                     , papers = papers
                     }
                 )
@@ -186,6 +189,8 @@ init =
                 (Decode.field "b" decodeIds)
                 (Decode.field "c" decodeIds)
                 (Decode.field "e" decodeIndex)
+                (Decode.intField "f")
+                (Decode.intField "g")
                 (decodePaper
                     |> Decode.array
                     |> Decode.field "d"
@@ -321,19 +326,6 @@ handleBlob result =
     case result of
         Ok ( blob, now ) ->
             let
-                ( yearMin, yearMax ) =
-                    Array.foldl
-                        (\paper ( n, m ) ->
-                            case paper.year of
-                                Nothing ->
-                                    ( n, m )
-
-                                Just y ->
-                                    ( min n y, max m y )
-                        )
-                        ( 3000, 0 )
-                        blob.papers
-
                 model : Model
                 model =
                     { now = now
@@ -341,15 +333,18 @@ handleBlob result =
                     , titles = blob.titles
                     , authors = blob.authors
                     , links = blob.links
-                    , yearMin = yearMin
-                    , yearMax = yearMax
+                    , yearMin = blob.yearMin
+                    , yearMax = blob.yearMax
                     , titleFilter = ""
                     , titleFilterIds = Intersection.empty
                     , authorsIndex = blob.authorsIndex
                     , authorFilter = ""
                     , authorFilterIds = Intersection.empty
                     , authorFacets = []
-                    , yearFilter = { min = yearMin, max = yearMax + 1 }
+                    , yearFilter =
+                        { min = blob.yearMin
+                        , max = blob.yearMax + 1
+                        }
                     , yearFilterIds = Intersection.empty
                     , visibleIds = Intersection.empty
                     }
@@ -358,7 +353,7 @@ handleBlob result =
                 command =
                     noUiSliderCreate
                         { id = "year-slider"
-                        , start = [ yearMin, yearMax + 1 ]
+                        , start = [ blob.yearMin, blob.yearMax + 1 ]
                         , margin = Just 1
                         , limit = Nothing
                         , connect = Just True
@@ -366,7 +361,11 @@ handleBlob result =
                         , orientation = Nothing
                         , behavior = Nothing
                         , step = Just 1
-                        , range = Just { min = yearMin, max = yearMax + 1 }
+                        , range =
+                            Just
+                              { min = blob.yearMin
+                              , max = blob.yearMax + 1
+                              }
                         }
             in
                 ( Loaded model, command )

@@ -192,14 +192,20 @@ instance ToJSON PaperOut where
 --
 --   - Lookup tables for strings that we need not include over and over
 --     (authors, titles, etc).
---   - Inverted index of authors
 --   - Array of papers
+--
+--   Plus derived stuff so we don't have to build it in Elm (slow):
+--
+--   - Inverted index of authors
+--   - Min, max year
 --
 data PapersOut = PapersOut
   { papersOutTitles :: !(IntMap Title)
   , papersOutAuthors :: !(IntMap Author)
   , papersOutLinks :: !(IntMap Link)
   , papersOutAuthorsIndex :: !(AuthorIdMap TitleIdSet)
+  , papersOutYearMin :: !Int
+  , papersOutYearMax :: !Int
   , papersOutPapers :: !(Vector PaperOut)
     -- ^ Invariant: a 'PaperOut's title, author, references, etc. will always
     -- be in 'IntMap's above.
@@ -212,6 +218,8 @@ instance ToJSON PapersOut where
       , "b" .= papersOutAuthors papers
       , "c" .= papersOutLinks papers
       , "e" .= papersOutAuthorsIndex papers
+      , "f" .= papersOutYearMin papers
+      , "g" .= papersOutYearMax papers
       , "d" .= papersOutPapers papers
       ]
 
@@ -366,6 +374,17 @@ transform papersIn =
             (HashMap.toList (sLinkIds s))
       , papersOutAuthorsIndex =
           sAuthorsIndex s
+      -- Be lazy and pass over the papers again.
+      -- FIXME: Rewrite this whole thing without the state monad - just do two
+      -- passes (cleaner code).
+      , papersOutYearMin =
+          papers
+            & Vector.mapMaybe paperOutYear
+            & minimum
+      , papersOutYearMax =
+          papers
+            & Vector.mapMaybe paperOutYear
+            & maximum
       , papersOutPapers =
           papers
       }
