@@ -37,3 +37,7 @@
 - title: Calculating functional programs
   author: Jeremy Gibbons
   link: http://www.cs.ox.ac.uk/jeremy.gibbons/publications/acmmpc-calcfp.pdf
+- title: Functional EDSLs for web applications
+  author: Anton Ekblad
+  year: 2018
+  link: https://ekblad.cc/pubs/thesis.pdf
