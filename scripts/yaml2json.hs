@@ -4,12 +4,14 @@
 {-# language OverloadedStrings   #-}
 {-# language ScopedTypeVariables #-}
 
-import Control.Monad.State hiding ((>>))
+import Control.Arrow ((>>>))
+import Control.Monad.State
 import Control.Monad.ST (ST, runST)
 import Data.Aeson
   (FromJSON, ToJSON, Value, (.:), (.:?), (.=), object, toJSON, withObject)
 import Data.Aeson.Types (Parser)
 import Data.ByteString (ByteString)
+import Data.Char (isAlphaNum, isSpace)
 import Data.Function ((&))
 import Data.HashMap.Strict (HashMap)
 import Data.IntMap (IntMap)
@@ -23,7 +25,7 @@ import Data.Set (Set)
 import Data.Text (Text, unpack)
 import Data.Tuple (swap)
 import Data.Vector (Vector)
-import Prelude hiding ((>>), id)
+import Prelude hiding (id)
 import System.Environment (getArgs)
 import System.Exit (exitFailure)
 import System.IO (hPutStrLn, stderr)
@@ -237,32 +239,36 @@ main = do
         step :: Loc PaperIn -> [Loc PaperIn]
         step =
           locValue
-            >> paperInReferences
-            >> Vector.toList
-            >> filter (flip Set.notMember titles)
-            >> map
-                 (\title ->
-                   Loc
-                    { locFile = 0
-                    , locLine = 0
-                    , locValue =
-                        PaperIn
-                          { paperInTitle = title
-                          , paperInAuthors = mempty
-                          , paperInYear = Nothing
-                          , paperInReferences = mempty
-                          , paperInLinks = mempty
-                          }
-                    })
+            >>> paperInReferences
+            >>> Vector.toList
+            >>> filter (flip Set.notMember titles)
+            >>> map
+                  (\title ->
+                    Loc
+                     { locFile = 0
+                     , locLine = 0
+                     , locValue =
+                         PaperIn
+                           { paperInTitle = title
+                           , paperInAuthors = mempty
+                           , paperInYear = Nothing
+                           , paperInReferences = mempty
+                           , paperInLinks = mempty
+                           }
+                     })
 
         titles :: Set Title
         titles =
-          foldMap (locValue >> paperInTitle >> Set.singleton) papers
+          foldMap (locValue >>> paperInTitle >>> Set.singleton) papers
 
 
   papers
     & (<> newPapers)
-    & vectorSortOn (locValue >> paperInTitle >> Text.toLower)
+    & vectorSortOn
+        (locValue
+          >>> paperInTitle
+          >>> Text.filter (\c -> isAlphaNum c || isSpace c)
+          >>> Text.toLower)
     & transform
     & Json.encode
     & LByteString.putStr
@@ -362,15 +368,15 @@ transform papersIn =
     PapersOut
       { papersOutTitles =
           foldMap
-            (swap >> uncurry IntMap.singleton)
+            (swap >>> uncurry IntMap.singleton)
             (HashMap.toList (sTitleIds s))
       , papersOutAuthors =
           foldMap
-            (swap >> uncurry IntMap.singleton)
+            (swap >>> uncurry IntMap.singleton)
             (HashMap.toList (sAuthorIds s))
       , papersOutLinks =
           foldMap
-            (swap >> uncurry IntMap.singleton)
+            (swap >>> uncurry IntMap.singleton)
             (HashMap.toList (sLinkIds s))
       , papersOutAuthorsIndex =
           sAuthorsIndex s
@@ -486,6 +492,3 @@ insertIndex k v =
       Just vs ->
         Just (IntSet.insert v vs))
     k
-
-(>>) :: (a -> b) -> (b -> c) -> (a -> c)
-(>>) = flip (.)
