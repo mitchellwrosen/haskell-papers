@@ -18,7 +18,6 @@ import Intersection exposing (Intersection)
 import Intervals exposing (Intervals)
 import Json.Decode as Decode exposing (Decoder)
 import JsonDecodeExtra as Decode
-import Lazy exposing (Lazy, force, lazy)
 import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
@@ -45,7 +44,7 @@ type alias Model =
 
     -- Basic paper structures
     , papers : Array Paper
-    , authors : Dict AuthorId (Lazy Author)
+    , authors : Dict AuthorId Author
 
     -- Cached min/max years
     , yearMin : Int
@@ -125,9 +124,9 @@ type alias Title =
 
 
 type alias Papers =
-    { titles : Dict TitleId (Lazy Title)
-    , authors : Dict AuthorId (Lazy Author)
-    , links : Dict LinkId (Lazy Link)
+    { titles : Dict TitleId Title
+    , authors : Dict AuthorId Author
+    , links : Dict LinkId Link
     , authorsIndex : Dict AuthorId (Set TitleId)
     , yearMin : Int
     , yearMax : Int
@@ -137,12 +136,12 @@ type alias Papers =
 
 type alias Paper =
     { titleId : TitleId
-    , title : Lazy Title
-    , authors : Array (Lazy Author)
+    , title : Title
+    , authors : Array Author
     , year : Maybe Int
-    , references : Array (Lazy Title)
-    , citations : Array (Lazy Title)
-    , links : Array (Lazy Link)
+    , references : Array Title
+    , citations : Array Title
+    , links : Array Link
     , loc : { file : Int, line : Int }
     }
 
@@ -203,9 +202,9 @@ init =
                 |> Decode.array
                 |> Decode.map Array.toDict
 
-        decodeIds : Decoder (Dict Int (Lazy String))
+        decodeIds : Decoder (Dict Int String)
         decodeIds =
-            Decode.tuple2 Decode.int (Decode.map (always >> lazy) Decode.string)
+            Decode.tuple2 Decode.int Decode.string
                 |> Decode.array
                 |> Decode.map Array.toDict
     in
@@ -218,9 +217,9 @@ init =
 
 
 decodePaper :
-    Dict TitleId (Lazy Title)
-    -> Dict AuthorId (Lazy Author)
-    -> Dict LinkId (Lazy Link)
+    Dict TitleId Title
+    -> Dict AuthorId Author
+    -> Dict LinkId Link
     -> Decoder Paper
 decodePaper titles authors links =
     Decode.andThen3
@@ -258,7 +257,7 @@ decodeAuthors =
         |> Decode.withDefault Array.empty
 
 
-decodeCitations : Dict TitleId (Lazy Title) -> Decoder (Array (Lazy Title))
+decodeCitations : Dict TitleId Title -> Decoder (Array Title)
 decodeCitations titles =
     Decode.intArray
         |> Decode.field "h"
@@ -273,7 +272,7 @@ decodeLinks =
         |> Decode.withDefault Array.empty
 
 
-decodeReferences : Dict TitleId (Lazy Title) -> Decoder (Array (Lazy Title))
+decodeReferences : Dict TitleId Title -> Decoder (Array Title)
 decodeReferences titles =
     Decode.intArray
         |> Decode.field "d"
@@ -410,7 +409,7 @@ handleTitleFilter filter model =
             model.papers
                 |> Array.foldl
                     (\paper ->
-                        if matches (force paper.title) then
+                        if matches paper.title then
                             Set.insert paper.titleId
                         else
                             identity
@@ -564,7 +563,7 @@ handleYearFilter n m model =
 
 buildAuthorFilterIds :
     String
-    -> Dict AuthorId (Lazy Author)
+    -> Dict AuthorId Author
     -> Dict AuthorId (Set TitleId)
     -> Intersection TitleId
 buildAuthorFilterIds filter authors authorsIndex =
@@ -584,7 +583,7 @@ buildAuthorFilterIds filter authors authorsIndex =
         authors
             |> Dict.foldl
                 (\id author ->
-                    if matches (force author) then
+                    if matches author then
                         case Dict.get id authorsIndex of
                             Nothing ->
                                 identity
@@ -747,7 +746,7 @@ viewPaperOfTheDay model =
                     -- FIXME(mitchell): Share code with 'viewPaper' below
                     [ Html.lazy
                         (viewTitle
-                            (force paper.title)
+                            paper.title
                             (Array.get 0 paper.links)
                         )
                         Nothing
@@ -787,7 +786,7 @@ viewPaper model paper =
         )
         [ Html.lazy
             (viewTitle
-                (force paper.title)
+                paper.title
                 (Array.get 0 paper.links)
             )
             (Just model.titleFilter)
@@ -805,7 +804,7 @@ viewPaper model paper =
 
 viewTitle :
     Title -- Paper title
-    -> Maybe (Lazy Link) -- Paper link
+    -> Maybe Link -- Paper link
     -> Maybe String -- Title filter, or Nothing to ignore filter
     -> Html a
 viewTitle title link filter =
@@ -828,7 +827,7 @@ viewTitle title link filter =
             Just link ->
                 [ Html.a
                     [ class "link"
-                    , href (force link)
+                    , href link
                     ]
                     title_
                 ]
@@ -850,19 +849,19 @@ viewEditLink { file, line } =
         [ Html.text "(edit)" ]
 
 
-viewAuthors : Array (Lazy Author) -> Maybe String -> Html Message
+viewAuthors : Array Author -> Maybe String -> Html Message
 viewAuthors authors filter =
     authors
         |> Array.map
             (\author ->
                 author
                     |> maybe
-                        (force >> Html.text >> List.singleton)
-                        (\filter -> force >> applyLiveFilterStyle (words_ filter))
+                        (Html.text >> List.singleton)
+                        (words_ >> applyLiveFilterStyle)
                         filter
                     |> Html.span
                         [ class "author"
-                        , Html.Events.onClick <| AuthorFacetAdd_ (force author)
+                        , Html.Events.onClick <| AuthorFacetAdd_ author
                         ]
             )
         |> Array.toList
@@ -879,7 +878,7 @@ viewYear year =
             Html.text (" [" ++ toString year ++ "]")
 
 
-viewCitations : Array (Lazy Title) -> Html a
+viewCitations : Array Title -> Html a
 viewCitations citations =
     case Array.length citations of
         0 ->
