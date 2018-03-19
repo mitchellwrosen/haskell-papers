@@ -41,3 +41,11 @@
   author: Anton Ekblad
   year: 2018
   link: https://ekblad.cc/pubs/thesis.pdf
+- title: True sums of products
+  authors: [Edsko de Vries, Andres Löh]
+  year: 2014
+  link: https://dl.acm.org/authorize?N08931
+- title: Abstract syntax graphs for domain specific languages
+  authors: [Bruno C. d. S. Oliveira, Andres Löh]
+  year: 2013
+  link: http://ropas.snu.ac.kr/~bruno/papers/ASGDSL.pdf

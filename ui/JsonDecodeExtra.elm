@@ -1,6 +1,7 @@
 module JsonDecodeExtra
     exposing
-        ( intArray
+        ( ap
+        , intArray
         , intSet
         , intField
         , optField
@@ -11,8 +12,14 @@ module JsonDecodeExtra
 
 import Array exposing (Array)
 import ArrayExtra as Array
+import BasicsExtra exposing (..)
 import Json.Decode as Decode exposing (Decoder)
 import Set exposing (Set)
+
+
+ap : Decoder a -> Decoder (a -> b) -> Decoder b
+ap =
+    Decode.map2 apply
 
 
 intArray : Decoder (Array Int)

@@ -18,6 +18,7 @@ import Intersection exposing (Intersection)
 import Intervals exposing (Intervals)
 import Json.Decode as Decode exposing (Decoder)
 import JsonDecodeExtra as Decode
+import Lazy exposing (Lazy, force, lazy)
 import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
@@ -46,9 +47,7 @@ type alias Model =
 
     -- Basic paper structures
     , papers : Array Paper
-    , titles : Dict TitleId Title
-    , authors : Dict AuthorId Author
-    , links : Dict LinkId Link
+    , authors : Dict AuthorId (Lazy Author)
 
     -- Cached min/max years
     , yearMin : Int
@@ -128,9 +127,9 @@ type alias Title =
 
 
 type alias Papers =
-    { titles : Dict TitleId Title
-    , authors : Dict AuthorId Author
-    , links : Dict LinkId Link
+    { titles : Dict TitleId (Lazy Title)
+    , authors : Dict AuthorId (Lazy Author)
+    , links : Dict LinkId (Lazy Link)
     , authorsIndex : Dict AuthorId (Set TitleId)
     , yearMin : Int
     , yearMax : Int
@@ -139,12 +138,13 @@ type alias Papers =
 
 
 type alias Paper =
-    { title : TitleId
-    , authors : Array AuthorId
+    { titleId : TitleId
+    , title : Lazy Title
+    , authors : Array (Lazy Author)
     , year : Maybe Int
-    , references : Array TitleId
-    , citations : Array TitleId
-    , links : Array LinkId
+    , references : Array TitleId -- FIXME: Array (Lazy Title)
+    , citations : Array TitleId -- FIXME: Array (Lazy Title)
+    , links : Array (Lazy Link)
     , loc : { file : Int, line : Int }
     }
 
@@ -174,27 +174,30 @@ init =
     let
         decodePapers : Decoder Papers
         decodePapers =
-            Decode.map7
-                (\titles authors links authorsIndex yearMin yearMax papers ->
-                    { titles = titles
-                    , authors = authors
-                    , links = links
-                    , authorsIndex = authorsIndex
-                    , yearMin = yearMin
-                    , yearMax = yearMax
-                    , papers = papers
-                    }
-                )
-                (Decode.field "a" decodeIds)
-                (Decode.field "b" decodeIds)
-                (Decode.field "c" decodeIds)
-                (Decode.field "e" decodeIndex)
-                (Decode.intField "f")
-                (Decode.intField "g")
-                (decodePaper
-                    |> Decode.array
-                    |> Decode.field "d"
-                )
+            Decode.field "a" decodeIds_
+                |> Decode.andThen
+                    (\titles ->
+                        Decode.field "b" decodeIds_
+                            |> Decode.andThen
+                                (\authors ->
+                                    Decode.field "c" decodeIds_
+                                        |> Decode.andThen
+                                            (\links ->
+                                                Decode.succeed Papers
+                                                    |> Decode.ap (Decode.succeed titles)
+                                                    |> Decode.ap (Decode.succeed authors)
+                                                    |> Decode.ap (Decode.succeed links)
+                                                    |> Decode.ap (Decode.field "e" decodeIndex)
+                                                    |> Decode.ap (Decode.intField "f")
+                                                    |> Decode.ap (Decode.intField "g")
+                                                    |> Decode.ap
+                                                        (decodePaper titles authors links
+                                                            |> Decode.array
+                                                            |> Decode.field "d"
+                                                        )
+                                            )
+                                )
+                    )
 
         decodeIndex : Decoder (Dict Int (Set Int))
         decodeIndex =
@@ -207,6 +210,12 @@ init =
             Decode.tuple2 Decode.int Decode.string
                 |> Decode.array
                 |> Decode.map Array.toDict
+
+        decodeIds_ : Decoder (Dict Int (Lazy String))
+        decodeIds_ =
+            Decode.tuple2 Decode.int (Decode.map (always >> lazy) Decode.string)
+                |> Decode.array
+                |> Decode.map Array.toDict
     in
         ( Loading
         , Http.get "./static/papers.json" decodePapers
@@ -216,20 +225,38 @@ init =
         )
 
 
-decodePaper : Decoder Paper
-decodePaper =
-    Decode.map7 Paper
-        (Decode.intField "a")
-        decodeAuthors
-        (Decode.optIntField "c")
-        decodeReferences
-        decodeCitations
-        decodeLinks
-        (Decode.map2
-            (\file line -> { file = file, line = line })
-            (Decode.intField "f")
-            (Decode.intField "g")
-        )
+decodePaper :
+    Dict TitleId (Lazy Title)
+    -> Dict AuthorId (Lazy Author)
+    -> Dict LinkId (Lazy Link)
+    -> Decoder Paper
+decodePaper titles authors links =
+    Decode.intField "a"
+        |> Decode.andThen
+            (\titleId ->
+                decodeAuthors
+                    |> Decode.andThen
+                        (\authorIds ->
+                            decodeLinks
+                                |> Decode.andThen
+                                    (\linkIds ->
+                                        Decode.succeed Paper
+                                            |> Decode.ap (Decode.succeed titleId)
+                                            |> Decode.ap (Decode.succeed (Dict.unsafeGet titles titleId))
+                                            |> Decode.ap (Decode.succeed (Array.map (Dict.unsafeGet authors) authorIds))
+                                            |> Decode.ap (Decode.optIntField "c")
+                                            |> Decode.ap decodeReferences
+                                            |> Decode.ap decodeCitations
+                                            |> Decode.ap (Decode.succeed (Array.map (Dict.unsafeGet links) linkIds))
+                                            |> Decode.ap
+                                                (Decode.map2
+                                                    (\file line -> { file = file, line = line })
+                                                    (Decode.intField "f")
+                                                    (Decode.intField "g")
+                                                )
+                                    )
+                        )
+            )
 
 
 decodeAuthors : Decoder (Array AuthorId)
@@ -330,9 +357,7 @@ handleBlob result =
                 model =
                     { now = now
                     , papers = blob.papers
-                    , titles = blob.titles
                     , authors = blob.authors
-                    , links = blob.links
                     , yearMin = blob.yearMin
                     , yearMax = blob.yearMax
                     , titleFilter = ""
@@ -363,9 +388,9 @@ handleBlob result =
                         , step = Just 1
                         , range =
                             Just
-                              { min = blob.yearMin
-                              , max = blob.yearMax + 1
-                              }
+                                { min = blob.yearMin
+                                , max = blob.yearMax + 1
+                                }
                         }
             in
                 ( Loaded model, command )
@@ -391,8 +416,8 @@ handleTitleFilter filter model =
             model.papers
                 |> Array.foldl
                     (\paper ->
-                        if matches (Dict.unsafeGet model.titles paper.title) then
-                            Set.insert paper.title
+                        if matches (force paper.title) then
+                            Set.insert paper.titleId
                         else
                             identity
                     )
@@ -525,7 +550,7 @@ handleYearFilter n m model =
 
                                 Just year ->
                                     if year >= n && year < m then
-                                        Set.insert paper.title
+                                        Set.insert paper.titleId
                                     else
                                         identity
                         )
@@ -545,7 +570,7 @@ handleYearFilter n m model =
 
 buildAuthorFilterIds :
     String
-    -> Dict AuthorId Author
+    -> Dict AuthorId (Lazy Author)
     -> Dict AuthorId (Set TitleId)
     -> Intersection TitleId
 buildAuthorFilterIds filter authors authorsIndex =
@@ -565,7 +590,7 @@ buildAuthorFilterIds filter authors authorsIndex =
             authors
                 |> Dict.foldl
                     (\id author ->
-                        if matches author then
+                        if matches (force author) then
                             case Dict.get id authorsIndex of
                                 Nothing ->
                                     identity
@@ -710,16 +735,14 @@ viewPaperOfTheDay model =
                     -- FIXME(mitchell): Share code with 'viewPaper' below
                     [ Html.lazy
                         (viewTitle
-                            (Dict.unsafeGet model.titles paper.title)
-                            (Array.get 0 paper.links
-                                |> Maybe.map (Dict.unsafeGet model.links)
-                            )
+                            (force paper.title)
+                            (Array.get 0 paper.links)
                         )
                         Nothing
                     , Html.p
                         [ class "details" ]
                         [ Html.lazy
-                            (viewAuthors model.authors paper.authors)
+                            (viewAuthors paper.authors)
                             Nothing
                         , Html.lazy viewYear paper.year
                         , Html.lazy viewCitations paper.citations
@@ -744,7 +767,7 @@ viewPaper model paper =
     Html.li
         (List.filterMap identity
             [ Just (class "paper")
-            , if Intersection.member paper.title model.visibleIds then
+            , if Intersection.member paper.titleId model.visibleIds then
                 Nothing
               else
                 Just (Html.Attributes.style [ ( "display", "none" ) ])
@@ -752,16 +775,14 @@ viewPaper model paper =
         )
         [ Html.lazy
             (viewTitle
-                (Dict.unsafeGet model.titles paper.title)
-                (Array.get 0 paper.links
-                    |> Maybe.map (Dict.unsafeGet model.links)
-                )
+                (force paper.title)
+                (Array.get 0 paper.links)
             )
             (Just model.titleFilter)
         , Html.p
             [ class "details" ]
             [ Html.lazy
-                (viewAuthors model.authors paper.authors)
+                (viewAuthors paper.authors)
                 (Just model.authorFilter)
             , Html.lazy viewYear paper.year
             , Html.lazy viewCitations paper.citations
@@ -772,7 +793,7 @@ viewPaper model paper =
 
 viewTitle :
     Title -- Paper title
-    -> Maybe Link -- Paper link
+    -> Maybe (Lazy Link) -- Paper link
     -> Maybe String -- Title filter, or Nothing to ignore filter
     -> Html a
 viewTitle title link filter =
@@ -795,7 +816,7 @@ viewTitle title link filter =
                 Just link ->
                     [ Html.a
                         [ class "link"
-                        , href link
+                        , href (force link)
                         ]
                         title_
                     ]
@@ -817,25 +838,20 @@ viewEditLink { file, line } =
             [ Html.text "(edit)" ]
 
 
-viewAuthors : Dict AuthorId Author -> Array AuthorId -> Maybe String -> Html Message
-viewAuthors authors ids filter =
-    ids
+viewAuthors : Array (Lazy Author) -> Maybe String -> Html Message
+viewAuthors authors filter =
+    authors
         |> Array.map
-            (\id ->
-                let
-                    author : Author
-                    author =
-                        Dict.unsafeGet authors id
-                in
-                    author
-                        |> maybe
-                            (Html.text >> List.singleton)
-                            (words_ >> applyLiveFilterStyle)
-                            filter
-                        |> Html.span
-                            [ class "author"
-                            , Html.Events.onClick <| AuthorFacetAdd_ author
-                            ]
+            (\author ->
+                author
+                    |> maybe
+                        (force >> Html.text >> List.singleton)
+                        (\filter -> force >> applyLiveFilterStyle (words_ filter))
+                        filter
+                    |> Html.span
+                        [ class "author"
+                        , Html.Events.onClick <| AuthorFacetAdd_ (force author)
+                        ]
             )
         |> Array.toList
         |> Html.span []
