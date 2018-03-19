@@ -44,8 +44,206 @@
 - title: True sums of products
   authors: [Edsko de Vries, Andres Löh]
   year: 2014
-  link: https://dl.acm.org/authorize?N08931
+  links:
+  - http://www.edsko.net/pubs/TrueSumsOfProducts.pdf
+  - https://dl.acm.org/authorize?N08931
 - title: Abstract syntax graphs for domain specific languages
   authors: [Bruno C. d. S. Oliveira, Andres Löh]
   year: 2013
-  link: http://ropas.snu.ac.kr/~bruno/papers/ASGDSL.pdf
+  links:
+  - http://ropas.snu.ac.kr/~bruno/papers/ASGDSL.pdf
+  - https://dl.acm.org/authorize?6888644
+- title: Compositional reasoning for explicit resource management in channel-based concurrency
+  authors: [Adrian Francalanza, Edsko de Vries, Matthew Hennessy]
+  year: 2014
+  link: http://www.edsko.net/pubs/1405.6100v2.pdf
+- title: Modelling unique and affine typing using polymorphism
+  author: Edsko de Vries
+  year: 2013
+  link: http://www.edsko.net/pubs/modelling-unique-and-affine.pdf
+- title: Locally nameless permutation types
+  authors: [Edsko de Vries, Vasileios Koutavas]
+  year: 2012
+  link: http://www.edsko.net/pubs/lnpt.pdf
+- title: A practical solution for achieving language compatibility in scripting language compilers
+  authors: [Paul Biggar, Edsko de Vries, David Gregg]
+  year: 2012
+  link: http://www.edsko.net/pubs/socp-2009.pdf
+- title: Uniqueness typing for resource management in message-passing concurrency
+  authors: [Edsko de Vries, Adrian Francalanza, Matthew Hennessy]
+  year: 2009
+  link: http://www.edsko.net/pubs/jlc-uniqueness-for-mpc.pdf
+- title: Reverse Hoare logic
+  authors: [Edsko de Vries, Vasileios Koutavas]
+  year: 2011
+  link: http://www.edsko.net/pubs/reverse-hoare.pdf
+- title: Reasoning about explicit resource management
+  authors: [Edsko de Vries, Adrian Francalanza, Matthew Hennessy]
+  year: 2011
+  link: http://www.edsko.net/pubs/places-uniqueness.pdf
+- title: Liveness of communicating transactions
+  authors: [Edsko de Vries, Vasileios Koutavas, Matthew Hennessy]
+  year: 2010
+  link: http://www.edsko.net/pubs/aplas-fair-testing-of-communicating-transactions.pdf
+- title: Formal polytypic programs and proofs
+  authors: [Wendy Verbruggen, Edsko de Vries, Arthur Hughes]
+  year: 2010
+  link: http://www.edsko.net/pubs/formal-polytypic-programs-and-proofs.pdf
+- title: Communicating transactions
+  authors: [Edsko de Vries, Vasileios Koutavas, Matthew Hennessy]
+  year: 2010
+  link: http://www.edsko.net/pubs/concur-communicating-transactions.pdf
+- title: Polytypic properties and proofs in Coq
+  authors: [Wendy Verbruggen, Edsko de Vries, Arthur Hughes]
+  year: 2009
+  link: http://www.edsko.net/pubs/polytypic-properties-and-proofs-in-coq.pdf
+- title: A practical solution for scripting language compilers
+  authors: [Paul Biggar, Edsko de Vries, David Gregg]
+  year: 2009
+  link: http://www.edsko.net/pubs/sac-2009.pdf
+- title: Making uniqueness typing less unique
+  author: Edsko de Vries
+  year: 2008
+  link: http://www.edsko.net/pubs/thesis.pdf
+- title: Polytypic programming in Coq
+  authors: [Wendy Verbruggen, Edsko de Vries, Arthur Hughes]
+  year: 2008
+  link: http://www.edsko.net/pubs/polytypic-programming-in-coq.pdf
+- title: 'Uniqueness typing simplified: technical appendix'
+  author: Edsko de Vries
+  year: 2008
+  link: http://www.edsko.net/pubs/ifl07-tr.pdf
+- title: Uniqueness typing simplified
+  authors: [Edsko de Vries, Rinus Plasmeijer, David Abrahamson]
+  year: 2007
+  link: http://www.edsko.net/pubs/ifl07-paper.pdf
+- title: Equality-based uniqueness typing
+  authors: [Edsko de Vries, Rinus Plasmeijer, David Abrahamson]
+  year: 2007
+  link: http://www.edsko.net/pubs/tfp07-paper.pdf
+- title: Uniqueness typing redefined
+  year: 2006
+  link: http://www.edsko.net/pubs/ifl06-paper.pdf
+- title: Dependency-style Generic Haskell
+  authors: [Andres Löh, Dave Clarke, Johan Jeuring]
+  year: 2003
+- title: Exploring Generic Haskell
+  author: Andres Löh
+  year: 2004
+  link: https://www.andres-loeh.de/ExploringGH.pdf
+- title: Generic views on data types
+  authors: [Stefan Holdermans, Johan Jeuring, Andres Löh]
+  year: 2006
+  link: https://www.andres-loeh.de/ViewsMPC.pdf
+- title: Qualified types for MLF
+  authors: [Daan Leijen, Andres Löh]
+  year: 2005
+  link: https://www.andres-loeh.de/qmlf-str.pdf
+- title: Type inference for Generic Haskell
+  authors: [Alexey Rodriguez, Johan Jeuring, Andres Löh]
+  year: 2005
+  link: https://www.andres-loeh.de/TR-TypeInference-2-12-05.pdf
+- title: Typed contracts for functional programming
+  authors: [Ralf Hinze, Johan Jeuring, Andres Löh]
+  year: 2005
+  link: https://www.andres-loeh.de/Contract.pdf
+- title: '"Scrap your boilerplate" reloaded'
+  authors: [Ralf Hinze, Andres Löh, Bruno C. d. S. Oliveira]
+  year: 2006
+  link: https://www.andres-loeh.de/SYB0.pdf
+- title: Generic programming, now!
+  authors: [Ralf Hinze, Andres Löh]
+  year: 2006
+  link: https://www.andres-loeh.de/NOW.pdf
+- title: Generics as a library
+  authors: [Bruno C.d.S. Oliveira, Ralf Hinze, Andres Löh]
+  year: 2006
+  link: https://www.andres-loeh.de/GenericsLibrary.pdf
+- title: '"Scrap your boilerplate" revolutions'
+  authors: [Ralf Hinze, Andres Löh]
+  year: 2006
+  link: https://www.andres-loeh.de/SYB1.pdf
+- title: Open data types and open functions
+  authors: [Andres Löh, Ralf Hinze]
+  year: 2006
+  link: https://www.andres-loeh.de/OpenDatatypes.pdf
+- title: A principled approach to version control
+  authors: [Andres Löh, Wouter Swierstra, Daan Leijen]
+  year: 2006
+  link: https://www.andres-loeh.de/fase2007.pdf
+- title: Generic programming in 3D
+  authors: [Ralf Hinze, Andres Löh]
+  year: 2007
+  link: https://www.andres-loeh.de/GP3D.pdf
+- title: Hierarchy in generic programming libraries
+  authors: [José Pedro Magalhães, Andres Löh]
+  year: 2015
+  link: https://www.andres-loeh.de/HierarchyGP/HierarchyGP-MPC.pdf
+- title: The semantics of version control onward
+  authors: [Wouter Swierstra, Andres Löh]
+  year: 2014
+  link: https://dl.acm.org/authorize?N08930
+- title: Formalizing semantic bidirectionalization with dependent types
+  authors: [Helmut Grohne, Andres Löh, Janis Voigtländer]
+  year: 2014
+  link: https://www.andres-loeh.de/AgdaBX/AgdaBX.pdf
+- title: Type-changing rewriting and semantics-preserving transformation
+  authors: [Sean Leather, Johan Jeuring, Andres Löh, Bram Schuur]
+  year: 2014
+  link: https://dl.acm.org/authorize?6979364
+- title: Generic generic programming
+  authors: [José Pedro Magalhães, Andres Löh]
+  year: 2014
+  link: https://www.andres-loeh.de/GenericGenericProgramming/ggp-padl.pdf
+- title: Deterministic parallel programming with Haskell
+  authors: [Duncan Coutts, Andres Löh]
+  year: 2012
+- title: A formal comparison of approaches to datatype-generic programming
+  authors: [José Pedro Magalhães, Andres Löh]
+  year: 2012
+  link: https://www.andres-loeh.de/FormalComparisonGP/FormalComparisonGP.pdf
+- title: Generic programming with indexed functors
+  authors: [Andres Löh, José Pedro Magalhães]
+  year: 2011
+  link: https://dl.acm.org/authorize?6589021
+- title: A generic deriving mechanism for Haskell
+  authors: [José Pedro Magalhães, Atze Dijkstra, Johan Jeuring, Andres Löh]
+  year: 2010
+  link: https://dl.acm.org/authorize?390773
+- title: Generic storage in Haskell
+  authors: [Sebastiaan Visser, Andres Löh]
+  year: 2010
+  link: https://www.andres-loeh.de/GenericStorage/wgp10-genstorage.pdf
+- title: Dependently typed grammars
+  authors: [Kasper Brink, Stefan Holdermans, Andres Löh]
+  year: 2010
+  link: https://www.andres-loeh.de/DependentlyTypedGrammars/DependentlyTypedGrammars.pdf
+- title: 'ΠΣ: dependent types without the sugar'
+  authors: [Thorsten Altenkirch, Nils Anders Danielsson, Andres Löh, Nicolas Oury]
+  year: 2010
+  link: https://www.andres-loeh.de/PiSigma/PiSigma.pdf
+- title: Optimizing generics is easy!
+  authors: [José Pedro Magalhães, Stefan Holdermans, Johan Jeuring, Andres Löh]
+  year: 2010
+  link: https://dl.acm.org/authorize?297115
+- title: Pull-ups, push-downs, and passing it around (exercises in functional incrementalization)
+  authors: [Sean Leather, Andres Löh, Johan Jeuring]
+  year: 2009
+  link: https://www.andres-loeh.de/Incrementalization/paper_final.pdf
+- title: Type-safe diff for families of datatypes
+  authors: [Eelco Lempsink, Sean Leather, Andres Löh]
+  year: 2009
+  link: https://dl.acm.org/authorize?139034
+- title: Generic programming with fixed points for mutually recursive datatypes
+  authors: [Alexey Rodriguez, Stefan Holdermans, Andres Löh, Johan Jeuring]
+  year: 2009
+  link: https://dl.acm.org/authorize?139011
+- title: A tutorial implementation of a dependently typed lambda calculus
+  authors: [Andres Löh, Conor McBride, Wouter Swierstra]
+  year: 2009
+  link: https://www.andres-loeh.de/LambdaPi/LambdaPi.pdf
+# Hm... there's a journal version with the same title...
+# - title: 'NixOS: a purely functional linux distribution'
+#   authors: [Eelco Dolstra, Andres Löh]
+#   year: 2008
+#   link: https://www.andres-loeh.de/NixOS.pdf

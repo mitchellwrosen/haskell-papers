@@ -85,7 +85,9 @@
   authors: [Andrey Mokhov, Neil Mitchell, Simon Peyton Jones, Simon Marlow]
   year: 2016
   link: https://ndmitchell.com/downloads/paper-non_recursive_make_considered_harmful-22_sep_2016.pdf
-- title: Type-level web APIs with servant
+- title: 'Type-level web APIs with Servant: an exercise in domain-specific generic programming'
+  authors: [Alp Mestanogullari, Sönke Hahn, Julian K. Arni, Andres Löh]
+  year: 2015
   link: https://dl.acm.org/authorize?N08939
 - title: Tackling the testing migration problem with SAT-solvers
   link: https://arxiv.org/pdf/1204.2974.pdf
