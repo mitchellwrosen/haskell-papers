@@ -252,6 +252,8 @@
 - title: 'Refinement through restraint: bringing down the cost of verification'
   link: https://people.mpi-inf.mpg.de/~crizkall/Publications/cogent.pdf
 - title: A lambda-calculus foundation for universal probabilistic programming
+  authors: [Johannes Borgström, Ugo Dal Lago, Andrew D. Gordon, and Marcin Szymczak]
+  year: 2016
   link: https://pps2016.soic.indiana.edu/files/2016/01/lcfupp.pdf
 - title: Converting data-parallelism to tasl-parallelism by rewrites
   link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-multidev-fhpc2015.pdf
