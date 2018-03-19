@@ -3,8 +3,8 @@ module JsonDecodeExtra
         ( andThen3
         , ap
         , intArray
-        , intSet
         , intField
+        , intSet
         , optField
         , optIntField
         , tuple2

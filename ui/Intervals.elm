@@ -2,8 +2,8 @@ module Intervals
     exposing
         ( Intervals
         , empty
-        , singleton
         , insert
+        , singleton
         , toList
         )
 

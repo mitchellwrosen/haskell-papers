@@ -1,10 +1,10 @@
 module Intersection
     exposing
         ( Intersection
+        , append
         , empty
         , fromSet
         , member
-        , append
         , toSet
         , unsafeToSet
         )

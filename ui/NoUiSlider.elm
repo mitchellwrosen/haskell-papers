@@ -1,8 +1,8 @@
 port module NoUiSlider
     exposing
         ( NoUiSliderCreate
-        , noUiSliderCreate
         , NoUiSliderOnUpdate
+        , noUiSliderCreate
         , noUiSliderOnUpdate
         )
 

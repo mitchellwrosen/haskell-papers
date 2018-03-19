@@ -8,10 +8,13 @@ import Regex exposing (regex)
 
 containsAll : List String -> String -> Bool
 containsAll xs s =
-  case xs of
-    [] -> True
-    y :: ys ->
-      String.contains y s && containsAll ys s
+    case xs of
+        [] ->
+            True
+
+        y :: ys ->
+            String.contains y s && containsAll ys s
+
 
 interval : String -> String -> Maybe (Interval Int)
 interval needle haystack =
@@ -50,7 +53,7 @@ explode xs0 s =
                         Right (String.slice x y s)
                             :: go y ys
     in
-        go 0 (Intervals.toList xs0)
+    go 0 (Intervals.toList xs0)
 
 
 {-| Like words, but fixed - doesn't return singleton list of the empty string

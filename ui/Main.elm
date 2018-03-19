@@ -7,13 +7,13 @@ import Date exposing (Date)
 import Dict exposing (Dict)
 import DictExtra as Dict
 import Either exposing (Either(..), either)
-import Http
 import Html exposing (Html)
-import HtmlExtra as Html
-import Html.Attributes exposing (href, class)
+import Html.Attributes exposing (class, href)
 import Html.Events
 import Html.Lazy as Html
 import HtmlEventsExtra as HtmlEvents
+import HtmlExtra as Html
+import Http
 import Intersection exposing (Intersection)
 import Intervals exposing (Intervals)
 import Json.Decode as Decode exposing (Decoder)
@@ -209,12 +209,12 @@ init =
                 |> Decode.array
                 |> Decode.map Array.toDict
     in
-        ( Loading
-        , Http.get "./static/papers.json" decodePapers
-            |> Http.toTask
-            |> Task.and Date.now
-            |> Task.attempt Blob
-        )
+    ( Loading
+    , Http.get "./static/papers.json" decodePapers
+        |> Http.toTask
+        |> Task.and Date.now
+        |> Task.attempt Blob
+    )
 
 
 decodePaper :
@@ -305,7 +305,7 @@ subscriptions model =
                                 "Expected 2 ints; noUiSlider.js sent: "
                                     ++ toString values
             in
-                noUiSliderOnUpdate unpack
+            noUiSliderOnUpdate unpack
 
 
 
@@ -387,7 +387,7 @@ handleBlob result =
                                 }
                         }
             in
-                ( Loaded model, command )
+            ( Loaded model, command )
 
         Err msg ->
             Debug.crash <| toString msg
@@ -426,7 +426,7 @@ handleTitleFilter filter model =
             }
                 |> rebuildVisibleIds
     in
-        ( Loaded model_, Cmd.none )
+    ( Loaded model_, Cmd.none )
 
 
 handleAuthorFilter : String -> Model -> ( TheModel, Cmd a )
@@ -444,7 +444,7 @@ handleAuthorFilter filter model =
             }
                 |> rebuildVisibleIds
     in
-        ( Loaded model_, Cmd.none )
+    ( Loaded model_, Cmd.none )
 
 
 handleAuthorFacetAdd : Model -> ( TheModel, Cmd a )
@@ -472,14 +472,14 @@ handleAuthorFacetAdd model =
                             ( model.authorFilter, model.authorFilterIds )
                                 :: model.authorFacets
                 in
-                    { model
-                        | authorFilter = authorFilter
-                        , authorFilterIds = authorFacetIds
-                        , authorFacets = authorFacets
-                    }
-                        |> rebuildVisibleIds
+                { model
+                    | authorFilter = authorFilter
+                    , authorFilterIds = authorFacetIds
+                    , authorFacets = authorFacets
+                }
+                    |> rebuildVisibleIds
     in
-        ( Loaded model_, Cmd.none )
+    ( Loaded model_, Cmd.none )
 
 
 handleAuthorFacetAdd_ : Author -> Model -> ( TheModel, Cmd a )
@@ -495,14 +495,14 @@ handleAuthorFacetAdd_ author model =
                     authorFilterIds =
                         buildAuthorFilterIds author model.authors model.authorsIndex
                 in
-                    ( author, authorFilterIds ) :: model.authorFacets
+                ( author, authorFilterIds ) :: model.authorFacets
 
         model_ : Model
         model_ =
             { model | authorFacets = authorFacets }
                 |> rebuildVisibleIds
     in
-        ( Loaded model_, Cmd.none )
+    ( Loaded model_, Cmd.none )
 
 
 handleAuthorFacetRemove : String -> Model -> ( TheModel, Cmd a )
@@ -520,7 +520,7 @@ handleAuthorFacetRemove facet model =
             }
                 |> rebuildVisibleIds
     in
-        ( Loaded model_, Cmd.none )
+    ( Loaded model_, Cmd.none )
 
 
 handleYearFilter : Int -> Int -> Model -> ( TheModel, Cmd a )
@@ -559,7 +559,7 @@ handleYearFilter n m model =
             }
                 |> rebuildVisibleIds
     in
-        ( Loaded model_, Cmd.none )
+    ( Loaded model_, Cmd.none )
 
 
 buildAuthorFilterIds :
@@ -581,21 +581,21 @@ buildAuthorFilterIds filter authors authorsIndex =
                             |> String.containsAll
                        )
         in
-            authors
-                |> Dict.foldl
-                    (\id author ->
-                        if matches (force author) then
-                            case Dict.get id authorsIndex of
-                                Nothing ->
-                                    identity
+        authors
+            |> Dict.foldl
+                (\id author ->
+                    if matches (force author) then
+                        case Dict.get id authorsIndex of
+                            Nothing ->
+                                identity
 
-                                Just ids ->
-                                    Set.union ids
-                        else
-                            identity
-                    )
-                    Set.empty
-                |> Intersection.fromSet
+                            Just ids ->
+                                Set.union ids
+                    else
+                        identity
+                )
+                Set.empty
+            |> Intersection.fromSet
 
 
 rebuildVisibleIds : Model -> Model
@@ -611,7 +611,7 @@ rebuildVisibleIds model =
                 |> Intersection.append model.authorFilterIds
                 |> Intersection.append model.yearFilterIds
     in
-        { model | visibleIds = visibleIds }
+    { model | visibleIds = visibleIds }
 
 
 
@@ -801,20 +801,20 @@ viewTitle title link filter =
                 Just filter ->
                     applyLiveFilterStyle (words_ filter) title
     in
-        Html.p
-            [ class "title" ]
-            (case link of
-                Nothing ->
-                    title_
+    Html.p
+        [ class "title" ]
+        (case link of
+            Nothing ->
+                title_
 
-                Just link ->
-                    [ Html.a
-                        [ class "link"
-                        , href (force link)
-                        ]
-                        title_
+            Just link ->
+                [ Html.a
+                    [ class "link"
+                    , href (force link)
                     ]
-            )
+                    title_
+                ]
+        )
 
 
 viewEditLink : { file : Int, line : Int } -> Html a
@@ -827,9 +827,9 @@ viewEditLink { file, line } =
                 ++ ".yaml#L"
                 ++ toString line
     in
-        Html.a
-            [ class "subtle-link edit", href editLink ]
-            [ Html.text "(edit)" ]
+    Html.a
+        [ class "subtle-link edit", href editLink ]
+        [ Html.text "(edit)" ]
 
 
 viewAuthors : Array (Lazy Author) -> Maybe String -> Html Message
@@ -888,4 +888,4 @@ applyLiveFilterStyle needles haystack =
                 Html.text
                 (Html.text >> List.singleton >> Html.span [ class "highlight" ])
     in
-        List.map renderSegment segments
+    List.map renderSegment segments
