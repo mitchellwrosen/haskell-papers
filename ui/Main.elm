@@ -22,8 +22,6 @@ import Lazy exposing (Lazy, force, lazy)
 import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
-import Regex exposing (regex)
-import RegexExtra as Regex
 import Set exposing (Set)
 import Setter exposing (..)
 import String exposing (toLower)
