@@ -140,8 +140,8 @@ type alias Paper =
     , title : Lazy Title
     , authors : Array (Lazy Author)
     , year : Maybe Int
-    , references : Array TitleId -- FIXME: Array (Lazy Title)
-    , citations : Array TitleId -- FIXME: Array (Lazy Title)
+    , references : Array (Lazy Title)
+    , citations : Array (Lazy Title)
     , links : Array (Lazy Link)
     , loc : { file : Int, line : Int }
     }
@@ -172,13 +172,13 @@ init =
     let
         decodePapers : Decoder Papers
         decodePapers =
-            Decode.field "a" decodeIds_
+            Decode.field "a" decodeIds
                 |> Decode.andThen
                     (\titles ->
-                        Decode.field "b" decodeIds_
+                        Decode.field "b" decodeIds
                             |> Decode.andThen
                                 (\authors ->
-                                    Decode.field "c" decodeIds_
+                                    Decode.field "c" decodeIds
                                         |> Decode.andThen
                                             (\links ->
                                                 Decode.succeed Papers
@@ -203,14 +203,8 @@ init =
                 |> Decode.array
                 |> Decode.map Array.toDict
 
-        decodeIds : Decoder (Dict Int String)
+        decodeIds : Decoder (Dict Int (Lazy String))
         decodeIds =
-            Decode.tuple2 Decode.int Decode.string
-                |> Decode.array
-                |> Decode.map Array.toDict
-
-        decodeIds_ : Decoder (Dict Int (Lazy String))
-        decodeIds_ =
             Decode.tuple2 Decode.int (Decode.map (always >> lazy) Decode.string)
                 |> Decode.array
                 |> Decode.map Array.toDict
@@ -229,32 +223,32 @@ decodePaper :
     -> Dict LinkId (Lazy Link)
     -> Decoder Paper
 decodePaper titles authors links =
-    Decode.intField "a"
-        |> Decode.andThen
-            (\titleId ->
-                decodeAuthors
-                    |> Decode.andThen
-                        (\authorIds ->
-                            decodeLinks
-                                |> Decode.andThen
-                                    (\linkIds ->
-                                        Decode.succeed Paper
-                                            |> Decode.ap (Decode.succeed titleId)
-                                            |> Decode.ap (Decode.succeed (Dict.unsafeGet titles titleId))
-                                            |> Decode.ap (Decode.succeed (Array.map (Dict.unsafeGet authors) authorIds))
-                                            |> Decode.ap (Decode.optIntField "c")
-                                            |> Decode.ap decodeReferences
-                                            |> Decode.ap decodeCitations
-                                            |> Decode.ap (Decode.succeed (Array.map (Dict.unsafeGet links) linkIds))
-                                            |> Decode.ap
-                                                (Decode.map2
-                                                    (\file line -> { file = file, line = line })
-                                                    (Decode.intField "f")
-                                                    (Decode.intField "g")
-                                                )
-                                    )
-                        )
-            )
+    Decode.andThen3
+        (Decode.intField "a")
+        decodeAuthors
+        decodeLinks
+        (\titleId authorIds linkIds ->
+            Decode.map4
+                (\year references citations loc ->
+                    { titleId = titleId
+                    , title = Dict.unsafeGet titles titleId
+                    , authors = Array.map (Dict.unsafeGet authors) authorIds
+                    , year = year
+                    , references = references
+                    , citations = citations
+                    , links = Array.map (Dict.unsafeGet links) linkIds
+                    , loc = loc
+                    }
+                )
+                (Decode.optIntField "c")
+                (decodeReferences titles)
+                (decodeCitations titles)
+                (Decode.map2
+                    (\file line -> { file = file, line = line })
+                    (Decode.intField "f")
+                    (Decode.intField "g")
+                )
+        )
 
 
 decodeAuthors : Decoder (Array AuthorId)
@@ -264,11 +258,12 @@ decodeAuthors =
         |> Decode.withDefault Array.empty
 
 
-decodeCitations : Decoder (Array TitleId)
-decodeCitations =
+decodeCitations : Dict TitleId (Lazy Title) -> Decoder (Array (Lazy Title))
+decodeCitations titles =
     Decode.intArray
         |> Decode.field "h"
         |> Decode.withDefault Array.empty
+        |> Decode.map (Array.map (Dict.unsafeGet titles))
 
 
 decodeLinks : Decoder (Array LinkId)
@@ -278,11 +273,12 @@ decodeLinks =
         |> Decode.withDefault Array.empty
 
 
-decodeReferences : Decoder (Array TitleId)
-decodeReferences =
+decodeReferences : Dict TitleId (Lazy Title) -> Decoder (Array (Lazy Title))
+decodeReferences titles =
     Decode.intArray
         |> Decode.field "d"
         |> Decode.withDefault Array.empty
+        |> Decode.map (Array.map (Dict.unsafeGet titles))
 
 
 
@@ -865,7 +861,7 @@ viewYear year =
             Html.text (" [" ++ toString year ++ "]")
 
 
-viewCitations : Array TitleId -> Html a
+viewCitations : Array (Lazy Title) -> Html a
 viewCitations citations =
     case Array.length citations of
         0 ->
