@@ -630,7 +630,16 @@ view model =
         Loaded model ->
             Html.div
                 [ class "container" ]
-                [ viewHeader (Array.length model.papers)
+                [ viewHeader <|
+                    Array.foldl
+                        (\paper ->
+                            if Intersection.member paper.titleId model.visibleIds then
+                                add 1
+                            else
+                                identity
+                        )
+                        0
+                        model.papers
                 , viewPaperOfTheDay model
                 , viewFilters model
                 , viewPapers model
@@ -640,7 +649,16 @@ view model =
 viewHeader : Int -> Html a
 viewHeader n =
     Html.header []
-        [ Html.h1 [] [ Html.text <| toString n ++ " Haskell Papers" ]
+        [ Html.h1 []
+            [ Html.text <|
+                toString n
+                    ++ " Haskell Paper"
+                    ++ (if n == 1 then
+                            ""
+                        else
+                            "s"
+                       )
+            ]
         , Html.thunk
             (Html.a
                 [ class "subtle-link"

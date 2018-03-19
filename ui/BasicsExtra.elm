@@ -1,6 +1,11 @@
 module BasicsExtra exposing (..)
 
 
+add : number -> number -> number
+add =
+    (+)
+
+
 apply : a -> (a -> b) -> b
 apply x f =
     f x
