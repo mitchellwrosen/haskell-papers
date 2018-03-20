@@ -179,6 +179,32 @@
   links:
   - https://simonmar.github.io/bib/papers/ghci-debug.pdf
   - http://community.haskell.org/~simonmar/papers/ghci-debug.pdf
+  references:
+  - 'Visual Haskell: A full-featured Haskell development environment'
+  - A toolkit for multi-view tracing of Haskell programs
+  - Transforming Haskell for tracing
+  - 'Quickcheck: a lightweight tool for random testing of Haskell programs'
+  - Principal type-schemes for functional programs
+  - 'HsDebug: debugging lazy programs by not being lazy'
+  - 'Optimistic evaluation: an adaptive evaluation strategy for non-strict programs'
+  - Tracing lazy functional languages
+  - Debugging Haskell by observing intermediate data structures
+  - Haskell program coverage
+  - A symbolic calculator for non-strict functional programs
+  - Debugging in a side effect free programming environment
+  - 'Scrap your boilerplate: a practical design pattern for generic programming'
+  - A static checker for safe pattern matching in Haskell
+  - Towards a portable lazy functional declarative debugger
+  - 'Tracing piece by piece: affordable debugging for lazy functional languages'
+  - 'How to look busy while being as lazy as ever: the implementation of a lazy functional debugger'
+  - Declarative debugging for lazy functional languages
+  - A declarative debugger for Haskell
+  - Tracing and debugging lazy functional computations
+  - Why no one uses functional languages
+  - 'Multiple-view tracing for Haskell: a new Hat'
+  - Tracing lazy evaluation by program transformation
+  - 'Replib: a library for derivable type classes'
+  - Extended static checking for Haskell
 - title: Haddock, a Haskell documentation tool
   author: Simon Marlow
   year: 2002
