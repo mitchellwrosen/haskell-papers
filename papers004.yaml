@@ -288,3 +288,88 @@
   authors: [Koen Claessen, Moa Johansson, Dan Rosén, Nicholas Smallbone]
   year: 2013
   link: http://publications.lib.chalmers.se/records/fulltext/175485/local_175485.pdf
+- title: The new GHC/Hugs runtime system
+  authors: [Simon Marlow, Simon Peyton Jones]
+  year: 1998
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1998/01/new-rts.pdf
+- title: The interactive Lazy ML system
+  link: ftp://ftp.cs.chalmers.se/pub/cs-reports/papers/jfp-interactive.ps.Z
+- title: 'Putting the Spine back in the Spineless Tagless G-Machine: an implementation of resumable black-holes'
+  year: 1998
+  author: Alastair Reid
+  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.19.411
+- title: 'The Brisk Machine: a simplified STG Machine'
+  authors: [Ian Holyer, Eleni Spiliopoulou]
+  year: 1998
+  link: http://www.cs.bris.ac.uk/Publications/Papers/1000248.pdf
+- title: 'The Brisk Machine: the next step in the execution of functional languages'
+  author: Eleni Spiliopoulou
+  year: 2000
+  link: http://www.macs.hw.ac.uk/~fairouz/forest/events/festival/workshop1/spiliopoulou.ps
+- title: 'The GRIN Project: a highly optimising back end for lazy functional languages'
+  authors: [Urban Boquist, Thomas Johnsson]
+  year: 1996
+  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.27.3918
+- title: The cache behaviour of large lazy functional programs on stock hardware
+  author: Nicholas Nethercote
+  year: 2003
+  link: http://www.cl.cam.ac.uk/~am21/papers/msp02.ps.gz
+- title: Formally-based profiling for higher-order functional languages
+  authors: [Patrick M. Sansom, Simon L. Peyton Jones]
+  year: 1997
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1997/01/profiling-toplas.pdf
+- title: Execution profiling for non-strict functional languages
+  author: Patrick M. Sansom
+  year: 1994
+  link: http://research.microsoft.com/~simonpj/Papers/1994_nonstrict-profiling_THESIS.ps.gz
+- title: Heap profiling of lazy functional programs
+  authors: [Colin Runciman, David Wakeling]
+  year: 1992
+  link: https://www.cs.york.ac.uk/ftpdir/reports/92/YCS/172/YCS-92-172.pdf
+- title: New dimensions in heap profiling
+  authors: [Colin Runciman, Niklas Rojemo]
+  year: 1995
+  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.53.9361
+- title: Generational garbage collection for Haskell
+  year: 1993
+  link: http://research.microsoft.com/~simonpj/Papers/gen-gc-for-haskell.ps.gz
+- title: An incremental garbage collector for embedded real-time systems
+  authors: [Malcolm Wallace, Colin Runciman]
+  year: 1993
+  link: https://www.cs.york.ac.uk/ftpdir/pub/malcolm/rtgc.ps.Z
+- title: Fixing some space leaks with a garbage collector
+  author: Philip Wadler
+  year: 1987
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/leak/leak.ps.gz
+- title: 'Optimistic evaluation: an adaptive evaluation strategy for non-strict programs'
+  authors: [Robert Ennals, Simon Peyton Jones]
+  year: 2003
+- title: 'Eager Haskell: resource-bounded execution yields efficient iteration'
+  author: Jan-Willem Maessen
+  year: 2002
+- title: 'Cheap eagerness: speculative evaluation in a lazy functional language'
+  author: Karl-Filip Faxn
+  year: 2000
+- title: Plugging Haskell in
+  authors: [Andre Pang, Don Stewart, Sean Seefried, Manuel M. T. Chakravarty]
+  year: 2004
+- title: Dynamic applications from the ground up
+  authors: [Don Stewart, Manuel M. T. Chakravarty]
+  year: 2005
+  link: http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.113.1406
+- title: A loop-detecting interpreter for lazy, higher-order programs
+  authors: [Alex Ferguson, John Hughes]
+  year: 1992
+- title: Scripting COM components in Haskell
+  year: 1998
+  link: http://research.microsoft.com/~simonpj/Papers/com.ps.gz
+- title: Calling Hell from Heaven and Heaven from Hell
+  authors: [Sigbjorn Finne, Daan Leijen, Erik Meijer, and Simon Peyton Jones]
+  year: 1999
+- title: 'Green Card: a foreign-language interface for Haskell'
+  year: 1997
+  link: http://research.microsoft.com/~simonpj/Papers/green-card-1.ps.gz
+- title: 'H/Direct: a binary foreign language interface for Haskell'
+  authors: [Sigbjorn Finne, Daan Leijen, Erik Meijer, Simon Peyton Jones]
+  year: 1998
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/hdirect.pdf

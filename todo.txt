@@ -15,7 +15,6 @@ https://www.icfpconference.org/icfp2008/accepted/accepted.html
 https://github.com/beerendlauwers/haskell-papers-ereader
 https://github.com/ocharles/papers
 https://github.com/robbinch/Papers
-https://wiki.haskell.org/Research_papers/Runtime_systems
 https://wiki.haskell.org/Research_papers/Parallelism_and_concurrency
 https://wiki.haskell.org/Research_papers/Compilation
 https://wiki.haskell.org/Research_papers/Type_systems
