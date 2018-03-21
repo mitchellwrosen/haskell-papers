@@ -183,7 +183,7 @@
   - 'Visual Haskell: A full-featured Haskell development environment'
   - A toolkit for multi-view tracing of Haskell programs
   - Transforming Haskell for tracing
-  - 'Quickcheck: a lightweight tool for random testing of Haskell programs'
+  - 'QuickCheck: a lightweight tool for random testing of Haskell programs'
   - Principal type-schemes for functional programs
   - 'HsDebug: debugging lazy programs by not being lazy'
   - 'Optimistic evaluation: an adaptive evaluation strategy for non-strict programs'

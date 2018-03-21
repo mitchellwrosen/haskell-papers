@@ -232,6 +232,9 @@
 - title: Partial aborts for transactions via first-class continuations
 - title: Blame assignment for higher-order contracts with intersection and union
 - title: 1ML - core and modules united (F-ing first-class modules)
+  author: Andreas Rossberg
+  year: 2015
+  link: https://people.mpi-sws.org/~rossberg/1ml/1ml.pdf
 - title: 'RRB vector: a practical general purpose immutable sequence'
   authors: [Nicolas Stucki, Tiark Rompf, Vlad Ureche, Phil Bagwell]
   year: 2015

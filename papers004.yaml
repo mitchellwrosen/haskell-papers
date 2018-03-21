@@ -247,3 +247,44 @@
 #   authors: [Eelco Dolstra, Andres Löh]
 #   year: 2008
 #   link: https://www.andres-loeh.de/NixOS.pdf
+- title: 'QuickCheck: a lightweight tool for random testing of Haskell programs'
+  authors: [Koen Claessen, John Hughes]
+  year: 2000
+- title: 'Lava: hardware design in Haskell'
+  authors: [Per Bjesse, Koen Claessen, Mary Sheeran, Satnam Singh]
+  year: 1998
+  link: http://www.cse.chalmers.se/edu/year/2012/course/_courses_2011/TDA956/Papers/Lava98.pdf
+- title: Observable sharing for functional circuit description
+  authors: [Koen Claessen, David Sands]
+  year: 1999
+  link: https://www.researchgate.net/profile/David_Sands3/publication/225679607_Observable_Sharing_for_Functional_Circuit_Description/links/0a85e530b7beb39a9c000000.pdf
+- title: Static contract checking for Haskell
+  authors: [Dana N. Xu, Simon Peyton Jones, Koen Claessen]
+  year: 2009
+  link: http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-737.pdf
+- title: 'Feldspar: a domain specific language for digital signal processing algorithms'
+  authors: [Emil Axelsson, Koen Claessen, Gergely Dévai, Zoltán Horváth, Karin Keijzer, Bo Lyckegård, Anders Persson, Mary Sheeran, Josef Svenningsson, András Vajdax]
+  year: 2010
+  link: http://www.cse.chalmers.se/~ms/MemoCode.pdf
+- title: A library for light-weight information-flow security in Haskell
+  authors: [Alejandro Russo, Koen Claessen, John Hughes]
+  year: 2008
+  link: https://www.researchgate.net/profile/John_Hughes13/publication/221563004_A_Library_for_Light-Weight_Information-Flow_Security_in_Haskell/links/5416de780cf2788c4b35ef35/A-Library-for-Light-Weight-Information-Flow-Security-in-Haskell.pdf
+- title: 'QuickSpec: guessing formal specifications using testing'
+  authors: [Koen Claessen, Nicholas Smallbone, John Hughes]
+  year: 2010
+- title: The design and implementation of Feldspar
+  authors: [Emil Axelsson, Koen Claessen, Mary Sheeran, Josef Svenningsson, David Engdal, Anders Persson]
+  year: 2010
+  link: https://pdfs.semanticscholar.org/5ff9/e7ddc2dd3e2594b4766efedca8d7c1360568.pdf
+- title: Embedded languages for describing and verifying hardware
+  author: Koen Claessen
+  year: 2001
+- title: Testing an optimising compiler by generating random lambda terms
+  authors: [Michał H. Pałka, Koen Claessen, Alejandro Russo, John Hughes]
+  year: 2011
+  link: http://www.cse.chalmers.se/~russo/publications_files/AST2011.pdf
+- title: Automating inductive proofs using theory exploration
+  authors: [Koen Claessen, Moa Johansson, Dan Rosén, Nicholas Smallbone]
+  year: 2013
+  link: http://publications.lib.chalmers.se/records/fulltext/175485/local_175485.pdf
