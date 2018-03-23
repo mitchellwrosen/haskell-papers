@@ -21,6 +21,7 @@ import JsonDecodeExtra as Decode
 import ListExtra as List
 import MaybeExtra as Maybe
 import NoUiSlider exposing (..)
+import Process
 import Set exposing (Set)
 import Setter exposing (..)
 import String exposing (toLower)
@@ -28,6 +29,7 @@ import StringExtra as String exposing (words_)
 import Random
 import Task
 import TaskExtra as Task
+import Time exposing (millisecond)
 
 
 --------------------------------------------------------------------------------
@@ -77,13 +79,24 @@ type alias Model =
     -- The intersection of 'titleFilterIds', 'authorFilterIds', 'authorFacets',
     -- and 'yearFilterIds'.
     , visibleIds : Intersection TitleId
+
+    -- How much to render: a bit, or all of it.
+    , renderAmount : RenderAmount
     }
+
+
+{-| Elm takes a while to render all the papers, so first we render a
+-}
+type RenderAmount
+    = RenderSome
+    | RenderAll
 
 
 type
     Message
     -- The initial download of ./static/papers.json and the current date.
     = Blob (Result Http.Error ( Papers, Date ))
+    | RenderMore
       -- The title filter input box contents were modified
     | TitleFilter String
       -- The author filter input box contents were modified
@@ -319,6 +332,9 @@ update message model =
         ( Blob blob, Loading ) ->
             handleBlob blob
 
+        ( RenderMore, Loaded model ) ->
+            handleRenderMore model
+
         ( TitleFilter filter, Loaded model ) ->
             handleTitleFilter filter model
 
@@ -366,10 +382,11 @@ handleBlob result =
                         }
                     , yearFilterIds = Intersection.empty
                     , visibleIds = Intersection.empty
+                    , renderAmount = RenderSome
                     }
 
-                command : Cmd Message
-                command =
+                command1 : Cmd Message
+                command1 =
                     noUiSliderCreate
                         { id = "year-slider"
                         , start = [ blob.yearMin, blob.yearMax + 1 ]
@@ -386,11 +403,26 @@ handleBlob result =
                                 , max = blob.yearMax + 1
                                 }
                         }
+
+                command2 : Cmd Message
+                command2 =
+                    Task.perform (always RenderMore) <|
+                      Process.sleep (25 * millisecond)
             in
-                ( Loaded model, command )
+                ( Loaded model, Cmd.batch [ command1, command2 ] )
 
         Err msg ->
             Debug.crash <| toString msg
+
+
+handleRenderMore : Model -> ( TheModel, Cmd a )
+handleRenderMore model =
+    let
+        model_ : Model
+        model_ =
+            { model | renderAmount = RenderAll }
+    in
+        ( Loaded model_, Cmd.none )
 
 
 handleTitleFilter : String -> Model -> ( TheModel, Cmd a )
@@ -623,9 +655,7 @@ view : TheModel -> Html Message
 view model =
     case model of
         Loading ->
-            Html.div
-                [ class "container" ]
-                [ Html.header [] [ Html.h2 [] [ Html.text "Rendering..." ] ] ]
+            Html.empty
 
         Loaded model ->
             Html.div
@@ -780,6 +810,13 @@ viewPapers model =
     Html.ul
         [ class "paper-list" ]
         (model.papers
+            |> (case model.renderAmount of
+                    RenderSome ->
+                        Array.slice 0 25
+
+                    RenderAll ->
+                        identity
+               )
             |> Array.toList
             |> List.map (viewPaper model)
         )
