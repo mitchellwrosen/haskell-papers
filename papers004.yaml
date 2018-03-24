@@ -385,3 +385,7 @@
   authors: [Andrey Mokhov, Neil Mitchell, Simon Peyton Jones]
   year: 2018
   link: https://www.microsoft.com/en-us/research/uploads/prod/2018/03/build-systems.pdf
+- title: Applying type-level and generic programming in Haskell
+  author: Andres Löh
+  year: 2018
+  link: https://github.com/kosmikus/SSGEP/raw/master/LectureNotes.pdf
