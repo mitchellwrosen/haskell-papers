@@ -1,7 +1,6 @@
 http://web.engr.oregonstate.edu/~erwig/papers/index.html
 https://themonadreader.wordpress.com/
 http://www.cs.cmu.edu/~fp/publications.html
-https://github.com/gasche/icfp2017-papers
 http://okmij.org/ftp/Haskell/
 http://ku-fpg.github.io/publications/
 http://www.clash-lang.org/
@@ -81,3 +80,13 @@ https://www.reddit.com/r/haskell/comments/4bpd6v/papers_for_an_intermediate_hask
 http://www.stephendiehl.com/posts/essential_compilers.html
 https://scholar.google.com/citations?user=zQOfuOcAAAAJ&hl=en
 http://www.cs.cornell.edu/~ross/publications/eqsat/
+https://github.com/technogeeky/icfp12-paper-links
+https://github.com/gasche/icfp2013-papers
+https://github.com/yallop/icfp2014-papers
+https://github.com/mpickering/icfp2015-papers
+https://github.com/gasche/icfp2016-papers
+https://github.com/23Skidoo/popl13-papers-links
+https://github.com/gasche/popl2014-papers
+https://github.com/yallop/popl2015-papers
+https://github.com/gasche/popl2016-papers
+https://github.com/yallop/pldi2014-papers

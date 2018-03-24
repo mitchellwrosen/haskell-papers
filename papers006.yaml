@@ -1,0 +1,203 @@
+
+- title: Denotational design with type class morphisms (extended version)
+  author: Conal Elliott
+  year: 2009
+  link: http://conal.net/papers/type-class-morphisms/type-class-morphisms-long.pdf
+- year: 1988
+  link: http://conal.net/papers/hoas88.pdf
+  authors: [Frank Pfenning, Conal Elliott]
+  title: Higher-order abstract syntax
+- title: A poor man's concurrency monad
+  author: Koen Claessen
+  year: 1999
+  link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.39.8039&rep=rep1&type=pdf
+- title: Type-safe cast
+  author: Stephanie Weirich
+  year: 2004
+  link: http://www.seas.upenn.edu/~sweirich/papers/cast/cast.pdf
+- title: The essence of the iterator pattern
+  authors: [Jeremy Gibbons, Bruno C. d. S. Oliveira]
+  year: 2006
+  link: http://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf
+- year: 2012
+  link: http://www.cs.indiana.edu/~sabry/papers/rational.pdf
+  authors: [Roshan P. James, Amr Sabry]
+  title: 'The two dualities of computation: negative and fractional Types'
+- title: Dependently typed programming with singletons
+  authors: [Richard A. Eisenberg, Stephanie Weirich]
+  year: 2012
+- title: Deriving law-abiding instances
+  authors: [Ryan Scott, Niki Vazou, Ranjit Jhala]
+  year: 2017
+  link: https://arxiv.org/pdf/1708.02328.pdf
+- title: Guarded impredicative polymorphism
+  author: Anonymous
+  year: 2017
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2017/07/impredicative-Jul17.pdf
+- title: APLicative programming with Naperian functors
+  author: Jeremy Gibbons
+  link: https://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/aplicative.pdf
+- title: Compiling a 50-year journey
+  authors: [Graham Hutton, Patrick Bahr]
+  year: 2017
+  link: http://www.cs.nott.ac.uk/~pszgmh/fifty.pdf
+- title: String diagrams for double categories and equipments
+  author: David Jaz Myers
+  year: 2016
+  link: https://arxiv.org/pdf/1612.02762.pdf
+- title: Origami programming
+  author: Jeremy Gibbons
+  year: 2003
+  link: https://www.cs.ox.ac.uk/jeremy.gibbons/publications/origami.pdf
+- title: On the resolution semiring
+  author: Marc Bagnol
+  year: 2014
+  link: https://www.normalesup.org/~bagnol/phd/these_book.pdf
+- title: Cyclic multicategories, multivariable adjunctions and mates
+  authors: [Eugenia Cheng, Nick Gurski, Emily Riehl]
+  year: 2013
+  link: http://www.math.jhu.edu/~eriehl/mates.pdf
+- title: Dependent pattern matching and proof-relevant unification
+  author: Jesper Cockx
+  year: 2017
+  link: https://lirias.kuleuven.be/bitstream/123456789/583556/1/thesis-final-digital.pdf
+- title: A foundation for embedded languages
+  author: Morten Rhiger
+  year: 2002
+  link: http://www.brics.dk/RS/02/34/BRICS-RS-02-34.pdf
+- title: Essential Haskell
+  author: Atze Dijkstra
+  link: http://www.cs.uu.nl/groups/ST/Projects/ehc/ehc-book.pdf
+- title: Probabilistic functional programming in Haskell
+  authors: [Martin Erwig, Steve Kollamansberger]
+  year: 2006
+  link: http://web.engr.oregonstate.edu/~erwig/papers/PFP_JFP06.pdf
+- title: An approach to fast arrays in Haskell
+  authors: [Manuel M. T. Chakravarty, Gabriele Keller]
+  year: 2003
+  link: https://www.cse.unsw.edu.au/~chak/papers/afp-arrays.ps.gz
+- title: Bringing back monad comprehensions
+  authors: [George Giorgidze, Torsten Grust, Nils Schweinsberg, Jeroen Weijers]
+  year: 2011
+  link: http://db.inf.uni-tuebingen.de/staticfiles/publications/haskell2011.pdf
+- title: Comprehending ringads
+  author: Jeremy Gibbons
+  link: http://www.cs.ox.ac.uk/jeremy.gibbons/publications/ringads.pdf
+- title: 'Functional pearl: maximally dense segments'
+  authors: [Sharon Curtis, Shin-Cheng Mu]
+  year: 2010
+  link: http://www.iis.sinica.edu.tw/~scm/pub/mds.pdf
+- title: Beautiful concurrency
+  author: Simon Peyton Jones
+  year: 2007
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/beautiful.pdf
+- title: 'Breaking through the normalization barrier: a self-interpreter for F-omega'
+  authors: [Matt Brown, Jens Palsberg]
+  year: 2016
+  link: http://compilers.cs.ucla.edu/popl16/popl16-full.pdf
+- title: A very general method of computing shortest paths
+  author: Russell O'Connor
+  year: 2011
+  link: http://r6.ca/blog/20110808T035622Z.html
+- title: 'OutsideIn(X): modular type inference with local assumptions'
+  authors: [Dimitrios Vytiniotis, Simon Peyton Jones, Tom Schrijvers, Martin Sulzmann]
+  year: 2011
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/jfp-outsidein.pdf
+- title: Typed tagless final interpreters
+  author: Oleg Kiselyov
+  year: 2012
+  link: http://okmij.org/ftp/tagless-final/course/lecture.pdf
+- title: Supercompilation by evaluation
+  authors: [Max Bolingbroke, Simon Peyton Jones]
+  year: 2016
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/supercomp-by-eval.pdf
+- title: Freer monads, more extensible effects
+  authors: [Oleg Kiselyov, Hiromi Ishii]
+  link: http://okmij.org/ftp/Haskell/extensible/more.pdf
+- title: A program to solve sudoku
+  author: Richard Bird
+  year: 2006
+  link: https://www.cs.tufts.edu/~nr/cs257/archive/richard-bird/sudoku.pdf
+- title: The countdown problem
+  author: Graham Hutton
+  year: 2002
+  link: http://www.cs.nott.ac.uk/~pszgmh/countdown.pdf
+- title: Calculating correct compilers
+  authors: [Patrick Bahr, Graham Hutton]
+  year: 2015
+  link: http://www.cs.nott.ac.uk/~pszgmh/ccc.pdf
+- title: Type classes in Haskell
+  authors: [Cordelia V. Hall, Kevin Hammond, Simon L. Peyton Jones, and Philip L. Wadler]
+  year: 1996
+  links:
+  - http://ropas.snu.ac.kr/lib/dock/HaHaJoWa1996.pdf
+  - http://research.microsoft.com/~simonpj/Papers/classhask.ps.gz
+- title: 'Idioms: applicative programming with effects'
+  authors: [Conor McBride, Ross Paterson]
+  year: 2008
+  link: http://strictlypositive.org/Idiom.pdf
+- title: An investigation of the laws of traversals
+  authors: [Mauro Jaskelioff, Ondrej Rypacek]
+  year: 2012
+  link: https://arxiv.org/pdf/1202.2919.pdf
+- title: 'Functional pearl: getting a quick fix on comonads'
+  author: Kenneth Foner
+  link: https://github.com/kwf/GQFC/raw/master/GQFC.pdf
+- title: Propositions as types
+  author: Philip Wadler
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf
+- title: A unified theory of garbage collection
+  authors: [David F. Bacon, Perry Cheng, V. T. Rajan]
+  link: https://www.cs.virginia.edu/~cs415/reading/bacon-garbage.pdf
+- title: 'Physics, topology, logic and computation: a Rosetta Stone'
+  authors: [John C. Baez, Mike Stay]
+  year: 2009
+  link: http://math.ucr.edu/home/baez/rosetta.pdf
+- title: Interpreting types as abstract values
+  author: Oleg Kiselyov
+  year: 2008
+  link: http://okmij.org/ftp/Computation/FLOLAC/lecture.pdf
+- title: Generating multiset partitions
+  author: Brent Yorgey
+  year: 2007
+  link: https://wiki.haskell.org/wikiupload/d/dd/TMR-Issue8.pdf
+- title: Type-level instant insanity
+  author: Conrad Parker
+  year: 2007
+  link: https://wiki.haskell.org/wikiupload/d/dd/TMR-Issue8.pdf
+- title: Burritos for the hungry mathematician
+  author: Ed Morehouse
+  year: 2015
+  link: http://emorehouse.web.wesleyan.edu/silliness/burrito_monads.pdf
+- title: Evidence normalization in System FC
+  authors: [Dimitrios Vytiniotis, Simon Peyton Jones]
+  year: 2013
+  link: http://drops.dagstuhl.de/opus/volltexte/2013/4050/pdf/3.pdf
+- title: System F with type equality coercions
+  authors: [Martin Sulzmann, Manuel M. T. Chakravarty, Simon Peyton Jones, Kevin Donnelly]
+  year: 2011
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2007/01/tldi22-sulzmann-with-appendix.pdf
+- title: Closed type families with overlapping equations
+  authors: [Richard A. Eisenberg, Dimitrios Vytiniotis, Simon Peyton Jones, Stephanie Weirich]
+  year: 2014
+  link: http://www.seas.upenn.edu/~sweirich/papers/popl14-axioms.pdf
+- title: Injective type families for Haskell
+  authors: [Jan Stolarek, Simon Peyton Jones, Richard A. Eisenberg]
+  year: 2015
+  link: http://ics.p.lodz.pl/~stolarek/_media/pl:research:stolarek_peyton-jones_eisenberg_injectivity.pdf
+- title: Once upon a polymorphic type
+  authors: [Keith Wansbroughy, Simon Peyton Jones]
+  year: 1998
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1999/01/Technical-Report-Version.pdf
+- title: Derivable type classes
+  authors: [Ralf Hinze, Simon Peyton Jones]
+  year: 2000
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2000/09/derive.pdf
+- title: A transformation-based optimiser for Haskell
+  authors: [Simon L. Peyton Jones, André L. M. Santos]
+  year: 1998
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1998/09/comp-by-trans-scp.pdf
+- title: Arity analysis
+  authors: [Dana N. Xu, Simon Peyton Jones]
+  year: 2006
+  link: http://gallium.inria.fr/~naxu/research/arity.pdf

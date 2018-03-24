@@ -307,7 +307,7 @@ main = do
 
     case Yaml.parse (Yaml.array paperInParser) bytes of
       Left err -> do
-        hPutStrLn stderr err
+        hPutStrLn stderr (file ++ ": " ++ err)
         exitFailure
       Right values ->
         pure

@@ -389,3 +389,67 @@
   author: Andres Löh
   year: 2018
   link: https://github.com/kosmikus/SSGEP/raw/master/LectureNotes.pdf
+- title: Definitional abstract interpreters for higher-order programming languages
+  authors: [David Darais, Nicholas Labich, Phúc Nguyễn, David Van Horn]
+  year: 2017
+  link: https://plum-umd.github.io/abstracting-definitional-interpreters/main.pdf
+- title: Prototyping a query compiler using Coq (experience report)
+  authors: [Joshua Auerbach, Martin Hirzel, Louis Mandel, Avraham Shinnar, Jerome Simeon]
+  year: 2017
+  link: https://querycert.github.io/icfp17/resources/icfp17.pdf
+- title: Foundations of strong call by need
+  authors: [Thibaut Balabonski, Pablo Barenbaum, Eduardo Bonelli, Delia Kesner]
+  year: 2017
+  links:
+  - https://www.irif.fr/~kesner/papers/strong-call-by-need-final-version.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110264
+- title: 'Back to the future: time travel in FRP'
+  author: Ivan Perez
+  year: 2017
+- title: Packrats parse in packs
+  authors: [Mario Blažević, Jacques Légaré]
+  year: 2017
+- title: Ode on a random urn (functional pearl)
+  authors: [Leonidas Lampropoulos, Antal Spector-Zabusky, Kenneth Foner]
+  year: 2017
+  link: http://www.cis.upenn.edu/~llamp/pdf/urns.pdf
+- title: 'QuickSpec: a lightweight theory exploration tool for programmers'
+  authors: [Maximilian Algehed, Koen Claessen, Moa Johansson, and Nicholas Smallbone]
+  year: 2017
+- title: 'Speculate: discovering conditional equations and inequalities about black-box functions by reasoning from test results'
+  authors: [Rudy Braquehais, Colin Runciman]
+  year: 2017
+  link: https://matela.com.br/paper/speculate.pdf
+- title: Using Coq to write fast and correct Haskell
+  authors: [John Wiegley, Ben Delaware]
+  year: 2017
+- title: 'A tale of two provers: verifying monoidal string matching in Liquid Haskell and Coq'
+  authors: [Niki Vazou, Leonidas Lampropoulos, Jeff Polakow]
+  year: 2017
+  link: https://nikivazou.github.io/static/Haskell17/a-tale.pdf
+- title: Well-typed music does not sound wrong
+  authors: [Dmitrij Szamozvancev, Michael Gale]
+  year: 2017
+- title: The linearity monad
+  authors: [Jennifer Paykin, Steve Zdancewic]
+  year: 2017
+  link: https://www.cis.upenn.edu/~jpaykin/papers/pz_linearity_monad_2017.pdf
+- title: Quantified class constraints
+  authors: [Gert-Jan Bottu, Georgios Karachalias, Tom Schrijvers, Bruno C. D. S. Oliveira, Philip Wadler]
+  year: 2017
+  link: http://i.cs.hku.hk/~bruno/papers/hs2017.pdf
+- title: Composable network stacks and remote monads
+  authors: [Justin Dawson, Mark Grebe, Andy Gill]
+  year: 2017
+- title: A meta-EDSL for distributed web applications
+  author: Anton Ekblad
+  year: 2017
+- title: Hardware software co-design in Haskell
+  authors: [Markus Aronsson, Mary Sheeran]
+  year: 2017
+- title: Improving STM performance with transactional structs
+  authors: [Ryan Yates, Michael Scott]
+  year: 2017
+- title: 'Adaptive lock-free data structures in Haskell: a general method for concurrent implementation swapping'
+  authors: [Chao-Hong Chen, Vikraman Choudhury, Ryan Newton]
+  year: 2017

@@ -1,0 +1,321 @@
+
+- title: A unified approach to solving seven programming problems
+  authors: [William E. Byrd, Michael Ballantyne, Greg Rosenblatt, Matthew Might]
+  year: 2017
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110252
+- title: 'Project H: programming R in Haskell'
+  link: https://ifl2014.github.io/submissions/ifl2014_submission_16.pdf
+- title: Optimising purely functional GPU programs
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-optim-icfp2013.pdf
+- title: Comprehending monads
+  link: https://ncatlab.org/nlab/files/WadlerMonads.pdf
+- title: Guiding parallel array fusion with indexed types
+  link: http://benl.ouroborus.net/papers/2012-guiding/guiding-Haskell2012.pdf
+- title: Not all patterns, but enough
+  link: https://ndmitchell.com/downloads/paper-not_all_patterns_but_enough-25_sep_2008.pdf
+  authors: [Neil Mitchell, Colin Runciman]
+  year: 2008
+- title: Deriving generic functions by example
+  link: https://ndmitchell.com/downloads/paper-deriving_generic_functions_by_example-26_oct_2007.pdf
+  year: 2007
+  author: Neil Mitchell
+- title: Indexed codata types
+  link: http://www.cs.mcgill.ca/~bpientka/papers/indexed_codata.pdf
+- title: A fully concurrent garbage collector for functional programs on multicore processors
+  link: http://www.pllab.riec.tohoku.ac.jp/papers/icfp2016UenoOhori-preprint.pdf
+- title: Control flow in functional languages
+  link: http://www.joachim-breitner.de/various/SA/ShiversStudienarbeit.pdf
+- title: Hoogle overview
+  year: 2008
+  author: Neil Mitchell
+  link: https://ndmitchell.com/downloads/paper-hoogle_overview-19_nov_2008.pdf
+- title: Levity polymorphism
+  references:
+  - A reflection on types
+  - A transformation-based optimiser for Haskell
+  - Automating ad hoc representation transformations
+  - Calling Hell from Heaven and Heaven from Hell
+  - 'Dependent types in Haskell: theory and practice'
+  - Elaborating evaluation-order polymorphism
+  - Exploiting vector instructions with generalized stream fusion
+  - Flexible type analysis
+  - From System F to typed assembly language
+  - Giving Haskell a promotion
+  - How to make ad-hoc polymorphism less ad-hoc
+  - Polymorphic type schemes and recursive definitions
+  - Practical type inference for arbitrary-rank types
+  - Putting type annotations to work
+  - 'Scrap your boilerplate: a practical design pattern for generic programming'
+  - System F with type equality coercions
+  - System FC with explicit kind equality
+  - The essence of compiling with continuations
+  - 'TIL: A type-directed optimizing compiler for ML'
+  - Toward a foundational typed assembly language
+  - Towards a theory of type structure
+  - Type classes in Haskell
+  - Unboxed values as first class citizens
+  - Whole-program compilation in MLton
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/levity-pldi17.pdf
+- title: Higher-order ghost state
+  link: https://people.mpi-sws.org/~dreyer/papers/hogs/paper.pdf
+- title: Faster coroutine pipelines
+  author: Michael Spivey
+  year: 2017
+  links:
+  - http://spivey.oriel.ox.ac.uk/wiki2/images/a/a1/Copipes.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110249
+- title: Oh Lord, please don't let contracts be misunderstood (functional pearl)
+  link: https://www2.ccs.neu.edu/racket/pubs/icfp16-dnff.pdf
+- title: 'SHErrLOC: A Static Holistic Error Locator'
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2017/08/sherrloc-toplas.pdf
+- title: Context-free session types
+  authors: [Peter Thiemann, Vasco T. Vasconcelos]
+  link: https://www.di.fc.ul.pt/~vv/papers/thiemann.vasconcelos_context-free-session-types.pdf
+- title: 'Dag-calculus: a calculus for parallel computation'
+  link: https://dl.acm.org/citation.cfm?doid=2951913.2951946
+- title: An abstract memory functor for verified C static analyzers
+  link: https://hal.inria.fr/hal-01339969/document
+- title: 'How to prove your calculus is decidable: practical applications of second-order algebraic theories and computation'
+  author: Makoto Hamana
+  year: 2017
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110266
+- title: Combining effects and coeffects via grading
+  link: https://www.cs.kent.ac.uk/people/staff/dao7/publ/combining-effects-and-coeffects-icfp16.pdf
+- title: 'Hat-Delta: one right does make a wrong'
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+  authors: [Thomas Davie, Olaf Chitil]
+  year: 2005
+- title: Set-theoretic types for polymorphic variants
+  link: https://www.irif.fr/~gc/papers/icfp16.pdf
+- title: Imperative functional programs that explain their work
+  authors: [Wilmer Ricciotti, Jan Stolarek, Roly Perera, James Cheney]
+  year: 2017
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110258
+- title: A relational logic for higher-order programs
+  authors: [Alejandro Aguirre, Gilles Barthe, Marco Gaboardi, Deepak Garg, Pierre-Yves Strub]
+  year: 2017
+  links:
+  - https://arxiv.org/pdf/1703.05042.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110265
+- title: Functional array streams
+  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq-fhpc2015.pdf
+- title: 'Hat-Explore: source-based trace exploration'
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+  year: 2005
+  author: Olaf Chitil
+- title: 'Unfailing Haskell: a static checker for pattern matching'
+  link: https://ndmitchell.com/downloads/paper-unfailing_haskell_a_static_checker_for_pattern_matching-24_sep_2005.pdf
+  authors: [Neil Mitchell, Colin Runciman]
+  year: 2005
+- title: 'Better living through operational semantics: an optimizing compiler for radio protocols'
+  author: Geoffrey Mainland
+  year: 2017
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110263
+- title: Chaperone contracts for higher-order sessions
+  authors: [Hernan Melgratti, Luca Padovani]
+  year: 2017
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110279
+- title: 'On the expressive power of user-defined effects: effect handlers, monadic reflection, delimited control'
+  authors: [Yannick Forster, Ohad Kammar, Sam Lindley, Matija Pretnar]
+  year: 2017
+  links:
+  - https://arxiv.org/pdf/1610.09161.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110257
+- title: Think like a vertex, behave like a function! a functional DSL for vertex-centric big graph processing
+  link: http://research.nii.ac.jp/~hu/pub/icfp16.pdf
+- title: The expression problem
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/expression/expression.txt
+- title: Verified low-level programming embedded in F*
+  authors: [Jonathan Protzenko, Jean-Karim Zinzindohoué, Aseem Rastogi, Tahina Ramananandro, Peng Wang, Santiago Zanella-Béguelin, Antoine Delignat-Lavaud, Catalin Hritcu, Karthikeyan Bhargavan, Cédric Fournet, Nikhil Swamy]
+  year: 2017
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110261
+- title: Local refinement typing
+  authors: [Benjamin Cosman, Ranjit Jhala]
+  year: 2017
+  links:
+  - https://arxiv.org/pdf/1706.08007.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110270
+- title: 'Experience report: growing and shrinking polygons for random testing of computational geometry algorithms'
+  link: http://ilyasergey.net/papers/polygons-icfp16.pdf
+- title: Faster laziness using dynamic pointer tagging
+  authors: [Simon Marlow, Alexey Rodriguez Yakushev, Simon Peyton Jones]
+  year: 2007
+  links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2007/10/ptr-tagging.pdf
+  - https://simonmar.github.io/bib/papers/ptr-tagging.pdf
+  - http://community.haskell.org/~simonmar/papers/ptr-tagging.pdf
+- title: 'Dependent types in Haskell: theory and practice'
+  author: Richard A. Eisenberg
+  year: 2016
+  links:
+  - https://cs.brynmawr.edu/~rae/papers/2016/thesis/eisenberg-thesis.pdf
+  - https://arxiv.org/pdf/1610.07978.pdf
+- title: Secrets of the Glasgow Haskell Compiler inliner
+  authors: [Simon Peyton Jones, Simon Marlow]
+  year: 2002
+  links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/inline.pdf
+  - https://simonmar.github.io/bib/papers/inline.pdf
+  - http://community.haskell.org/~simonmar/papers/inline.pdf
+- title: Securing concurrent lazy programs against information leakage
+  link: https://www.joachim-breitner.de/publications/lazydup_CSF2017_extended.pdf
+- title: No-brainer CPS conversion
+  authors: [Milo Davis, William Meehan, Olin Shivers]
+  year: 2017
+  link: https://dl.acm.org/citation.cfm?doid=3136534.3110267
+- title: 'Datafun: a functional Datalog'
+  link: https://www.cl.cam.ac.uk/~nk480/datafun.pdf
+- title: A new verified compiler backend for CakeML
+  link: https://cakeml.org/icfp16.pdf
+- title: 'Talking bananas: structural recursion for session types'
+  authors: [Sam Lindley J., Garrett Morris]
+  link: http://homepages.inf.ed.ac.uk/slindley/papers/talking-bananas.pdf
+- title: 'Whip: higher-order contracts for modern services'
+  authors: [Lucas Waye, Christos Dimoulas, Stephen Chong]
+  year: 2017
+  links:
+  - http://people.seas.harvard.edu/~chong/pubs/icfp17-whip.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110280
+- title: 'Let-foating: moving bindings to give faster programs'
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1996/05/float.pdf
+- title: 'Story and history: a value-based view of Hat traces'
+  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
+  year: 2005
+  author: Malcom Wallace
+- title: 'Constructive Galois connections: taming the Galois connection framework for mechanized metatheory'
+  link: https://arxiv.org/pdf/1511.06965.pdf
+- title: Desugaring Haskell's do-notation into applicative operations
+  authors: [Simon Marlow, Simon Peyton Jones, Edward Kmett, Andrey Mokhov]
+  year: 2016
+  link: https://simonmar.github.io/bib/papers/applicativedo.pdf
+- title: Dynamic space limits for Haskell
+  authors: [Edward Z. Yang, David Mazières]
+  year: 2014
+  link: http://ezyang.com/papers/ezyang14-rlimits.pdf
+- title: 'IFC inside: retrofitting languages with dynamic information control flow'
+  authors: [Stefan Heule, Deian Stefan, Edward Z. Yang, John C. Mitchell, Alejandro Russo]
+  year: 2015
+  links:
+  - https://arxiv.org/pdf/1501.04132.pdf
+  - http://ezyang.com/papers/heule15-ifcinside.pdf
+- title: Adventures in three monads
+  author: Edward Z. Yang
+  year: 2010
+  links:
+  - http://web.mit.edu/~ezyang/Public/threemonads.pdf
+  - https://themonadreader.files.wordpress.com/2010/01/issue15.pdf
+- title: Idioms are oblivious, arrows are meticulous, monads are promiscuous
+  author: Sam Lindley
+  year: 2008
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/arrows-and-idioms/arrows-and-idioms.pdf
+- title: Backtracking, interleaving, and terminating monad transformers
+  authors: [Oleg Kiselyov, Chung-chieh Shan, Daniel P. Friedman, Amr Sabry]
+  year: 2005
+  link: http://okmij.org/ftp/papers/LogicT.pdf
+- title: de Brujin notation as a nested datatype
+  authors: [Richard S. Bird, Ross Paterson]
+  links:
+  - http://www.cs.ox.ac.uk/people/richard.bird/online/BirdPaterson99DeBruijn.pdf
+- title: Fun with type functions
+  author: Simon Peyton Jones
+  link: http://research.microsoft.com/en-us/um/people/simonpj/papers/assoc-types/fun-with-type-funs/typefun.pdf
+- title: Functional programming with bananas, lenses, envelopes and barbed wire
+  authors: [Erik Meijer, Maarten Fokkinga, Ross Paterson]
+  year: 1991
+  links:
+  - http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf
+  - http://maartenfokkinga.github.io/utwente/mmf91m.pdf
+- title: Applicative programming with effects
+  author: Conor McBride
+  year: 2008
+  link: http://www.soi.city.ac.uk/~ross/papers/Applicative.pdf
+- year: 2008
+  link: https://personal.cis.strath.ac.uk/neil.ghani/papers/ghani-popl08.pdf
+  authors: [Patricia Johann, Neil Ghani]
+  title: Foundations for structured programming with GADTs
+- title: Parsing permutation phrases
+  authors: [Arthur I. Baars, Andres Löh, Doaitse Swierstra]
+  year: 2004
+  link: http://foswiki.cs.uu.nl/foswiki/pub/USCS/InterestingPapers/PermutationsJFP.pdf
+- title: An introduction to operational semantics
+  authors: [Sanjiva Prasad, S. Arun-Kumar]
+  year: 2003
+  link: http://www.cse.iitd.ernet.in/~sanjiva/opsem.ps
+- title: Sorting and selection in posets
+  authors: [Constantinos Daskalakis, Richard M. Karp, Elchanan Mossel]
+  year: 2007
+  link: https://arxiv.org/pdf/0707.1532.pdf
+- title: Embedding F
+  author: Sam Lindley
+  link: http://homepages.inf.ed.ac.uk/slindley/papers/embedding-f.pdf
+- title: Sequent calculi and abstract machines
+  authors: [Zena M. Ariola, Aaron Bohannon, Amr Sabry]
+  link: https://www.cs.indiana.edu/~sabry/papers/sequent.pdf
+- title: The hp2any project
+  author: Gergely Patai
+  year: 2010
+  link: https://themonadreader.files.wordpress.com/2010/01/issue15.pdf
+- title: The operational monad tutorial
+  author: Heinrich Apfelmus
+  year: 2010
+  link: https://themonadreader.files.wordpress.com/2010/01/issue15.pdf
+- title: A short cut to deforestation
+  authors: [Andrew Gill, John Launchbury, Simon L. Peyton Jones]
+  year: 2016
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/deforestation-short-cut.pdf
+- title: A monadic solution to the Cartwright-Felleisen-Wadler conjecture
+  authors: [Ohad Kammar, Dylan McDermott]
+  year: 2017
+  link: https://arxiv.org/pdf/1707.06685.pdf
+- title: Handling fibred algebraic effects
+  author: Danel Ahman
+  year: 2017
+- title: Higher-order programming is an effect
+  author: Oleg Kiselyov
+  year: 2017
+- title: Logical relations for algebraic effects
+  authors: [Dariusz Biernacki, Maciej Piróg, Piotr Polesiuk, Filip Sieczkowski]
+  year: 2017
+- title: Only control effects and dependent types
+  authors: [Youyou Cong, William J. Bowman]
+  year: 2017
+- title: Recalling a witness
+  authors: [Danel Ahman, Cătălin Hriţcu, Kenji Maillard, Aseem Rastogi, Nikhil Swamy, Cédric Fournet]
+  year: 2017
+  link: https://arxiv.org/pdf/1707.02466.pdf
+- title: Structured asynchrony with algebraic effects
+  author: Daan Leijen
+  year: 2017
+  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/asynceffects-msr-tr-2017-21.pdf
+- title: 'Effects without monads: non-determinism'
+  author: Oleg Kiselyov
+  link: http://okmij.org/ftp/tagless-final/nondet-paper.pdf
+- title: Tierless modules
+  authors: [Gabriel Radanne, Jérôme Vouillon]
+  year: 2017
+  link: https://hal.archives-ouvertes.fr/hal-01485362/document
+- title: Efficient representation of large, dynamic sequences in ML
+  authors: [Arthur Chargueraud, Mike Rainey]
+  year: 2017
+- title: Mergeable types
+  authors: [Gowtham Kaki, KC Sivaramakrishnan, Samodya Abeysiriwardane, Suresh Jagannathan]
+  year: 2017
+  link: http://kcsrk.info/papers/mergeable_types_ml17.pdf
+- title: Towards abductive functional programming
+  author: Koko Muroya
+  year: 2017
+- title: 'Typer: an infix statically typed Lisp'
+  authors: [Pierre Delaunay, Vincent Archambault-Bouffard, Stefan Monnier]
+  year: 2017
+- title: Making SML# a general-purpose high-performance language
+  authors: [Atsushi Ohori, Kenjiro Taura, Katsuhiro Ueno]
+  year: 2017
+  link: http://www.pllab.riec.tohoku.ac.jp/papers/ml2017Preversion.pdf
+- title: First-class subtypes
+  authors: [Jeremy Yallop, Stephen Dolan]
+  year: 2017
+  link: https://www.cl.cam.ac.uk/~jdy22/papers/first-class-subtypes.pdf
+- title: Effectively tackling the awkward squad
+  authors: [Stephen Dolan, Spiros Eliopoulos, Daniel Hillerström, Anil Madhavapeddy, KC Sivaramakrishnan, Leo White]
+  year: 2017
+  link: http://kcsrk.info/papers/awkward_effects_ml17.pdf

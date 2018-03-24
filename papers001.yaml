@@ -80,6 +80,8 @@
 - title: 'A history of Haskell: being lazy with class'
   link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/history.pdf
 - title: 'SpaceSearch: a library for building and verifying solver-aided tools'
+  authors: [Konstantin Weitz, Steven Lyubomirsky, Stefan Heule, Emina Torlak, Michael D. Ernst, Zachary Tatlock]
+  year: 2017
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110269
 - title: Non-recursive make considered harmful
   authors: [Andrey Mokhov, Neil Mitchell, Simon Peyton Jones, Simon Marlow]
@@ -92,7 +94,11 @@
 - title: Tackling the testing migration problem with SAT-solvers
   link: https://arxiv.org/pdf/1204.2974.pdf
 - title: Inferring scope through syntactic sugar
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110288
+  authors: [Justin Pombrio, Shriram Krishnamurthi, Mitchell Wand]
+  year: 2017
+  links:
+  - http://cs.brown.edu/~sk/Publications/Papers/Published/pkw-inf-scope-syn-sugar/paper.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110288
 - title: Queueing and glueing for optimal partitioning (functional pearl)
   link: http://www.iis.sinica.edu.tw/~scm/pub/queueing-glueing.pdf
 - title: 'Lazy evaluation: from natural semantics to a machine-checked compiler transformation'
@@ -120,15 +126,25 @@
 - title: Data flow fusion with series expressions in Haskell
   link: http://benl.ouroborus.net/papers/2013-series/flow-Haskell2013-rev1.pdf
 - title: Gradual session types
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110282
+  authors: [Atsushi Igarashi, Peter Thiemann, Vasco Vasconcelos, Philip Wadler]
+  year: 2017
+  links:
+  - http://www.fos.kuis.kyoto-u.ac.jp/~igarashi/papers/pdf/gradual-session-ICFP2017.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110282
 - title: Automating sized-type inference for complexity analysis
+  authors: [Martin Avanzini, Ugo Dal Lago]
+  year: 2017
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110287
 - title: Deriving program coverage from Hat traces
   year: 2005
   author: Colin Runciman
   link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
 - title: Symbolic conditioning of arrays in probabilistic programs
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110255
+  authors: [Praveen Narayanan, Chung-chieh Shan]
+  year: 2017
+  links:
+  - http://homes.soic.indiana.edu/pravnar/disintegrate-arrays.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110255
 - title: 'Communicating Haskell processes: composable explicit concurrency using monads'
   link: http://twistedsquare.com/CHP.pdf
 - title: Abstracting definitional interpreters
@@ -146,6 +162,8 @@
   - http://ecee.colorado.edu/ecen5533/fall11/reading/free.pdf
   - http://ttic.uchicago.edu/~dreyer/course/papers/wadler.pdf
 - title: Constrained type families
+  authors: [J. Garrett Morris, Richard Eisenberg]
+  year: 2017
   links:
   - https://arxiv.org/pdf/1706.09715.pdf
   - https://dl.acm.org/citation.cfm?doid=3136534.3110286
@@ -162,11 +180,19 @@
   author: Neil Mitchell
   link: https://ndmitchell.com/downloads/paper-rethinking_supercompilation-29_sep_2010.pdf
 - title: On polymorphic gradual typing
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110284
+  authors: [Yuu Igarashi, Taro Sekiyama, Atsushi Igarashi]
+  year: 2017
+  links:
+  - http://www.fos.kuis.kyoto-u.ac.jp/~igarashi/papers/pdf/polygrad-ICFP2017.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110284
 - title: Why functional programming matters
   link: https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf
-- title: Super 8 languages for making movies
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110274
+- title: Super 8 languages for making movies (functional pearl)
+  authors: [Leif Andersen, Stephen Chang, Asumu Takikawa, Matthias Felleisen]
+  year: 2017
+  links:
+  - https://lang.video/pub/icfp2017.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110274
 - title: Towards Haskell in the cloud
   authors: [Jeff Epstein, Andrew P. Black, Simon Peyton Jones]
   year: 2011
@@ -178,9 +204,17 @@
 - title: Higher-order + polymorphic = reusable
   link: https://kar.kent.ac.uk/21504/3/Higher-order_+_Polymorphic_=_Reusable.pdf
 - title: Parametric quantifiers for dependent type theory
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110276
+  authors: [Andreas Nuyts, Andrea Vezzosi, Dominique Devriese]
+  year: 2017
+  links:
+  - https://people.cs.kuleuven.be/~andreas.nuyts/ParametricQuantifiers.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110276
 - title: Staged generic programming
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110273
+  author: Jeremy Yallop
+  year: 2017
+  links:
+  - https://www.cl.cam.ac.uk/~jdy22/papers/staged-generic-programming.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110273
 - title: The essence of functional programming
   link: https://page.mi.fu-berlin.de/scravy/realworldhaskell/materialien/the-essence-of-functional-programming.pdf
 - title: 'Elaborator reflection: extending Idris in Idris'
@@ -200,13 +234,23 @@
   author: Neil Mitchell
   link: https://ndmitchell.com/downloads/paper-deriving_a_relationship_from_a_single_example-04_sep_2009.pdf
 - title: A framework for adaptive differential privacy
+  authors: [Daniel Winograd-Cort, Andreas Haeberlen, Aaron Roth, Benjamin C. Pierce]
+  year: 2017
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110254
 - title: 'Persistence for the masses: RRB-vectors in a systems language'
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110260
+  authors: [Juan Pedro Bolívar Puente]
+  year: 2017
+  links:
+  - https://public.sinusoid.es/misc/immer/immer-icfp17-preprint-00.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110260
 - title: Disjoint intersection types
   link: http://i.cs.hku.hk/~bruno/papers/icfp2016.pdf
 - title: Gradual typing with union and intersection types
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110285
+  authors: [Giuseppe Castagna, Victor Lanvin]
+  year: 2017
+  links:
+  - https://www.irif.fr/~gc/papers/icfp17.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110285
 - title: A supercompiler for Core Haskell
   authors: [Neil Mitchell, Colin Runciman]
   year: 2008
@@ -216,7 +260,11 @@
 - title: Regular, shape-polymorphic, parallel arrays in Haskell
   link: http://benl.ouroborus.net/papers/2010-rarrays/repa-icfp2010.pdf
 - title: 'Kami: a platform for high-level parametric hardware specification and its modular verification'
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110268
+  authors: [Joonwon Choi, Muralidaran Vijayaraghavan, Benjamin Sherman, Adam Chlipala, Arvind]
+  year: 2017
+  links:
+  - http://adam.chlipala.net/papers/KamiICFP17/KamiICFP17.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110268
 - title: Unfailing Haskell
   year: 2005
   author: Neil Mitchell
@@ -224,7 +272,11 @@
 - title: A specification for dependent types in Haskell
   link: https://dl.acm.org/citation.cfm?doid=3136534.3110275
 - title: 'Herbarium Racketensis: a stroll through the woods'
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110245
+  authors: [Vincent St-Amour, Daniel Feltey, Spencer P. Florence, Shu-Hung You, Robby Findler]
+  year: 2017
+  links:
+  - http://users.eecs.northwestern.edu/~stamourv/papers/herbarium-racketensis.pdf
+  - https://dl.acm.org/citation.cfm?doid=3136534.3110245
 - title: 'Shake before building: replacing Make with Haskell'
   year: 2012
   author: Neil Mitchell
@@ -245,210 +297,3 @@
   link: http://www.cs.ox.ac.uk/people/timothy.zakian/ghostbuster.pdf
 - title: 'Allocation characterizes polyvariance: a unified methodology for polyvariant control-flow analysis'
   link: https://thomas.gilray.org/pdf/allocation-polyvariance.pdf
-- title: A pretty but not greedy printer
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110250
-- title: A type theory for incremental computational complexity with control flow changes
-  link: https://people.mpi-sws.org/~ecicek/DuCostIt.pdf
-- title: Safe zero-cost coercions for Haskell
-  authors: [Joachim Breitner, Richard A. Eisenberg, Simon Peyton Jones, Stephanie Weirich]
-  year: 2014
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/coercible.pdf
-- title: Embedding foreign code
-  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-ffi-padl2014.pdf
-- title: Monads for functional programming
-  author: Philip Wadler
-  link: http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf
-- title: Transformation and analysis of functional programs
-  year: 2008
-  author: Neil Mitchell
-  link: https://ndmitchell.com/downloads/paper-transformation_and_analysis_of_functional_programs-4_jun_2008.pdf
-- title: Accelerating Haskell array codes with multicore GPUs
-  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-cuda-damp2011.pdf
-- title: A natural semantics for tracing in Haskell
-  year: 2005
-  author: Yong Luo
-  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
-- title: 'Unifiers as equivalences: proof-relevant unification of dependently typed data'
-- title: Automatically disproving fair termination of higher-order functional programs
-- title: String diagrams for free monads (functional pearl)
-  link: https://lirias.kuleuven.be/bitstream/123456789/547211/1/free-strings.pdf
-- title: Monad transformers and modular interpreters
-  link: http://haskell.cs.yale.edu/wp-content/uploads/2011/02/POPL96-Modular-interpreters.pdf
-- title: 'The two dualities of computation: negative and fractional types'
-  link: https://www.cs.indiana.edu/~sabry/papers/rational.pdf
-  authors: [Roshan P. James, Amr Sabry]
-  year: 2012
-- title: Deriving a probability density calculator
-  link: https://dl.acm.org/citation.cfm?doid=2951913.2951922
-- title: Prototyping a query compiler using Coq
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110253
-- title: Streaming irregular arrays
-  link: https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf
-- title: Normalization by evaluation for sized dependent types
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110277
-- title: The Hat G-Machine
-  authors: [Tom Shackell, Colin Runciman]
-  year: 2005
-  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
-- title: Using trace data to diagnose non-termination errors
-  authors: [Mike Dodds, Colin Runciman]
-  year: 2005
-  link: https://ndmitchell.com/downloads/paper-hatday-28_oct_2005.pdf
-- title: 'Losing functions without gaining data: another look at defunctionalization'
-  authors: [Neil Mitchell, Colin Runciman]
-  year: 2009
-  link: https://ndmitchell.com/downloads/paper-losing_functions_without_gaining_data-03_sep_2009.pdf
-- title: 'Stream fusion: practical shortcut fusion for coinductive sequence types'
-  link: http://community.haskell.org/~duncan/thesis.pdf
-- title: Manifest sharing with session types
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110281
-- title: Lock-step simulation is child's play
-  links:
-  - https://www.joachim-breitner.de/publications/CodeWorld-ICFP17.pdf
-  - https://dl.acm.org/citation.cfm?doid=3136534.3110247
-- title: A metaprogramming framework for formal verification
-  authors: [Gabriel Ebner, Sebastian Ullrich, Jared Roesch, Jeremy Avigad, Leonardo de Moura]
-  year: 2017
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110278
-- title: A static checker for safe pattern matching in Haskell
-  authors: [Neil Mitchell, Colin Runciman]
-  year: 2007
-  link: https://ndmitchell.com/downloads/paper-a_static_checker_for_safe_pattern_matching_in_haskell-01_feb_2007.pdf
-- title: Efficient parallel stencil convolution in Haskell
-  link: http://benl.ouroborus.net/papers/2011-stencil/stencil-haskell2011.pdf
-- title: Call arity
-  author: Joachim Breitner
-  year: 2014
-  link: https://www.joachim-breitner.de/publications/CallArity-TFP.pdf
-- title: Effect-driven QuickChecking of compilers
-  link: https://dl.acm.org/citation.cfm?doid=3136534.3110259
-- title: 'LVars: lattice-based data structures for deterministic parallelism'
-  authors: [Lindsey Kuper, Ryan R. Newton]
-  year: 2013
-  link: https://www.cs.indiana.edu/~lkuper/papers/lvars-fhpc13.pdf
-- title: 'Hazelnut: a bidirectionally typed structure editor calculus'
-  authors: [Cyrus Omar, Ian Voysey, Michael Hilton, Jonathan Aldrich, Matthew A. Hammer]
-  year: 2016
-  link: https://arxiv.org/pdf/1607.04180.pdf
-- title: Algebraic effects for functional programming
-  author: Daan Leijen
-  year: 2016
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/08/algeff-tr-2016-v3.pdf
-- title: Do be do be do
-  authors: [Sam Lindley, Conor McBride, Craig McLaughlin]
-  year: 2017
-  link: https://arxiv.org/pdf/1611.09259.pdf
-- title: System FC, as implemented in GHC
-  author: Richard Eisenberg
-  year: 2015
-  link: http://git.haskell.org/ghc.git/blob/refs/heads/master:/docs/core-spec/core-spec.pdf
-- title: System FC with explicit kind equality
-  authors: [Stephanie Weirich, Justin Hsu, Richard A. Eisenberg]
-  year: 2013
-  link: http://www.seas.upenn.edu/~sweirich/papers/fckinds.pdf
-- title: 'Equality proofs and deferred type errors: a compiler pearl'
-  authors: [Dimitrios Vytiniotis, Simon Peyton Jones, José Pedro Magalhães]
-  year: 2012
-  link: http://dreixel.net/research/pdf/epdtecp.pdf
-- title: Partial type signatures for Haskell
-  authors: [Thomas Winant, Dominique Devriese, Frank Piessens, and Tom Schrijvers]
-  link: https://lirias.kuleuven.be/bitstream/123456789/423475/3/paper.pdf
-- title: Understanding functional dependencies via constraint handling rules
-  authors: [Martin Sulzmann, Gregory J. Duck, Simon Peyton Jones, Peter J. Stuckey]
-  year: 2016
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/jfp06.pdf
-- title: Concurrent Haskell
-  authors: [Simon Peyton Jones, Andrew Gordon, Sigbjorn Finne]
-  year: 1996
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1996/01/concurrent-haskell.pdf
-- title: 'Data parallel Haskell: a status report'
-  authors: [Manuel M. T. Chakravarty, Roman Leshchinskiy, Simon Peyton Jones]
-  year: 2007
-  link: http://www.cse.unsw.edu.au/~chak/papers/data-parallel-haskell.pdf
-- title: 'Harnessing the multicores: nested data parallelism in Haskell'
-  authors: [Simon Peyton Jones, Roman Leshchinskiy, Gabriele Keller, Manuel M. T. Chakravarty]
-  year: 2008
-  link: http://www.cse.unsw.edu.au/~chak/papers/fsttcs2008.pdf
-- title: Vectorisation avoidance
-  authors: [Gabriele Keller, Manuel M. T. Chakravarty, Roman Leshchinskiy]
-  year: 2012
-  link: http://www.cse.unsw.edu.au/~chak/papers/vect-avoid.pdf
-- title: Work efficient higher-order vectorisation
-  authors: [Ben Lippmeier, Manuel M. T. Chakravarty, Gabriele Keller, Roman Leshchinskiy]
-  year: 2012
-  link: http://www.cse.unsw.edu.au/~chak/papers/replicate.pdf
-- title: 'Playing by the rules: rewriting as a practical optimisation technique in GHC'
-  authors: [Simon Peyton Jones, Andrew Tolmah, Tony Hoare]
-  year: 2001
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2001/09/rules.pdf
-- title: Call-pattern specialisation for Haskell programs
-  author: Simon Peyton Jones
-  year: 2007
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/spec-constr.pdf
-- title: 'Let-floating: moving bindings to give faster programs'
-  authors: [Simon Peyton Jones, Will Partain, André Santos]
-  year: 1996
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1996/05/float.pdf
-- title: Constructed product result analysis for Haskell
-  authors: [Clem Baker-Finch, Kevin Glynn, Simon Peyton Jones]
-  year: 2004
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/cpr.pdf
-- title: Demand analysis
-  authors: [Simon Peyton Jones, Peter Sestoft, John Hughes]
-  year: 2006
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2006/07/demand-1.pdf
-- title: Transactional memory with data invariants
-  authors: [Tim Harris, Simon Peyton Jones]
-  year: 2006
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/stm-invariants.pdf
-- title: An external representation for the GHC Core language
-  authors: [Andrew Tolmach, Tim Chevalier]
-  year: 2009
-  link: https://downloads.haskell.org/~ghc/6.10.4/docs/html/ext-core/core.pdf
-- title: Unboxes values as first class citizens in a non-strict functional language
-  authors: [Simon L. Peyton Jones, John Launchbury]
-  year: 1991
-  link: https://galois.com/wp-content/uploads/2014/08/pub_JL_UnboxedValuesAsFirstClassCitizens.pdf
-- title: The STG runtime system (revised)
-  authors: [Simon Peyton Jones, Simon Marlow]
-  year: 1999
-  link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.79.641&rep=rep1&type=pdf
-- title: 'C--: a portable assembly language that supports garbage collection'
-  authors: [Simon Peyton Jones, Norman Ramsey, Fermin Reig]
-  year: 1999
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/ppdp.pdf
-- title: A single intermediate language that supports multiple implementations of exceptions
-  authors: [Norman Ramsey, Simon Peyton Jones]
-  year: 2000
-  link: ftp://ftp.cis.upenn.edu/pub/cis700/public_html/papers/Ramsey00.pdf
-- title: An LLVM backend for GHC
-  authors: [David A. Terei, Manuel M. T. Chakravarty]
-  year: 2010
-  link: http://gernot.web.cse.unsw.edu.au/~chak/papers/ghc-llvm.pdf
-- title: A semantics for imprecise exceptions
-  authors: [Simon Peyton Jones, Alastair Reid, Tony Hoare, Simon Marlow, Fergus Henderson]
-  year: 1999
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1999/05/except.pdf
-- title: Imprecise exceptions, co-inductively
-  authors: [Andrew Moran, Søren B. Lassen, Simon Peyton Jones]
-  year: 1999
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1999/01/imprecise-exceptions.pdf
-- title: 'Mio: a high-performance multicore IO manager for GHC'
-  authors: [Andreas Voellmy, Junchang Wang, Paul Hudak, Kazuhiko Yamamoto]
-  year: 2013
-  link: http://haskell.cs.yale.edu/wp-content/uploads/2013/08/hask035-voellmy.pdf
-- title: Time and space profiling for non-strict, higher-order functional languages
-  authors: [Patrick M. Sansom, Simon L. Peyton Jones]
-  year: 1995
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/1995/01/profiling-popl95.pdf
-- title: The concurrent Haskell foreign function interface
-  author: Wolfgang Thaller
-  link: http://www.haskell.org/ghc/docs/papers/threads.ps.gz
-- title: A formal specification of the Haskell 98 module system
-  authors: [Iavor S. Diatchki, Mark P. Jones, Thomas Hallgren]
-  year: 2002
-  link: http://programatica.cs.pdx.edu/P/diatchi.pdf
-- title: 'Scrap your boilerplate: a practical design pattern for generic programming'
-  authors: [Ralf Lämmel, Simon Peyton Jones]
-  year: 2003
-  link: https://www.microsoft.com/en-us/research/wp-content/uploads/2003/01/hmap.pdf
