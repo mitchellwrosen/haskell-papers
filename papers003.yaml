@@ -16,13 +16,14 @@
 - title: A new notation for arrows
   author: Ross Paterson
   year: 2001
-- link: http://www.cse.chalmers.se/~rjmh/afp-arrows.pdf
+  link: http://www.staff.city.ac.uk/~ross/papers/notation.ps.gz
+- title: Programming with arrows
   author: John Hughes
-  title: Programming with arrows
-- year: 2008
-  link: http://homepages.inf.ed.ac.uk/wadler/papers/arrows/arrows.pdf
+  link: http://www.cse.chalmers.se/~rjmh/afp-arrows.pdf
+- title: The arrow calculus (functional pearl)
   authors: [Sam Lindley, Philip Wadler, Jeremy Yallop]
-  title: The arrow calculus (functional pearl)
+  year: 2008
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/arrows/arrows.pdf
 - title: Comonadic notions of computation
   authors: [Tarmo Uustalu, Varmo Vene]
   year: 2008
@@ -45,24 +46,24 @@
   link: http://www.jucs.org/jucs_10_7/total_functional_programming/jucs_10_07_0751_0768_turner.pdf
   author: David Turner
   title: Total functional programming
-- year: 2008
-  link: http://bentnib.org/paramnotions-jfp.pdf
+- title: Parameterized notions of computation
   author: Robert Atkey
-  title: Parameterized notions of computation
+  year: 2008
+  link: http://bentnib.org/paramnotions-jfp.pdf
 - title: Monads and composable continuations
   author: Philip Wadler
   year: 1993
-- year: 2001
-  link: http://research.microsoft.com/en-us/um/people/simonpj/papers/oo-haskell/overloading.pdf
+- title: Object-oriented style overloading for Haskell
   authors: [Mark Shields, Simon Peyton Jones]
-  title: Object-oriented style overloading for Haskell
+  year: 2001
+  link: http://research.microsoft.com/en-us/um/people/simonpj/papers/oo-haskell/overloading.pdf
 - title: 'Reflection without remorse: revealing a hidden sequence to speed up monadic reflection'
   authors: [Atze van der Ploeg, Oleg Kiselyov]
   year: 2014
-- year: 2004
-  link: http://homepages.inf.ed.ac.uk/wadler/papers/dual-revolutions/dual-revolutions.pdf
+- title: Down with the bureaucracy of syntax! Pattern matching for classical linear logic
   author: Philip Wadler
-  title: Down with the bureaucracy of syntax! Pattern matching for classical linear logic
+  year: 2004
+  link: http://homepages.inf.ed.ac.uk/wadler/papers/dual-revolutions/dual-revolutions.pdf
 - year: 2005
   link: http://homepages.inf.ed.ac.uk/wadler/papers/dual-reloaded/dual-reloaded.pdf
   author: Philip Wadler
@@ -110,6 +111,7 @@
 - title: Asymptotic improvement of computations over free monads
   author: Janis Voigtländer
   year: 2008
+  link: https://pdfs.semanticscholar.org/f256/08a741652a4448afc6164856231f3565d517.pdf
 - title: 'Stream fusion: from lists of streams to nothing at all'
   authors: [Duncan Coutts, Roman Leshchinskiy, Don Stewart]
   year: 2007

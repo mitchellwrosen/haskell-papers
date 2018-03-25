@@ -228,7 +228,6 @@
   year: 2016
   link: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/trees-that-grow.pdf
 - title: Noninterference for free
-- title: 'Adaptive lock-free data: purely-functional to scalable'
 - title: Partial aborts for transactions via first-class continuations
 - title: Blame assignment for higher-order contracts with intersection and union
 - title: 1ML - core and modules united (F-ing first-class modules)
@@ -250,15 +249,24 @@
 - title: GADTs meet their match
 - title: Denotational cost semantics for functional languages with inductive types
 - title: Bidirectional programming in a more applicative style
-- title: A predictable unification algorithm for Coq featuring universe polymorphism and overloading
+- title: A unification algorithm for Coq featuring universe polymorphism and overloading
+  authors: [Beta Ziliani, Matthieu Sozeau]
+  year: 2015
+  link: https://people.mpi-sws.org/~beta/papers/unicoq.pdf
 - title: 'Practical principled FRP: forget the past, change the future, FRPNow!'
 - title: 'Analysing the complexity of functional programs: higher-order meets first-order'
+  authors: [Martin Avanzini, Ugo Dal Lago, Georg Moser]
+  year: 2015
+  link: https://arxiv.org/pdf/1506.05043.pdf
 - title: 'Generating performance portable code using rewrite rules: from high-level functional expressions to high-performance OpenCL code'
 - title: Hygienic resugaring of compositional desugaring
 - title: 'Functional pearl: two can keep a secret, if one of them uses Haskell'
 - title: Which simple types have a unique inhabitant?
 - title: 'HLIO: Mixing static and dynamic typing for information-flow control in Haskell'
 - title: Algebras and coalgebras in the light affine lambda calculus
+  authors: [Marco Gaboardi, Romain Péchoux]
+  year: 2015
+  link: https://hal.inria.fr/hal-01112165/document
 - title: 'Functional pearl: a SQL to C compiler in 500 lines of code'
 - title: A fast compiler for NetKAT
 - title: Structures for structural recursion

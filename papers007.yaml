@@ -409,3 +409,21 @@
   authors: [Ralf Hinze, Jennifer Hackett, Daniel W. H. James]
   year: 2012
   link: http://www.cs.ox.ac.uk/people/daniel.james/functor/functor.pdf
+- title: A reflection on types
+  authors: [Simon Peyton Jones, Stephanie Weirich, Richard A. Eisenberg, Dimitrios Vytiniotis]
+  year: 2016
+  link: https://www.seas.upenn.edu/~sweirich/papers/wadlerfest2016.pdf
+- title: A toolkit for multi-view tracing of Haskell programs
+  link: https://www.cs.york.ac.uk/fp/ART/toolkitThesis.ps.gz
+- title: A traversal-based algorithm for higher-order model checking
+  authors: [Robin P. Neatherway, C.-H. Luke Ong, Steven J. Ramsay]
+  year: 2012
+  link: http://mjolnir.cs.ox.ac.uk/papers/traversal.pdf
+- title: 'Adaptive lock-free maps: purely-functional to scalable'
+  authors: [Ryan R. Newton, Peter P. Fogg, Ali Varamesh]
+  year: 2015
+  link: https://www.cs.indiana.edu/~rrnewton/papers/icfp15_adaptive_data.pdf
+- title: Automating ad hoc data representation transformations
+  authors: [Vlad Ureche, Aggelos Biboudis, Yannis Smaragdakis, Martin Odersky]
+  year: 2015
+  link: https://yanniss.github.io/adrt-oopsla15.pdf

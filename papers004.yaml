@@ -360,6 +360,7 @@
 - title: A loop-detecting interpreter for lazy, higher-order programs
   authors: [Alex Ferguson, John Hughes]
   year: 1992
+  link: https://pdfs.semanticscholar.org/dff7/e17c40b4f873790d9399831c4e6df5fb539d.pdf
 - title: Scripting COM components in Haskell
   year: 1998
   link: http://research.microsoft.com/~simonpj/Papers/com.ps.gz
@@ -406,6 +407,7 @@
 - title: 'Back to the future: time travel in FRP'
   author: Ivan Perez
   year: 2017
+  link: http://www.cs.nott.ac.uk/~psxip1/papers/2017-HaskellSymposium-Perez-BackToTheFuture-TimeTravelInFRP-latest.pdf
 - title: Packrats parse in packs
   authors: [Mario Blažević, Jacques Légaré]
   year: 2017
@@ -444,6 +446,7 @@
 - title: A meta-EDSL for distributed web applications
   author: Anton Ekblad
   year: 2017
+  link: https://ekblad.cc/pubs/haskell17.pdf
 - title: Hardware software co-design in Haskell
   authors: [Markus Aronsson, Mary Sheeran]
   year: 2017
@@ -453,3 +456,8 @@
 - title: 'Adaptive lock-free data structures in Haskell: a general method for concurrent implementation swapping'
   authors: [Chao-Hong Chen, Vikraman Choudhury, Ryan Newton]
   year: 2017
+  link: https://arxiv.org/pdf/1708.02318.pdf
+- title: 'Ready, set, verify!: applying hs-to-coq to real-world Haskell code'
+  authors: [Joachim Breitner, Antal Spector-Zabusky, Yao Li, Christine Rizkallah, John Wiegley, Stephanie Weirich]
+  year: 2018
+  link: https://arxiv.org/pdf/1803.06960.pdf
