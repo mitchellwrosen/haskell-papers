@@ -427,3 +427,7 @@
   authors: [Vlad Ureche, Aggelos Biboudis, Yannis Smaragdakis, Martin Odersky]
   year: 2015
   link: https://yanniss.github.io/adrt-oopsla15.pdf
+- title: Hardware synthesis from a recursive functional language
+  authors: [Kuangya Zhai, Richard Townsend, Lianne Lairmore, Martha A. Kim, Stephen A. Edwards]
+  year: 2015
+  link: http://www.cs.columbia.edu/~%20sedwards/papers/zhai2015hardware-tr.pdf

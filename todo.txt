@@ -1,3 +1,7 @@
+https://arxiv.org/pdf/1703.10857.pdf
+http://www.umut-acar.org/self-adjusting-computation
+https://wiki.haskell.org/Memoization
+
 http://web.engr.oregonstate.edu/~erwig/papers/index.html
 https://themonadreader.wordpress.com/
 http://www.cs.cmu.edu/~fp/publications.html
