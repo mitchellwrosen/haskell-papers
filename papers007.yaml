@@ -431,3 +431,14 @@
   authors: [Kuangya Zhai, Richard Townsend, Lianne Lairmore, Martha A. Kim, Stephen A. Edwards]
   year: 2015
   link: http://www.cs.columbia.edu/~%20sedwards/papers/zhai2015hardware-tr.pdf
+- title: Explicitly heterogeneous metaprogramming with MetaHaskell
+  author: Geoffrey Mainland
+  year: 2012
+  link: https://www.cs.drexel.edu/~mainland/files/mainland12explicitly.pdf
+- title: 'The Reduceron: widening the von Neumann bottleneck for graph reduction using an FPGA'
+  authors: [Matthew Naylor, Colin Runciman]
+  link: https://www.cs.york.ac.uk/fp/reduceron/reduceron.pdf
+- title: Parser combinators for ambiguous left-recursive grammars
+  authors: [Richard A. Frost, Rahmatullah Hafiz, and Paul Callaghan]
+  year: 2008
+  link: https://pdfs.semanticscholar.org/31ee/c0a79ee6d42481b6b3640881b5e9ca612e6a.pdf
