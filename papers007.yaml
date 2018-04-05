@@ -442,3 +442,22 @@
   authors: [Richard A. Frost, Rahmatullah Hafiz, and Paul Callaghan]
   year: 2008
   link: https://pdfs.semanticscholar.org/31ee/c0a79ee6d42481b6b3640881b5e9ca612e6a.pdf
+- title: Complete and easy bidirectional typechecking for higher-rank polymorphism
+  authors: [Joshua Dunfield, Neelakantan R. Krishnaswami]
+  year: 2013
+  link: https://arxiv.org/pdf/1306.6032.pdf
+- title: Generalizing Hindley-Milner type inference algorithms
+  authors: [Bastiaan Heeren, Jurriaan Hage, Doaitse Swierstra]
+  year: 2002
+  link: https://pdfs.semanticscholar.org/8983/233b3dff2c5b94efb31235f62bddc22dc899.pdf
+- title: Algorithm W step by step
+  author: Martin Grabmüller
+  year: 2006
+  link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.65.7733&rep=rep1&type=pdf
+- title: A generalized let-polymorphic type inference algorithm
+  authors: [Oukseh Lee, Kwangkeun Yi]
+  year: 2000
+  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.41.6832
+- title: Compositional type checking for Hindley-Milner type systems with ad-hoc polymorphism
+  author: Dr. Gergő Érdi
+  link: https://gergo.erdi.hu/projects/tandoori/Tandoori-Compositional-Typeclass.pdf
