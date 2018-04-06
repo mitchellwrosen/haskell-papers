@@ -471,3 +471,7 @@
   authors: [Rudy Braquehais, Colin Runciman]
   year: 2017
   link: https://matela.com.br/paper/extrapolate.pdf
+- title: 'Deriving via: or, how to turn hand-written instances into an anti-pattern'
+  authors: [Baldur Blöndal, Andres Löh, Ryan Scott]
+  year: 2018
+  link: https://www.kosmikus.org/DerivingVia/deriving-via-paper.pdf
