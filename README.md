@@ -59,6 +59,10 @@ Build everything:
     # Slow, for deployment (minifies javascript)
     ./build.sh
 
+Make a boilerplate commit containing new/modified papers:
+
+    ./update.sh
+
 Clean up everything:
 
     rm static/main.min.js
