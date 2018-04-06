@@ -461,16 +461,13 @@
 - title: Compositional type checking for Hindley-Milner type systems with ad-hoc polymorphism
   author: Dr. Gergő Érdi
   link: https://gergo.erdi.hu/projects/tandoori/Tandoori-Compositional-Typeclass.pdf
-- title: "Extrapolate: generalizing counter-examples of functional test properties"
-  authors:
-    - Colin Runciman
-    - Rudy Braquehais
-  year: 2017
-  link: https://matela.com.br/paper/extrapolate.pdf
 - title: "FitSpec: Refining Property Sets for Functional Testing"
   authors:
     - Colin Runciman
     - Rudy Braquehais
   year: 2016
   link: https://matela.com.br/paper/fitspec.pdf
-
+- title: 'Extrapolate: generalizing counter-examples of functional test properties'
+  authors: [Rudy Braquehais, Colin Runciman]
+  year: 2017
+  link: https://matela.com.br/paper/extrapolate.pdf
