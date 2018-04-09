@@ -475,3 +475,7 @@
   authors: [Baldur Blöndal, Andres Löh, Ryan Scott]
   year: 2018
   link: https://www.kosmikus.org/DerivingVia/deriving-via-paper.pdf
+- title: 'Seven sketches in composability: an invitation to applied category theory'
+  authors: [Brendan Fong, David I. Spivak]
+  year: 2018
+  link: https://arxiv.org/pdf/1803.05316.pdf
