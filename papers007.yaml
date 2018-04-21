@@ -479,3 +479,7 @@
   authors: [Brendan Fong, David I. Spivak]
   year: 2018
   link: https://arxiv.org/pdf/1803.05316.pdf
+- title: 'Stitch: the sound type-indexed type checker'
+  author: Richard A. Eisenberg
+  year: 2018
+  link: https://cs.brynmawr.edu/~rae/papers/2018/stitch/stitch.pdf
