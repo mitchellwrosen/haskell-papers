@@ -73,7 +73,7 @@ Clean up everything:
 Find dead links (takes a while to avoid IP bans):
 
     stack build haskell-papers:exe:getlinks --flag haskell-papers:build-getlinks
-    stack exec getlinks
+    stack exec getlinks -- static/papers.json | tee links.txt
 
 Quickly iterate on `yaml2json.hs`:
 

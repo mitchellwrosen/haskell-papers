@@ -32,9 +32,11 @@ executable getlinks
       aeson
     , async
     , base
+    , bytestring
     , http-client
     , http-client-tls
     , http-types
     , network-uri
     , unordered-containers
+    , vector
     , yaml

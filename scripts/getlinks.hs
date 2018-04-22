@@ -3,10 +3,11 @@
 {-# language ScopedTypeVariables #-}
 {-# language TupleSections       #-}
 
+import Control.Arrow
 import Control.Concurrent
 import Control.Concurrent.Async (Async, async, waitCatch)
-import Control.Exception (bracket_, mask_)
-import Control.Monad (forM, forM_)
+import Control.Exception (bracket_, fromException, mask_)
+import Control.Monad
 import Data.Aeson
 import Data.Functor (void)
 import Data.HashMap.Strict (HashMap)
@@ -14,88 +15,109 @@ import Data.IORef
 import Data.Vector (Vector)
 import GHC.Event (TimerManager, getSystemTimerManager, registerTimeout)
 import Network.HTTP.Client
-  (Manager, Request, Response, httpNoBody, parseRequest,requestHeaders,
-    responseStatus)
+  (HttpException(..), Manager, Request, Response, httpNoBody, method,
+    parseRequest, requestHeaders, responseStatus)
 import Network.HTTP.Client.TLS (newTlsManager)
 import Network.HTTP.Types.Header (Header)
 import Network.HTTP.Types.Status (statusCode)
 import Network.URI
   (URI(URI), URIAuth(URIAuth), parseURI, uriAuthority, uriRegName)
+import System.Environment (getArgs)
+import System.IO (BufferMode(LineBuffering), hSetBuffering, stdout)
+import System.IO.Unsafe (unsafePerformIO)
 
 import qualified Data.ByteString as ByteString
 import qualified Data.HashMap.Strict as HashMap
 
 newtype Links
-  = Links (Vector [Char])
+  = Links (Vector Link)
+
+type Link
+  = [Char]
 
 instance FromJSON Links where
   parseJSON =
     withObject "papers" $ \o -> do
-      links :: Vector (Int, [Char]) <-
-        o .: "links"
+      links :: Vector (Int, Link) <- o .: "c"
       pure (Links (snd <$> links))
 
 main :: IO ()
 main = do
-  Just (Links links) <-
-    decodeStrict <$> ByteString.readFile "papers.json"
+  [file :: FilePath] <-
+    getArgs
 
-  putStrLn ("Fetching " ++ show (length links) ++ " links")
+  Just (Links links) <-
+    decodeStrict <$> ByteString.readFile file
+
+  hSetBuffering stdout LineBuffering
 
   manager :: Manager <-
     newTlsManager
-
-  -- Only hit each domain once every ten seconds to avoid an IP ban
-  domainLocks :: IORef (HashMap [Char] (MVar ())) <-
-    newIORef mempty
 
   -- Limit the number of concurrent outgoing HTTP requests
   sem :: QSem <-
     newQSem 4
 
-  -- Prevent threads from printing to stdout at the same time
-  iolock :: MVar () <-
-    newMVar ()
+  -- Count the number of links that have been fetched
+  bumpCount :: IO Int <- do
+    ref <- newIORef 0
+    pure (atomicModifyIORef' ref (\n -> (n+1, n+1)))
 
   handles :: Vector (Async (), [Char]) <-
     forM links $ \link ->
       fmap (, link) . async $
         case parseURI link of
           Just (URI {uriAuthority = Just (URIAuth {uriRegName = domain})}) ->
-            withDomain domainLocks domain $
-              bracket_ (waitQSem sem) (signalQSem sem) $ do
+            withDomain domain $
+              withSem sem $ do
                 request :: Request <-
                   parseRequest link
 
                 response :: Response () <-
                   httpNoBody
                     request
-                      { requestHeaders =
-                          chromeUserAgent : requestHeaders request }
+                      { method =
+                          "HEAD"
+                      , requestHeaders =
+                          chromeUserAgent : requestHeaders request
+                      }
                     manager
 
-                case statusCode (responseStatus response) of
-                  200 ->
-                    pure ()
-                  code ->
-                    withMVar iolock (\_ -> putStrLn (show code ++ " " ++ link))
+                n :: Int <-
+                  bumpCount
+
+                putln $
+                  show n ++ " " ++ show (statusCode (responseStatus response))
+                    ++ " " ++ link
           _ ->
             error ("Cannot parse URI: " ++ link)
 
   forM_ handles $ \(handle, link) ->
     waitCatch handle >>= \case
-      Left _ ->
-        withMVar iolock (\_ -> putStrLn ("??? " ++ link))
+      Left ex -> do
+        n :: Int <-
+          bumpCount
+
+        let s =
+              case fromException ex of
+                Just (HttpExceptionRequest _ content) ->
+                  show content
+                Just (InvalidUrlException _ reason) ->
+                  reason
+                Nothing ->
+                  show ex
+
+        putln (show n ++ " 999 " ++ link ++ " [" ++ s ++ "]")
       Right _ ->
         pure ()
 
-withDomain :: IORef (HashMap [Char] (MVar ())) -> [Char] -> IO a -> IO a
-withDomain ref domain action = do
+withDomain :: [Char] -> IO a -> IO a
+withDomain domain action = do
   lock :: MVar () <- do
     lock :: MVar () <-
       newMVar ()
     atomicModifyIORef'
-      ref
+      domainLocks
       (\locks ->
         case HashMap.lookup domain locks of
           Nothing ->
@@ -119,3 +141,28 @@ withDomain ref domain action = do
 chromeUserAgent :: Header
 chromeUserAgent =
   ("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36")
+
+withSem :: QSem -> IO a -> IO a
+withSem sem =
+  bracket_ (waitQSem sem) (signalQSem sem)
+
+putln :: String -> IO ()
+putln =
+  putStrLn
+    >>> const
+    >>> withMVar iolock
+
+--------------------------------------------------------------------------------
+-- Global variables
+
+-- Prevent threads from printing to stdout at the same time
+iolock :: MVar ()
+iolock =
+  unsafePerformIO (newMVar ())
+{-# NOINLINE iolock #-}
+
+-- Only hit each domain once every ten seconds to avoid an IP ban
+domainLocks :: IORef (HashMap [Char] (MVar ()))
+domainLocks =
+  unsafePerformIO (newIORef mempty)
+{-# NOINLINE domainLocks #-}
