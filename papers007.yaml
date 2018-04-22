@@ -483,3 +483,86 @@
   author: Richard A. Eisenberg
   year: 2018
   link: https://cs.brynmawr.edu/~rae/papers/2018/stitch/stitch.pdf
+- title: A language-based approach to unifying events and threads
+  authors: [Peng Li, Steve Zdancewic]
+  year: 2006
+  link: http://www.cis.upenn.edu/~stevez/papers/LZ06b.pdf
+- title: Four concurrency primitives for Haskell
+  author: Enno Scholz
+  year: 1995
+- title: Implicit and explicit parallel programming in Haskell
+  authors: [Mark P. Jones, Paul Hudak]
+  year: 1993
+  link: http://web.cecs.pdx.edu/~mpj/pubs/RR-982.pdf
+- title: Managing heterogeneity in a Grid Parallel Haskell
+  authors: [A. D. Al Zain, P. W. Trinder, G. J. Michaelson, H-W. Loid]
+  year: 2005
+  link: http://www.dcs.gla.ac.uk/~trinder/papers/PAPP-Journal.pdf
+- title: 'Comparing parallel functional languages: programming and performance'
+  year: 2003
+  link: http://www.macs.hw.ac.uk/~trinder/papers/EdenGpH.ps
+- title: Parallel and distributed haskells
+  year: 2002
+  link: http://www.macs.hw.ac.uk/~trinder/papers/ParDistrHaskells.ps
+- title: The multi-architecture performance of the parallel functional language GPH
+  authors: [Philip W. Trinder, Hans-Wolfgang Loidl, Ed. Barry Jr., M. Kei Davis, Kevin Hammond, Ulrike Klusik, Simon L. Peyton Jones, Alvaro J. Rebon Portillo]
+  year: 2000
+  link: http://www.macs.hw.ac.uk/~dsg/gph/papers/ps/europar00.ps.gz
+- title: Large-scale functional applications
+  year: 2000
+- title: The design and implementation of Glasgow distributed Haskell
+  year: 2000
+  link: http://www.macs.hw.ac.uk/~dsg/gdh/papers/diyGdh_ifl00_draft.ps
+- title: Motivation for GdH, a distributed non-strict functional language
+  year: 2000
+  link: http://www.macs.hw.ac.uk/~dsg/gdh/papers/sprocl.ps
+- title: Engineering parallel symbolic programs in GpH
+  authors: [Hans-Wolfgang Loidl, Philip W. Trinder, Kevin Hammond, Sahalu B. Junaidu, Richard G. Morgan, Simon L. Peyton Jones]
+  year: 1999
+  link: http://www.macs.hw.ac.uk/~dsg/gph/papers/ps/cpe.ps.gz
+- title: Algorithm + strategy = parallelism
+  authors: [Philip W. Trinder, Kevin Hammond, Hans-Wolfgang Loidl, Simon L. Peyton Jones]
+  year: 1998
+  link: http://www.macs.hw.ac.uk/~dsg/gph/papers/ps/strategies.ps.gz
+- title: Towards an operational semantics for a parallel non-strict functional language
+  year: 1998
+  link: http://www.macs.hw.ac.uk/~gnik/apset/transitionsystem.ps.gz
+- title: A strategic profiler for Glasgow Parallel Haskell (GpH)
+  year: 1998
+  link: http://www.macs.hw.ac.uk/~gnik/apset/strat-prof.ps.gz
+- title: 'GUM: a portable parallel implementation of Haskell'
+  authors: [Philip W. Trinder, Kevin Hammond, James S. Mattson Jr., Andrew Partridge, Simon L. Peyton Jones]
+  year: 1995
+  link: http://www.macs.hw.ac.uk/~dsg/gph/papers/ps/gum-ifl95.ps.gz
+- title: An operational semantics for parallel lazy evaluation
+  author: Clem Baker-Finch
+  year: 2000
+- title: A parallel, real-time garbage collector
+  authors: [Perry Cheng, Guy E. Blelloch]
+  year: 2001
+- title: Scalable real-time parallel garbage collection for symmetric multiprocessors
+  author: Perry Sze-Din Cheng
+  year: 2001
+  link: http://reports-archive.adm.cs.cmu.edu/anon/usr0/ftp/home/anon/usr/anon/2001/CMU-CS-01-174.pdf
+- title: GRAPHing the Future
+  link: http://www.macs.hw.ac.uk/~dsg/gph/papers/ps/graphing.ps.gz
+- title: Correctness-preserving derivation of concurrent garbage collection algorithms
+  year: 2006
+- title: On bounding time and space for multiprocessor garbage collection
+  authors: [Guy E. Blelloch, Perry Cheng]
+  year: 1999
+- title: Memory management on a massively parallel capability architecture
+  author: Jeremy Hanford Brown
+  year: 1999
+  link: http://www.ai.mit.edu/projects/aries/Documents/jhbrown_thesis_proposal.pdf
+- title: Strong mobility in Mobile Haskell
+  authors: [André Rauber Du Bois, Phil Trinder, Hans-Wolf Loidl]
+  year: 2006
+  link: http://www.jucs.org/jucs_12_7/strong_mobility_in_mobile/jucs_12_07_0868_0884_dubois.pdf
+- title: 'mHaskell: mobile computation in a purely functional language'
+  year: 2005
+- title: Implementing Mobile Haskell
+  year: 2003
+- title: Towards a Mobile Haskell
+  year: 2003
+  link: http://www.macs.hw.ac.uk/~trinder/papers/wflp03.ps
