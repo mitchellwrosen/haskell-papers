@@ -192,6 +192,7 @@
 - title: Four concurrency primitives for Haskell
   author: Enno Scholz
   year: 1995
+  link: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.29.4173&rep=rep1&type=pdf
 - title: Implicit and explicit parallel programming in Haskell
   authors: [Mark P. Jones, Paul Hudak]
   year: 1993
@@ -268,3 +269,11 @@
 - title: Towards a Mobile Haskell
   year: 2003
   link: http://www.macs.hw.ac.uk/~trinder/papers/wflp03.ps
+- title: Memo functions, polytypically!
+  author: Ralf Hinze
+  year: 2000
+  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.43.3272
+- title: Generalizing generalized tries
+  author: Ralf Hinze
+  year: 1998
+  link: https://pdfs.semanticscholar.org/b0c4/b4b6d454d92e7caf126dff1d95d5166538f2.pdf

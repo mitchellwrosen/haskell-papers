@@ -223,6 +223,7 @@
   authors: [Anthony Discolo, Tim Harris, Simon Marlow, Simon Peyton Jones, Satnam Singh]
   year: 2006
   links:
+  - https://www.microsoft.com/en-us/research/wp-content/uploads/2006/04/2006-flops.pdf
   - https://simonmar.github.io/bib/papers/lockfreedatastructures.pdf
   - http://community.haskell.org/~simonmar/papers/lockfreedatastructures.pdf
 - title: A monad for deterministic parallelism

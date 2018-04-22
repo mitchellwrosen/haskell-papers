@@ -1,6 +1,5 @@
 https://arxiv.org/pdf/1703.10857.pdf
 http://www.umut-acar.org/self-adjusting-computation
-https://wiki.haskell.org/Memoization
 
 http://web.engr.oregonstate.edu/~erwig/papers/index.html
 https://themonadreader.wordpress.com/
@@ -18,7 +17,6 @@ https://www.icfpconference.org/icfp2008/accepted/accepted.html
 https://github.com/beerendlauwers/haskell-papers-ereader
 https://github.com/ocharles/papers
 https://github.com/robbinch/Papers
-https://wiki.haskell.org/Research_papers/Parallelism_and_concurrency
 https://wiki.haskell.org/Research_papers/Compilation
 https://wiki.haskell.org/Research_papers/Type_systems
 https://wiki.haskell.org/Research_papers/Data_structures
