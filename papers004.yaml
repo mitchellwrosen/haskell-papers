@@ -65,10 +65,6 @@
   authors: [Edsko de Vries, Vasileios Koutavas]
   year: 2012
   link: http://www.edsko.net/pubs/lnpt.pdf
-- title: A practical solution for achieving language compatibility in scripting language compilers
-  authors: [Paul Biggar, Edsko de Vries, David Gregg]
-  year: 2012
-  link: http://www.edsko.net/pubs/socp-2009.pdf
 - title: Uniqueness typing for resource management in message-passing concurrency
   authors: [Edsko de Vries, Adrian Francalanza, Matthew Hennessy]
   year: 2009
