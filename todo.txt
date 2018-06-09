@@ -1,3 +1,10 @@
+https://www.cs.kent.ac.uk/people/staff/sjt/TTFP/
+https://intuitionistic.files.wordpress.com/2010/07/martin-lof-tt.pdf
+http://www.paultaylor.eu/stable/prot.pdf
+http://ttic.uchicago.edu/~dreyer/course/papers/barendregt.pdf
+http://www.cse.chalmers.se/~ulfn/papers/afp08/tutorial.pdf
+https://faculty.math.illinois.edu/~dan/Papers/ium.pdf
+
 https://arxiv.org/pdf/1703.10857.pdf
 http://www.umut-acar.org/self-adjusting-computation
 
