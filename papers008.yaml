@@ -285,3 +285,7 @@
   authors: [Martin A.T. Handley, Graham Hutton]
   year: 2018
   link: http://www.cs.nott.ac.uk/~pszgmh/autobench.pdf
+- title: Type variables in patterns
+  authors: [Richard A. Eisenberg, Joachim Breitner, Simon Peyton Jones]
+  year: 2018
+  link: https://arxiv.org/pdf/1806.03476.pdf
