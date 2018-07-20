@@ -289,3 +289,7 @@
   authors: [Richard A. Eisenberg, Joachim Breitner, Simon Peyton Jones]
   year: 2018
   link: https://arxiv.org/pdf/1806.03476.pdf
+- title: Generic deriving of generic traversals
+  authors: [Csongor Kiss, Matthew Pickering, Nicolas Wu]
+  year: 2018
+  link: https://arxiv.org/pdf/1805.06798.pdf

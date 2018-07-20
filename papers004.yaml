@@ -265,7 +265,7 @@
 - title: A library for light-weight information-flow security in Haskell
   authors: [Alejandro Russo, Koen Claessen, John Hughes]
   year: 2008
-  link: https://www.researchgate.net/profile/John_Hughes13/publication/221563004_A_Library_for_Light-Weight_Information-Flow_Security_in_Haskell/links/5416de780cf2788c4b35ef35/A-Library-for-Light-Weight-Information-Flow-Security-in-Haskell.pdf
+  link: https://www.researchgate.net/publication/221563004_A_Library_for_Light-Weight_Information-Flow_Security_in_Haskell
 - title: 'QuickSpec: guessing formal specifications using testing'
   authors: [Koen Claessen, Nicholas Smallbone, John Hughes]
   year: 2010

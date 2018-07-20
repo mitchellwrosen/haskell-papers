@@ -56,7 +56,7 @@ main = do
 
   -- Limit the number of concurrent outgoing HTTP requests
   sem :: QSem <-
-    newQSem 4
+    newQSem 50
 
   -- Count the number of links that have been fetched
   bumpCount :: IO Int <- do
