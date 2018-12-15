@@ -475,7 +475,7 @@
 - title: 'Elaboration on functional dependencies: functional dependencies are dead, long live functional dependencies!'
   authors: [Georgios Karachalias, Tom Schrijvers]
   year: 2017
-  link: https://people.cs.kuleuven.be/~george.karachalias/papers/fundeps.pdf
+  link: https://gkaracha.github.io/papers/fundeps.pdf
 - title: Parallel parsing processes
   author: Koen Claessen
   link: http://www.cse.chalmers.se/edu/year/2015/course/afp/Papers/parser-claessen.pdf
